@@ -35,7 +35,7 @@
 											추첨방송 참관신청</span></a></li>
 							</ul>
 						</li>
-						<li id="03-02"><a href="#" class="menuLnb"><span>연금복권520</span></a></li>
+						<li id="03-02"><a href="${pageContext.request.contextPath }/gameresult/pension520/1" class="menuLnb"><span>연금복권520</span></a></li>
 
 						<li id="03-05"><a href="#" class="menuLnb"><span>로또6/45
 									당첨통계</span></a></li>
@@ -74,7 +74,6 @@
 								</form>
 							</div>
 						</div>
-
 						<script>
 							$(function () {
 								var searchBtn = $("#searchBtn");
@@ -102,7 +101,6 @@
 														var j = i + 1;
 														//console.log(parseInt(nums.substring(i*2,j*2)));
 														var num = parseInt(nums.substring(i * 2,j * 2));
-														console.log(num);
 														var element;
 														if (num < 11)
 															element = "<span class='ball_645 lrg ball1'>"
@@ -157,19 +155,21 @@
 													var inning = resultForm
 														.find("h4 strong");
 													var date = resultForm
-														.find(".desc");
+														.find("#draw_date");
 
+													// Date() 써서 잘라서 붙인거임
+													var convert = new Date(games.drawDate);
+													var asdf = "(" + convert.getFullYear()+"년 "+ ("0"+(convert.getMonth()+1)).slice(-2) + "월 " + ("0"+convert.getDate()).slice(-2)+"일 추첨)";
+													console.log(asdf);
 													inning
 														.html(games.games
 															+ "회");
 													date
-														.html(games.winningDate);
+														.html(asdf);
 
-													//alert(games.winningNum);
-
+													
 												});
 
-										//alert("클릭했음");
 									});
 							});
 						</script>
@@ -179,7 +179,8 @@
 							<h4>
 								<strong>${lottoGames.games }회</strong> 당첨결과
 							</h4>
-							<p class="desc">${lottoGames.drawDate }</p>
+							<fmt:formatDate var="drawDate" value="${lottoGames.drawDate }" pattern="(yyyy년 MM월 dd일 추첨)"/>
+							<p id="draw_date" class="desc">${drawDate }</p>
 							<div class="nums">
 								<div class="num win">
 									<strong>당첨번호</strong>

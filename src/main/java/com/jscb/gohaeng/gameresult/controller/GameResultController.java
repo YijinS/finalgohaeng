@@ -84,6 +84,35 @@ public class GameResultController {
 	
 	
 	/*------------------------- pension520 매핑------------------------------*/
-	
+	@RequestMapping("pension520/1")
+	public String pensionGamesDraw() {
+		
+		return "gameresult.pension520.1";
+	}
+	@RequestMapping("pension520/2")
+	public String pensionCheckNum() {
+		
+		return "gameresult.pension520.2";
+	}
+	@RequestMapping("pension520/3")
+	public String pensionWinningHistory() {
+		
+		return "gameresult.pension520.3";
+	}
+	@RequestMapping("pension520/4")
+	public String pensionPaymentInfo() {
+		
+		return "gameresult.pension520.4";
+	}
+	@RequestMapping("pension520/5")
+	public String pensionReview() {
+		
+		return "gameresult.pension520.5";
+	}
+	@RequestMapping("pension520/6")
+	public String pensionDrawShow() {
+		
+		return "gameresult.pension520.6";
+	}
 	/*------------------------- pension520 매핑------------------------------*/
 }

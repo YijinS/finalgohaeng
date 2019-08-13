@@ -13,7 +13,7 @@
             		<c:when test="${empty sessionScope.member }">
 						<ul>
 							<li><a href="${pageContext.request.contextPath }/guest/login">로그인</a></li>
-							<li><a href="#">회원가입</a></li>
+							<li><a href="${pageContext.request.contextPath }/guest/signup">회원가입</a></li>
 							<li><a href="#">마이페이지</a></li>
 							<li><a href="#">고객센터</a></li>
 						</ul>            		

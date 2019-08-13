@@ -11,10 +11,10 @@
 				<div id="snb" class="lnb">
 					<h2 id="09" class="lnb_title">회원서비스</h2>
 					<ul id="lnb" class="lnb_dep1">
-						<li id="09-01" class="active"><a href="#" class="menuLnb"><span>로그인</span></a></li>
+						<li id="09-01" class="active"><a href="${pageContext.request.contextPath }/guest/login" class="menuLnb"><span>로그인</span></a></li>
 						<li id="09-02"><a href="#" class="menuLnb"><span>아이디/비밀번호
 									찾기</span></a></li>
-						<li id="09-03"><a href="#" class="menuLnb"><span>회원가입</span></a></li>
+						<li id="09-03"><a href="${pageContext.request.contextPath }/guest/signup" class="menuLnb"><span>회원가입</span></a></li>
 					</ul>
 				</div>
 
