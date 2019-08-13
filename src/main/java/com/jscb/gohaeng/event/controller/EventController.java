@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jscb.gohaeng.admin.event.service.EventService;
 
+@RequestMapping("/event/")
 @Controller
 public class EventController {
 
 	@Autowired
 	private EventService eventService;
 
-	@RequestMapping("/event/list")
+	@RequestMapping("list")
 	public String list(HttpServletRequest request) {
 
 		eventService.getEventList(request);
@@ -22,7 +23,7 @@ public class EventController {
 		return  "event.list" ;
 	}
 
-	@RequestMapping("/event/detail")
+	@RequestMapping("detail")
 	public String detail(HttpServletRequest request) {
 		
 		eventService.getEventDetail(request);

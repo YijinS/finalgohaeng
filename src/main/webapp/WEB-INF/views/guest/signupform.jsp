@@ -5,23 +5,31 @@
 <div class="body">
 	<div class="containerWrap">
 		<section class="contentSection">
+			<!-- ----------왼쪽메뉴---------- 영역 -->
+			<nav class="lnbNav">
+
+				<div id="snb" class="lnb">
+					<h2 id="09" class="lnb_title">회원서비스</h2>
+					<ul id="lnb" class="lnb_dep1">
+						<li id="09-01"><a href="${pageContext.request.contextPath }/guest/login" class="menuLnb"><span>로그인</span></a></li>
+						<li id="09-02"><a href="#" class="menuLnb"><span>아이디/비밀번호
+									찾기</span></a></li>
+						<li id="09-03" class="active"><a href="${pageContext.request.contextPath }/guest/signup" class="menuLnb"><span>회원가입</span></a></li>
+					</ul>
+				</div>
+
+			</nav>
+			<!-- -------------------------------------- -->
 			<div id="article" class="contentsArticle">
 				<div class="header_article">
 					<h3 class="sub_title">회원정보입력</h3>
 					<p class="location">
-						<a class="home" href="/"> Home </a><span class="gt">&gt;</span><a
-							href="/user.do?method=login">회원서비스</a><span class="gt">&gt;</span><a
-							href="/loginJoin.do?method=joinFormAgree">회원가입</a>
+						<a class="${pageContext.request.contextPath }/home" href="/"> Home </a><span class="gt">&gt;</span><a
+							href="${pageContext.request.contextPath }/guest/login">회원서비스</a><span class="gt">&gt;</span><a
+							href="${pageContext.request.contextPath }/guest/signup">회원가입</a>
 					</p>
 				</div>
-				<!-- 
-		<ul class="step" device="phone">
-			<li>[STEP 1] 약관동의</li>
-			<li>[STEP 2] 본인인증</li>
-			<li class="selected">[STEP 3] 회원정보 입력</li>
-			<li>[STEP 4] 회원가입 완료</li>
-		</ul>
-		 -->
+
 				<div>
 					<div class="content_wrap content_join_form">
 						<!-- -------------------------------------------------------------------------------------- -->
