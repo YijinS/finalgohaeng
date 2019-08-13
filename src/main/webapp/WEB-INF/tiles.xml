@@ -12,7 +12,12 @@
 		/> <put-attribute name="main" value="/WEB-INF/views/admin/{1}/{2}.jsp" /> 
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" /> </definition> -->
 	
-	<definition name="common.*" template="/WEB-INF/views/inc/layout.jsp">
+	<definition name="common.*" template="/WEB-INF/views/inc/index-layout.jsp">
+      <put-attribute name="quick"   value="/WEB-INF/views/inc/quick.jsp" />
+      <put-attribute name="main" value="/WEB-INF/views/{1}.jsp" />
+   </definition>
+	
+<!-- 	<definition name="common.*" template="/WEB-INF/views/inc/layout.jsp">
 		<put-attribute name="header"
 			value="/WEB-INF/views/inc/header.jsp" />
 		<put-attribute name="quick"
@@ -21,7 +26,7 @@
 			value="/WEB-INF/views/{1}.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/views/inc/footer.jsp" />
-		</definition>
+		</definition> -->
 		
 	<definition name="*.*.*" template="/WEB-INF/views/inc/layout.jsp">
 		<put-attribute name="header"

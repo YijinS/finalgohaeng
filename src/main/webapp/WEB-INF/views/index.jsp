@@ -1,528 +1,656 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<div class="containerWrap">
-	<!-- pc일 경우 컨텐츠 영역 감싸는 마크업 추가  -->
-
-	<div id="article" class="contentSection main_section">
-		<div class="wrap_box wrap1">
-			<section class="box win win645">
-				<header>
-					<h2>로또 6/45</h2>
-
-				</header>
-				<div class="content">
-					<h3>
-						<a id="goByWin1"
-							href="/gameResult.do?method=byWin&amp;wiselog=C_A_1_1"><strong
-							id="lottoDrwNo">870</strong>회 <span class="txt">당첨결과</span> <span
-							class="date" id="drwNoDate">2019-08-03</span></a>
-					</h3>
-					<p class="num">
-						<a id="numView"
-							href="/gameResult.do?method=byWin&amp;wiselog=C_A_1_1"> <span
-							class="accessibility">당첨번호</span> <span id="drwtNo1"
-							class="ball_645 lrg ball3">21</span> <span id="drwtNo2"
-							class="ball_645 lrg ball3">25</span> <span id="drwtNo3"
-							class="ball_645 lrg ball3">30</span> <span id="drwtNo4"
-							class="ball_645 lrg ball4">32</span> <span id="drwtNo5"
-							class="ball_645 lrg ball4">40</span> <span id="drwtNo6"
-							class="ball_645 lrg ball5">42</span> <span class="bonus">보너스번호</span>
-							<span id="bnusNo" class="ball_645 lrg ball4">31</span>
-						</a>
-					</p>
-					<p id="winnerId" class="result">
-
-
-
-
-
-
-
-						<span>1등<span id="lottoNo1Su"> 10</span>게임
-						</span> <strong>총 당첨금액 약 <span id="lottoNo1TotalAmt">193</span>억원
-						</strong> <span>(1게임당 당첨금액 약 <span id="lottoNo1SuAmount">19</span>억원)
-						</span>
-
-
-
-					</p>
-					<a class="go prev" href="javascript:getLottoNumber('before');">이전
-						회차 당첨정보 보기</a> <a class="go next"
-						href="javascript:getLottoNumber('');">다음 회차 당첨정보 보기</a>
-					<div class="next_time">
-						<h3>다음회차</h3>
-						<span class="date">2019-08-06 11:00 현재</span>
-						<ul>
-							<li><strong>예상당첨금</strong><span>2,006,933,916<span
-									class="accessibility">원</span></span></li>
-							<li><strong>누적판매금</strong><span> 8,344,595,000 <span
-									class="accessibility">원</span></span></li>
-						</ul>
-						<a class="link"
-							href="/gameResult.do?method=byWin&amp;wiselog=C_A_1_2">회차별
-							당첨결과</a> <a id="btnBuyLotto" class="btn_common lrg gblu"
-							href="/gameInfo.do?method=buyLotto&amp;wiselog=C_A_1_3"
-							title="다음회차 구매로 이동">구매하기</a>
-					</div>
-				</div>
-			</section>
-			<!-- 190225 신규 마크업 시작 -->
-			<section class="box win win520">
-				<header>
-					<h2>연금복권 520</h2>
-
-				</header>
-				<div class="content">
-					<h3>
-						<a href="/gameResult.do?method=win520&amp;wiselog=C_A_2_1"><span
-							id="drwNo520">422</span>회 당첨결과</a>
-					</h3>
-					<span id="drawDate" class="date">[2019-07-31]</span>
-					<div id="number520" class="nums">
-						<p class="num">
-							<a href="/gameResult.do?method=win520&amp;wiselog=C_A_2_1"> <span
-								class="accessibility">1등 1번째 번호</span> <span class="s">6조</span>
-								<span class="n">4</span> <span class="n">0</span> <span
-								class="n">1</span> <span class="n">1</span> <span class="n">5</span>
-								<span class="n">8</span></a>
-						</p>
-						<p class="num">
-							<a href="/gameResult.do?method=win520&amp;wiselog=C_A_2_1"> <span
-								class="accessibility">1등 2번째 번호</span> <span class="s">5조</span>
-								<span class="n">1</span> <span class="n">5</span> <span
-								class="n">4</span> <span class="n">7</span> <span class="n">8</span>
-								<span class="n">5</span></a>
-						</p>
-					</div>
-					<div class="info-rank">
-						<span><strong>1등</strong>매달 500만원씩 20년 지급</span>
-					</div>
-					<a class="go prev" href="javascript:get520Number('before')">이전
-						회차 당첨정보 보기</a> <a class="go next" href="javascript:get520Number('')">다음
-						회차 당첨정보 보기</a> <img src="${pageContext.request.contextPath}/resources/images/main/img_lottery_win520.png"
-						alt="월 500만원 * 20년 / 2매">
-					<div class="btn">
-						<a class="btn_common smid"
-							href="/gameResult.do?method=win520&amp;wiselog=C_A_2_2">회차별
-							당첨결과</a> <a class="btn_common smid gblu"
-							href="/gameInfo.do?method=game520Method&amp;wiselog=C_A_2_3">구매하기</a>
-					</div>
-				</div>
-			</section>
-			<script type="text/javascript">
-				$(".spt_group .slide_inner").slick({
-					slidesToShow : 1,
-					infinite : true,
-					arrows : true
-				});
-			</script>
-			<!-- //190225 신규 마크업 끝 -->
-			<!-- 로또 구입 관련 메세지 팝업 : 접근성 준수 처리를 위해 openPopLayer($('#alertLotto1'),$('#btnBuyLotto')); 이렇게 openPopLayer 함수 태워서 띄워주세요. -->
-			<div id="alertLotto1" class="popup_alert" style="display: none">
-				<div class="content">
-					<p class="txt1">
-						로또6/45복권 로또는<br> <strong>오전 6시부터 밤 12시까지만 구매</strong>할 수
-						있습니다.
-					</p>
-					<p class="txt2">
-						토요일(추첨일) 오후 8시부터 <br> 일요일 오전 6시이전까지는 구매불가합니다.
-					</p>
-				</div>
-				<div class="btns">
-					<a class="btn_common mid close" href="#">닫기</a>
-				</div>
-			</div>
-			<div id="alertLotto2" class="popup_alert" style="display: none">
-				<div class="content">
-					<p class="txt1">
-						로또6/45 <strong>인터넷 판매수량이 <br>모두 소진
-						</strong>되었습니다.
-					</p>
-					<p class="txt2">다음 회차를 이용해 주세요.</p>
-				</div>
-				<div class="btns">
-					<a class="btn_common mid close" href="#">닫기</a>
-				</div>
-			</div>
-			<!-- //로또 구입 관련 메세지 팝업 -->
-		</div>
-		<div class="wrap_box wrap2">
-			<section class="box inbok">
-				<header>
-					<h2>띠별운세</h2>
-				</header>
-				<div class="content">
-					<ul>
-						<c:forEach var="f" items="${fortune }" varStatus="vs">
-						<fmt:formatNumber var="num" value="${vs.count }" minIntegerDigits="2" />
-						
-							<li>
-								<p>${f.sign }</p>
-								<img src="${pageContext.request.contextPath }/resources/images/fortune/ani_${num}.png" alt="" />
-								<p>${f.fortune }</p>
-							</li>
-						</c:forEach>
-						
-					</ul>
-				</div>
-			</section>
-		</div>
-		<div class="wrap_box wrap3">
-			<section class="box interview">
-				<h2>당첨자 인터뷰</h2>
-				<ul>
-					<!-- loop : 두개 노출되어야 함 -->
-
-
-					<li><a
-						href="/gameResult.do?method=highWinView&amp;wiselog=C_C_1_1&amp;txtNo=13834">
-							<span class="pic"
-							style="background-image: url(${pageContext.request.contextPath}/resources/images/result/logo_itv_LP34.png)">스피또1000</span>
-						<!-- 당첨자 인터뷰 목록에서 노출되는 이미지를 bg로 로드 --> <strong class="title">스피또
-								1등 당첨이라니! 너무 떨려서 소감 쓰기도 힘들어요!</strong> <span class="date">2019-08-05</span>
-					</a></li>
-
-					<li><a
-						href="/gameResult.do?method=highWinView&amp;wiselog=C_C_1_1&amp;txtNo=13833">
-							<span class="pic"
-							style="background-image: url(${pageContext.request.contextPath}/resources/images/result/logo_itv_LP32.png)">연금복권520</span>
-						<!-- 당첨자 인터뷰 목록에서 노출되는 이미지를 bg로 로드 --> <strong class="title">연금복권
-								소액구매가 가져다 준 1등 당첨과 삶의 활력!</strong> <span class="date">2019-08-05</span>
-					</a></li>
-
-
-					<!-- //loop : 두개 노출되어야 함 -->
-				</ul>
-			</section>
-			<div class="box board">
-				<section id="divBoard" class="inner">
-					<div class="wrap wrap1 active">
-						<h2>
-							<a href="#divBoard1" onclick="changeBoard(1); return false">공지사항</a>
-						</h2>
-						<ul id="divBoard1">
-
-
-							<li><a
-								href="/service.do?method=noticeView&amp;wiselog=C_C_1_3&amp;noticeSerial=27">
-									<strong title="가상계좌 입금수수료 보상 이벤트">가상계좌 입금수수료 보상 이벤트</strong>
-
-							</a><span class="date">2019.07.31</span></li>
-
-
-
-							<li><a
-								href="/service.do?method=noticeView&amp;wiselog=C_C_1_3&amp;noticeSerial=26">
-									<strong title="2019년 온라인(로또)복권 신규판매인 모집 당첨자 안내">2019년
-										온라인(로또)복권 신규판매인 모집 당첨자 안내</strong>
-
-							</a><span class="date">2019.07.30</span></li>
-
-
-
-							<li><a
-								href="/service.do?method=noticeView&amp;wiselog=C_C_1_3&amp;noticeSerial=25">
-									<strong title="예치금충전 서비스 변경 안내">예치금충전 서비스 변경 안내</strong>
-
-							</a><span class="date">2019.07.22</span></li>
-
-
-
-
-
-
-						</ul>
-						<a class="more"
-							href="/service.do?method=noticeList&amp;wiselog=C_C_1_2">공지사항
-							더 보기</a>
-					</div>
-					<div class="wrap wrap2">
-						<h2>
-							<a href="#divBoard2" onclick="changeBoard(2); return false">언론보도</a>
-						</h2>
-						<ul id="divBoard2">
-
-
-							<li><a
-								href="/happy.do?method=fundPressPrView&amp;wiselog=C_C_1_5&amp;txtNo=1820">
-									<strong title="“복권기금 덕에 창업의 꿈 이뤘어요”">“복권기금 덕에 창업의 꿈
-										이뤘어요”</strong>
-							</a><span class="date">2019.07.01</span></li>
-
-
-
-							<li><a
-								href="/happy.do?method=fundPressPrView&amp;wiselog=C_C_1_5&amp;txtNo=1818">
-									<strong title="동행복권, 로또복권 판매인 711명 신규 모집">동행복권, 로또복권
-										판매인 711명 신규 모집</strong>
-							</a><span class="date">2019.06.17</span></li>
-
-
-
-							<li><a
-								href="/happy.do?method=fundPressPrView&amp;wiselog=C_C_1_5&amp;txtNo=1819">
-									<strong title="‘복권’으로 국가유공자 분들께 감사의 마음 전해요!">‘복권’으로
-										국가유공자 분들께 감사의 마음 전해요!</strong>
-							</a><span class="date">2019.06.17</span></li>
-
-
-
-
-
-
-						</ul>
-						<a class="more"
-							href="/happy.do?method=fundPressPrList&amp;wiselog=C_C_1_4">언론보도
-							더 보기</a>
-					</div>
-				</section>
-			</div>
-			<section class="box fund">
-				<h2>
-					<span>판매액의 42%이상</span>이 복권기금이 <br>되어 소외계층에 사용되고 있습니다.
-				</h2>
-				<ul>
-					<li>법정배분사업</li>
-					<li>주거안정사업</li>
-					<li>소외계층사업</li>
-					<li>문화예술사업</li>
-				</ul>
-				<p>
-					<span>2019년 복권기금 누적액</span><strong>₩ 1,200,590,206,099</strong>
-				</p>
-				<a class="link" href="/happy.do?method=fundInfo&amp;wiselog=C_C_2_1">복권기금
-					알아보기</a>
-			</section>
-			<div class="box happyplus">
-				<a href="/myPage.do?method=joinNewsLetterInput&amp;wiselog=C_C_2_2"><strong>행복더하기
-						신청</strong><span>매일 새로운 복권소식과 <br>함께하세요.
-				</span></a>
-			</div>
-			<section class="box quicklink">
-				<h2 class="accessibility">바로가기</h2>
-				<ul>
-					<li class="q1"><a href="https://cafe.naver.com/dhlottery"
-						target="_blank" title="새창(동행복권 카페로 이동)"><span><strong>동행복권
-									Cafe</strong>함께하는 재미와 이벤트!</span></a></li>
-					<li class="q2"><a href="http://dhlotteryblog.co.kr/"
-						target="_blank" title="새창(동행복권 블로그로 이동)"><span><strong>동행복권
-									Blog</strong>다양한 재미가 팡팡!</span></a></li>
-					<li class="q3"><a
-						href="https://www.facebook.com/donghanglottery/" target="_blank"
-						title="새창(동행복권 페이스북으로 이동)"><span><strong>동행복권
-									Facebook</strong>친구신청으로 이벤트 정보가 쏙쏙!</span></a></li>
-					<li class="q4"><a
-						href="https://www.youtube.com/channel/UC0J8JW6ORJ0Jb-MRVgGPJAg"
-						target="_blank" title="새창(동행복권 유투브로 이동)"><span><strong>동행복권
-									YouTube</strong>복권에 대한 영상 정보를 보는 곳!</span></a></li>
-					<li class="q5"><a href="http://happyplus-dhlottery.kr/"
-						target="_blank" title="새창(동행복권 뉴스레터로 이동)"><span><strong>동행복권
-									News Letter</strong>복권에 대한 알찬 정보가 있는 곳!</span></a></li>
-					<!-- <li class="app">
-					<ul>
-						<li class="a1"><a href="#" onclick="alert('서비스 준비중입니다')"><span><strong>iOS APP</strong>앱스토어 바로가기</span></a></li>
-						<li class="a2"><a href="#" onclick="alert('서비스 준비중입니다')"><span><strong>안드로이드 APP</strong>원스토어 바로가기</span></a></li>
-						<li><a href="https://itunes.apple.com/kr/app/id1444390490" target="_blank" title="새창(동행복권 iOS 앱 다운로드 페이지로 이동)"><span><strong>iOS APP</strong>앱 스토어 바로가기</span></a></li>
-						<li><a href="http://onesto.re/0000734850" target="_blank" title="새창(동행복권 안드로이드 앱 다운로드페이지로 이동)"><span><strong>안드로이드 APP</strong>원 스토어 바로가기</span></a></li>
-					</ul>
-				
-				</li> -->
-					<li class="q6"><a href="#"
-						onclick="$('#layerQrApp').show(); return false;"><span><strong>동행복권
-									공식 APP</strong>모든 복권 정보가 한곳에!</span></a>
-						<div id="layerQrApp" class="popup_alert popup-qrcode">
-							<div class="content">
-								<img src="${pageContext.request.contextPath}/resources/images/main/img-qr-app.png">
-							</div>
-							<a href="#" onclick="$('#layerQrApp').hide(); return false;"><img
-								src="${pageContext.request.contextPath}/resources/images/common/btn_close_layerpop.png" alt="닫기"></a>
-						</div></li>
-				</ul>
-			</section>
-			<section class="box care">
-				<h2>
-					도박중독, 복권과몰입<br>전문 상담기구
-				</h2>
-				<strong class="name">동행클린센터</strong>
-				<p>
-					도박문제 전문상담 <strong>080-800-0501</strong>
-				</p>
-				<!-- 181226 링크추가 -->
-				<a href="https://clean.dhlottery.co.kr/" target="_blank"
-					title="새창(동행클린센터 페이지로 이동)" class="link">동행클린센터 페이지로 이동하기</a>
-				<ul>
-					<li class="s1"><a
-						href="/myPage.do?method=campainTest&amp;wiselog=C_C_3_1">셀프
-							진단평가</a></li>
-					<li class="s2"><a
-						href="/myPage.do?method=campainProgram&amp;wiselog=C_C_3_1">셀프
-							구매계획</a></li>
-					<li class="s3"><a
-						href="/myPage.do?method=campainProgram2&amp;wiselog=C_C_3_1">셀프
-							휴식계획</a></li>
-				</ul>
-			</section>
-		</div>
-		<section class="site_map">
-			<h2 class="accessibility">주요메뉴</h2>
-			<dl>
-				<dt>
-					<a href="/common.do?method=main&amp;wiselog=C_D_1_1">게임구매</a>
-				</dt>
-				<dd>
-					<a href="javascript:goGame('LO40', 2);"
-						onclick="javascript:goWiseLogMain('&amp;wiselog=C_D_1_2');">로또6/45</a>
-				</dd>
-				<dd>
-					<a href="javascript:goGame('LP32', 2);"
-						onclick="javascript:goWiseLogMain('&amp;wiselog=C_D_1_3');">연금복권520</a>
-				</dd>
-				<dd>
-					<a href="javascript:goGame('LD14', 2);"
-						onclick="javascript:goWiseLogMain('&amp;wiselog=C_D_1_4');">파워볼</a>
-				</dd>
-				<dd>
-					<a href="javascript:goGame('LD10', 2);"
-						onclick="javascript:goWiseLogMain('&amp;wiselog=C_D_1_5');">스피드키노</a>
-				</dd>
-				<dd>
-					<a href="javascript:goGame('LD11', 2);"
-						onclick="javascript:goWiseLogMain('&amp;wiselog=C_D_1_6');">메가빙고</a>
-				</dd>
-				<dd>
-					<a href="javascript:goGame('LI21', 2);"
-						onclick="javascript:goWiseLogMain('&amp;wiselog=C_D_1_7');">트리플럭</a>
-				</dd>
-				<dd>
-					<a href="javascript:goGame('LI23', 2);"
-						onclick="javascript:goWiseLogMain('&amp;wiselog=C_D_1_8');">캐치미</a>
-				</dd>
-				<dd>
-					<a href="javascript:goGame('LI22', 2);"
-						onclick="javascript:goWiseLogMain('&amp;wiselog=C_D_1_9');">트래져헌터</a>
-				</dd>
-				<dd>
-					<a href="javascript:goGame('LD20', 2);"
-						onclick="javascript:goWiseLogMain('&amp;wiselog=C_D_1_10');">더블잭마이더스</a>
-				</dd>
-			</dl>
-			<dl>
-				<dt>
-					<a href="/gameInfo.do?method=gameMethod&amp;wiselog=C_D_2_1">게임정보</a>
-				</dt>
-				<dd>
-					<a href="/gameInfo.do?method=gameMethod&amp;wiselog=C_D_2_2">로또6/45</a>
-				</dd>
-				<dd>
-					<a href="/gameInfo.do?method=gameGuide&amp;wiselog=C_D_2_3">연금복권520</a>
-				</dd>
-				<dd>
-					<a href="/gameInfo.do?method=inetbokBuyInfo&amp;wiselog=C_D_2_4">전자복권</a>
-				</dd>
-				<dd>
-					<a href="/gameInfo.do?method=speettoGameMethod&amp;wiselog=C_D_2_5">즉석식인쇄복권</a>
-				</dd>
-			</dl>
-			<dl>
-				<dt>
-					<a href="/gameResult.do?method=byWin&amp;wiselog=C_D_3_1">게임결과</a>
-				</dt>
-				<dd>
-					<a href="/gameResult.do?method=byWin&amp;wiselog=C_D_3_2">로또6/45</a>
-				</dd>
-				<dd>
-					<a href="/gameResult.do?method=win520&amp;wiselog=C_D_3_3">연금복권520</a>
-				</dd>
-				<dd>
-					<a href="/gameResult.do?method=winList&amp;wiselog=C_D_3_4">전자복권</a>
-				</dd>
-				<dd>
-					<a href="/gameResult.do?method=speettoWin&amp;wiselog=C_D_3_5">즉석식인쇄복권</a>
-				</dd>
-				<dd>
-					<a href="/gameResult.do?method=statIndex&amp;wiselog=C_D_3_6">로또6/45
-						당첨통계</a>
-				</dd>
-				<dd>
-					<a href="/gameResult.do?method=index520&amp;wiselog=C_D_3_7">연금복권520
-						당첨통계</a>
-				</dd>
-				<dd>
-					<a href="/gameResult.do?method=highWin&amp;wiselog=C_D_3_8">당첨소식</a>
-				</dd>
-				<dd>
-					<a href="/gameResult.do?method=notReceiveInfo&amp;wiselog=C_D_3_9">미수령당첨금</a>
-				</dd>
-			</dl>
-			<dl>
-				<dt>
-					<a href="/store.do?method=sellerInfo645&amp;wiselog=C_D_4_1">판매점</a>
-				</dt>
-				<dd>
-					<a href="/store.do?method=sellerInfo645&amp;wiselog=C_D_4_2">로또6/45판매점
-						조회</a>
-				</dd>
-				<dd>
-					<a href="/store.do?method=sellerInfoPrint&amp;wiselog=C_D_4_3">즉석
-						및 연금복권 판매점 조회</a>
-				</dd>
-			</dl>
-			<dl>
-				<dt>
-					<a href="/event.do?method=Eventend&amp;wiselog=C_D_5_1">이벤트</a>
-				</dt>
-				<dd>
-					<a href="/event.do?method=Eventend&amp;wiselog=C_D_5_2">이벤트</a>
-				</dd>
-			</dl>
-			<dl>
-				<dt>
-					<a href="/happy.do?method=healthCultureRule&amp;wiselog=C_D_6_1">행복공감</a>
-				</dt>
-				<dd>
-					<a href="/happy.do?method=healthCultureRule&amp;wiselog=C_D_6_2">건전한
-						복권문화</a>
-				</dd>
-				<dd>
-					<a href="/happy.do?method=fundInfo&amp;wiselog=C_D_6_3">복권기금</a>
-				</dd>
-				<dd>
-					<a href="/happy.do?method=happySympathyService&amp;wiselog=C_D_6_4">행복공감봉사단</a>
-				</dd>
-				<dd>
-					<a href="/happy.do?method=fundArchiveList&amp;wiselog=C_D_6_5">홍보센터</a>
-				</dd>
-			</dl>
-		</section>
-		<div class="link_out">
-			<ul class="bottom_banner clearfx">
-				<li><a href="http://www.bokgwon.go.kr/" title="복권위원회"
-					target="_blank"><img src="${pageContext.request.contextPath}/resources/images/main/img_link1.gif"
-						alt="복권위원회"></a></li>
-				<li><a href="http://www.ngcc.go.kr/" title="사행산업통합감독위원회"
-					target="_blank"><img src="${pageContext.request.contextPath}/resources/images/main/img_link2.gif"
-						alt="사행산업통합감독위원회"></a></li>
-				<li><a href="http://www.kcgp.or.kr/" title="한국도박문제관리센터"
-					target="_blank"><img src="${pageContext.request.contextPath}/resources/images/main/img_link3.gif"
-						alt="한국도박문제관리센터"></a></li>
-				<li><a href="http://www.world-lotteries.org"
-					title="World Lottery Association" target="_blank"><img
-						src="${pageContext.request.contextPath}/resources/images/main/img_link4.gif"
-						alt="WLA(World Lottery Association)"></a></li>
-				<li><a href="http://www.asiapacific-lotteries.com"
-					title="Asia Pacific Lottery Association" target="_blank"><img
-						src="${pageContext.request.contextPath}/resources/images/main/img_link5.gif"
-						alt="APLA(Asia Pacific Lottery Association)"></a></li>
-			</ul>
-		</div>
+<!-- <section class="head-text">
+	<div class="container text-center text-secondary">
+		<p>고통을 함께하는 고행복권 :)</p>
 	</div>
+</section> -->
 
+<!-- ------------------- 헤더메뉴 영역 시작 ------------------- -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-column border-bottom border-secondary">
+  <div class="container" id="header-top">
+	  <a class="navbar-brand" href="#">
+        <img src="${pageContext.request.contextPath }/resources/images/index/logo-header.png" width="190px" alt="">
+  	  </a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto w-100 justify-content-end">
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">로그인</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">회원가입</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">마이페이지</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">고객센터</a>
+	      </li>
+	    </ul>
+	  </div>
+  </div>
+  <div class="container" id="header-bot">
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav w-100 justify-content-around">
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">복권구매</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">복권정보</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">당첨결과</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">판매점</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">이벤트</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">행복공감</a>
+	      </li>
+	    </ul>
+	  </div>
+  </div>
+</nav>
+<%-- <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-column border-bottom border-secondary">
+  <div class="container" id="header-top">
+	  <a class="navbar-brand" href="#">
+        <img src="${pageContext.request.contextPath }/resources/images/index/logo-header.png" width="190px" alt="">
+  	  </a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto w-100 justify-content-end">
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">로그인</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">회원가입</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">마이페이지</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">고객센터</a>
+	      </li>
+	    </ul>
+	  </div>
+  </div>
+  <div class="container" id="header-bot">
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav w-100 justify-content-around">
+	      <li class="nav-item">
+	        <a class="nav-link px-4 pb-3" href="#">복권구매</a>
+	        <div class="group container">
+                 <ul>
+                     <li class="gnb1_1"><a href="#"><strong>로또 6/45</strong><span>매주 토요일 추첨<br>6개 숫자 직접 선택</span></a></li>
+                     <li class="gnb1_2"><a href="#"><strong>연금복권520</strong><span>매주 수요일  추첨<br>500만원씩 20년 지급</span></a></li>
+                 </ul>
+             </div>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link px-4 pb-3" href="#">복권정보</a>
+	        <div class="group container">
+                <ul>
+                    <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/1.do">로또6/45</a>
+                        <ul class="snb_dep3">
+                            <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/1.do">로또 6/45 소개</a></li>
+                            <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/2.do">구매하기</a></li>
+                            <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/3.do">구매방법</a></li>
+                            <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/4.do">추첨안내</a></li>
+                            <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/5.do">로또 히스토리</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">연금복권520</a>
+                        <ul class="snb_dep3">
+                            <li><a href="#">연금복권520 소개</a></li>
+                            <li><a href="#">구매하기</a></li>
+                            <li><a href="#">구매방법</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link px-4 pb-3" href="#">당첨결과</a>
+	        <div class="group container">
+                <ul>
+                    <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/1.do">로또6/45</a>
+                        <ul class="snb_dep3">
+                            <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/1.do">회차별 당첨번호</a></li>
+                            <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/2.do">내번호 당첨확인</a></li>
+                            <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/3.do">당첨내역</a></li>
+                            <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/4.do">당첨금 지급안내</a></li>
+                            <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/5.do">추첨방송 다시보기</a></li>
+                            <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/6.do">추첨방송 참관신청</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">연금복권520</a>
+                        <ul class="snb_dep3">
+                            <li><a href="#">회차별 당첨번호</a></li>
+                            <li><a href="#">내번호 당첨확인</a></li>
+                            <li><a href="#">당첨내역</a></li>
+                            <li><a href="#">당첨금 지급안내</a></li>
+                            <li><a href="#">추첨방송 다시보기</a></li>
+                            <li><a href="#">추첨방송 참관신청</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">로또6/45 당첨통계</a>
+                        <ul class="snb_dep3">
+                            <li><a href="#">당첨통계</a></li>
+                            <li><a href="#">번호별 통계</a></li>
+                            <li><a href="#">색상 통계</a></li>
+                            <li><a href="#">구간별 출현횟수</a></li>
+                            <li><a href="#">기간별 미출현 번호</a></li>
+                            <li><a href="#">홀짝통계</a></li>
+                            <li><a href="#">연속번호 출현</a></li>
+                            <li><a href="#">패턴분석표</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li><a href="#">연금복권520 당첨통계</a></li>
+                    <li><a href="#">당첨소식</a>
+                        <ul class="snb_dep3">
+                            <li><a href="#">당첨자 인터뷰</a></li>
+                            <li><a href="#">당첨 소감 게시판</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">미수령 당첨금</a>
+                        <ul class="snb_dep3">
+                            <li><a href="#">로또6/45</a></li>
+                            <li><a href="#">연금복권520</a></li>
+                            <li><a href="#">전자복권</a></li>
+                            <li><a href="#">즉석식 인쇄복권</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link px-4 pb-3" href="#">판매점</a>
+	        <div class="group container">
+                <ul>
+                    <li><a href="#">구입처 안내</a>
+                        <ul class="snb_dep3">
+                            <li><a href="#">로또6/45판매점 조회</a></li>
+                            <li><a href="#">즉석 및 연금복권 판매점 조회</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">당첨 판매점</a>
+                        <ul class="snb_dep3">
+                            <li><a href="#">회차별</a></li>
+                            <li><a href="#">1등 배출점</a>
+                            </li>
+                            <li><a href="#">2등 배출점</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link px-4 pb-3" href="#">이벤트</a>
+	        <div class="group container">
+                 <ul>
+                     <li><a href="#">이벤트</a></li>
+                 </ul>
+             </div>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link px-4 pb-3" href="#">행복공감</a>
+	        <div class="group container">
+                <ul>
+                    <li><a href="#">건전한 복권문화</a>
+                        <ul class="snb_dep3">
+                            <li><a href="#">복권바로알기</a></li>
+                            <li><a href="#">건전구매 프로그램</a></li>
+                            <li><a href="#">건전화 캠페인</a></li>
+                            <li><a href="#">건전화 책임규정</a></li>
+                            <li><a href="#">복권 과몰입 예방법</a></li>
+                            <li><a href="#">중독예방 및 상담안내</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">복권기금</a>
+                        <ul class="snb_dep3">
+                            <li><a href="#">복권기금소개</a></li>
+                            <li><a href="#">기금사업 진행현황</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">행복공감봉사단</a></li>
+                    <li><a href="#">홍보센터</a>
+                        <ul class="snb_dep3">
+                            <li><a href="#">광고</a></li>
+                            <li><a href="#">보도자료</a></li>
+                            <li><a href="#">공지사항</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+	      </li>
+	    </ul>
+	  </div>
+  </div>
+</nav> --%>
+<!-- -------------------------- 헤더메뉴 영역 끝 -------------------------- -->
+<!-- -------------------------- 메인컨텐츠 영역 시작 -------------------------- -->
 
-
-
-
-
+<%-- <img src="${pageContext.request.contextPath }/resources/images/index/bg_01.jpg" class="img-fluid"/> --%>
+<%-- <img src="${pageContext.request.contextPath }/resources/images/index/bg_02.png" class="img-fluid"/> --%>
+<!-- ------------------- 메인 당첨번호 시작 ------------------- -->
+<div class="img-portrait">
+	<div class="container py-5">
+       <div class="row">
+           <div class="col-lg-7">
+               <h4 class="mb-2 text-white">로또 6/45</h4>
+               <div class="carousel slide" id="carousel-1" data-ride="carousel-1">
+                   <div class="carousel-inner text-center mt-5 border-bottom border-secondary" role="listbox" style="height: 300px;">
+                       <div class="carousel-item text-center mt-4">
+                          <h3>
+                          	<a id="goByWin1" class="text-decoration-none" href="#">
+                          		<strong id="lottoDrwNo">868</strong>회 <span>당첨결과</span>
+                          		<span class="date" id="drwNoDate">2019-08-03</span>
+                          	</a>
+                          </h3>
+                          <p class="num" id="mainslideballs">
+                       		<a id="numView" href="/gameResult.do?method=byWin&amp;wiselog=C_A_1_1">
+								<span class="accessibility">당첨번호</span>
+								<span id="drwtNo1" class="ball_645 lrg ball3">21</span>
+								<span id="drwtNo2" class="ball_645 lrg ball3">25</span>
+								<span id="drwtNo3" class="ball_645 lrg ball3">30</span>
+								<span id="drwtNo4" class="ball_645 lrg ball4">32</span>
+								<span id="drwtNo5" class="ball_645 lrg ball4">40</span>
+								<span id="drwtNo6" class="ball_645 lrg ball5">42</span>
+								<span class="bonus">보너스번호</span>
+								<span id="bnusNo" class="ball_645 lrg ball4">31</span>
+							</a>
+						   </p>
+                           <p id="winnerId" class="lead mb-4 mx-5 w-50 mx-auto text-secondary">
+                           	<span>1등<span id="lottoNo1Su">11</span>게임</span>
+                           <span class="lead mb-4 mx-5 w-50 mx-auto text-secondary">총 당첨금액 약<span id="lottoNo1TotalAmt">193</span>억원</span><br>
+                           <span class="lead mb-4 mx-5 w-50 mx-auto text-secondary">(1게임당 당첨금액 약<span id="lottoNo1SuAmount">19</span>억원)</span></p>
+                       </div>
+                       <div class="carousel-item text-center mt-4">
+                           <h3>
+                          	<a id="goByWin1" class="text-decoration-none" href="#">
+                          		<strong id="lottoDrwNo">869</strong>회 <span>당첨결과</span>
+                          		<span class="date" id="drwNoDate">2019-08-03</span>
+                          	</a>
+                          </h3>
+                           <p class="num" id="mainslideballs">
+                       		<a id="numView" href="/gameResult.do?method=byWin&amp;wiselog=C_A_1_1">
+								<span class="accessibility">당첨번호</span>
+								<span id="drwtNo1" class="ball_645 lrg ball3">21</span>
+								<span id="drwtNo2" class="ball_645 lrg ball3">25</span>
+								<span id="drwtNo3" class="ball_645 lrg ball3">30</span>
+								<span id="drwtNo4" class="ball_645 lrg ball4">32</span>
+								<span id="drwtNo5" class="ball_645 lrg ball4">40</span>
+								<span id="drwtNo6" class="ball_645 lrg ball5">42</span>
+								<span class="bonus">보너스번호</span>
+								<span id="bnusNo" class="ball_645 lrg ball4">31</span>
+							</a>
+						   </p>
+                           <p id="winnerId" class="lead mb-4 mx-5 w-50 mx-auto text-secondary">
+                           	<span>1등<span id="lottoNo1Su">11</span>게임</span>
+                           <span class="lead mb-4 mx-5 w-50 mx-auto text-secondary">총 당첨금액 약<span id="lottoNo1TotalAmt">193</span>억원</span><br>
+                           <span class="lead mb-4 mx-5 w-50 mx-auto text-secondary">(1게임당 당첨금액 약<span id="lottoNo1SuAmount">19</span>억원)</span></p>
+                       </div>
+                       <div class="carousel-item text-center mt-4 active">
+                           <h3>
+                          	<a id="goByWin1" class="text-decoration-none" href="#">
+                          		<strong id="lottoDrwNo">870</strong>회 <span>당첨결과</span>
+                          		<span class="date" id="drwNoDate">2019-08-03</span>
+                          	</a>
+                          </h3>
+                           <p class="num" id="mainslideballs">
+                       		<a id="numView" href="/gameResult.do?method=byWin&amp;wiselog=C_A_1_1">
+								<span class="accessibility">당첨번호</span>
+								<span id="drwtNo1" class="ball_645 lrg ball3">21</span>
+								<span id="drwtNo2" class="ball_645 lrg ball3">25</span>
+								<span id="drwtNo3" class="ball_645 lrg ball3">30</span>
+								<span id="drwtNo4" class="ball_645 lrg ball4">32</span>
+								<span id="drwtNo5" class="ball_645 lrg ball4">40</span>
+								<span id="drwtNo6" class="ball_645 lrg ball5">42</span>
+								<span class="bonus">보너스번호</span>
+								<span id="bnusNo" class="ball_645 lrg ball4">31</span>
+							</a>
+						   </p>
+                           <p id="winnerId" class="lead mb-4 mx-5 w-50 mx-auto text-secondary">
+                           	<span>1등<span id="lottoNo1Su">11</span>게임</span>
+                           <span class="lead mb-4 mx-5 w-50 mx-auto text-secondary">총 당첨금액 약<span id="lottoNo1TotalAmt">193</span>억원</span><br>
+                           <span class="lead mb-4 mx-5 w-50 mx-auto text-secondary">(1게임당 당첨금액 약<span id="lottoNo1SuAmount">19</span>억원)</span></p>
+                       </div>
+                   </div>
+                   
+                   <!-- ------------------- 다음회차 ------------------- -->
+	               <div class="row mt-5" id="pc-nextgame">
+	    			 <div class="col-12 col-md-8">
+	    			 	<div class="row">
+	    			 		<h4 class="text-white mr-2">다음회차 </h4>
+							<span class="date">2019-08-07 23:55 현재</span>
+	    			 	</div>
+	    			 	<div class="row mt-3">
+		    			 	<div class="col py-2 border border-secondary">예상당첨금</div>
+		    				<div class="col py-2 border border-secondary">누적판매금</div>
+		    				<div class="w-100"></div>
+		    				<div class="col py-2 border border-secondary"><span>5,191,554,849<span class="accessibility">원</span></div>
+		    				<div class="col py-2 border border-secondary"><span>21,585,874,000<span class="accessibility">원</span></div>
+	    				</div>
+	    			 </div>
+	    			 <div class="col-6 col-md-4">
+	    			 	<a class="text-secondary h6 ml-2" href="#">회차별 당첨결과</a>
+	    			 	<a id="btnBuyLotto" class="btn btn-outline-secondary btn-lg mt-4 ml-2 py-4 px-4" href="#" title="다음회차 구매로 이동">구매하기</a>
+	    			 </div>
+	  			   </div>
+               <!-- ------------------- 다음회차 ------------------- -->
+                   
+                   <a class="carousel-control-prev display-4 text-dark" href="#carousel-1" role="button" data-slide="prev">
+                       <i class="text-white material-icons">arrow_back_ios</i>
+                   </a>
+                   <a class="carousel-control-next display-4 text-dark" href="#carousel-1" role="button" data-slide="next">
+                       <i class="text-white material-icons">arrow_forward_ios</i>
+                   </a>
+               </div>
+               
+               
+               
+           </div>
+       </div>
+   </div>
 </div>
+<!-- ------------------- 메인 당첨번호 끝 ------------------- -->
+<!-- ------------------- 오늘의 운세 시작 ------------------- -->
+<div id="fortune-today">
+    <div class="container">
+    	<div class="row mb-3 text-center">
+            <div class="col">
+                <h2 class="display-4 mb-2">오늘의 운세</h2>
+                <p class="lead text-secondary mb-2 pb-2">Fortune of today</p>
+            </div>
+        </div>
+        <div class="row py-3 text-center">
+            <div class="col mx-auto">
+                <span class="badge badge-pill badge-warning mr-1 font-weight-normal">8월 8일</span>
+                <span class="text-secondary">당신의 하루를 응원합니다<span class="font-italic">!</span></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <hr class="m-0">
+</div>
+<div class="py-2" id="fortune-content">
+    <div class="container py-5 my-3">
+        <div class="row">
+        <c:forEach var="a" items="${fortune }" varStatus="v">
+        	<fmt:formatNumber minIntegerDigits="2" var="num" value="${v.count}" />
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-5">
+                <img src="${pageContext.request.contextPath }/resources/images/fortune/ani_${num }.png">
+                <h3 class="h5 mt-3 mb-3 text-left">${a.sign }띠</h3>
+                <p class="text-secondary lead mb-3 mr-3 text-left">${a.fortune }</p>
+            </div>
+        </c:forEach>
+        </div>
+    </div>
+</div>
+<!-- ------------------- 오늘의 운세 끝 ------------------- -->
+<!-- ------------------- 당첨자 인터뷰 시작 ------------------- -->
+<div class="py-5 bg-light" id="winterview">
+    <div class="container py-4 mt-5">
+        <div class="row mb-3 text-center">
+            <div class="col">
+                <h2 class="display-4 mb-2">당첨자 인터뷰</h2>
+                <p class="lead text-secondary mb-5 pb-2">Winner's interview</p>
+            </div>
+        </div>
+        <div class="row pb-3">
+            <div class="col-lg-12 mx-auto text-center">
+                <div class="card-group mb-4">
+                    <div class="card pt-5 mb-3 border-white mx-1">
+                        <div class="card-body text-center">
+                            <img class="rounded-circle mb-4" id="img-cover" src="${pageContext.request.contextPath }/resources/images/index/winner_01.jpg">
+                            <h4 class="mb-3">서울 영등포구 양평동</h4>
+                            <p class="mb-2 text-secondary lead mx-3">스피또 1등 당첨이라니! 너무 떨려서 소감 쓰기도 힘들어요!</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 text-center py-4">
+                            <a class="btn-link h4 text-secondary p-2" href="#">
+                                <img src="${pageContext.request.contextPath }/resources/images/index/ico_seller_speetto.png"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card pt-5 mb-3 border-white mx-1">
+                        <div class="card-body text-center">
+                            <img class="rounded-circle mb-4" id="img-cover" src="${pageContext.request.contextPath }/resources/images/index/winner_02.jpg" height="100">
+                            <h4 class="mb-3">경기 하남시 하남대로</h4>
+                            <p class="mb-2 text-secondary lead mx-3">아버지가 주신 큰 선물, 연금복권520 1, 2등 동시 당첨!</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 text-center py-4">
+                            <a class="btn-link h4 text-secondary p-2" href="#">
+                                <img src="${pageContext.request.contextPath }/resources/images/index/ico_seller_520.png"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card pt-5 mb-3 border-white mx-1">
+                        <div class="card-body text-center">
+                            <img class="rounded-circle mb-4" id="img-cover" src="${pageContext.request.contextPath }/resources/images/index/default_profile.jpg" height="100">
+                            <h4 class="mb-3">인터넷(동행복권 홈페이지)</h4>
+                            <p class="mb-2 text-secondary lead mx-3">행복한 부부가 더 행복해지는 길, 연금복권 1등 당첨!</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 text-center py-4">
+                            <a class="btn-link h4 text-secondary p-2" href="#">
+                                <img src="${pageContext.request.contextPath }/resources/images/index/ico_seller_520.png"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- <a class="btn-link text-secondary" href="#">+ 인터뷰 더보러가기</a> -->
+                <div class="row">
+                    <div class="col text-center">
+                        <a class="btn-link text-secondary p-4" href="#">
+                            <i class="material-icons align-middle">arrow_right</i>
+                            <u class="align-middle text-decoration-none">인터뷰 더보러가기</u>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ------------------- 당첨자 인터뷰 끝 ------------------- -->
+<!-- ------------------- 공지사항&언론보도 시작 ------------------- -->
+<div class="py-2" id="noti-and-news">
+    <div class="container py-5 my-3">
+    	<div class="row mb-3 text-center">
+            <div class="col">
+                <h2 class="display-4 mb-2">공지사항 & 언론보도</h2>
+                <p class="lead text-secondary mb-5 pb-2">Notice and Press list</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 mb-3" id="main-notice">
+                <h3 class="h5 mb-3">공지사항</h3>
+                <ul class="text-secondary lead mb-3 mr-3">
+					<li><a class="text-secondary" href="/service.do?method=noticeView&amp;wiselog=C_C_1_3&amp;noticeSerial=27">
+						<p class="text-truncate" title="가상계좌 입금수수료 보상 이벤트">가상계좌 입금수수료 보상 이벤트</p>
+					</a><span class="date">2019.07.31</span></li>
+					<li><a class="text-secondary" href="/service.do?method=noticeView&amp;wiselog=C_C_1_3&amp;noticeSerial=26">
+						<p title="2019년 온라인(로또)복권 신규판매인 모집 당첨자 안내">2019년 온라인(로또)복권 신규판매인 모집 당첨자 안내</p>
+					</a><span class="date">2019.07.30</span></li>
+					<li><a class="text-secondary" href="/service.do?method=noticeView&amp;wiselog=C_C_1_3&amp;noticeSerial=25">
+						<p title="예치금충전 서비스 변경 안내">예치금충전 서비스 변경 안내</p>
+					</a><span class="date">2019.07.22</span></li>
+				</ul>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 mb-3" id="main-notice">
+                <h3 class="h5 mb-3">언론보도</h3>
+				<ul class="text-secondary lead mb-3 mr-3">
+					<li><a class="text-secondary" href="/service.do?method=noticeView&amp;wiselog=C_C_1_3&amp;noticeSerial=27">
+						<p class="text-truncate" title="가상계좌 입금수수료 보상 이벤트">가상계좌 입금수수료 보상 이벤트</p>
+					</a><span class="date">2019.07.31</span></li>
+					<li><a class="text-secondary" href="/service.do?method=noticeView&amp;wiselog=C_C_1_3&amp;noticeSerial=26">
+						<p title="2019년 온라인(로또)복권 신규판매인 모집 당첨자 안내">2019년 온라인(로또)복권 신규판매인 모집 당첨자 안내</p>
+					</a><span class="date">2019.07.30</span></li>
+					<li><a class="text-secondary" href="/service.do?method=noticeView&amp;wiselog=C_C_1_3&amp;noticeSerial=25">
+						<p title="예치금충전 서비스 변경 안내">예치금충전 서비스 변경 안내</p>
+					</a><span class="date">2019.07.22</span></li>
+				</ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ------------------- 공지사항&언론보도 끝 ------------------- -->
+<!-- ------------------- 사이트맵 시작 ------------------- -->
+<div class="py-5 bg-light" id="sitemap">
+    <div class="container py-3">
+    	<div class="row mb-3 text-center">
+            <div class="col">
+                <h2 class="display-4 mb-2">주요 메뉴</h2>
+                <p class="lead text-secondary mb-5 pb-2">Primary menu</p>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-lg-12 m-auto">
+                <div class="card-group">
+                    <div class="card border rounded">
+                        <div class="card-img-top plain-bg text-center">
+                        	<h5 class="card-title font-weight-normal text-secondary pt-2">게임구매</h5>
+                        </div>
+                        <ul class="card-body pt-3">
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">로또6/45</a>
+                            </li>
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">연금복권520</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card border rounded">
+                        <div class="card-img-top plain-bg text-center">
+                        	<h5 class="card-title font-weight-normal text-secondary pt-2">게임정보</h5>
+                        </div>
+                        <ul class="card-body pt-3">
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">로또6/45</a>
+                            </li>
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">연금복권520</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card border rounded">
+                        <div class="card-img-top plain-bg text-center">
+                        	<h5 class="card-title font-weight-normal text-secondary pt-2">게임결과</h5>
+                        </div>
+                        <ul class="card-body pt-3">
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">로또6/45</a>
+                            </li>
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">연금복권520</a>
+                            </li>
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">로또6/45 당첨통계</a>
+                            </li>
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">연금복권520 당첨통계</a>
+                            </li>
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">당첨소식</a>
+                            </li>
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">미수령당첨금</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card border rounded">
+                        <div class="card-img-top plain-bg text-center">
+                        	<h5 class="card-title font-weight-normal text-secondary pt-2">판매점</h5>
+                        </div>
+                        <ul class="card-body pt-3">
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">로또6/45판매점 조회</a>
+                            </li>
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">즉석 및 연금복권 판매점 조회</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card border rounded">
+                        <div class="card-img-top plain-bg text-center">
+                        	<h5 class="card-title font-weight-normal text-secondary pt-2">이벤트</h5>
+                        </div>
+                        <ul class="card-body pt-3">
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">이벤트</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card border rounded">
+                        <div class="card-img-top plain-bg text-center">
+                        	<h5 class="card-title font-weight-normal text-secondary pt-2">행복공감</h5>
+                        </div>
+                        <ul class="card-body pt-3">
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">건전한 복권문화</a>
+                            </li>
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">복권기금</a>
+                            </li>
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">행복공감봉사단</a>
+                            </li>
+                            <li class="card-text text-secondary mb-4">
+                            	<a class="card-link" href="#">홍보센터</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ------------------- 사이트맵 끝 ------------------- -->
+<!-- -------------------------- 푸터 영역 시작 -------------------------- -->
+<footer class="bg-dark pt-3 pb-3">
+  <div class="container">
+  	<div  class="row">
+	  	<a class="navbar-brand" href="#">
+	        <img src="${pageContext.request.contextPath }/resources/images/index/logo-footer-w.png" width="120px" alt="">
+	  	</a>
+	    <dl>
+		  <dt class="text-white">Copyright (c)</dt>
+		  <dd class="text-white ">2019 JSCB gohaenglotto. All rights reserved</dd>
+		</dl>
+		</div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
