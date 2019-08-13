@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="containerWrap">
 	<!-- pc일 경우 컨텐츠 영역 감싸는 마크업 추가  -->
@@ -101,7 +102,7 @@
 					</div>
 					<a class="go prev" href="javascript:get520Number('before')">이전
 						회차 당첨정보 보기</a> <a class="go next" href="javascript:get520Number('')">다음
-						회차 당첨정보 보기</a> <img src="/images/main/img_lottery_win520.png"
+						회차 당첨정보 보기</a> <img src="${pageContext.request.contextPath}/resources/images/main/img_lottery_win520.png"
 						alt="월 500만원 * 20년 / 2매">
 					<div class="btn">
 						<a class="btn_common smid"
@@ -155,9 +156,15 @@
 				</header>
 				<div class="content">
 					<ul>
-						<li>
-							<img src="" alt="" />
-						</li>
+						<c:forEach var="f" items="${fortune }" varStatus="vs">
+						<fmt:formatNumber var="num" value="${vs.count }" minIntegerDigits="2" />
+						
+							<li>
+								<p>${f.sign }</p>
+								<img src="${pageContext.request.contextPath }/resources/images/fortune/ani_${num}.png" alt="" />
+								<p>${f.fortune }</p>
+							</li>
+						</c:forEach>
 						
 					</ul>
 				</div>
@@ -173,7 +180,7 @@
 					<li><a
 						href="/gameResult.do?method=highWinView&amp;wiselog=C_C_1_1&amp;txtNo=13834">
 							<span class="pic"
-							style="background-image: url(/images/result/logo_itv_LP34.png)">스피또1000</span>
+							style="background-image: url(${pageContext.request.contextPath}/resources/images/result/logo_itv_LP34.png)">스피또1000</span>
 						<!-- 당첨자 인터뷰 목록에서 노출되는 이미지를 bg로 로드 --> <strong class="title">스피또
 								1등 당첨이라니! 너무 떨려서 소감 쓰기도 힘들어요!</strong> <span class="date">2019-08-05</span>
 					</a></li>
@@ -181,7 +188,7 @@
 					<li><a
 						href="/gameResult.do?method=highWinView&amp;wiselog=C_C_1_1&amp;txtNo=13833">
 							<span class="pic"
-							style="background-image: url(/images/result/logo_itv_LP32.png)">연금복권520</span>
+							style="background-image: url(${pageContext.request.contextPath}/resources/images/result/logo_itv_LP32.png)">연금복권520</span>
 						<!-- 당첨자 인터뷰 목록에서 노출되는 이미지를 bg로 로드 --> <strong class="title">연금복권
 								소액구매가 가져다 준 1등 당첨과 삶의 활력!</strong> <span class="date">2019-08-05</span>
 					</a></li>
@@ -328,10 +335,10 @@
 									공식 APP</strong>모든 복권 정보가 한곳에!</span></a>
 						<div id="layerQrApp" class="popup_alert popup-qrcode">
 							<div class="content">
-								<img src="/images/main/img-qr-app.png">
+								<img src="${pageContext.request.contextPath}/resources/images/main/img-qr-app.png">
 							</div>
 							<a href="#" onclick="$('#layerQrApp').hide(); return false;"><img
-								src="/images/common/btn_close_layerpop.png" alt="닫기"></a>
+								src="${pageContext.request.contextPath}/resources/images/common/btn_close_layerpop.png" alt="닫기"></a>
 						</div></li>
 				</ul>
 			</section>
@@ -493,21 +500,21 @@
 		<div class="link_out">
 			<ul class="bottom_banner clearfx">
 				<li><a href="http://www.bokgwon.go.kr/" title="복권위원회"
-					target="_blank"><img src="/images/main/img_link1.gif"
+					target="_blank"><img src="${pageContext.request.contextPath}/resources/images/main/img_link1.gif"
 						alt="복권위원회"></a></li>
 				<li><a href="http://www.ngcc.go.kr/" title="사행산업통합감독위원회"
-					target="_blank"><img src="/images/main/img_link2.gif"
+					target="_blank"><img src="${pageContext.request.contextPath}/resources/images/main/img_link2.gif"
 						alt="사행산업통합감독위원회"></a></li>
 				<li><a href="http://www.kcgp.or.kr/" title="한국도박문제관리센터"
-					target="_blank"><img src="/images/main/img_link3.gif"
+					target="_blank"><img src="${pageContext.request.contextPath}/resources/images/main/img_link3.gif"
 						alt="한국도박문제관리센터"></a></li>
 				<li><a href="http://www.world-lotteries.org"
 					title="World Lottery Association" target="_blank"><img
-						src="/images/main/img_link4.gif"
+						src="${pageContext.request.contextPath}/resources/images/main/img_link4.gif"
 						alt="WLA(World Lottery Association)"></a></li>
 				<li><a href="http://www.asiapacific-lotteries.com"
 					title="Asia Pacific Lottery Association" target="_blank"><img
-						src="/images/main/img_link5.gif"
+						src="${pageContext.request.contextPath}/resources/images/main/img_link5.gif"
 						alt="APLA(Asia Pacific Lottery Association)"></a></li>
 			</ul>
 		</div>

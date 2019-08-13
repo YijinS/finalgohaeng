@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="deposit">
+	
+	<resultMap type="com.jscb.gohaeng.dto.DepositDto" id="depositDto">
+		<result property="index" column="DH_INDEX" />
+		<result property="id" column="MEMBER_ID" />
+		<result property="inout" column="DH_INOUT" />
+		<result property="price" column="DH_PRICE" />
+		<result property="date" column="DH_DATE" />
+		<result property="bank" column="DH_BANK" />
+		<result property="account" column="DH_ACCOUNT" />
+	</resultMap>
+	
+	<select id="getList" parameterType="string" resultMap="depositDto">
+		SELECT * FROM DEPOSIT_HISTORY
+		WHERE MEMBER_ID = #{id}
+	</select>
+	
+	<select id="getWithDrawList" parameterType="map" resultMap="depositDto">
+		SELECT * FROM DEPOSIT_HISTORY
+		WHERE MEMBER_ID = #{id} AND DH_INOUT = #{inout}
+	</select>
+	
+	
+	<insert id="insert" parameterType="com.jscb.gohaeng.dto.DepositDto">
+		INSERT INTO DEPOSIT_HISTORY(DH_INDEX,MEMBER_ID,DH_INOUT,DH_PRICE,DH_BANK,DH_ACCOUNT)
+		VALUES(DEPOSIT_HISTORY_SEQ.NEXTVAL,#{id},#{inout},#{price},#{bank},#{account})
+	</insert>
+</mapper>

@@ -11,9 +11,45 @@
 		/> <put-attribute name="aside" value="/WEB-INF/views/admin/inc/aside.jsp" 
 		/> <put-attribute name="main" value="/WEB-INF/views/admin/{1}/{2}.jsp" /> 
 		<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" /> </definition> -->
-
-	<definition name="admin.*.*.*"
-		template="/WEB-INF/views/admin/inc/layout.jsp">
+	
+	<definition name="common.*" template="/WEB-INF/views/inc/layout.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/inc/header.jsp" />
+		<put-attribute name="quick"
+			value="/WEB-INF/views/inc/quick.jsp" />
+		<put-attribute name="main"
+			value="/WEB-INF/views/{1}.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/inc/footer.jsp" />
+		</definition>
+		
+	<definition name="*.*.*" template="/WEB-INF/views/inc/layout.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/inc/header.jsp" />
+		<put-attribute name="quick"
+			value="/WEB-INF/views/inc/quick.jsp" />
+		<put-attribute name="main"
+			value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/inc/footer.jsp" />
+	</definition>
+	
+	<definition name="*.*" template="/WEB-INF/views/inc/layout.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/inc/header.jsp" />
+		<put-attribute name="quick"
+			value="/WEB-INF/views/inc/quick.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/inc/footer.jsp" />	
+		<put-attribute name="main"
+			value="/WEB-INF/views/{1}/{2}.jsp" />
+		<!-- <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" 
+			/> -->
+	</definition>
+	
+	
+	
+	<definition name="admin.*.*.*" template="/WEB-INF/views/admin/inc/layout.jsp">
 		<put-attribute name="header"
 			value="/WEB-INF/views/admin/inc/header.jsp" />
 		<put-attribute name="aside"
@@ -24,29 +60,9 @@
 			/> -->
 	</definition>
 
-	<definition name="common.*"
-		template="/WEB-INF/views/inc/layout.jsp">
-		<put-attribute name="header"
-			value="/WEB-INF/views/inc/header.jsp" />
-		<put-attribute name="quick"
-			value="/WEB-INF/views/inc/quick.jsp" />
-		<put-attribute name="main"
-			value="/WEB-INF/views/{1}.jsp" />
-		<put-attribute name="footer"
-			value="/WEB-INF/views/inc/footer.jsp" />
-		</definition>
+	
 
-	<definition name="*.*.*"
-		template="/WEB-INF/views/inc/layout.jsp">
-		<put-attribute name="header"
-			value="/WEB-INF/views/inc/header.jsp" />
-		<put-attribute name="quick"
-			value="/WEB-INF/views/inc/quick.jsp" />
-		<put-attribute name="main"
-			value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
-		<put-attribute name="footer"
-			value="/WEB-INF/views/inc/footer.jsp" />
-	</definition>
+	
 
 	<!-- 타일즈 미적용 부분 -->
 <!-- setview(admin/hhg/hgg) -->

@@ -11,7 +11,7 @@
 				<div id="snb" class="lnb">
 					<h2 id="07" class="lnb_title">마이페이지</h2>
 					<ul id="lnb" class="lnb_dep1">
-						<li id="07-01"><a href="#" class="menuLnb"><span>마이페이지
+						<li id="07-01"><a href="${pageContext.request.contextPath }/mypage/home" class="menuLnb"><span>마이페이지
 									홈</span></a></li>
 						<li id="07-02"><a href="#" class="menuLnb"><span>구매/당첨</span></a>
 							<ul class="lnb_dep2" style="display: none;">
@@ -20,21 +20,21 @@
 								<li id="07-02-03"><a href="#"><span> 고액당첨내역</span></a></li>
 							</ul></li>
 						<li id="07-03"><a href="#" class="menuLnb"><span>구매현황분석</span></a></li>
-						<li id="07-04" class="active"><a href="#" class="menuLnb"><span>건전구매
+						<li id="07-04"><a href="#" class="menuLnb"><span>건전구매
 									프로그램</span></a>
-							<ul class="lnb_dep2" style="">
+							<ul class="lnb_dep2" style="display: none;"">
 								<li id="07-04-01"><a href="#" class="menuLnb"><span>건전구매
 											프로그램 홈</span></a></li>
-								<li id="07-04-02" class="active"><a href="#"><span>
+								<li id="07-04-02"><a href="#"><span>
 											셀프진단평가 </span></a></li>
 								<li id="07-04-03"><a href="#"><span> 셀프구매계획 </span></a></li>
 								<li id="07-04-04"><a href="#"><span> 셀프휴식계획 </span></a></li>
 							</ul></li>
-						<li id="07-05"><a href="#" class="menuLnb"><span>예치금</span></a>
-							<ul class="lnb_dep2" style="display: none;">
-								<li id="07-05-01"><a href="#"><span> 예치금 충전 내역</span></a></li>
-								<li id="07-05-02"><a href="#"><span> 충전하기</span></a></li>
-								<li id="07-05-03"><a href="#"><span> 출금 신청</span></a></li>
+						<li id="07-05" class="active"><a href="${pageContext.request.contextPath }/mypage/deposit/1" class="menuLnb"><span>예치금</span></a>
+							<ul class="lnb_dep2">
+								<li id="07-05-01"><a href="${pageContext.request.contextPath }/mypage/deposit/1"><span> 예치금 충전 내역</span></a></li>
+								<li id="07-05-02" class="active"><a href="${pageContext.request.contextPath }/mypage/deposit/2"><span> 충전하기</span></a></li>
+								<li id="07-05-03"><a href="${pageContext.request.contextPath }/mypage/deposit/3"><span> 출금 신청</span></a></li>
 							</ul></li>
 						<li id="07-06"><a href="#" class="menuLnb"><span>행복더하기
 									신청</span></a></li>
@@ -76,7 +76,7 @@
 
 
 						<p class="total">
-							<span>총 예치금</span><strong>0</strong><span>원</span>
+							<span>총 예치금</span><strong>${sessionScope.member.deposit }</strong><span>원</span>
 						</p>
 
 
@@ -85,8 +85,7 @@
 						<div class="way">
 							<div>
 								<h4>가상계좌(1회성) 입금</h4>
-								<a class="btn_common mid blu" href="#"
-									onclick="checkPayBrowser('DI21'); return false;">예치금 충전</a>
+								<a class="btn_common mid blu" href="2_1">예치금 충전</a>
 							</div>
 							<div>
 								<ol>

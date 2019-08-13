@@ -5,16 +5,30 @@
 <header>
     <div class="nav_wrap">
 
-        <h1><a href="#"><img src="${pageContext.request.contextPath }/resources/images/logo-header.png" alt="Gohaeng"></a></h1>
+        <h1><a href="${pageContext.request.contextPath }/home"><img src="${pageContext.request.contextPath }/resources/images/logo-header.png" alt="Gohaeng"></a></h1>
         <h2 class="hide">대메뉴</h2>
         <nav class="gnbNav">
             <div class="util">
-                <ul>
-                    <li><a href="#">로그인</a></li>
-                    <li><a href="#">회원가입</a></li>
-                    <li><a href="#">마이페이지</a></li>
-                    <li><a href="#">고객센터</a></li>
-                </ul>
+            	<c:choose>
+            		<c:when test="${empty sessionScope.member }">
+						<ul>
+							<li><a href="${pageContext.request.contextPath }/guest/login">로그인</a></li>
+							<li><a href="#">회원가입</a></li>
+							<li><a href="#">마이페이지</a></li>
+							<li><a href="#">고객센터</a></li>
+						</ul>            		
+            		</c:when>
+            		<c:otherwise>
+						<ul>
+							<li><a href="${pageContext.request.contextPath }/mypage/deposit/1">예치금 : ${member.deposit }원 </a></li>
+							<li><a href="#">${sessionScope.member.name }님</a></li>
+							<li><a href="${pageContext.request.contextPath }/guest/logout">로그아웃</a></li>
+							<li><a href="${pageContext.request.contextPath }/mypage/home">마이페이지</a></li>
+							<li><a href="#">고객센터</a></li>
+						</ul>
+					</c:otherwise>
+            	</c:choose>
+                
             </div>
             <div id="gnb" class="gnb">
                 <ul>

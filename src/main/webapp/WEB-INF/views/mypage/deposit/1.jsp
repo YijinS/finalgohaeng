@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="body">
 	<div class="containerWrap">
@@ -11,7 +12,7 @@
 				<div id="snb" class="lnb">
 					<h2 id="07" class="lnb_title">마이페이지</h2>
 					<ul id="lnb" class="lnb_dep1">
-						<li id="07-01"><a href="#" class="menuLnb"><span>마이페이지
+						<li id="07-01"><a href="${pageContext.request.contextPath }/mypage/home" class="menuLnb"><span>마이페이지
 									홈</span></a></li>
 						<li id="07-02"><a href="#" class="menuLnb"><span>구매/당첨</span></a>
 							<ul class="lnb_dep2" style="display: none;">
@@ -20,21 +21,21 @@
 								<li id="07-02-03"><a href="#"><span> 고액당첨내역</span></a></li>
 							</ul></li>
 						<li id="07-03"><a href="#" class="menuLnb"><span>구매현황분석</span></a></li>
-						<li id="07-04" class="active"><a href="#" class="menuLnb"><span>건전구매
+						<li id="07-04"><a href="#" class="menuLnb"><span>건전구매
 									프로그램</span></a>
-							<ul class="lnb_dep2" style="">
+							<ul class="lnb_dep2" style="display: none;"">
 								<li id="07-04-01"><a href="#" class="menuLnb"><span>건전구매
 											프로그램 홈</span></a></li>
-								<li id="07-04-02" class="active"><a href="#"><span>
+								<li id="07-04-02"><a href="#"><span>
 											셀프진단평가 </span></a></li>
 								<li id="07-04-03"><a href="#"><span> 셀프구매계획 </span></a></li>
 								<li id="07-04-04"><a href="#"><span> 셀프휴식계획 </span></a></li>
 							</ul></li>
-						<li id="07-05"><a href="#" class="menuLnb"><span>예치금</span></a>
-							<ul class="lnb_dep2" style="display: none;">
-								<li id="07-05-01"><a href="#"><span> 예치금 충전 내역</span></a></li>
-								<li id="07-05-02"><a href="#"><span> 충전하기</span></a></li>
-								<li id="07-05-03"><a href="#"><span> 출금 신청</span></a></li>
+						<li id="07-05" class="active"><a href="${pageContext.request.contextPath }/mypage/deposit/1" class="menuLnb"><span>예치금</span></a>
+							<ul class="lnb_dep2">
+								<li id="07-05-01" class="active"><a href="${pageContext.request.contextPath }/mypage/deposit/1"><span> 예치금 충전 내역</span></a></li>
+								<li id="07-05-02"><a href="${pageContext.request.contextPath }/mypage/deposit/2"><span> 충전하기</span></a></li>
+								<li id="07-05-03"><a href="${pageContext.request.contextPath }/mypage/deposit/3"><span> 출금 신청</span></a></li>
 							</ul></li>
 						<li id="07-06"><a href="#" class="menuLnb"><span>행복더하기
 									신청</span></a></li>
@@ -62,35 +63,7 @@
 			<div>
 				<div class="content_wrap content_deposit_history">
 					<!-- -------------------------------------------------------------------------------------- -->
-					<!-- 이거 쓰이는건가...아닌거 같은데 -->
-					<div class="my_deposit" style="display: none;">
-						<div class="deposit">
-							<dl class="deposit1">
-								<dt>충전 예치금</dt>
-								<dd>
-									<strong>99,999,999</strong>원
-								</dd>
-							</dl>
-							<p class="plus">+</p>
-							<dl class="deposit2">
-								<dt>당첨금</dt>
-								<dd>
-									<strong>9,999,999,999</strong>원
-								</dd>
-							</dl>
-							<p class="minus">-</p>
-							<dl class="deposit3">
-								<dt>총 출금액</dt>
-								<dd>
-									<strong>9,999,999,999</strong>원
-								</dd>
-							</dl>
-						</div>
-						<p class="total">
-							김나눔 님의 예치금이 <strong>0</strong>원 있습니다.
-						</p>
-					</div>
-					<!-- //이거 쓰이는건가...아닌거 같은데 -->
+					
 					<!-- contents -->
 					<form name="frm" id="frm" method="post">
 						<input type="hidden" name="nowPage" id="nowPage" value="">
@@ -118,83 +91,8 @@
 										class="hasDatepicker"><img
 										class="ui-datepicker-trigger"
 										src="${pageContext.request.contextPath }/resources/images/common/ico-calendar.png"
-										alt="조회 종료날짜 선택" title="조회 종료날짜 선택"> <script
-											src="/js/jquery-ui.js"></script>
-										<link rel="stylesheet" type="text/css"
-											href="/css/ui-lightness/jquery-ui-1.8.17.custom.css"
-											media="all"> <script>
-                                                    if (false) {
-                                                        $("#calendarStartDt").attr("type", "date");
-                                                        $("#calendarEndDt").attr("type", "date");
-                                                    } else {
-                                                        $.datepicker.setDefaults({
-                                                            monthNames: ["년 1월", "년 2월", "년 3월", "년 4월", "년 5월", "년 6월", "년 7월", "년 8월", "년 9월", "년 10월", "년 11월", "년 12월"],
-                                                            dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
-                                                            showMonthAfterYear: true,
-                                                            dateFormat: "yy-mm-dd",
-                                                            buttonImageOnly: true,
-                                                            buttonText: "달력",
-                                                            buttonImage: "/images/common/ico-calendar.png",
-                                                            showOn: "both"
-                                                        });
-                                                        $("#calendarStartDt").datepicker({ buttonText: "조회 시작날짜 선택" });
-                                                        $("#calendarEndDt").datepicker({ buttonText: "조회 종료날짜 선택" });
-                                                        $('#calendarStartDt, #calendarEndDt').on({
-                                                            'keyup': function (event) {
-                                                                var $ele = $(event.target);
-                                                                var value = $ele.val().replace(/[^0-9]+/g, "");
-                                                                $ele.val(value);
-                                                                if (value.length < 8) {
-                                                                    return;
-                                                                }
-                                                                var dateTxt = calendarDtValidate(value);
-                                                                if (!dateTxt) {
-                                                                    $ele.val($ele.data("value-backup"));
-                                                                    return;
-                                                                }
-                                                                $ele.val(dateTxt);
-                                                            },
-                                                            'focus': function (event) {
-                                                                var $ele = $(event.target);
-                                                                $ele.data("value-backup", $ele.val());
-                                                                $ele.val("");
-                                                            },
-                                                            'blur': function (event) {
-                                                                var $ele = $(event.target);
-                                                                if (!calendarDtValidate($ele.val().replaceAll("-", ""))) {
-                                                                    $ele.val($ele.data("value-backup"));
-                                                                }
-                                                            }
-                                                        });
-                                                        function calendarDtValidate(value) {
-                                                            if (value.length < 8) {
-                                                                return null;
-                                                            }
-                                                            var dateTxt = value.substring(0, 4) + "-" + value.substring(4, 6) + "-" + value.substring(6, 8);
-                                                            if (isNaN(new Date(dateTxt))) {
-                                                                return null;
-                                                            }
-                                                            return dateTxt;
-                                                        }
-                                                    }
-                                                    var cSdt = "";
-                                                    var cEdt = "";
-                                                    if (cSdt == "" || cEdt == "") {
-                                                        var currDate = new Date();
-                                                        $("#calendarStartDt").val(currDate.getFullYear() + "-" + addZero2((currDate.getMonth() + 1).toString()) + "-" + addZero2(currDate.getDate().toString()));
-                                                        $("#calendarEndDt").val(currDate.getFullYear() + "-" + addZero2((currDate.getMonth() + 1).toString()) + "-" + addZero2(currDate.getDate().toString()));
-                                                    } else {
-                                                        $("#calendarStartDt").val(cSdt.substring(0, 4) + "-" + cSdt.substring(4, 6) + "-" + cSdt.substring(6, 8));
-                                                        $("#calendarEndDt").val(cEdt.substring(0, 4) + "-" + cEdt.substring(4, 6) + "-" + cEdt.substring(6, 8));
-                                                    }
-                                                    function addZero2(str) {
-                                                        if (str.length == 1) {
-                                                            str = "0" + str;
-                                                        }
-                                                        return str;
-                                                    }
-                                                </script> <span class="period">
-											<a class="btn_common form"
+										alt="조회 종료날짜 선택" title="조회 종료날짜 선택"> <span
+										class="period"> <a class="btn_common form"
 											href="javascript:changeTerm( 0, '당일');">당일</a> <a
 											class="btn_common form"
 											href="javascript:changeTerm( 6, '1주일');">1주일</a> <a
@@ -238,12 +136,34 @@
 									</tr>
 								</thead>
 								<tbody>
-
-
-									<tr>
-										<td colspan="4" class="nodata">조회 결과가 없습니다.</td>
-									</tr>
-
+									<c:choose>
+										<c:when test="${not empty depositList }">
+											<c:forEach var="deposit" items="${depositList }">
+												<tr>
+													<fmt:formatDate var="date" value="${deposit.date }" pattern="yyyy-MM-dd"/>
+													<td>${date}</td>
+													<c:choose>
+														<c:when test="${deposit.inout eq 1}">
+															<td>무통장 입금</td>
+															<td>${deposit.price } 원</td>
+															<td></td>
+														</c:when>
+														<c:otherwise>
+															<td><p>(${deposit.bank})${deposit.account }</p></td>
+															<td></td>
+															<td>${deposit.price } 원</td>
+														</c:otherwise>
+													</c:choose>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<tr>
+												<td colspan="4" class="nodata">조회 결과가 없습니다.</td>
+											</tr>	
+										</c:otherwise>
+									</c:choose>
+									
 								</tbody>
 							</table>
 						</div>

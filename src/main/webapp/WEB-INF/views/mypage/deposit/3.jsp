@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="body">
 	<div class="containerWrap">
@@ -11,7 +12,7 @@
 				<div id="snb" class="lnb">
 					<h2 id="07" class="lnb_title">마이페이지</h2>
 					<ul id="lnb" class="lnb_dep1">
-						<li id="07-01"><a href="#" class="menuLnb"><span>마이페이지
+						<li id="07-01"><a href="${pageContext.request.contextPath }/mypage/home" class="menuLnb"><span>마이페이지
 									홈</span></a></li>
 						<li id="07-02"><a href="#" class="menuLnb"><span>구매/당첨</span></a>
 							<ul class="lnb_dep2" style="display: none;">
@@ -20,21 +21,21 @@
 								<li id="07-02-03"><a href="#"><span> 고액당첨내역</span></a></li>
 							</ul></li>
 						<li id="07-03"><a href="#" class="menuLnb"><span>구매현황분석</span></a></li>
-						<li id="07-04" class="active"><a href="#" class="menuLnb"><span>건전구매
+						<li id="07-04"><a href="#" class="menuLnb"><span>건전구매
 									프로그램</span></a>
-							<ul class="lnb_dep2" style="">
+							<ul class="lnb_dep2" style="display: none;"">
 								<li id="07-04-01"><a href="#" class="menuLnb"><span>건전구매
 											프로그램 홈</span></a></li>
-								<li id="07-04-02" class="active"><a href="#"><span>
+								<li id="07-04-02"><a href="#"><span>
 											셀프진단평가 </span></a></li>
 								<li id="07-04-03"><a href="#"><span> 셀프구매계획 </span></a></li>
 								<li id="07-04-04"><a href="#"><span> 셀프휴식계획 </span></a></li>
 							</ul></li>
-						<li id="07-05"><a href="#" class="menuLnb"><span>예치금</span></a>
-							<ul class="lnb_dep2" style="display: none;">
-								<li id="07-05-01"><a href="#"><span> 예치금 충전 내역</span></a></li>
-								<li id="07-05-02"><a href="#"><span> 충전하기</span></a></li>
-								<li id="07-05-03"><a href="#"><span> 출금 신청</span></a></li>
+						<li id="07-05" class="active"><a href="${pageContext.request.contextPath }/mypage/deposit/1" class="menuLnb"><span>예치금</span></a>
+							<ul class="lnb_dep2">
+								<li id="07-05-01"><a href="${pageContext.request.contextPath }/mypage/deposit/1"><span> 예치금 충전 내역</span></a></li>
+								<li id="07-05-02"><a href="${pageContext.request.contextPath }/mypage/deposit/2"><span> 충전하기</span></a></li>
+								<li id="07-05-03" class="active"><a href="${pageContext.request.contextPath }/mypage/deposit/3"><span> 출금 신청</span></a></li>
 							</ul></li>
 						<li id="07-06"><a href="#" class="menuLnb"><span>행복더하기
 									신청</span></a></li>
@@ -73,7 +74,7 @@
 
 
 						<p class="total">
-							<span>총 예치금</span><strong>0</strong><span>원</span>
+							<span>총 예치금</span><strong>${sessionScope.member.deposit }</strong><span>원</span>
 						</p>
 
 
@@ -117,117 +118,50 @@
 									<col>
 								</colgroup>
 								<tbody>
+								<form id="withDraw_form" method="post">
 									<tr>
 										<th scope="row">은행명</th>
-										<td><select id="EP_bank_cd" name="EP_bank_cd"
-											onchange="getBankFeeAmt();" title="은행 선택">
-												<option value="">선택하세요</option>
-												<option value="011">농협중앙회</option>
-												<option value="012">단위농협</option>
-												<option value="003">기업은행</option>
-												<option value="004">국민은행</option>
-												<option value="020">우리은행</option>
-												<option value="088">신한은행</option>
-												<option value="081">하나은행_외환</option>
-												<option value="071">우체국</option>
-												<option value="045">새마을금고</option>
-												<option value="023">SC제일은행</option>
-												<option value="027">시티은행</option>
-												<option value="007">수협</option>
-												<option value="048">신협</option>
-												<option value="031">대구은행</option>
-												<option value="032">부산은행</option>
-												<option value="034">광주은행</option>
-												<option value="035">제주은행</option>
+										<td>
+											<select id="EP_bank_cd" name="bank">
+												<option value="농협중앙회">농협중앙회</option>
+												<option value="단위농협">단위농협</option>
+												<option value="기업은행">기업은행</option>
+												<option value="국민은행">국민은행</option>
+												<option value="우리은행">우리은행</option>
+												<option value="신한은행">신한은행</option>
+												<option value="카카오뱅크">카카오뱅크</option>
+											</select>
+										</td>
+										<th scope="row">출금액</th>
+										<td><input name="price" type="text" value="0" /></td>
 
-
-												<option value="037">전북은행</option>
-
-
-												<option value="039">경남은행</option>
-
-
-												<option value="064">산림조합</option>
-
-
-												<option value="209">동양종금증권</option>
-
-
-												<option value="218">현대증권</option>
-
-
-												<option value="240">삼성증권</option>
-
-
-												<option value="243">한국투자증권</option>
-
-
-												<option value="247">우리투자증권</option>
-
-
-												<option value="262">하이증권</option>
-
-
-												<option value="263">HMC증권</option>
-
-
-												<option value="266">SK증권</option>
-
-
-												<option value="267">대신증권</option>
-
-
-												<option value="270">하나대투증권</option>
-
-
-												<option value="278">신한금융투자</option>
-
-
-												<option value="279">동부증권</option>
-
-
-												<option value="280">유진증권</option>
-
-
-												<option value="287">메리츠증권</option>
-
-
-												<option value="291">신영증권</option>
-
-
-												<option value="002">산업은행</option>
-
-
-												<option value="238">미레에셋대우</option>
-
-
-												<option value="089">케이뱅크</option>
-
-
-												<option value="090">카카오뱅크</option>
-
-
-										</select></td>
-										<th scope="row">이체수수료</th>
-										<td><span id="field_fee_amt">0원</span></td>
 									</tr>
 									<tr>
 										<th scope="row"><label for="EP_account_no">계좌번호</label></th>
 										<td><input type="text" id="EP_account_no"
-											name="EP_account_no" size="20" maxlength="32" value=""
+											name="account" size="20" maxlength="32" value=""
 											style="width: 100%" numberonly=""> <!-- <span>(계좌번호 입력시 '-'을 제외한 번호만 입력해주세요.)</span> -->
 										</td>
 										<th scope="row">예금주명</th>
-										<td>홍길동</td>
+										<td>${sessionScope.member.name }</td>
 									</tr>
+								</form>
 								</tbody>
 							</table>
 							<div class="btns_submit search">
-								<input type="button" class="btn_common mid" value="취소"
-									title="등록취소" onclick="showDiv()"> <input type="button"
-									class="btn_common mid blu" value="등록" title="계좌등록"
-									onclick="checkRegist()">
+								<input type="button" class="btn_common mid" value="취소"> 
+								<input type="button" class="btn_common mid blu" value="등록" id="submit">
 							</div>
+							<script>
+								$(function() {
+									var withDraw = $("#withDraw_form");
+									var submit = $("#submit");
+									
+									submit.click(function(){
+										withDraw.submit();
+									});
+								});
+							</script>
 						</div>
 					</div>
 					<div class="box_process box_process_vertical">
@@ -275,82 +209,7 @@
 										class="hasDatepicker"><img
 										class="ui-datepicker-trigger"
 										src="${pageContext.request.contextPath }/resources/images/common/ico-calendar.png"
-										alt="조회 종료날짜 선택" title="조회 종료날짜 선택"> <script
-											src="/js/jquery-ui.js"></script>
-										<link rel="stylesheet" type="text/css"
-											href="/css/ui-lightness/jquery-ui-1.8.17.custom.css"
-											media="all"> <script>
-                                                    if (false) {
-                                                        $("#calendarStartDt").attr("type", "date");
-                                                        $("#calendarEndDt").attr("type", "date");
-                                                    } else {
-                                                        $.datepicker.setDefaults({
-                                                            monthNames: ["년 1월", "년 2월", "년 3월", "년 4월", "년 5월", "년 6월", "년 7월", "년 8월", "년 9월", "년 10월", "년 11월", "년 12월"],
-                                                            dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
-                                                            showMonthAfterYear: true,
-                                                            dateFormat: "yy-mm-dd",
-                                                            buttonImageOnly: true,
-                                                            buttonText: "달력",
-                                                            buttonImage: "/images/common/ico-calendar.png",
-                                                            showOn: "both"
-                                                        });
-                                                        $("#calendarStartDt").datepicker({ buttonText: "조회 시작날짜 선택" });
-                                                        $("#calendarEndDt").datepicker({ buttonText: "조회 종료날짜 선택" });
-                                                        $('#calendarStartDt, #calendarEndDt').on({
-                                                            'keyup': function (event) {
-                                                                var $ele = $(event.target);
-                                                                var value = $ele.val().replace(/[^0-9]+/g, "");
-                                                                $ele.val(value);
-                                                                if (value.length < 8) {
-                                                                    return;
-                                                                }
-                                                                var dateTxt = calendarDtValidate(value);
-                                                                if (!dateTxt) {
-                                                                    $ele.val($ele.data("value-backup"));
-                                                                    return;
-                                                                }
-                                                                $ele.val(dateTxt);
-                                                            },
-                                                            'focus': function (event) {
-                                                                var $ele = $(event.target);
-                                                                $ele.data("value-backup", $ele.val());
-                                                                $ele.val("");
-                                                            },
-                                                            'blur': function (event) {
-                                                                var $ele = $(event.target);
-                                                                if (!calendarDtValidate($ele.val().replaceAll("-", ""))) {
-                                                                    $ele.val($ele.data("value-backup"));
-                                                                }
-                                                            }
-                                                        });
-                                                        function calendarDtValidate(value) {
-                                                            if (value.length < 8) {
-                                                                return null;
-                                                            }
-                                                            var dateTxt = value.substring(0, 4) + "-" + value.substring(4, 6) + "-" + value.substring(6, 8);
-                                                            if (isNaN(new Date(dateTxt))) {
-                                                                return null;
-                                                            }
-                                                            return dateTxt;
-                                                        }
-                                                    }
-                                                    var cSdt = "";
-                                                    var cEdt = "";
-                                                    if (cSdt == "" || cEdt == "") {
-                                                        var currDate = new Date();
-                                                        $("#calendarStartDt").val(currDate.getFullYear() + "-" + addZero2((currDate.getMonth() + 1).toString()) + "-" + addZero2(currDate.getDate().toString()));
-                                                        $("#calendarEndDt").val(currDate.getFullYear() + "-" + addZero2((currDate.getMonth() + 1).toString()) + "-" + addZero2(currDate.getDate().toString()));
-                                                    } else {
-                                                        $("#calendarStartDt").val(cSdt.substring(0, 4) + "-" + cSdt.substring(4, 6) + "-" + cSdt.substring(6, 8));
-                                                        $("#calendarEndDt").val(cEdt.substring(0, 4) + "-" + cEdt.substring(4, 6) + "-" + cEdt.substring(6, 8));
-                                                    }
-                                                    function addZero2(str) {
-                                                        if (str.length == 1) {
-                                                            str = "0" + str;
-                                                        }
-                                                        return str;
-                                                    }
-                                                </script> <span class="period">
+										alt="조회 종료날짜 선택" title="조회 종료날짜 선택"><span class="period">
 											<button class="btn_common form" onclick="changeTerm(0);">1일</button>
 											<button class="btn_common form" onclick="changeTerm(6);">1주일</button>
 											<button class="btn_common form" onclick="changeTerm(30);">1개월</button>
@@ -386,12 +245,25 @@
 									</tr>
 								</thead>
 								<tbody>
-
-
-									<tr>
-										<td class="nodata" colspan="5">데이터가 없습니다.</td>
-									</tr>
-
+									<c:choose>
+										<c:when test="${not empty withDrawList }">
+											<c:forEach var="withDraw" items="${withDrawList }">
+												<tr>
+													<fmt:formatDate var="date" value="${withDraw.date }" pattern="yyyy-MM-dd" />
+													<td>${date}</td>
+													<td>${withDraw.bank }</td>
+													<td>${withDraw.account }</td>
+													<td>${withDraw.price }</td>
+													<td>출금완료</td>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<tr>
+												<td class="nodata" colspan="5">데이터가 없습니다.</td>
+											</tr>
+										</c:otherwise>
+									</c:choose>
 								</tbody>
 							</table>
 							<div class="paginate_common" id="page_box">

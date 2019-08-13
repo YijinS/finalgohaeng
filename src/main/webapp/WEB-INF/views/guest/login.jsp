@@ -31,7 +31,7 @@
 			</div>
 
 			<div class="content_wrap">
-				<form>
+				<form id="login_form" method="POST">
 					<input type="hidden" name="returnUrl" value="">
 					<div class="box_login">
 						<div class="inner">
@@ -39,18 +39,18 @@
 								<legend>
 									<strong>LOGIN</strong>
 								</legend>
-								<div class="form">
-									<input type="text" maxlength="15" name="userId" id="userId"
-										autocomplete="off" title="아이디" placeholder="아이디"> <input
-										type="password" maxlength="100" name="password" title="비밀번호"
-										placeholder="비밀번호"> <a class="btn_common lrg blu"
-										href="#">로그인</a>
+								<div id="input_form" class="form">
+									<input type="text" maxlength="15" name="id" id="userId" autocomplete="off" placeholder="아이디"> 
+									<input type="password" maxlength="100" name="pwd" placeholder="비밀번호"> 
+									<a id="login_button" class="btn_common lrg blu" href="#">로그인</a>
 								</div>
-								<input id="checkSave" name="checkSave" type="checkbox"
-									checked=""><label for="checkSave">ID저장</label>
+
+								<input id="checkSave" name="checkSave" type="checkbox" checked="">
+								<label for="checkSave">ID저장</label>
+
 								<div class="links">
-									<a class="btn_common lrg" href="#">회원가입</a> <a
-										class="btn_common lrg" href="#">아이디/비밀번호찾기</a>
+									<a class="btn_common lrg" href="${pageContext.request.contextPath }/guest/signup.do">회원가입</a> 
+									<a class="btn_common lrg" href="#">아이디/비밀번호찾기</a>
 								</div>
 							</fieldset>
 						</div>
@@ -60,6 +60,27 @@
 						</div>
 					</div>
 				</form>
+				<script>
+					$(function(){
+						var button = $("#login_button");
+						var id = $("#input_form").find("input[name=id]");
+						var pwd = $("#input_form").find("input[name=pwd]");
+							button.click(function(){
+								$.ajax({
+									url:'${pageContext.request.contextPath }/guest/loginCheck',
+									type:'post',
+									data:{"id":id.val(),"pwd":pwd.val()},
+									success:function(data){
+										if(data.check == true)
+											$("#login_form").submit();
+										else
+											alert("아이디 또는 비밀번호가 틀렸습니다.");
+									}
+								
+								});
+						});
+					});
+				</script>
 			</div>
 			</main>
 			<!-- -------------------------------------- -->
