@@ -1,0 +1,114 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Hi+Melody|Noto+Sans+KR&display=swap');
+ul, ol { list-style: none; }
+ul{ padding: 0px;}
+
+
+
+body{font-family: 'Noto Sans KR';}
+.head-text{padding: 1.3rem 0 0;}
+.head-text p{font-family: 'Hi Melody', cursive; font-size: 1.6rem; }
+
+#header-top {margin-bottom: 1.5rem;}
+#header-bot ul{font-size: 1.15rem;}
+/* 
+@media (min-width: 992px) {
+nav{padding-bottom: 0px !important; }
+#header-bot>div>ul>li>.group {position:absolute; left:0; top:-1000px; width:100%; padding:25px 0 35px; background:#fff; border-top:1px solid #007bc3; -webkit-box-shadow:0px 2px 2px 0px rgba(0,0,0,0.3); -moz-box-shadow:0px 2px 2px 0px rgba(0,0,0,0.3); box-shadow:0px 2px 2px 0px rgba(0,0,0,0.3);}
+#header-bot>div>ul>li:hover .group {top: 160px;}
+ul {overflow:hidden; margin:0 auto; text-align:left;}
+#header-bot>div>ul>li>.group > ul:after {content:""; display:block; clear:both}
+#header-bot>div>ul>li>.group > ul ~ ul {position:relative; margin-top:30px; padding-top:31px}
+#header-bot>div>ul>li>.group > ul ~ ul:after {content:""; position:absolute; left:0; top:0; width:100%; border-top:1px solid #ddd}
+#header-bot>div>ul>li>.group > ul > li {float:left; position:relative; width:177px; padding:0 21px}
+#header-bot>div>ul>li>.group > ul > li:before {content:""; position:absolute; top:0; height:1000px; left:0; border-left:1px solid #ddd}
+#header-bot>div>ul>li>.group > ul > li a {display:block}
+#header-bot>div>ul>li>.group > ul > li > a { font-size:15px; font-weight:500; color:#195b81; line-height:1.1em}
+#header-bot>div>ul>li>.group > ul > li > ul {margin-top:15px}
+#header-bot>div>ul>li>.group > ul > li > ul > li ~ li {margin-top:7px}
+#header-bot>div>ul>li>.group > ul > li > ul > li > a {position:relative; font-size:13px; color:#777}
+#header-bot>div>ul>li>.group > ul > li > ul > li > a:after {content:""; display:none; position:absolute; left:-10px; top:5px; width:5px; border-top:1px solid #195b81}
+#header-bot>div>ul>li>.group > ul > li > ul > li > a:hover,
+#header-bot>div>ul>li>.group > ul > li > ul > li > a:focus {color:#195b81}
+#header-bot>div>ul>li>.group > ul > li > ul > li > a:hover:after,
+#header-bot>div>ul>li>.group > ul > li > ul > li > a:focus:after {display:block}
+}
+@media (max-width: 991px) {
+	#header-bot>div>ul>li>.group {display:none;}
+}
+ */
+/* .img-portrait{background-image: url(../images/index/bg_02.png); background-size: cover; background-position: center; padding-top: 56.25%}*/
+.img-portrait{background-image: url(../images/index/bg_03.png); background-size: cover; background-position: center;}
+
+#img-cover{background-size: cover; background-position: center; width: 100px; height: 100px;}
+#fortune-today{margin-top: 3.5rem;}
+#fortune-today span{font-family: 'Noto Sans KR', sans-serif; font-size: 1.2rem;}
+#features-01>div>div>div{font-family: 'Noto Sans KR', sans-serif; font-size: .7rem; text-align: center; padding-bottom: 2rem;}
+#features-01>div>div>div p{font-size: 1rem;}
+#features-01>div>div>div img{margin-bottom: .7rem;}
+
+
+
+
+/* -------------- 슬라이드  영역-------------- */
+/* 645 ball */
+.ball_645 {display:inline-block; border-radius:100%; text-align:center; vertical-align:middle; color:#fff; font-weight:500; /* text-shadow: 0px 0px 2px rgba(0, 0, 0, 1); */}
+.ball_645.lrg {width:60px; height:60px; line-height:56px; font-size:28px}
+.ball_645.sml {width:24px; height:24px; line-height:22px; font-size:13px}
+.ball_645.not {color:#777}
+.ball_645.sml.not {font-weight:300}
+.ball_645.ball1 {background:#fbc400; text-shadow: 0px 0px 3px rgba(73, 57, 0, .8)}
+.ball_645.ball2 {background:#69c8f2; text-shadow: 0px 0px 3px rgba(0, 49, 70, .8)}
+.ball_645.ball3 {background:#ff7272;text-shadow: 0px 0px 3px rgba(64, 0, 0, .8);}
+.ball_645.ball4 {background:#aaa; text-shadow: 0px 0px 3px rgba(61, 61, 61, .8)}
+.ball_645.ball5 {background:#b0d840; text-shadow: 0px 0px 3px rgba(41, 56, 0, .8)}
+table tr td .ball_645.sml {margin:0 3px}
+
+
+
+.accessibility {position: absolute; left: -999em; width: 1px; height: 1px; font-size: 1px; line-height: 1px; overflow: hidden; opacity: 0; }
+.carousel.slide a {color: white;}
+.carousel.slide h3 a .date {font-size: 13px; font-weight: 300; opacity: .7;}
+.carousel.slide .num {display: inline-block; margin-top: 30px;}
+.carousel.slide .num * {float: left;}
+.carousel.slide .num .bonus {width: 22px; height: 50px; text-indent: -999em; background: url(../images/index/ico_bonus_number.png) 50% 50% no-repeat;}
+.carousel.slide .num span ~ span {margin-left: 10px;}
+.carousel.slide .num .ball_645.lrg {width: 50px; height: 50px; line-height: 46px;}
+
+#pc-nextgame {color: #6c757d; margin-left: 0!important; }
+
+
+/* -------------- 슬라이드  영역 끝-------------- */
+/* -------------- 노티스  영역 시작-------------- */
+#main-notice ul li p {margin:0; display:inline-block; max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+#main-notice ul li span {margin:0; display:inline-block; max-width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+/* -------------- 노티스  영역 끝-------------- */
+
+.card-img-top.plain-bg {background: #eee;}
+/* #sitemap .card-group>div {border: 1px solid #007bc3 !important; } */
+/* #sitemap .card-group>div>div>h4 {color: #fff !important;} */
+#sitemap .card-group>div>ul>li {margin-bottom: 0px!important;}
+#sitemap .card-group>div>ul>li>a {color: #6c757d !important;}
+#sitemap .card-group>div .card-body {padding-left: 0 !important; padding-right: 0 !important; padding-bottom: 0 !important;}
+#sitemap .card-group>div .card-body>li {padding-left: .7rem; padding-right: .7rem; padding-bottom: .6rem; line-height: 1.1rem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

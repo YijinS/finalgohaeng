@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<resultMap type="com.jscb.gohaeng.dto.MemberDto" id="memberDto">
+		<result property="id" column="MEMBER_ID" />
+		<result property="pwd" column="MEMBER_PWD" />
+		<result property="name" column="MEMBER_NAME" />
+		<result property="deposit" column="MEMBER_DEPOSIT" />
+		<result property="birthday" column="MEMBER_BIRTHDAY" />
+		<result property="hp" column="MEMBER_HP" />
+		<result property="email" column="MEMBER_EMAIL" />
+		<result property="addr" column="MEMBER_ADDR" />
+		<result property="checkSms" column="MEMBER_CHECK_SMS" />
+		<result property="checkEmail" column="MEMBER_CHECK_EMAIL" />
+		<result property="checkSales" column="MEMBER_CHECK_SALES" />
+	</resultMap>
+	<insert id="insert" parameterType="com.jscb.gohaeng.dto.MemberDto">
+		INSERT INTO MEMBER VALUES
+		(#{id}, #{pwd}, #{name}, 0, #{birthday}, #{hp}, #{email}, #{addr}, #{checkSms}
+		, #{checkEmail}, #{checkSales})
+	</insert>
+	<select id="getData" parameterType="string" resultMap="memberDto">
+		SELECT * FROM MEMBER WHERE MEMBER_ID = #{id}
+	</select>
+	<select id="isExist" parameterType="string" resultType="string">
+		SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_ID = #{id}
+	</select>
+	
+	<update id="updateDeposit" parameterType="com.jscb.gohaeng.dto.DepositDto">
+		UPDATE MEMBER 
+		SET MEMBER_DEPOSIT = 
+		<choose>
+			<when test="inout == 1">
+				MEMBER_DEPOSIT + #{price}		
+			</when>
+			<otherwise>
+				MEMBER_DEPOSIT - #{price}
+			</otherwise>			
+		</choose>		
+		WHERE MEMBER_ID = #{id}
+	</update>
+</mapper>

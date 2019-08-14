@@ -16,7 +16,7 @@
 						<h2 id="07" class="lnb_title">마이페이지</h2>
 						<ul id="lnb" class="lnb_dep1">
 							<li id="07-01" class="active"><a
-								href="#" class="menuLnb"><span>마이페이지
+								href="${pageContext.request.contextPath }/mypage/home" class="menuLnb"><span>마이페이지
 										홈</span></a></li>
 							<li id="07-02"><a href="#"
 								class="menuLnb"><span>구매/당첨</span></a>
@@ -47,17 +47,12 @@
 										href="#"><span>
 												셀프휴식계획 </span></a></li>
 								</ul></li>
-							<li id="07-05"><a href="#"
-								class="menuLnb"><span>예치금</span></a>
-								<ul class="lnb_dep2" style="display: none;">
-									<li id="07-05-01"><a
-										href="#"><span> 예치금
-												충전 내역</span></a></li>
-									<li id="07-05-02"><a href="#"><span>
-												충전하기</span></a></li>
-									<li id="07-05-03"><a href="#"><span>
-												출금 신청</span></a></li>
-								</ul></li>
+							<li id="07-05"><a href="${pageContext.request.contextPath }/mypage/deposit/1" class="menuLnb"><span>예치금</span></a>
+							<ul class="lnb_dep2" style="display: none;">
+								<li id="07-05-01"><a href="${pageContext.request.contextPath }/mypage/deposit/1"><span> 예치금 충전 내역</span></a></li>
+								<li id="07-05-02"><a href="${pageContext.request.contextPath }/mypage/deposit/2"><span> 충전하기</span></a></li>
+								<li id="07-05-03" class="active"><a href="${pageContext.request.contextPath }/mypage/deposit/3"><span> 출금 신청</span></a></li>
+							</ul></li>
 							<li id="07-06"><a
 								href="#" class="menuLnb"><span>행복더하기
 										신청</span></a></li>
@@ -100,7 +95,7 @@
 								<div class="box information">
 									<div class="head">
 										<h4>
-											<strong>소이진</strong>님
+											<strong>${sessionScope.member.name }</strong>님
 										</h4>
 										<a class="link_common"
 											href="#">개인정보수정</a>
@@ -115,23 +110,37 @@
 										<tbody>
 											<tr>
 												<th scope="row">아이디</th>
-												<td colspan="2">tlatms801</td>
+												<td colspan="2">${sessionScope.member.id }</td>
 											</tr>
 											<tr>
 												<th scope="row">휴대폰번호</th>
-												<td colspan="2">01023074797</td>
+												<td colspan="2">${sessionScope.member.hp }</td>
 											</tr>
 											<tr>
 												<th scope="row">이메일</th>
-												<td colspan="2">tlatms801@naver.com</td>
+												<td colspan="2">${sessionScope.member.email }</td>
 											</tr>
 											<tr>
 												<th scope="row">SMS 수신여부</th>
 
 
-												<td>수신거부</td>
-												<td class="ta_right"><a class="btn_common sml"
-													href="#">수신</a></td>
+
+												<c:choose>
+													<c:when test="${sessionScope.member.checkSms eq 1}">
+														<td>수신거부</td>
+														<td class="ta_right">
+															<a class="btn_common sml" href="#">수신</a>
+														</td>
+													</c:when>
+													<c:otherwise>
+														<td>수신</td>
+														<td class="ta_right">
+															<a class="btn_common sml" href="#">수신거부</a>
+														</td>
+													</c:otherwise>
+												</c:choose>
+	
+												
 
 
 
@@ -140,9 +149,20 @@
 												<th scope="row">이메일 수신여부</th>
 
 
-												<td>수신거부</td>
-												<td class="ta_right"><a class="btn_common sml"
-													href="#">수신</a></td>
+												<c:choose>
+													<c:when test="${sessionScope.member.checkEmail eq 1}">
+														<td>수신거부</td>
+														<td class="ta_right">
+															<a class="btn_common sml" href="#">수신</a>
+														</td>
+													</c:when>
+													<c:otherwise>
+														<td>수신</td>
+														<td class="ta_right">
+															<a class="btn_common sml" href="#">수신거부</a>
+														</td>
+													</c:otherwise>
+												</c:choose>
 
 
 
@@ -173,7 +193,7 @@
 											href="#">자세히 보기</a>
 									</div>
 									<p class="total">
-										<span>총 예치금</span><strong>0</strong><span>원</span>
+										<span>총 예치금</span><strong>${sessionScope.member.deposit }</strong><span>원</span>
 									</p>
 									<table class="tbl_form_write">
 										<caption>구매가능금액, 구매불가능금액, 출금신청중 금액 등 예치금 현황 정보</caption>
@@ -192,10 +212,10 @@
 														</div>
 													</div>
 												</th>
-												<td class="ta_right">0 원</td>
-												<td class="ta_right"><a class="btn_common sml"
-													href="/payment.do?method=payment">충전</a> <a
-													class="btn_common sml" href="#">출금</a>
+												<td class="ta_right">${sessionScope.member.deposit } 원</td>
+												<td class="ta_right">
+													<a class="btn_common sml" href="${pageContext.request.contextPath }/mypage/deposit/2">충전</a>
+													<a class="btn_common sml" href="${pageContext.request.contextPath }/mypage/deposit/3">출금</a>
 
 												</td>
 											</tr>
