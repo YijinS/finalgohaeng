@@ -10,12 +10,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="format-detection" content="telephone=no">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/admin/common.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/common.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/contents.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/common.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/contents.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/page.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/contents.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-1.9.1.min.js"></script>
 <title>관리자페이지</title>
 </head>
