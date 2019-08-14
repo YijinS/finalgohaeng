@@ -16,11 +16,10 @@ public class HomeController {
 	
 	@RequestMapping(value="/home",method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView mView) throws IOException {
-		
-		indexService.crawlingFortune(mView);
-		
-		mView.setViewName("common.index");
-		
+
+		/* mView.setViewName("common.indexa"); */
+		 mView.setViewName("admin.drawshow.lotto.list");
+
 		return mView;
 	}
 	

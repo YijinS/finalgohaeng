@@ -41,6 +41,7 @@
 								</tr>
 							</thead>
 							<tbody>
+
 								<c:forEach var="list" items="${list}">
 									<tr>
 										<th><input type="checkbox" name="ckBox"
@@ -99,3 +100,4 @@
 		</section>
 	</div>
 </div>
+>>>>>>> refs/remotes/choose_remote_name/master

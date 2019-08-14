@@ -3,6 +3,7 @@ package com.jscb.gohaeng.dto;
 import java.util.Date;
 
 public class DrawShowDto {
+
    private int index;
    private int enable;
    private int category;
