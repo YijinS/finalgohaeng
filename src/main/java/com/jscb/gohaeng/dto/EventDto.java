@@ -1,109 +1,129 @@
 package com.jscb.gohaeng.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class EventDto {
-	private int eventIndex;
-	private int eventEnable;
-	private String eventTitle;
-	private String eventSubtitle;
-	private String eventContent;
-	private Date eventDrawDate;
-	private Date eventStartDate;
-	private Date eventEndDate;
-	private Date eventRegDate;
-	
-	public EventDto() {
-		
-	}
 
-	public EventDto(int eventIndex, int eventEnable, String eventTitle, String eventSubtitle, String eventContent,
-			Date eventDrawDate, Date eventStartDate, Date eventEndDate, Date eventRegDate) {
+	private int index;
+	private String title;
+	private Date drawDate;
+	private String subTitle;
+	private String content;
+	private int enable;
+	private Date startDate;
+	private Date endDate;
+	private Date regDate;
+	private int display;
+	
+	private int startRowNum;
+	private int endRowNum;
+	
+	private int prevNum;
+	private int nextNum;
+	
+	public EventDto() {}
+	public EventDto(int index, String title, Date drawDate, String subTitle, String content, int enable, Date startDate,
+			Date endDate, Date regDate, int display, int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
-		this.eventIndex = eventIndex;
-		this.eventEnable = eventEnable;
-		this.eventTitle = eventTitle;
-		this.eventSubtitle = eventSubtitle;
-		this.eventContent = eventContent;
-		this.eventDrawDate = eventDrawDate;
-		this.eventStartDate = eventStartDate;
-		this.eventEndDate = eventEndDate;
-		this.eventRegDate = eventRegDate;
+		this.index = index;
+		this.title = title;
+		this.drawDate = drawDate;
+		this.subTitle = subTitle;
+		this.content = content;
+		this.enable = enable;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.regDate = regDate;
+		this.display = display;
+		this.startRowNum = startRowNum;
+		this.endRowNum = endRowNum;
+		this.prevNum = prevNum;
+		this.nextNum = nextNum;
 	}
 
-	public int getEventIndex() {
-		return eventIndex;
+	public int getIndex() {
+		return index;
 	}
-
-	public void setEventIndex(int eventIndex) {
-		this.eventIndex = eventIndex;
+	public void setIndex(int index) {
+		this.index = index;
 	}
-
-	public int getEventEnable() {
-		return eventEnable;
+	public String getTitle() {
+		return title;
 	}
-
-	public void setEventEnable(int eventEnable) {
-		this.eventEnable = eventEnable;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-
-	public String getEventTitle() {
-		return eventTitle;
+	public Date getDrawDate() {
+		return drawDate;
 	}
-
-	public void setEventTitle(String eventTitle) {
-		this.eventTitle = eventTitle;
+	public void setDrawDate(Date drawDate) {
+		this.drawDate = drawDate;
 	}
-
-	public String getEventSubtitle() {
-		return eventSubtitle;
+	public String getSubTitle() {
+		return subTitle;
 	}
-
-	public void setEventSubtitle(String eventSubtitle) {
-		this.eventSubtitle = eventSubtitle;
+	public void setSubTitle(String subTitle) {
+		this.subTitle = subTitle;
 	}
-
-	public String getEventContent() {
-		return eventContent;
+	public String getContent() {
+		return content;
 	}
-
-	public void setEventContent(String eventContent) {
-		this.eventContent = eventContent;
+	public void setContent(String content) {
+		this.content = content;
 	}
-
-	public Date getEventDrawDate() {
-		return eventDrawDate;
+	public int getEnable() {
+		return enable;
 	}
-
-	public void setEventDrawDate(Date eventDrawDate) {
-		this.eventDrawDate = eventDrawDate;
+	public void setEnable(int enable) {
+		this.enable = enable;
 	}
-
-	public Date getEventStartDate() {
-		return eventStartDate;
+	public Date getStartDate() {
+		return startDate;
 	}
-
-	public void setEventStartDate(Date eventStartDate) {
-		this.eventStartDate = eventStartDate;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
-
-	public Date getEventEndDate() {
-		return eventEndDate;
+	public Date getEndDate() {
+		return endDate;
 	}
-
-	public void setEventEndDate(Date eventEndDate) {
-		this.eventEndDate = eventEndDate;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
-
-	public Date getEventRegDate() {
-		return eventRegDate;
+	public Date getRegDate() {
+		return regDate;
 	}
-
-	public void setEventRegDate(Date eventRegDate) {
-		this.eventRegDate = eventRegDate;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
-	
-	
-	
+	public int getStartRowNum() {
+		return startRowNum;
+	}
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
+	}
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
+	}
+	public int getPrevNum() {
+		return prevNum;
+	}
+	public void setPrevNum(int prevNum) {
+		this.prevNum = prevNum;
+	}
+	public int getNextNum() {
+		return nextNum;
+	}
+	public void setNextNum(int nextNum) {
+		this.nextNum = nextNum;
+	}
+	public int getDisplay() {
+		return display;
+	}
+	public void setDisplay(int display) {
+		this.display = display;
+	}
 	
 }

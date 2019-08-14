@@ -9,22 +9,36 @@
 				<div id="snb" class="lnb">
 					<h2 id="03" class="lnb_title">당첨결과</h2>
 					<ul id="lnb" class="lnb_dep1">
-						<li id="03-01" class="active"><a href="#" class="menuLnb"><span>로또6/45</span></a>
+						<li id="03-01" class="active"><a
+								href="${pageContext.request.contextPath }/gameresult/lotto645/1.do"
+								class="menuLnb"><span>로또6/45</span></a>
 							<ul class="lnb_dep2">
-								<li id="03-01-01"><a href="#"><span> 회차별 당첨번호</span></a></li>
-								<li id="03-01-02"><a href="#"><span> 내번호 당첨확인</span></a></li>
-								<li id="03-01-03" class="active"><a href="#"><span>
+								<li id="03-01-01"><a
+										href="${pageContext.request.contextPath }/gameresult/lotto645/1.do"><span>
+											회차별 당첨번호</span></a></li>
+								<li id="03-01-02"><a
+										href="${pageContext.request.contextPath }/gameresult/lotto645/2.do"><span>
+											내번호 당첨확인</span></a></li>
+								<li id="03-01-03" class="active"><a
+										href="${pageContext.request.contextPath }/gameresult/lotto645/3.do"><span>
 											당첨내역</span></a></li>
-								<li id="03-01-04"><a href="#"><span> 당첨금 지급안내</span></a></li>
-								<li id="03-01-05"><a href="#"><span> 추첨방송 다시보기</span></a></li>
-								<li id="03-01-06"><a href="#"><span> 추첨방송 참관신청</span></a></li>
-							</ul></li>
-						<li id="03-02"><a href="#" class="menuLnb"><span>연금복권520</span></a></li>
+								<li id="03-01-04"><a
+										href="${pageContext.request.contextPath }/gameresult/lotto645/4.do"><span>
+											당첨금 지급안내</span></a></li>
+								<li id="03-01-05"><a
+										href="${pageContext.request.contextPath }/gameresult/lotto645/5.do"><span>
+											추첨방송 다시보기</span></a></li>
+								<li id="03-01-06"><a
+										href="${pageContext.request.contextPath }/gameresult/lotto645/6.do"><span>
+											추첨방송 참관신청</span></a></li>
+							</ul>
+						</li>
+						<li id="03-02"><a href="${pageContext.request.contextPath }/gameresult/pension520/1" class="menuLnb"><span>연금복권520</span></a></li>
 
 						<li id="03-05"><a href="#" class="menuLnb"><span>로또6/45
 									당첨통계</span></a></li>
-						<li id="03-06"><a href="#" class="menuLnb"><span
-								style="letter-spacing: -1px;">연금복권520 당첨통계</span></a></li>
+						<li id="03-06"><a href="#" class="menuLnb"><span style="letter-spacing: -1px;">연금복권520
+									당첨통계</span></a></li>
 						<li id="03-07"><a href="#" class="menuLnb"><span>당첨소식</span></a></li>
 						<li id="03-08"><a href="#" class="menuLnb"><span>미수령
 									당첨금</span></a></li>

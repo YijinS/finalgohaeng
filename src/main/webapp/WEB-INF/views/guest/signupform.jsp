@@ -5,312 +5,41 @@
 <div class="body">
 	<div class="containerWrap">
 		<section class="contentSection">
+
+			<!-- ----------왼쪽메뉴---------- 영역 -->
+			<nav class="lnbNav">
+
+				<div id="snb" class="lnb">
+					<h2 id="09" class="lnb_title">회원서비스</h2>
+					<ul id="lnb" class="lnb_dep1">
+						<li id="09-01"><a href="${pageContext.request.contextPath }/guest/login" class="menuLnb"><span>로그인</span></a></li>
+						<li id="09-02"><a href="#" class="menuLnb"><span>아이디/비밀번호
+									찾기</span></a></li>
+						<li id="09-03" class="active"><a href="${pageContext.request.contextPath }/guest/signup" class="menuLnb"><span>회원가입</span></a></li>
+					</ul>
+				</div>
+
+			</nav>
+			<!-- -------------------------------------- -->
 			<div id="article" class="contentsArticle">
 				<div class="header_article">
 					<h3 class="sub_title">회원정보입력</h3>
 					<p class="location">
-						<a class="home" href="/"> Home </a><span class="gt">&gt;</span><a
-							href="/user.do?method=login">회원서비스</a><span class="gt">&gt;</span><a
-							href="/loginJoin.do?method=joinFormAgree">회원가입</a>
+						<a class="${pageContext.request.contextPath }/home" href="/"> Home </a><span class="gt">&gt;</span><a
+							href="${pageContext.request.contextPath }/guest/login">회원서비스</a><span class="gt">&gt;</span><a
+							href="${pageContext.request.contextPath }/guest/signup">회원가입</a>
 					</p>
 				</div>
-				<!-- 
-		<ul class="step" device="phone">
-			<li>[STEP 1] 약관동의</li>
-			<li>[STEP 2] 본인인증</li>
-			<li class="selected">[STEP 3] 회원정보 입력</li>
-			<li>[STEP 4] 회원가입 완료</li>
-		</ul>
-		 -->
+
 				<div>
 					<div class="content_wrap content_join_form">
 						<!-- -------------------------------------------------------------------------------------- -->
 
-						<!--<div class="w750 mt20" device="pc">
-				<img alt="STEP_02 회원정보입력" src="/img/contents/member/agree_step2.jpg"/>
-			</div>-->
-						<div class="box_process box_process_join">
-							<ul>
-								<li class="step1"><strong>Step.01</strong><span>약관동의
-										및 본인인증</span></li>
-								<li class="step2 active"><strong>Step.02</strong><span>회원정보
-										입력</span><span class="accessibility">현재 회원가입 단계</span></li>
-								<li class="step3"><strong>Step.03</strong><span>회원가입
-										완료</span></li>
-							</ul>
-						</div>
-
-
-						<script type="text/javascript" src="/js/join_new.js"
-							charset="utf-8"></script>
-						<script type="text/javascript">
-							$(document)
-									.ready(
-											function() {
-
-												//프로토콜 검사
-												var curPage = document.location.href;
-												//document.write(curPage);
-												//ssl 적용시 페이지 진입불가로 삭제처리함 2018.07.27
-												/* if(curPage.indexOf("https") > -1){
-													document.location = "/user.do?method=joinFormView";
-												} */
-
-												//아이디 중복검사
-												/*if($("#login_id_input").val().length > 3 && $("#login_id_input").val().length < 15 ){
-													alert("PC");
-													 $.post("/common.do?method=userIdChk&userId="+$("#login_id_input").val(), {
-													      id: $("login_id_input").val()
-													    }, function(data){
-													    	alert(data);
-													      $("#userIdCheckResult").html(data);
-													    });
-												}else{
-													$("#userIdCheckResult").html("*4~14자 영문과 숫자 가능하며, 영문 대소문자 구분");
-												}*/
-
-												//데이터 검사 및 Submit
-												$("#id_auth_btn")
-														.bind(
-																"click",
-																function() {
-
-																	$("#zipNo1")
-																			.val(
-																					document.mainForm.zipCode.value
-																							.substring(
-																									0,
-																									3));
-																	$("#zipNo2")
-																			.val(
-																					document.mainForm.zipCode.value
-																							.substring(
-																									3,
-																									5));
-
-																	//성인여부 체크
-																	if (!ageCheck()) {
-																		return false;
-																	}
-
-																	if ($(
-																			"#id_check")
-																			.val() == "FAIL") {
-																		alert("아이디를 확인해주시기 바랍니다.");
-																		$(
-																				"#login_id_input")
-																				.focus();
-																		return false;
-																	}
-																	if ($(
-																			"#pw_check")
-																			.val() == "FAIL") {
-																		$(
-																				"#login_pw_input")
-																				.focus();
-																		alert("비밀번호를 확인해주시기 바랍니다.");
-																		return false;
-																	}
-																	if ($(
-																			"#login_pw_input")
-																			.val() != $(
-																			"#login_pw_input_confirm")
-																			.val()) {
-																		$(
-																				"#login_pw_input_confirm")
-																				.focus();
-																		alert("비밀번호가 일치하지 않습니다.");
-																		return false;
-																	}
-																	$(
-																			"#mobile1 option")
-																			.not(
-																					":selected")
-																			.attr(
-																					"disabled",
-																					"");
-																	if ($(
-																			"#mobile1")
-																			.val() == "") {
-																		$(
-																				"#mobile1")
-																				.focus();
-																		alert("핸드폰 번호를 입력하세요.");
-																		return false;
-																	}
-																	if ($(
-																			"#mobile2")
-																			.val() == "") {
-																		$(
-																				"#mobile2")
-																				.focus();
-																		alert("핸드폰 번호를 입력하세요.");
-																		return false;
-																	}
-																	if ($(
-																			"#mobile3")
-																			.val() == "") {
-																		$(
-																				"#mobile3")
-																				.focus();
-																		alert("핸드폰 번호를 입력하세요.");
-																		return false;
-																	}
-																	if ($(
-																			"#email_input_sel")
-																			.val() == "") {
-																		$(
-																				"#email_input_sel")
-																				.focus();
-																		alert("이메일 주소를 입력하세요.");
-																		return false;
-																	}
-																	if ($(
-																			"#email_domain")
-																			.val() == "") {
-																		$(
-																				"#email_domain")
-																				.focus();
-																		alert("이메일 주소를 입력하세요.");
-																		return false;
-																	}
-																	if (!checkPassword()) {
-																		$(
-																				"#login_pw_input")
-																				.focus();
-																		alert("비밀번호는 9~14자의 영문소문자,숫자,특수문자 사용해 주세요");
-																		return false;
-																	}
-
-																	if (userIdcheck()) {
-																		$(
-																				'#emailAddr')
-																				.val(
-																						$(
-																								"#email_input_sel")
-																								.val()
-																								+ "@"
-																								+ $(
-																										"#email_domain")
-																										.val());
-																		$(
-																				"#emailServiceDate")
-																				.val(
-																						$(
-																								":input:radio[name=emailFlag]:checked")
-																								.val());
-																		$(
-																				"#smsServiceDate")
-																				.val(
-																						$(
-																								":input:radio[name=smsFlag]:checked")
-																								.val());
-																		$(
-																				"#mainForm")
-																				.attr(
-																						{
-																							action : "https://www.dhlottery.co.kr/userSsl.do?method=cidmemberJoin",
-																							method : "post"
-																						})
-																				.submit();
-																	} else {
-																		$(
-																				"#id_check")
-																				.val(
-																						"FAIL");
-																		$(
-																				"#agree_order_btn")
-																				.show();
-																		$(
-																				"#progress_wrap")
-																				.hide();
-																		return false;
-																	}
-																});
-
-												$("#mobile1 option").not(
-														":selected").attr(
-														"disabled", "disabled");
-
-												$('#email_domain_sel')
-														.bind(
-																"change",
-																function() {
-																	$(
-																			'#email_domain')
-																			.val(
-																					$(
-																							'#email_domain_sel option:selected')
-																							.val());
-																});
-
-											});
-
-							function gozip() {
-								//window.open("/newcommon.do?method=popNewAddrView","zippop","width=500 height=600 status=no");
-								var url = "/newcommon.do?method=popNewAddrView";
-								var new_popup = positionPop(url, "zippop", 0,
-										0, 700, 700, 'no');
-							}
-						</script>
-
-
 						<!-- 회원가입 Param BEGIN -->
 						<!-- 본인인증 후 결과 처리 Form -->
 						<!-- 테그의 네임과 ibatis의 프로퍼티 값이 같아야 한다.	기존 소스의 성격을 최대 한 수정 하지 않고 하기 위해 이름이 추가 된 것 -->
-						<form name="mainForm" id="mainForm" method="post">
-							<!-- 사용 param -->
-							<input type="hidden" name="returnUrl" id="returnUrl" value="">
-							<input type="hidden" name="coupon_succ" value=""> <input
-								type="hidden" name="name" id="name" value="정지혜"> <input
-								type="hidden" name="userName" id="userName" value="정지혜">
-							<input type="hidden" name="id_check" id="id_check" value="">
-							<input type="hidden" name="id_check" id="pw_check" value="">
-							<!-- TEST -->
-							<input type="hidden" name="birthday" id="birthday" value="">
+						<form method="post">
 
-							<input type="hidden" name="sexId" id="sexId" value="F"> <input
-								type="hidden" name="ipinInfo" id="ipinInfo" value=""> <input
-								type="hidden" name="discrHash" id="discrHash"
-								value="MC0GCCqGSIb3DQIJAyEA/r54ezAuDUfU7IRWAIOCSeaBx9m8ZZC2G7rRhFoKpWM=">
-							<input type="hidden" name="ciscrHash" id="ciscrHash"
-								value="QtgIv8eZLYBJR67WuV/AR7QOSUywpAwX16Z21pknyfYnLpHOciOcSR/R8RIDwFq3MKM4BnU/USBiAbgRArsHIw==">
-
-							<input type="hidden" name="nameChk" id="nameChk" value="">
-							<!-- 실명(본인)인증 여부 -->
-
-							<input type="hidden" name="pageType" id="pageType"
-								value="renewal">
-							<!-- 완료페이지 호출 구분 -->
-							<input type="hidden" name="couponNo" id="couponNo" value="">
-							<!-- 쿠폰번호 -->
-
-							<input type="hidden" name="mobileCheckResult"
-								id="mobileCheckResult" value="N">
-							<!-- 휴대폰 인증여부 -->
-							<input type="hidden" name="authStr" id="authStr" value="">
-							<!-- 휴대폰 인증번호 -->
-
-							<!-- 정보수신 param -->
-							<input type="hidden" name="smsServiceDate" id="smsServiceDate"
-								value="">
-							<!-- SMS 수신여부 -->
-							<input type="hidden" name="emailServiceDate"
-								id="emailServiceDate" value="">
-							<!-- 이메일 수신여부 -->
-							<input type="hidden" name="popconSmsDate" id="popconSmsDate"
-								value="">
-							<!-- 연금복권 SMS 수신여부 -->
-
-							<input type="hidden" name="emailAddr" id="emailAddr" value="">
-
-
-							<input type="hidden" name="num_bldg" id="num_bldg" value="">
-							<input type="hidden" name="zipNo1" id="zipNo1" value="">
-							<input type="hidden" name="zipNo2" id="zipNo2" value="">
-
-							<input type="hidden" name="foreignYn" id="foreignYn" value="N">
-							<!-- 외국인 여부 -->
 
 
 							<!-- 회원가입 Param END -->
@@ -334,81 +63,177 @@
 									</colgroup>
 
 									<tbody>
-										<tr class="name">
-											<th scope="row">이름<span class="req">*<span
-													class="accessibility">별표</span></span></th>
-											<td>정지혜</td>
-										</tr>
 										<tr class="id">
-											<th scope="row">아이디<span class="req">*<span
-													class="accessibility">별표</span></span></th>
-											<td><input type="text" name="userId" id="login_id_input"
-												value="" style="IME-MODE: disabled" maxlength="14"
-												title="아이디"> <span id="userIdCheckResult"
-												class="comt_valid">띄어쓰기 없는 영문대소문자, 숫자포함 4~14자 사용가능</span></td>
+											<th scope="row">
+												아이디<span class="req">*<span class="accessibility">별표</span></span>
+											</th>
+											<td>
+												<input type="text" name="id" value="" maxlength="14"> 
+												<span id="check-id" value="not"></span>
+											</td>
 										</tr>
 										<tr class="pass">
-											<th scope="row">비밀번호<span class="req">*<span
-													class="accessibility">별표</span></span></th>
-											<td><input type="password" name="password"
-												id="login_pw_input" maxlength="20" autocomplete="off"
-												onkeyup="checkPassword();" title="비밀번호"> <span
-												id="pwResultText" class="comt_valid">9~14자의
-													영문대소문자,숫자,특수문자 사용</span></td>
+											<th scope="row">
+												비밀번호<span class="req">*<span class="accessibility">별표</span></span></th>
+											<td>
+												<input type="password" name="pwd" id="pwd" maxlength="20" autocomplete="off">
+												<span id="check-pwd"></span>
+											</td>
 										</tr>
-										<tr class="pass pass2">
-											<th scope="row">비밀번호 확인<span class="req">*<span
-													class="accessibility">별표</span></span></th>
-											<td><input type="password" name="password_confirm"
-												id="login_pw_input_confirm" maxlength="20"
-												autocomplete="off" title="비밀번호 재입력"> <span
-												id="pwConfirmResultText" class="comt_valid">패스워드를 한번
-													더 입력하시기 바랍니다.</span></td>
+										<tr class="pass2">
+											<th scope="row">비밀번호 확인<span class="req">*<span class="accessibility">별표</span></span></th>
+											<td>
+												<input type="password" name="pwd2" id="pwd2" maxlength="20" autocomplete="off"> 
+												<span id="check-pwd2"></span>
+											</td>
 										</tr>
+
+										<script>
+											window.addEventListener("load", function () {
+													var section = document.querySelector("tbody");
+
+													var id = section.querySelector("input[name=id]");
+													var checkid = section.querySelector("#check-id");
+
+													var pwd = section.querySelector("input[name=pwd]");
+													var pwd2 = section.querySelector("input[name=pwd2]");
+													var check = section.querySelector("#check-pwd");
+													var pwdcheck = section.querySelector("#check-pwd2");
+
+													var submit = section.querySelector("#id_auth_btn");
+
+
+
+													pwd.oninput = function () {
+														if (pwd.value.includes(" ")) {
+															check.innerText = "공백은 포함될 수 없습니다.";
+															check.style.color = "red";
+															check.value = "not";
+															pwd.style.border = "2px solid orangered";
+
+														} else {
+															check.innerText = "";
+															check.value = "ok";
+															pwd.style.border = "2px solid green";
+														}
+													}
+													pwd2.oninput = function () {
+														if (pwd.value == pwd2.value) {
+															pwdcheck.innerText = "일치합니다."
+															pwdcheck.style.color = "green";
+															pwd.style.border = "2px solid green";
+															pwd2.style.border = "2px solid green";
+															pwdcheck.value = "ok";
+														} else {
+															pwdcheck.innerText = "불일치합니다."
+															pwdcheck.style.color = "red";
+															pwd2.style.border = "2px solid orangered";
+															pwdcheck.value = "not";
+														}
+													};
+
+													submit.onclick = function (e) {
+
+														if (checkid.value != "ok") {
+															alert("아이디 중복확인을 눌러주세요.");
+															e.preventDefault();
+															return;
+														}
+														if (check.value != "ok" || pwdcheck.value != "ok") {
+															alert("비밀번호를 다시 확인하십시오.");
+															e.preventDefault();
+															return;
+														}
+
+													};
+
+													checkid.onclick = function() {
+														alert("클릭은 됫음");
+														var userid = id.value;
+														if (userid == "" || userid == null || userid.includes(" ")) {
+															alert("공백 는(은) 사용할 수 없습니다.");
+															id.style.border = "2px solid orangered";
+															exist.value = "not";
+															return;
+														}
+
+														
+
+														var request = new XMLHttpRequest();
+														request.open("GET", "${pageContext.request.contextPath}/guest/ajax?id=" + userid, false);
+														request.send();
+														var json = JSON.parse(request.responseText);
+
+														if (json["usedId"] == true) {
+															alert(userid + "는(은) 사용할 수 없습니다.");
+
+															id.style.border = "2px solid orangered";
+															exist.value = "not";
+															return;
+														} else {
+															alert(userid + "는(은) 사용 가능 합니다.");
+															id.style.border = "2px solid green";
+															exist.value = "ok";
+														}
+													};
+												});
+										</script>
+
+										<tr class="name">
+											<th scope="row">
+												이름<span class="req">*<span class="accessibility">별표</span></span>
+											</th>
+											<td>
+												<input type="text" name="name">
+											</td>
+										</tr>
+
 										<tr class="birth">
-											<th scope="row">생년월일<span class="req">*<span
-													class="accessibility">별표</span></span></th>
-											<td><input type="text" name="birthdayyy" id="birthdayyy"
-												value="1994" size="2" maxlength="4" title="년"
-												readonly="readonly"> <span class="unit">년</span> <input
-												type="text" name="birthdaymm" id="birthdaymm" value="12"
-												size="1" maxlength="2" title="월" readonly="readonly">
-												<span class="unit">월</span> <input type="text"
-												name="birthdaydd" id="birthdaydd" value="18" size="1"
-												maxlength="2" title="일" readonly="readonly"> <span
-												class="unit">일</span>
-												<p class="comt_valid">만 19세 미만 청소년은 가입하실 수
-													없습니다.&lt;청소년보호법 제2조 제1호의 규정&gt;</p></td>
+											<th scope="row">
+												생년월일<span class="req">*<span class="accessibility">별표</span></span>
+											</th>
+											<td>
+												<input type="date" name="birthday" maxlength="">
+											</td>
 										</tr>
-										<tr class="cellp">
-											<th scope="row">휴대폰번호<span class="req">*<span
-													class="accessibility">별표</span></span></th>
-											<td><select id="mobile1" name="mobile1"
-												title="핸드폰 앞 식별번호 선택">
-													<option value="010" selected="selected">010</option>
-													<option value="011" disabled="disabled">011</option>
-													<option value="016" disabled="disabled">016</option>
-													<option value="017" disabled="disabled">017</option>
-													<option value="018" disabled="disabled">018</option>
-													<option value="019" disabled="disabled">019</option>
-											</select> <span class="unit">-</span> <input id="mobile2"
-												name="mobile2" type="text" value="4991" maxlength="4"
-												title="핸드폰 가운데 3~4자리 번호 입력" readonly="readonly"> <span
-												class="unit">-</span> <input id="mobile3" name="mobile3"
-												type="text" value="3122" maxlength="4"
-												title="핸드폰 끝 4자리 번호 입력" readonly="readonly"> <span
-												class="comt_valid"></span></td>
+
+										<tr class="hp">
+											<th scope="row">
+												휴대폰번호<span class="req">*<span class="accessibility">별표</span></span>
+											</th>
+											<td>
+												<select id="mobile1" name="tel1">
+													<option value="010">010</option>
+													<option value="011">011</option>
+													<option value="016">016</option>
+													<option value="017">017</option>
+													<option value="018">018</option>
+													<option value="019">019</option>
+												</select>
+
+												<span class="unit">-</span>
+
+												<input id="mobile2" name="tel2" type="text" maxlength="4">
+
+												<span class="unit">-</span> 
+
+												<input id="mobile3" name="tel3" type="text" maxlength="4"> 
+												<span class="check-hp"></span>
+											</td>
 										</tr>
-										<tr class="mail">
-											<th scope="row">이메일주소<span class="req">*<span
-													class="accessibility">별표</span></span></th>
-											<td><input id="email_input_sel" type="text"
-												name="email_input_sel" value="" title="이메일 아이디 입력">
-												<span class="unit">@</span> <input id="email_domain"
-												type="text" name="email_domain" value=""
-												title="이메일 도메인 직접 입력"> <select
-												name="email_domain_sel" id="email_domain_sel"
-												title="이메일 도메인 선택">
+
+										<tr class="email">
+											<th scope="row">
+												이메일주소<span class="req">*<span class="accessibility">별표</span></span>
+											</th>
+											<td>
+												<input id="email_id" type="text" name="email1" value=""> 
+
+												<span class="unit">@</span> 
+
+												<input id="email_domain" type="text" name="email2" value=""> 
+												
+												<select name="email_domain_sel" id="email_domain_sel">
 													<option value="">직접입력</option>
 													<option value="naver.com">naver.com</option>
 													<option value="nate.com">nate.com</option>
@@ -425,22 +250,20 @@
 													<option value="orgio.net">orgio.net</option>
 													<option value="paran.com">paran.com</option>
 													<option value="gmail.com">gmail.com</option>
-											</select></td>
+												</select>
+											</td>
 										</tr>
+
 										<tr class="addr">
 											<th scope="row">주소</th>
 											<td>
 												<div class="brk">
-													<input id="zipCode" name="zipCode" type="text" title="우편번호"
-														readonly="readonly"> <a class="btn_common form"
-														href="#" onclick="gozip(); return false;" title="새창 열림">우편번호
-														찾기</a>
+													<input id="zipCode" name="zipCode" type="text" readonly="readonly">
+													<a class="btn_common form" href="#">우편번호 찾기</a>
 												</div>
 												<div class="brk">
-													<input type="text" size="30" name="address" id="address"
-														title="주소" maxlength="40" readonly=""> <input
-														type="text" size="30" name="addressDetail"
-														id="addressDetail" title="주소" maxlength="40">
+													<input type="text" size="30" name="addr1" id="addr1" maxlength="40" readonly=""> 
+													<input type="text" size="30" name="addr2" id="addr2" maxlength="40">
 												</div>
 												<p class="comt_valid">이벤트 당첨 시 경품제공을 위한 주소정보입니다.</p>
 											</td>
@@ -467,39 +290,40 @@
 									<tbody>
 										<tr>
 											<th scope="row">SMS수신여부</th>
-											<td><input type="radio" name="smsFlag" id="smsFlagY"
-												value="Y" checked=""><label for="smsFlagY">예</label>
-												<input type="radio" name="smsFlag" id="smsFlagN" value="N"><label
-												for="smsFlagN">아니오</label></td>
+											<td>
+												<input type="radio" name="checkSms" id="smsFlagY" value="1" checked="">
+												<label for="smsFlagY">예</label>
+												<input type="radio" name="checkSms" id="smsFlagN" value="0">
+												<label for="smsFlagN">아니오</label>
+											</td>
 
 											<th scope="row">이메일 수신여부</th>
-											<td><input type="radio" name="emailFlag" id="emailFlagY"
-												class="click_input" value="Y" checked=""><label
-												for="emailFlagY">예</label> <input type="radio"
-												name="emailFlag" id="emailFlagN" class="click_input"
-												value="N"><label for="emailFlagN">아니오</label></td>
+											<td>
+												<input type="radio" name="checkEmail" id="emailFlagY" value="1" checked="">
+												<label for="emailFlagY">예</label> 
+												<input type="radio" name="checkEmail" id="emailFlagN" value="0">
+												<label for="emailFlagN">아니오</label>
+											</td>
 										</tr>
 										<tr>
-											<th scope="row">판매원모집 <br>SMS 수신여부
-											</th>
-											<td colspan="3"><input type="radio" name="intJoinSms"
-												id="intJoinSmsY" value="Y"><label for="intJoinSmsY">예</label>
-												<input type="radio" name="intJoinSms" id="intJoinSmsN"
-												value="N" checked=""><label for="intJoinSmsN">아니오</label>
+											<th scope="row">판매원모집 <br>SMS 수신여부</th>
+											<td colspan="3">
+												<input type="radio" name="checkSales" id="intJoinSmsY" value="1">
+												<label for="intJoinSmsY">예</label>
+												<input type="radio" name="checkSales" id="intJoinSmsN" value="0" checked="">
+												<label for="intJoinSmsN">아니오</label>
 											</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
 							<!-- 정보수신여부 및 관심항목 설정 end -->
+							<div class="btns_submit">
+									<input type="button" class="btn_common lrg" onclick="mainForm.reset()" value="초기화"> 
+									<input type="submit" class="btn_common lrg blu" value="회원가입">
+							</div>
 						</form>
 
-						<div class="btns_submit">
-							<input type="button" class="btn_common lrg"
-								onclick="mainForm.reset()" value="초기화"> <input
-								type="button" class="btn_common lrg blu" id="id_auth_btn"
-								value="회원가입">
-						</div>
 
 						<!-- mainForm END -->
 

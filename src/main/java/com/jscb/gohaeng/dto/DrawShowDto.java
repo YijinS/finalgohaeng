@@ -3,73 +3,74 @@ package com.jscb.gohaeng.dto;
 import java.util.Date;
 
 public class DrawShowDto {
-	private int index;
-	private int enable;
-	private int category;
-	private String memberId;
-	private Date drawDate;
-	private String hp;
-	
-	public DrawShowDto() {}
-	
 
-	public DrawShowDto(int index, int enable, int category, String memberId, Date drawDate, String hp) {
-		super();
-		this.index = index;
-		this.enable = enable;
-		this.category = category;
-		this.memberId = memberId;
-		this.drawDate = drawDate;
-		this.hp = hp;
-	}
+   private int index;
+   private int enable;
+   private int category;
+   private String memberId;
+   private Date drawDate;
+   private String hp;
+   
+   public DrawShowDto() {}
+   
 
-	public int getIndex() {
-		return index;
-	}
+   public DrawShowDto(int index, int enable, int category, String memberId, Date drawDate, String hp) {
+      super();
+      this.index = index;
+      this.enable = enable;
+      this.category = category;
+      this.memberId = memberId;
+      this.drawDate = drawDate;
+      this.hp = hp;
+   }
 
-	public void setIndex(int index) {
-		this.index = index;
-	}
+   public int getIndex() {
+      return index;
+   }
 
-	public int getEnable() {
-		return enable;
-	}
+   public void setIndex(int index) {
+      this.index = index;
+   }
 
-	public void setEnable(int enable) {
-		this.enable = enable;
-	}
+   public int getEnable() {
+      return enable;
+   }
 
-	public int getCategory() {
-		return category;
-	}
+   public void setEnable(int enable) {
+      this.enable = enable;
+   }
 
-	public void setCategory(int category) {
-		this.category = category;
-	}
+   public int getCategory() {
+      return category;
+   }
 
-	public String getMemberId() {
-		return memberId;
-	}
+   public void setCategory(int category) {
+      this.category = category;
+   }
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
+   public String getMemberId() {
+      return memberId;
+   }
 
-	public Date getDrawDate() {
-		return drawDate;
-	}
+   public void setMemberId(String memberId) {
+      this.memberId = memberId;
+   }
 
-	public void setDrawDate(Date drawDate) {
-		this.drawDate = drawDate;
-	}
+   public Date getDrawDate() {
+      return drawDate;
+   }
 
-	public String getHp() {
-		return hp;
-	}
+   public void setDrawDate(Date drawDate) {
+      this.drawDate = drawDate;
+   }
 
-	public void setHp(String hp) {
-		this.hp = hp;
-	}
-	
-	
+   public String getHp() {
+      return hp;
+   }
+
+   public void setHp(String hp) {
+      this.hp = hp;
+   }
+   
+   
 }

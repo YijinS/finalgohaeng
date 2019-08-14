@@ -44,7 +44,7 @@
 								<a href="1detail?eventIndex=${list.eventIndex}">
 									 ${list.eventTitle}</a>
 
-							</p>
+							
 							<p class="summary"></p>
 						</div>
 						<div class="bottom">
