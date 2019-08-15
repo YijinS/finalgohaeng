@@ -38,7 +38,12 @@ ul {overflow:hidden; margin:0 auto; text-align:left;}
 }
  */
 /* .img-portrait{background-image: url(../images/index/bg_02.png); background-size: cover; background-position: center; padding-top: 56.25%}*/
+
+
 .img-portrait{background-image: url(../images/index/bg_03.png); background-size: cover; background-position: center;}
+.img-portrait>div>div>div .go:after { content: ""; position: absolute; left: 5px; top: 0; width: 14px; height: 23px; background: url(../images/index/btn_roll_arrow.png) 0 0 no-repeat;}
+
+
 
 #img-cover{background-size: cover; background-position: center; width: 100px; height: 100px;}
 #fortune-today{margin-top: 3.5rem;}

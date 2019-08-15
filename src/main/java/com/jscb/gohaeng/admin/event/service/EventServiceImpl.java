@@ -110,17 +110,6 @@ public class EventServiceImpl implements EventService {
 		
 		eventDao.insert(eventDto);
 	}
-	
-
 
 }
-
-
-
-
-
-
-
-
-
 

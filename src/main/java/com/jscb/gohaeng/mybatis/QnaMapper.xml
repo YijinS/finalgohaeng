@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna">
+<resultMap type="com.jscb.gohaeng.dto.QnaDto" id="QnaDto">
+<result property="index" column="CONSULTING_INDEX"/>
+<result property="memberId" column="MEMBER_ID"/>
+<result property="category" column="CONSULTING_CATEGORY"/>
+<result property="title" column="CONSULTING_TITLE"/>
+<result property="content" column="CONSULTING_CONTENT"/>
+<result property="regdate" column="CONSULTING_REGDATE"/>
+<result property="reply" column="CONSULTING_REPLY"/>
+<result property="replydate" column="CONSULTING_REPLY_DATE"/>
+</resultMap>
+
+<select id="getList" resultMap="QnaDto" parameterType="com.jscb.gohaeng.dto.QnaDto">
+	SELECT * FROM
+	(SELECT result1.*, ROWNUM AS rnum
+	FROM
+	(SELECT CONSULTING_INDEX,CONSULTING_CATEGORY,CONSULTING_TITLE,CONSULTING_REGDATE,MEMBER_ID,CONSULTING_REPLY
+	FROM CONSULTING 
+	<choose>
+		<when test="searchType != null and searchType == 'reply'">
+			WHERE CONSULTING_REPLY IS NOT NULL
+		</when>
+		<when test="searchType != null and searchType == 'unreply'">
+			WHERE CONSULTING_REPLY IS NULL
+		</when>
+	</choose>
+	ORDER BY CONSULTING_INDEX DESC) result1)
+	WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+</select>
+
+<select id="getData" parameterType="int"
+resultMap="QnaDto">
+	SELECT CONSULTING_INDEX,CONSULTING_TITLE,CONSULTING_REGDATE,CONSULTING_CATEGORY,CONSULTING_CONTENT FROM CONSULTING WHERE CONSULTING_INDEX=#{index}
+</select>
+<delete id="delete" parameterType="int">
+	DELETE FROM CONSULTING WHERE CONSULTING_INDEX=#{index}
+</delete>
+<select id="getCount" parameterType="com.jscb.gohaeng.dto.QnaDto"
+resultType="int">
+	SELECT NVL(MAX(ROWNUM), 0) FROM CONSULTING
+</select>
+</mapper>

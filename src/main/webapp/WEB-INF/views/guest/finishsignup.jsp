@@ -6,7 +6,6 @@
 	<div class="containerWrap">
 		<section class="contentSection">
 
-
 			<div id="article" class="contentsArticle">
 				<div class="header_article">
 					<h3 class="sub_title">회원가입완료</h3>

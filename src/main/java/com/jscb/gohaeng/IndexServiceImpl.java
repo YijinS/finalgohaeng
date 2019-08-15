@@ -7,14 +7,20 @@ import java.util.List;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jscb.gohaeng.dao.LottoGamesDao;
 import com.jscb.gohaeng.dto.FortuneDto;
+import com.jscb.gohaeng.dto.LottoGamesDto;
 
 @Service
 public class IndexServiceImpl implements IndexService {
 
+	@Autowired
+	private LottoGamesDao lottoGamesDao;
+	
 	@Override
 	public ModelAndView crawlingFortune(ModelAndView mView) throws IOException {
 		String[] czs = { "쥐", "소", "호랑이", "토끼", "용", "뱀", "말", "양", "원숭이", "닭", "개", "돼지" };
@@ -39,6 +45,15 @@ public class IndexServiceImpl implements IndexService {
 		mView.addObject("fortune", todayFortune);
 		
 		return mView;
+	}
+
+	/* --------------- 인덱스페이지 로또번호 출력용 --------------- */
+	@Override
+	public void getLastLotto(ModelAndView mView) {
+		
+		LottoGamesDto lottoGame = lottoGamesDao.getLastData();
+		mView.addObject("lottoGame", lottoGame);
+
 	}
 
 }

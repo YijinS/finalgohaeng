@@ -126,6 +126,4 @@ public class EventDto {
 		this.display = display;
 	}
 	
-	
-	
 }
