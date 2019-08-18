@@ -2,6 +2,8 @@ package com.jscb.gohaeng;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,20 @@ public class HomeController {
 
 		/* mView.setViewName("common.indexa"); */
 		 mView.setViewName("admin.drawshow.lotto.list");
+
+		return mView;
+	}
+	
+	@RequestMapping(value="/home2",method = RequestMethod.GET)
+	public ModelAndView home2(ModelAndView mView,HttpServletRequest request) throws IOException {
+		
+		String url = request.getRequestURI();
+		String query = request.getQueryString();
+		
+		System.out.println("url : " + url);
+		System.out.println("query : " + query);
+		/* mView.setViewName("common.indexa"); */
+		 mView.setViewName("common.index");
 
 		return mView;
 	}

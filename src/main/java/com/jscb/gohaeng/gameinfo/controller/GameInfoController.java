@@ -1,7 +1,10 @@
 package com.jscb.gohaeng.gameinfo.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @RequestMapping("/gameinfo/")
 @Controller
@@ -19,9 +22,10 @@ public class GameInfoController {
 		return "gameinfo.lotto645.2";
 	}
 	@RequestMapping("lotto645/3")
-	public String method() {
+	public ModelAndView authMethod(HttpServletRequest request,ModelAndView mView) {
 		
-		return "gameinfo.lotto645.3";
+		mView.setViewName("gameinfo.lotto645.3");
+		return mView;
 	}
 	@RequestMapping("lotto645/4")
 	public String drawshow() {

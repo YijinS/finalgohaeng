@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lotto">
+	<resultMap type="com.jscb.gohaeng.dto.LottoDto" id="lottoDto">
+		<result property="index" column="LOTTO_INDEX" />
+		<result property="plIndex" column="PL_INDEX" />
+		<result property="num" column="LOTTO_NUM" />
+		<result property="method" column="LOTTO_METHOD" />
+	</resultMap>
+	
+	
+	<select id="getList" resultMap="lottoDto" parameterType="int">
+		SELECT * FROM LOTTO
+		<if test="plIndex != null and plIndex != '' ">
+			WHERE PL_INDEX = #{plIndex}
+		</if>
+	</select>
+	
+	<insert id="insert" parameterType="com.jscb.gohaeng.dto.LottoDto">
+		INSERT INTO LOTTO
+		VALUES(LOTTO_SEQ.NEXTVAL,#{plIndex},#{num},#{method})
+	</insert>
+</mapper>
