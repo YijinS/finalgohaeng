@@ -44,16 +44,17 @@
 							<tbody>
 
 								<c:forEach var="list" items="${list}">
-									<tr>
-										<th><input type="checkbox" name="ckBox"
-											id="cBox${list.index}" value="${list.index}"></th>
+									<c:if test="${list.category eq 0}">
+										<tr>
+										<th><input type="checkbox" name="ckBox" id="cBox${list.index}" value="${list.index}"></th>
 										<td>${list.index}</td>
 										<td>${list.memberId}</td>
 										<td>모집기간안정함</td>
 										<fmt:formatDate var="date" value="${list.drawDate}"
 											pattern="yyyy-MM-dd" />
 										<td>${date}</td>										
-									</tr>									
+									</tr>	
+									</c:if>								
 								</c:forEach>
 							</tbody>
 						</table>
@@ -81,12 +82,14 @@
 						</script>
 
 						<!-- cBox 전체 선택 -->
-						<!-- <script>
-                  $('input[name=selected_all]').on('change', function(){
-                     $('input[name=ckBox]').prop('checked', this.checked);
-                  });
-                  </script>
- -->
+						<script>
+							$('input[name=selected_all]').on(
+									'change',
+									function() {
+										$('input[name=ckBox]').prop('checked',
+												this.checked);
+									});
+						</script>
 
 						<div class="wrap_paginate">
 							<div class="paginate_common" id="page_box">
@@ -101,4 +104,3 @@
 		</section>
 	</div>
 </div>
->>>>>>> refs/remotes/choose_remote_name/master

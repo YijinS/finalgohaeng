@@ -21,10 +21,8 @@ public class DrawShowServiceImpl implements DrawShowService{
 
    @Override
    public void getList(HttpServletRequest request) {
-      DrawShowDto dto = new DrawShowDto();
-      List<DrawShowDto> list = drawshowdao.getList(dto);
-      
-      request.setAttribute("list", list);
+	   DrawShowDto dto = new DrawShowDto();
+     
       //System.out.println("hiddenValue:"+request.getAttribute("hiddenValue"));
       System.out.println("pramhiddenValue:"+request.getParameter("hiddenValue"));
       //System.out.println("pramhiddenValues:"+request.getParameterValues("hiddenValue"));
@@ -42,6 +40,10 @@ public class DrawShowServiceImpl implements DrawShowService{
       map.put("arr1", arr1);
       drawshowdao.updateEnable(map);
       }
+      
+      List<DrawShowDto> list = drawshowdao.getList(dto);
+      
+      request.setAttribute("list", list);
     }
       
       
