@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="purchaseLotto">
+	
+	<resultMap type="com.jscb.gohaeng.dto.PurchaseLottoDto" id="purchaseLottoDto">
+		<result property="index" column="PL_INDEX" />
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="storeIndex" column="STORE_INDEX" />
+		<result property="lgmGames" column="LGM_GAMES" />
+		<result property="issueDate" column="PL_ISSUE_DATE" />
+
+	</resultMap>
+	
+	<insert id="insert" parameterType="com.jscb.gohaeng.dto.PurchaseLottoDto">
+		INSERT INTO PURCHASE_LOTTO(PL_INDEX,MEMBER_ID,STORE_INDEX,LGM_GAMES)
+		VALUES(PURCHASE_LOTTO_SEQ.NEXTVAL,#{memberId},#{storeIndex},#{lgmGames})
+	</insert>
+	
+	<select id="getLastIndex" resultType="int">
+		SELECT PL_INDEX 
+		FROM
+			(SELECT ROWNUM NUM,A.*
+			FROM 
+				(SELECT * FROM PURCHASE_LOTTO ORDER BY PL_INDEX DESC)A)
+		WHERE NUM = 1
+	</select>
+	
+	<select id="getList" parameterType="string" resultMap="purchaseLottoDto">
+		SELECT * FROM PURCHASE_LOTTO()
+		<if test="id != null and id !='' ">
+			WHERE MEMBER_ID = #{id}
+		</if>
+	</select>
+</mapper>

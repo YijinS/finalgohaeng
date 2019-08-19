@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.dao.MemberDao;
 import com.jscb.gohaeng.dto.MemberDto;
@@ -73,10 +74,23 @@ public class GuestServiceImpl implements GuestService {
 	}
 
 	@Override
-	public void successLogin(String id,HttpSession session) {
+	public void successLogin(ModelAndView mView
+			,HttpServletRequest request
+			,HttpSession session
+			) {
 		
+		String id = request.getParameter("id");
 		session.setAttribute("member", memberDao.getData(id));
+		String url = request.getParameter("url");
+		System.out.println(url);
+
 		
+//		if(url != null && url != "") {
+//			mView.setViewName("");
+//		}
+		
+		mView.setViewName("redirect:"+url);
+			
 	}
 
 	@Override

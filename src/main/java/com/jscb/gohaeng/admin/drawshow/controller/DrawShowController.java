@@ -26,5 +26,15 @@ public class DrawShowController {
       
    }
    
+   @RequestMapping("/admin/drawshow/pension/list")
+   public ModelAndView pensionList(HttpServletRequest request) {
+      
+      drawshowservice.getList(request);
+      
+      return new ModelAndView("admin.drawshow.pension.list");
+      
+      
+   }
+   
 
 }

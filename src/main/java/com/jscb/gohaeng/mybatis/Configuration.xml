@@ -28,7 +28,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
       <mapper resource="com/gura/spring07/mybatis/ShopMapper.xml"/>
    </mappers> -->
    <mappers>
+   		<mapper resource="com/jscb/gohaeng/mybatis/PurchaseLottoMapper.xml"/>
+   		<mapper resource="com/jscb/gohaeng/mybatis/LottoMapper.xml"/>
 		<mapper resource="com/jscb/gohaeng/mybatis/NoticeMapper.xml"/>
+		<mapper resource="com/jscb/gohaeng/mybatis/StoreMapper.xml"/>
+		<mapper resource="com/jscb/gohaeng/mybatis/WinnerMapper.xml"/>
+		<mapper resource="com/jscb/gohaeng/mybatis/AddrMapper.xml"/>
 		<mapper resource="com/jscb/gohaeng/mybatis/QnaMapper.xml"/>
 		<mapper resource="com/jscb/gohaeng/mybatis/DrawShowMapper.xml"/>	
 	   	<mapper resource="com/jscb/gohaeng/mybatis/LottoGamesMapper.xml"/>

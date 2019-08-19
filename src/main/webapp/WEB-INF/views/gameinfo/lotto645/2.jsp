@@ -78,7 +78,7 @@
 								href="javascript:openUserGuide('LOTTO645');" title="새창 열림">이용안내
 								동영상</a> <a class="btn_common lrg" href="/payment.do?method=payment">예치금
 								충전</a> <a class="btn_common lrg blu"
-								href="javascript:goLottoBuy(1);" title="새창 열림">구매하기</a>
+								href="3" title="새창 열림">구매하기</a>
 						</div>
 					</div>
 

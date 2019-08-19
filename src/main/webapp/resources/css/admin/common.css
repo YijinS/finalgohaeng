@@ -90,7 +90,7 @@ body.gButtonFixed #content { padding-bottom:130px; }
 }
 #header { position:fixed; top:0; left:0; right:0; z-index:202; height:60px; box-sizing:border-box; background:#2a3954; }
 #header .header { display:-webkit-box; display:-ms-flexbox; display:-webkit-flex; display:-ms-flex; display:-moz-flex; display:flex; -ms-align-items:center; align-items:center; max-width:1920px; min-width:1024px; }
-#header h1.logo { width:220px; height:60px; margin:0 auto 0 0; padding:21px 0 0 20px; box-sizing:border-box; background:#2f4363; }
+#header h1.logo { width:220px; height:60px; margin:0 auto 0 0; padding:21px 0 0 20px; box-sizing:border-box; background:#939393; }
 #header h1.logo a { display:block; }
 #header .header .dropLayer { overflow:hidden; position:absolute; z-index:1; opacity:0; height:0;border-radius:2px; background:#fff;
   -webkit-box-shadow: 0px 3px 10px 2px rgba(0,0,0,0.1); -moz-box-shadow: 0px 3px 10px 2px rgba(0,0,0,0.1); box-shadow: 0px 3px 10px 2px rgba(0,0,0,0.1);
@@ -107,7 +107,7 @@ body.gButtonFixed #content { padding-bottom:130px; }
 #header .header .dropLayer .btnClose:after { content:""; position:absolute; top:-2px; left:6px; width:1px; height:18px; background:#2e3039; transform:rotate(-45deg); -webkit-transform:rotate(-45deg); }
 #header .util { margin:0 15px 0 0; }
 #header .util li { position:relative; display:inline-block; }
-#header .util > li > a { position:relative; z-index:2; display:block; padding:8px 15px; font-size:14px; letter-spacing:-0.5px; font-weight:bold; color:#c4d1e9; text-decoration:none; -webkit-transition:.2s ease-out; transition:.2s ease-out; }
+#header .util > li > a { position:relative; z-index:2; display:block; padding:8px 15px; font-size:14px; letter-spacing:-0.5px; font-weight:bold; color: #ffffff; text-decoration:none; -webkit-transition:.2s ease-out; transition:.2s ease-out; }
 #header .util > li > a:hover { color:#fff; }
 #header .util > li:after { content:""; position:absolute; top:13px; right:0; display:inline-block; height:11px; vertical-align:middle; border-right:1px solid #48556c; }
 #header .util > li > a:before { content:""; display:inline-block; width:12px; height:12px; margin:0 6px 0 0; vertical-align:-1px; background:url('//img.echosting.cafe24.com/ec/mode/influencer/common/sfix_gnb_util.png') no-repeat; }
@@ -188,7 +188,9 @@ body.gButtonFixed #content { padding-bottom:130px; }
 #snb > li.collapsable:before { height:2px; background:#2a3954; }
 #snb > li.collapsable:after { display:none; }
 #snb > li > a { position:relative; display:block; line-height:1; padding:17px 26px 19px 42px; font-size:14px; color:#686b72; }
-#snb > li > a:before { content:""; position:absolute; top:18px; left:17px; display:block; width:15px; height:15px; background:url("//img.echosting.cafe24.com/ec/mode/influencer/common/sfix_lnb.png") no-repeat; }
+
+/* aside 아이콘 이미지  */
+/* #snb > li > a:before { content:""; position:absolute; top:18px; left:17px; display:block; width:15px; height:15px; background:url("//img.echosting.cafe24.com/ec/mode/influencer/common/sfix_lnb.png") no-repeat; }
   #snb > li .product:before { background-position:0 0; }
   #snb > li .order:before { background-position:-25px 0; }
   #snb > li .member:before { background-position:-50px 0; }
@@ -197,7 +199,14 @@ body.gButtonFixed #content { padding-bottom:130px; }
   #snb > li .promotion:before { background-position:-125px 0; }
   #snb > li .calculate:before { background-position:-150px 0; }
   #snb > li .appstore:before { background-position:-175px 0; }
-  #snb > li .market:before { left:16px; width:17px; background-position:-200px 0; }
+  #snb > li .market:before { left:16px; width:17px; background-position:-200px 0; } */
+  /* 
+#snb > li > a:before {content:""; position:absolute; top:18px; left:17px; display:block; width:15px; height:15px;}   */
+ .product:before {content:""; position:absolute; top:18px; left:17px; display:block; width:15px; height:15px;background:url("../images/admin/공지사항.png") no-repeat; }
+  
+  
+  
+  
 #snb > li.collapsable a:before,
 #snb > li.selected a:before { background-position-y:-25px; }
 #snb > li > ul { display:none; background:#f3f7f8; }
@@ -4519,9 +4528,9 @@ body.gButtonFixed #content { padding-bottom:130px; }
   -moz-box-shadow: 0px 2px 1px 0px rgba(205,211,222,1);
   box-shadow: 0px 2px 1px 0px rgba(205,211,222,1);
 }
-#header { position:fixed; top:0; left:0; right:0; z-index:202; height:60px; box-sizing:border-box; background:#2a3954; }
+#header { position:fixed; top:0; left:0; right:0; z-index:202; height:60px; box-sizing:border-box; background:#9d9ea0; }
 #header .header { display:-webkit-box; display:-ms-flexbox; display:-webkit-flex; display:-ms-flex; display:-moz-flex; display:flex; -ms-align-items:center; align-items:center; max-width:1920px; min-width:1024px; }
-#header h1.logo { width:220px; height:60px; margin:0 auto 0 0; padding:21px 0 0 20px; box-sizing:border-box; background:#2f4363; }
+#header h1.logo { width:220px; height:60px; margin:0 auto 0 0; padding:21px 0 0 20px; box-sizing:border-box; background:#adafb3; }
 #header h1.logo a { display:block; }
 #header .header .dropLayer { overflow:hidden; position:absolute; z-index:1; opacity:0; height:0;border-radius:2px; background:#fff;
   -webkit-box-shadow: 0px 3px 10px 2px rgba(0,0,0,0.1); -moz-box-shadow: 0px 3px 10px 2px rgba(0,0,0,0.1); box-shadow: 0px 3px 10px 2px rgba(0,0,0,0.1);
@@ -4538,7 +4547,7 @@ body.gButtonFixed #content { padding-bottom:130px; }
 #header .header .dropLayer .btnClose:after { content:""; position:absolute; top:-2px; left:6px; width:1px; height:18px; background:#2e3039; transform:rotate(-45deg); -webkit-transform:rotate(-45deg); }
 #header .util { margin:0 15px 0 0; }
 #header .util li { position:relative; display:inline-block; }
-#header .util > li > a { position:relative; z-index:2; display:block; padding:8px 15px; font-size:14px; letter-spacing:-0.5px; font-weight:bold; color:#c4d1e9; text-decoration:none; -webkit-transition:.2s ease-out; transition:.2s ease-out; }
+#header .util > li > a { position:relative; z-index:2; display:block; padding:8px 15px; font-size:14px; letter-spacing:-0.5px; font-weight:bold; color: #ffffff; text-decoration:none; -webkit-transition:.2s ease-out; transition:.2s ease-out; }
 #header .util > li > a:hover { color:#fff; }
 #header .util > li:after { content:""; position:absolute; top:13px; right:0; display:inline-block; height:11px; vertical-align:middle; border-right:1px solid #48556c; }
 #header .util > li > a:before { content:""; display:inline-block; width:12px; height:12px; margin:0 6px 0 0; vertical-align:-1px; background:url('//img.echosting.cafe24.com/ec/mode/influencer/common/sfix_gnb_util.png') no-repeat; }
@@ -4574,14 +4583,14 @@ body.gButtonFixed #content { padding-bottom:130px; }
 #header .util .shop .mall .btnMobile:hover:before,
 #header .util .shop .mall .btnMobile:hover:after { border-color:#55a0ff; }
 #header .member { position:relative; margin:0 20px 0 0; }
-#header .member .name { display:block; margin:0 11px 0 0; line-height:24px; font-size:14px; letter-spacing:-0.5px; color:#a1adc3; font-weight:bold; -webkit-transition:.2s ease-out; transition:.2s ease-out; }
+#header .member .name { display:block; margin:0 11px 0 0; line-height:24px; font-size:14px; letter-spacing:-0.5px; color:#494d54; font-weight:bold; -webkit-transition:.2s ease-out; transition:.2s ease-out; }
 #header .member .name .icoUser { margin:0 10px 0 0; }
 #header .member:hover .name { color:#fff; }
-#header .member .icoUser { display:inline-block; width:24px; height:24px; text-align:center; vertical-align:top; border-radius:50%; background:#516592; }
+#header .member .icoUser { display:inline-block; width:24px; height:24px; text-align:center; vertical-align:top; border-radius:50%; background:232d2d36; }
 #header .member .icoUser:before,
 #header .member .icoUser:after { content:""; display:block; }
-#header .member .icoUser:before { width:5px; height:5px; margin:7px auto 0; border-radius:50%; background:#dce0e9; }
-#header .member .icoUser:after { width:9px; height:3px; margin:1px auto 0; border-radius:2px 2px 0 0; background:#dce0e9; }
+#header .member .icoUser:before { width:5px; height:5px; margin:7px auto 0; border-radius:50%; background:#ffffff;; }
+#header .member .icoUser:after { width:9px; height:3px; margin:1px auto 0; border-radius:2px 2px 0 0; background:#ffffff; }
 #header .member .btnMore { position:absolute; top:0; left:0; overflow:hidden; width:100%; height:24px; font-size:1px; text-indent:150%; white-space:nowrap; color:transparent; }
 #header .member .btnMore:before { content:""; position:absolute; top:12px; right:0; display:inline-block; width:0; height:0; border-left:3px solid transparent; border-right:3px solid transparent; border-top:3px solid #a1adc3; -webkit-transition:.3s ease-out; transition:.3s ease-out; }
 #header .member.selected .btnMore:before { -webkit-transform:rotate(-180deg); transform:rotate(-180deg); }
@@ -4619,7 +4628,10 @@ body.gButtonFixed #content { padding-bottom:130px; }
 #snb > li.collapsable:before { height:2px; background:#2a3954; }
 #snb > li.collapsable:after { display:none; }
 #snb > li > a { position:relative; display:block; line-height:1; padding:17px 26px 19px 42px; font-size:14px; color:#686b72; }
-#snb > li > a:before { content:""; position:absolute; top:18px; left:17px; display:block; width:15px; height:15px; background:url("//img.echosting.cafe24.com/ec/mode/influencer/common/sfix_lnb.png") no-repeat; }
+
+
+/* aside 아이콘 이미지  */
+/* #snb > li > a:before { content:""; position:absolute; top:18px; left:17px; display:block; width:15px; height:15px; background:url("//img.echosting.cafe24.com/ec/mode/influencer/common/sfix_lnb.png") no-repeat; }
   #snb > li .product:before { background-position:0 0; }
   #snb > li .order:before { background-position:-25px 0; }
   #snb > li .member:before { background-position:-50px 0; }
@@ -4628,7 +4640,11 @@ body.gButtonFixed #content { padding-bottom:130px; }
   #snb > li .promotion:before { background-position:-125px 0; }
   #snb > li .calculate:before { background-position:-150px 0; }
   #snb > li .appstore:before { background-position:-175px 0; }
-  #snb > li .market:before { left:16px; width:17px; background-position:-200px 0; }
+  #snb > li .market:before { left:16px; width:17px; background-position:-200px 0; } */
+  /* 
+#snb > li > a:before {content:""; position:absolute; top:18px; left:17px; display:block; width:15px; height:15px;}   */
+ .product:before {content:""; position:absolute; top:18px; left:17px; display:block; width:15px; height:15px;background:url("https://www.freepik.com/free-icon/light-bulb_932992.htm#page=1&position=33") no-repeat; }
+  
 #snb > li.collapsable a:before,
 #snb > li.selected a:before { background-position-y:-25px; }
 #snb > li > ul { display:none; background:#f3f7f8; }
@@ -4837,7 +4853,8 @@ a.txtWarn.txtLink:hover { color:#ff6158; }
 .txtStrong { color:#2e3039; }
 
 .txtEng { font-family:verdana,sans-serif; }
-.txtKor { font-family:"굴림",Gulim, sans-serif; }
+/* .txtKor { font-family:"굴림",Gulim, sans-serif; } */
+.txtKor{font-family: "Helvetica Neue", "Apple SD Gothic Neo", "맑은 고딕", "Malgun Gothic", "돋움", dotum, sans-serif;}
 .txtCode { font-family:'Oxygen Mono'; }
 .txtMore { font-size:14px; }
 .txtLess { font-size:13px; }
@@ -8837,7 +8854,7 @@ select { padding:0 30px 0 10px; background:#fff url("//img.echosting.cafe24.com/
     /* typeAppstore */
     .mHeadVisual.typeAppstore { background-image:url('//img.echosting.cafe24.com/ec/mode/influencer/common/bg_head_visual_appstore.png'); }
 
-.wrap_option wrap_option1{float: left;}
+	.wrap_option wrap_option1{float: left; width: 100%;}
 /* ----------------------------------------- //설정  ----------------------------------------- */
 
 /* admngSide */

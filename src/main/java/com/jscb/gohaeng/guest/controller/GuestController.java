@@ -32,10 +32,11 @@ public class GuestController {
 	}
 	
 	@PostMapping("login")
-	public String successLogin(String id,HttpSession session) {
-		guestService.successLogin(id, session);
+	public ModelAndView successLogin(ModelAndView mView,HttpServletRequest request,HttpSession session) {
+		guestService.successLogin(mView, request, session);
 		
-		return "redirect:/home";
+		
+		return mView;
 	}
 
 	@ResponseBody

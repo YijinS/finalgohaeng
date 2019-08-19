@@ -25,6 +25,8 @@ public class StoreController {
 	@Autowired
 	private AddrService addrService;
 
+	
+
 	@ResponseBody
 	@RequestMapping(value="/ajax_addr_gu", produces = "application/json; charset=utf8")
 	public String ajaxAddrGu(AddrDto dto) {
@@ -52,7 +54,7 @@ public class StoreController {
 
 	}
 
-
+	//select box 요청 처리 
 	@ResponseBody
 	@RequestMapping(value="/store/ajax_select", produces ="application/json; charset=utf8") 
 	public String ajax(int storeAbleGames) {
@@ -102,7 +104,6 @@ public class StoreController {
 	}
 
 
-	//친구정보 수정 폼 요청처리
 	@RequestMapping("/store/1editform")
 	public ModelAndView updateForm(@RequestParam int storeIndex,
 			ModelAndView mView) {
@@ -111,7 +112,6 @@ public class StoreController {
 		return mView;
 	}
 
-	//친구 정보 수정 반영 요청 처리
 	@RequestMapping("/store/1edit")
 	public String update(@ModelAttribute StoreDto dto) {
 		storeservice.update(dto);
@@ -124,6 +124,32 @@ public class StoreController {
 		return "admin.store.lotto.1delete";
 
 	}
+
+	//구와 관련된 리스트 뽑기 
+	@ResponseBody
+	@RequestMapping(value="/ajax/selectGulist", produces ="application/json; charset=utf8") 
+	public String selectGulist(@ModelAttribute StoreDto dto ) {
+
+		List<StoreDto> list = storeservice.selectGulist(dto);
+
+		Gson gson = new Gson();
+		String json = gson.toJson(list);
+
+		return json;
+	}
+	
+	//검색란과 관련된 리스트 뽑기 
+		@ResponseBody
+		@RequestMapping(value="/ajax/selectStoreName", produces ="application/json; charset=utf8") 
+		public String selectStoreName(@ModelAttribute StoreDto dto ) {
+
+			List<StoreDto> list = storeservice.selectStoreName(dto);
+			System.out.println("list"+ list);
+			Gson gson = new Gson();
+			String json = gson.toJson(list);
+
+			return json;
+		}
 
 
 

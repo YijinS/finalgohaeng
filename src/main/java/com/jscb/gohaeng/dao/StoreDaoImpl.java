@@ -54,6 +54,18 @@ public class StoreDaoImpl implements StoreDao {
 		List<StoreDto> list = session.selectList("store.list", storeAbleGames);
 		return list;
 	}
-	
+
+	@Override
+	public List<StoreDto> getGulist(StoreDto dto) {
+		List<StoreDto> list = session.selectList("store.getGulist", dto);
+		return list;
+	}
+
+	@Override
+	public List<StoreDto> getStoreName(StoreDto dto) {
+		List<StoreDto> list = session.selectList("store.getStoreName", dto);
+		return list;
+	}
+
 
 }

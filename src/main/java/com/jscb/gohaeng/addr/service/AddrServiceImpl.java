@@ -8,12 +8,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.dao.AddrDao;
 import com.jscb.gohaeng.dto.AddrDto;
+import com.jscb.gohaeng.dto.StoreDto;
 
 @Service
 public class AddrServiceImpl implements AddrService {
 
 	@Autowired
 	private AddrDao addrDao;
+	
+
 	
 	@Override
 	public List<AddrDto> getList(AddrDto dto) {
@@ -37,5 +40,11 @@ public class AddrServiceImpl implements AddrService {
 		
 		return list;
 	}
+
+
+	  @Override public List<StoreDto> selectGulist(StoreDto dto) { List<StoreDto>
+	  list = addrDao.getGulist(dto); return list; }
+	 
+	
 
 }
