@@ -15,32 +15,33 @@ import com.jscb.gohaeng.dto.DrawShowDto;
 @Service
 public class DrawShowServiceImpl implements DrawShowService {
 
-	@Autowired
-	private DrawShowDao drawshowdao;
+   @Autowired
+   private DrawShowDao drawshowdao;
 
-	@Override
-	public void getLottoApplyList(HttpServletRequest request) {
-		DrawShowDto dto = new DrawShowDto();
+   @Override
+   public void getList(HttpServletRequest request) {
+      DrawShowDto dto = new DrawShowDto();
 
-		if (request.getParameter("hiddenValue") != null) {
-			String pram = request.getParameter("hiddenValue");
-			String[] arr = pram.split(",");
+      // System.out.println("hiddenValue:"+request.getAttribute("hiddenValue"));
+      System.out.println("pramhiddenValue:" + request.getParameter("hiddenValue"));
+      // System.out.println("pramhiddenValues:"+request.getParameterValues("hiddenValue"));
 
-			int[] arr1 = new int[arr.length];
-			for (int i = 0; i < arr.length; i++)
-				arr1[i] = Integer.parseInt(arr[i]);
+      // System.out.println("ckBox:"+request.getParameterValues("ckBox"));
+      if (request.getParameter("hiddenValue") != null) {
+         String pram = request.getParameter("hiddenValue");
+         String[] arr = pram.split(",");
 
-			HashMap map = new HashMap();
-			map.put("arr1", arr1);
-			drawshowdao.updateEnable(map);
-		}
-		List<DrawShowDto> list = drawshowdao.getLottoApplyList(dto);
+         int[] arr1 = new int[arr.length];
+         for (int i = 0; i < arr.length; i++)
+            arr1[i] = Integer.parseInt(arr[i]);
 
-		request.setAttribute("list", list);
-		
-	}
+         HashMap map = new HashMap();
+         map.put("arr1", arr1);
+         drawshowdao.updateEnable(map);
+      }
+      List<DrawShowDto> list = drawshowdao.getList(dto);
 
-	
+      request.setAttribute("list", list);
+   }
 
 }
-

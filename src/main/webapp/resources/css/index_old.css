@@ -11,10 +11,49 @@ body{font-family: 'Noto Sans KR';}
 
 #header-top {margin-bottom: 1.5rem;}
 #header-bot ul{font-size: 1.15rem;}
-
+/* 
+@media (min-width: 992px) {
+nav{padding-bottom: 0px !important; }
+#header-bot>div>ul>li>.group {position:absolute; left:0; top:-1000px; width:100%; padding:25px 0 35px; background:#fff; border-top:1px solid #007bc3; -webkit-box-shadow:0px 2px 2px 0px rgba(0,0,0,0.3); -moz-box-shadow:0px 2px 2px 0px rgba(0,0,0,0.3); box-shadow:0px 2px 2px 0px rgba(0,0,0,0.3);}
+#header-bot>div>ul>li:hover .group {top: 160px;}
+ul {overflow:hidden; margin:0 auto; text-align:left;}
+#header-bot>div>ul>li>.group > ul:after {content:""; display:block; clear:both}
+#header-bot>div>ul>li>.group > ul ~ ul {position:relative; margin-top:30px; padding-top:31px}
+#header-bot>div>ul>li>.group > ul ~ ul:after {content:""; position:absolute; left:0; top:0; width:100%; border-top:1px solid #ddd}
+#header-bot>div>ul>li>.group > ul > li {float:left; position:relative; width:177px; padding:0 21px}
+#header-bot>div>ul>li>.group > ul > li:before {content:""; position:absolute; top:0; height:1000px; left:0; border-left:1px solid #ddd}
+#header-bot>div>ul>li>.group > ul > li a {display:block}
+#header-bot>div>ul>li>.group > ul > li > a { font-size:15px; font-weight:500; color:#195b81; line-height:1.1em}
+#header-bot>div>ul>li>.group > ul > li > ul {margin-top:15px}
+#header-bot>div>ul>li>.group > ul > li > ul > li ~ li {margin-top:7px}
+#header-bot>div>ul>li>.group > ul > li > ul > li > a {position:relative; font-size:13px; color:#777}
+#header-bot>div>ul>li>.group > ul > li > ul > li > a:after {content:""; display:none; position:absolute; left:-10px; top:5px; width:5px; border-top:1px solid #195b81}
+#header-bot>div>ul>li>.group > ul > li > ul > li > a:hover,
+#header-bot>div>ul>li>.group > ul > li > ul > li > a:focus {color:#195b81}
+#header-bot>div>ul>li>.group > ul > li > ul > li > a:hover:after,
+#header-bot>div>ul>li>.group > ul > li > ul > li > a:focus:after {display:block}
+}
+@media (max-width: 991px) {
+	#header-bot>div>ul>li>.group {display:none;}
+}
+ */
 /* .img-portrait{background-image: url(../images/index/bg_02.png); background-size: cover; background-position: center; padding-top: 56.25%}*/
-.img-portrait{background-image: url(../images/index/bg_03.png); background-size: cover; background-position: center;}
 
+/* --------- 로또번호 슬라이드 --------- */
+.img-portrait{background-image: url(../images/index/bg_03.png); background-size: cover; background-position: center;}
+.img-portrait>div>div>div { text-align: center; }
+.img-portrait>div>div>div>p {display: inline-block;}
+.img-portrait>div>div>div>#prev_btn { display:inline-block; position: absolute; line-height: 0; width:14px; height: 23px; overflow: hidden; top:54px; left:10px; }
+.img-portrait>div>div>div>#next_btn { display:inline-block; position: absolute; line-height: 0; width:14px; height: 23px; overflow: hidden; top:54px; right:10px; }
+.img-portrait>div>div>div>#next_btn>img { margin-left:-14px}
+.num.win,.plus-num,.num.bonus{display: inline-block;}
+.win_result>h4, .win_result>p {display: inline-block;}
+.plus-num { width: 22px; height: 50px; text-indent: -999em; background: url(../images/index/ico_bonus_number.png) 50% 50% no-repeat; }
+/* 
+.img-portrait>div>div>div>.go { position: absolute; top: 68px; width: 24px; height: 23px; text-align: left; text-indent: -999em; overflow: hidden; }
+.img-portrait>div>div>div>.go:after { content: ""; position: absolute; left: 5px; width: 14px; height: 23px; background: url(../images/index/btn_roll_arrow.png) 0 0 no-repeat;}
+
+ */
 #img-cover{background-size: cover; background-position: center; width: 100px; height: 100px;}
 #fortune-today{margin-top: 3.5rem;}
 #fortune-today span{font-family: 'Noto Sans KR', sans-serif; font-size: 1.2rem;}

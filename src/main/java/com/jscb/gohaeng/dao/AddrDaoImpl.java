@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jscb.gohaeng.dto.AddrDto;
+import com.jscb.gohaeng.dto.StoreDto;
 
 @Repository
 public class AddrDaoImpl implements AddrDao{
@@ -31,5 +32,16 @@ public class AddrDaoImpl implements AddrDao{
 		List<AddrDto> list = session.selectList("addr.getGu", dto);
 		return list;
 	}
+
+	
+	  @Override public List<StoreDto> getGulist(StoreDto dto) { 
+		  List<StoreDto> list  = session.selectList("store.getGulist", dto); 
+		  return list;
+		  }
+
+	 
+
+	
+
 
 }

@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import com.jscb.gohaeng.dto.MemberDto;
 
 public interface GuestService {
@@ -14,6 +16,6 @@ public interface GuestService {
 	//public boolean checkEmail(MemberDto dto);
 	public void addMember(HttpServletRequest request) throws ParseException;
 	public Map<String,Object> checkLogin(String id,String pwd);
-	public void successLogin(String id,HttpSession session);
+	public void successLogin(ModelAndView mView,HttpServletRequest request,HttpSession session);
 	public void logout(HttpSession session);
 }

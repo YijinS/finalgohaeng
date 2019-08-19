@@ -16,8 +16,8 @@ public class DrawShowDaoImpl implements DrawShowDao {
 	private SqlSession session;
 
 	@Override
-	public List<DrawShowDto> getLottoApplyList(DrawShowDto dto) {
-		List<DrawShowDto> list = session.selectList("drawshow.getLottoApplyList", dto);
+	public List<DrawShowDto> getList(DrawShowDto dto) {
+		List<DrawShowDto> list = session.selectList("drawshow.getList", dto);
 		return list;
 	}
 

@@ -12,11 +12,11 @@
 	</resultMap>
 
 
-	<select id="getLottoApplyList"
+	<select id="getList"
 		parameterType="com.jscb.gohaeng.dto.DrawShowDto"
 		resultMap="DrawShowDto">
 		SELECT * FROM APPLY_DRAWSHOW
-		WHERE AD_CATEGORY = 0 AND AD_ENABLE=0
+		WHERE AD_ENABLE=0
 		ORDER BY AD_INDEX
 
 	</select>

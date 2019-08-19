@@ -7,6 +7,7 @@
 		<result property="gu" column="GU" />
 	</resultMap>
 	
+	
 	<select id="getList" parameterType="com.jscb.gohaeng.dto.AddrDto" resultMap="AddrDto">
 	 select * from address 
 	 <choose>
@@ -25,11 +26,11 @@
 	</select>
 	
 	<select id="getSido" resultMap="AddrDto">
-		select distinct sido from address 
+		select distinct sido from address order by sido
 	
 	</select>
-	<select id="getGu" parameterType="com.jscb.gohaeng.dto.AddrDto"  resultMap="AddrDto">
 	
+	<select id="getGu" parameterType="com.jscb.gohaeng.dto.AddrDto"  resultMap="AddrDto">
 		select * from address where sido like '${sido}%' order by gu
 	</select>
 

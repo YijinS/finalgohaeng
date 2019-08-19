@@ -25,7 +25,7 @@
 		<beans:property name="configLocation"
 	value="classpath:com/jscb/gohaeng/mybatis/Configuration.xml"/>
 	</beans:bean>
-
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<!-- 
 		SqlSession 인터페이스를 구현한 
 		SqlSessionTemplate(SqlSession) 객체 
@@ -42,6 +42,8 @@
 		<beans:property name="dataSource" ref="dataSource"/>
 	</beans:bean>
 	
+	<!-- aop 설정 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
 	<!-- 어노테이션으로 트렌젝션을 처리 할수 있도록 설정 -->
 	<tx:annotation-driven transaction-manager="txManager"/>
@@ -69,6 +71,10 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<beans:property name="contentType" value="application/json;charset=UTF-8" />
 	</beans:bean>
 
 	<context:component-scan base-package="com.jscb.gohaeng" />

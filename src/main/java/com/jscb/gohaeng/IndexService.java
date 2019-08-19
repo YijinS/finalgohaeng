@@ -8,5 +8,6 @@ public interface IndexService {
 	
 	public ModelAndView crawlingFortune(ModelAndView mView) throws IOException;
 	public void lottonum() throws IOException;
+	public void getLastLotto(ModelAndView mView);
 	
 }

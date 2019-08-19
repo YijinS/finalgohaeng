@@ -59,6 +59,7 @@
 								최적화되어 있습니다.</p>
 						</div>
 					</div>
+					<input type="hidden" name="url" value="${url }"/>
 				</form>
 				<script>
 					$(function(){
