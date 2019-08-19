@@ -59,6 +59,7 @@
 								최적화되어 있습니다.</p>
 						</div>
 					</div>
+					<input type="hidden" name="url" value="${url }"/>
 				</form>
 				<script>
 					$(function(){
@@ -67,7 +68,7 @@
 						var pwd = $("#input_form").find("input[name=pwd]");
 							button.click(function(){
 								$.ajax({
-									url:'${pageContext.request.contextPath }/guest/loginCheck',
+									url:'${pageContext.request.contextPath }/guest/loginCheck.do',
 									type:'post',
 									data:{"id":id.val(),"pwd":pwd.val()},
 									success:function(data){
