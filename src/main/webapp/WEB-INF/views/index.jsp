@@ -27,10 +27,28 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto w-100 justify-content-end">
-				<li class="nav-item"><a class="nav-link" href="#">로그인</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">회원가입</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
+				<c:choose>
+					<c:when test="${empty sessionScope.member }">
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath }/guest/login">로그인</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath }/guest/signup">회원가입</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
+					</c:when>
+
+					<c:otherwise>
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath }/mypage/deposit/1">예치금
+								: ${member.deposit }원 </a></li>
+						<li class="nav-item"><a class="nav-link" href="#">${sessionScope.member.name }님</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath }/guest/logout">로그아웃</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath }/mypage/home">마이페이지</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</div>
 	</div>
@@ -240,12 +258,14 @@
 		<div>
 			<h5 class="mb-2 text-white text-left">로또 6/45</h5>
 			<div class="col-lg-7">
-				
+
 				<div class="win_result">
 					<h4 class="text-white">
-						<strong id="games">${lottoGame.games }</strong><strong>회</strong> 당첨결과
+						<strong id="games">${lottoGame.games }</strong><strong>회</strong>
+						당첨결과
 					</h4>
-					<fmt:formatDate var="drawDate" value="${lottoGame.drawDate }" pattern="(yyyy년 MM월 dd일 추첨)"/>
+					<fmt:formatDate var="drawDate" value="${lottoGame.drawDate }"
+						pattern="(yyyy년 MM월 dd일 추첨)" />
 					<p id="draw_date" class="desc text-white">${drawDate }</p>
 					<div class="nums">
 						<div class="num win">
@@ -277,32 +297,34 @@
 						</div>
 						<span class="plus-num">보너스 번호</span>
 						<div class="num bonus">
-							
+
 							<div id="bns">
-							<c:choose>
-								<c:when test="${lottoGame.bonusNum lt 11 }">
-									<span class="ball_645 lrg ball1">${lottoGame.bonusNum }</span>
-								</c:when>
-								<c:when test="${lottoGame.bonusNum lt 21 }">
-									<span class="ball_645 lrg ball2">${lottoGame.bonusNum }</span>
-								</c:when>
-								<c:when test="${lottoGame.bonusNum lt 31 }">
-									<span class="ball_645 lrg ball3">${lottoGame.bonusNum }</span>
-								</c:when>
-								<c:when test="${lottoGame.bonusNum lt 41 }">
-									<span class="ball_645 lrg ball4">${lottoGame.bonusNum }</span>
-								</c:when>
-								<c:otherwise>
-									<span class="ball_645 lrg ball5">${lottoGame.bonusNum }</span>
-								</c:otherwise>
-							</c:choose>
+								<c:choose>
+									<c:when test="${lottoGame.bonusNum lt 11 }">
+										<span class="ball_645 lrg ball1">${lottoGame.bonusNum }</span>
+									</c:when>
+									<c:when test="${lottoGame.bonusNum lt 21 }">
+										<span class="ball_645 lrg ball2">${lottoGame.bonusNum }</span>
+									</c:when>
+									<c:when test="${lottoGame.bonusNum lt 31 }">
+										<span class="ball_645 lrg ball3">${lottoGame.bonusNum }</span>
+									</c:when>
+									<c:when test="${lottoGame.bonusNum lt 41 }">
+										<span class="ball_645 lrg ball4">${lottoGame.bonusNum }</span>
+									</c:when>
+									<c:otherwise>
+										<span class="ball_645 lrg ball5">${lottoGame.bonusNum }</span>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 					</div>
 				</div>
-				<a href="javascript:void(0)" id="prev_btn"><img src="${pageContext.request.contextPath }/resources/images/index/btn_roll_arrow.png"></a>
-				<a href="javascript:void(0)" id="next_btn"><img src="${pageContext.request.contextPath }/resources/images/index/btn_roll_arrow.png"></a>
-				
+				<a href="javascript:void(0)" id="prev_btn"><img
+					src="${pageContext.request.contextPath }/resources/images/index/btn_roll_arrow.png"></a>
+				<a href="javascript:void(0)" id="next_btn"><img
+					src="${pageContext.request.contextPath }/resources/images/index/btn_roll_arrow.png"></a>
+
 			</div>
 			<script>
 				$(function(){
@@ -530,8 +552,8 @@
 				<div class="row">
 					<div class="col text-center">
 						<a class="btn-link text-secondary p-4" href="#"> <i
-							class="material-icons align-middle">arrow_right</i> 
-						<span class="align-middle text-decoration-none">인터뷰 더보러가기</span>
+							class="material-icons align-middle">arrow_right</i> <span
+							class="align-middle text-decoration-none">인터뷰 더보러가기</span>
 						</a>
 					</div>
 				</div>

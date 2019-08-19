@@ -2,6 +2,9 @@ package com.jscb.gohaeng.admin.event.service;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -106,8 +109,25 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public void regEvent(EventDto eventDto) {
+	public void regEvent(HttpServletRequest request) throws ParseException {
 		
+		System.out.println("서비스*****************************************");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String subTitle = request.getParameter("subTitle");
+		Date startDate = sdf.parse(request.getParameter("startDate"));
+		Date endDate = sdf.parse(request.getParameter("endDate"));
+		Date drawDate = sdf.parse(request.getParameter("drawDate"));
+		
+		EventDto eventDto = new EventDto();
+		eventDto.setTitle(title);
+		eventDto.setSubTitle(subTitle);
+		eventDto.setContent(content);
+		eventDto.setStartDate(startDate);
+		eventDto.setEndDate(endDate);
+		eventDto.setDrawDate(drawDate);
 		eventDao.insert(eventDto);
 	}
 

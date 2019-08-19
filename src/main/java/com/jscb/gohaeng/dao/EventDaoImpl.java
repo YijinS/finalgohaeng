@@ -41,7 +41,7 @@ public class EventDaoImpl implements EventDao {
 	@Override
 	public void insert(EventDto eventDto) {
 		
-		sqlSession.selectOne("event.insert", eventDto);
+		sqlSession.insert("event.insert", eventDto);
 	}
 
 

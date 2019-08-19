@@ -24,9 +24,11 @@ public class HomeController {
 	private LottoGamesDao lottoGamesDao;
 	
 	@RequestMapping("/")
-	public ModelAndView home(ModelAndView mView) {
-
+	public ModelAndView home(ModelAndView mView) throws IOException {
+		
+		indexService.crawlingFortune(mView);
 		indexService.getLastLotto(mView);
+
 		 mView.setViewName("common.index");
 
 		return mView;
@@ -48,14 +50,14 @@ public class HomeController {
 
 	@RequestMapping(value="/home2",method = RequestMethod.GET)
 	public ModelAndView home2(ModelAndView mView,HttpServletRequest request) throws IOException {
-		
+		indexService.crawlingFortune(mView);
 		String url = request.getRequestURI();
 		String query = request.getQueryString();
 		
 		System.out.println("url : " + url);
 		System.out.println("query : " + query);
 		/* mView.setViewName("common.indexa"); */
-		 mView.setViewName("common.index");
+		mView.setViewName("common.index");
 
 		return mView;
 	}

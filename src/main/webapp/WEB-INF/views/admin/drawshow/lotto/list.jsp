@@ -57,7 +57,7 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<form id="questionlistfrm">
+						<form id="questionlistfrm" method="post">
 						<input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>			
 						</form>
 						<input type="button" name="btn" id="btn" value="확인" onclick="fnGetdata();" />

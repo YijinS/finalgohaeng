@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="applyEvent">
+	<resultMap type="com.jscb.gohaeng.dto.ApplyEventDto" id="ApplyEventDto">
+		<result property="index" column="EVENT_INDEX" />
+		<result property="id" column="MEMBER_ID" />
+		<result property="result" column="AE_RESULT" />	
+	</resultMap>
+	
+	<select id="getApplyList" resultMap="ApplyEventDto">
+		SELECT * FROM APPLY_EVENT ORDER BY EVENT_INDEX
+	</select>
+	
+</mapper>
