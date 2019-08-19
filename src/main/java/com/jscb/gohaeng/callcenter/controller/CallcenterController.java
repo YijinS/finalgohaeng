@@ -20,7 +20,12 @@ public class CallcenterController {
 	
 	
 	/*----------------------- 1:1상담  -----------------------*/
-	
+	   @RequestMapping("qna/insertform")
+	   public String insertform(ModelAndView mView){
+	      
+	      return "callcenter.qna.insertform";
+	      
+	   }
 	
 	/*----------------------- 모바일동행복권  -----------------------*/
 	

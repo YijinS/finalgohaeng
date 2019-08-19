@@ -237,43 +237,195 @@
 <!-- ------------------- 메인 당첨번호 시작 ------------------- -->
 <div class="img-portrait">
 	<div class="container py-5">
-		<div class="row">
+		<div>
+			<h5 class="mb-2 text-white text-left">로또 6/45</h5>
 			<div class="col-lg-7">
-				<h4 class="mb-2 text-white">로또 6/45</h4>
-				<a class="go prev_btn">이전 회차 당첨정보 보기</a>
 				
-				<a href="${pageContext.request.contextPath }/gameresult/lotto645/1">
-				<c:forEach begin="0" end="5" varStatus="vs" step="1">
-					<fmt:parseNumber var="num"
-						value="${fn:substring(lottoGame.winningNum,vs.index*2,vs.count*2) }" />
-					<c:choose>
-						<c:when test="${num lt 11 }">
-							<span class="ball_645 lrg ball1">${num }</span>
-						</c:when>
-						<c:when test="${num lt 21 }">
-							<span class="ball_645 lrg ball2">${num }</span>
-						</c:when>
-						<c:when test="${num lt 31 }">
-							<span class="ball_645 lrg ball3">${num }</span>
-						</c:when>
-						<c:when test="${num lt 41 }">
-							<span class="ball_645 lrg ball4">${num }</span>
-						</c:when>
-						<c:otherwise>
-							<span class="ball_645 lrg ball5">${num }</span>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				</a>
-				
-				<a class="go next_btn">다음 회차 당첨정보 보기</a>
+				<div class="win_result">
+					<h4 class="text-white">
+						<strong id="games">${lottoGame.games }</strong><strong>회</strong> 당첨결과
+					</h4>
+					<fmt:formatDate var="drawDate" value="${lottoGame.drawDate }" pattern="(yyyy년 MM월 dd일 추첨)"/>
+					<p id="draw_date" class="desc text-white">${drawDate }</p>
+					<div class="nums">
+						<div class="num win">
+							<div id="wns">
+								<c:forEach begin="0" end="5" varStatus="vs" step="1">
+
+									<fmt:parseNumber var="num"
+										value="${fn:substring(lottoGame.winningNum,vs.index*2,vs.count*2) }" />
+									<c:choose>
+
+										<c:when test="${num lt 11 }">
+											<span class="ball_645 lrg ball1">${num }</span>
+										</c:when>
+										<c:when test="${num lt 21 }">
+											<span class="ball_645 lrg ball2">${num }</span>
+										</c:when>
+										<c:when test="${num lt 31 }">
+											<span class="ball_645 lrg ball3">${num }</span>
+										</c:when>
+										<c:when test="${num lt 41 }">
+											<span class="ball_645 lrg ball4">${num }</span>
+										</c:when>
+										<c:otherwise>
+											<span class="ball_645 lrg ball5">${num }</span>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</div>
+						</div>
+						<span class="plus-num">보너스 번호</span>
+						<div class="num bonus">
+							
+							<div id="bns">
+							<c:choose>
+								<c:when test="${lottoGame.bonusNum lt 11 }">
+									<span class="ball_645 lrg ball1">${lottoGame.bonusNum }</span>
+								</c:when>
+								<c:when test="${lottoGame.bonusNum lt 21 }">
+									<span class="ball_645 lrg ball2">${lottoGame.bonusNum }</span>
+								</c:when>
+								<c:when test="${lottoGame.bonusNum lt 31 }">
+									<span class="ball_645 lrg ball3">${lottoGame.bonusNum }</span>
+								</c:when>
+								<c:when test="${lottoGame.bonusNum lt 41 }">
+									<span class="ball_645 lrg ball4">${lottoGame.bonusNum }</span>
+								</c:when>
+								<c:otherwise>
+									<span class="ball_645 lrg ball5">${lottoGame.bonusNum }</span>
+								</c:otherwise>
+							</c:choose>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="javascript:void(0)" id="prev_btn"><img src="${pageContext.request.contextPath }/resources/images/index/btn_roll_arrow.png"></a>
+				<a href="javascript:void(0)" id="next_btn"><img src="${pageContext.request.contextPath }/resources/images/index/btn_roll_arrow.png"></a>
 				
 			</div>
 			<script>
 				$(function(){
-					var prev = ${"#prev_btn"};
-					var next = ${"#next_btn"};
-					var wrapper = ${"div a"};
+					var prev = $("#prev_btn");
+					var next = $("#next_btn");
+					var resultForm = $(".win_result");
+					//var test = resultForm.find("#games").text();
+					
+					var resultNums = resultForm.find("#wns");
+					var resultBonus = resultForm.find("#bns");
+					
+					prev.click(function(){
+						
+						var prevGame = (resultForm.find("#games").text()) - 1;
+						
+						//alert(prevGame);
+						$.getJSON('${pageContext.request.contextPath}/ajax?games='+prevGame,function(data){
+							if(data==null){
+								alert("이전 회차가 없습니다.");
+								return;
+							}
+							// Date() 써서 잘라서 붙인거임
+							var convert = new Date(data.drawDate);
+							var convertedDate = "(" + convert.getFullYear()+"년 "+ ("0"+(convert.getMonth()+1)).slice(-2) + "월 " + ("0"+convert.getDate()).slice(-2)+"일 추첨)";
+							console.log(convertedDate);
+							resultForm.find("#games").html(prevGame);
+							resultForm.find("#draw_date").html(convertedDate);
+							resultNums.html("");
+
+							var wnums = data.winningNum;
+
+							for(var i=0; i<6; i++){
+								var num = wnums.substring(i*2,(i+1)*2);
+                         		if(num < 11){
+                              		var tag = "<span class='ball_645 lrg ball1'>"+num+"</span>";
+								}else if(num < 21){
+									var tag = "<span class='ball_645 lrg ball2'>"+num+"</span>";
+								}else if(num < 31){
+									var tag = "<span class='ball_645 lrg ball3'>"+num+"</span>";
+								}else if(num < 41){
+									var tag = "<span class='ball_645 lrg ball4'>"+num+"</span>";
+								}else{
+									var tag = "<span class='ball_645 lrg ball5'>"+num+"</span>";
+								}
+
+								resultNums.append(tag);
+							}
+							
+							var bnum = data.bonusNum;
+							if(bnum < 11){
+								var tag = "<span class='ball_645 lrg ball1'>"+bnum+"</span>";
+							}else if(bnum < 21){
+								var tag = "<span class='ball_645 lrg ball2'>"+bnum+"</span>";
+							}else if(bnum < 31){
+								var tag = "<span class='ball_645 lrg ball3'>"+bnum+"</span>";
+							}else if(bnum < 41){
+								var tag = "<span class='ball_645 lrg ball4'>"+bnum+"</span>";
+							}else{
+								var tag = "<span class='ball_645 lrg ball5'>"+bnum+"</span>";
+							}
+							resultForm.find("#bns").html(tag);
+							
+							
+						});
+					});
+					next.click(function(){
+						
+						var nextGame = parseInt(resultForm.find("#games").text()) + 1;
+						
+						//alert(nextGame);
+						$.getJSON('${pageContext.request.contextPath}/ajax?games='+nextGame,function(data){
+							if(data==null){
+								alert("다음 회차가 없습니다.");
+								return;
+							}
+							
+							// Date() 써서 잘라서 붙인거임
+							var convert = new Date(data.drawDate);
+							var convertedDate = "(" + convert.getFullYear()+"년 "+ ("0"+(convert.getMonth()+1)).slice(-2) + "월 " + ("0"+convert.getDate()).slice(-2)+"일 추첨)";
+							console.log(convertedDate);
+							resultForm.find("#games").html(nextGame);
+							resultForm.find("#draw_date").html(convertedDate);
+							resultNums.html("");
+
+							var wnums = data.winningNum;
+
+							for(var i=0; i<6; i++){
+								var num = wnums.substring(i*2,(i+1)*2);
+                         		if(num < 11){
+                              		var tag = "<span class='ball_645 lrg ball1'>"+num+"</span>";
+								}else if(num < 21){
+									var tag = "<span class='ball_645 lrg ball2'>"+num+"</span>";
+								}else if(num < 31){
+									var tag = "<span class='ball_645 lrg ball3'>"+num+"</span>";
+								}else if(num < 41){
+									var tag = "<span class='ball_645 lrg ball4'>"+num+"</span>";
+								}else{
+									var tag = "<span class='ball_645 lrg ball5'>"+num+"</span>";
+								}
+
+								resultNums.append(tag);
+							}
+							
+							var bnum = data.bonusNum;
+							if(bnum < 11){
+								var tag = "<span class='ball_645 lrg ball1'>"+bnum+"</span>";
+							}else if(bnum < 21){
+								var tag = "<span class='ball_645 lrg ball2'>"+bnum+"</span>";
+							}else if(bnum < 31){
+								var tag = "<span class='ball_645 lrg ball3'>"+bnum+"</span>";
+							}else if(bnum < 41){
+								var tag = "<span class='ball_645 lrg ball4'>"+bnum+"</span>";
+							}else{
+								var tag = "<span class='ball_645 lrg ball5'>"+bnum+"</span>";
+							}
+							resultForm.find("#bns").html(tag);
+							
+							
+						});
+					});
+					
+					
+					 
 				});
 			</script>
 		</div>

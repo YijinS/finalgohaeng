@@ -29,8 +29,8 @@ public class HomeController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/ajax-prev")
-	public String prevGame(@RequestParam(name="games") int games) {
+	@RequestMapping("/ajax")
+	public String getGames(@RequestParam(name="games") int games) {
 		
 		LottoGamesDto dto = lottoGamesDao.getData(games);
 		
@@ -39,18 +39,7 @@ public class HomeController {
 		
 		return json;
 	}
-	
-	@ResponseBody
-	@RequestMapping("/ajax-next")
-	public String nextGame(@RequestParam(name="games") int games) {
-		
-		LottoGamesDto dto = lottoGamesDao.getData(games);
-		
-		Gson gson = new Gson();
-		String json = gson.toJson(dto);
-		
-		return json;
-	}
+
 	
 }
 

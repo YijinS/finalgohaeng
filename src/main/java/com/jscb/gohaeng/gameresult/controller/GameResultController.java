@@ -22,7 +22,7 @@ public class GameResultController {
 	@ResponseBody
 	@RequestMapping("lotto645/ajax")
 	public String gamesData(int games) {
-		
+		System.out.println(games);
 		LottoGamesDto dto;
 		
 		dto = gameResultService.getData(games);
