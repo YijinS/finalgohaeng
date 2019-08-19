@@ -14,13 +14,15 @@ public class HomeController {
 	@Autowired
 	IndexService indexService;
 	
-	@RequestMapping(value="/home",method = RequestMethod.GET)
+	@RequestMapping(value="/",method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView mView) throws IOException {
-
-		/* mView.setViewName("common.indexa"); */
-		 mView.setViewName("admin.drawshow.lotto.list");
-
+		mView.setViewName("common.index");
+		
+		//여기부분이나 service쪽에서 조건문 걸어서 최근회차가 있으면 실행안되게 하고싶어!!
+		indexService.lottonum();
+	
 		return mView;
 	}
+	
 	
 }

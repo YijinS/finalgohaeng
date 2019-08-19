@@ -8,7 +8,7 @@ import com.jscb.gohaeng.dto.DrawShowDto;
 
 public interface DrawShowDao {
    
-   public List<DrawShowDto> getList(DrawShowDto dto);
+   public List<DrawShowDto> getLottoApplyList(DrawShowDto dto);
    //enable
    public void updateEnable(HashMap map);
 

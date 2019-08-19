@@ -19,14 +19,9 @@ public class DrawShowServiceImpl implements DrawShowService {
 	private DrawShowDao drawshowdao;
 
 	@Override
-	public void getList(HttpServletRequest request) {
+	public void getLottoApplyList(HttpServletRequest request) {
 		DrawShowDto dto = new DrawShowDto();
 
-		// System.out.println("hiddenValue:"+request.getAttribute("hiddenValue"));
-		System.out.println("pramhiddenValue:" + request.getParameter("hiddenValue"));
-		// System.out.println("pramhiddenValues:"+request.getParameterValues("hiddenValue"));
-
-		// System.out.println("ckBox:"+request.getParameterValues("ckBox"));
 		if (request.getParameter("hiddenValue") != null) {
 			String pram = request.getParameter("hiddenValue");
 			String[] arr = pram.split(",");
@@ -39,10 +34,13 @@ public class DrawShowServiceImpl implements DrawShowService {
 			map.put("arr1", arr1);
 			drawshowdao.updateEnable(map);
 		}
-		List<DrawShowDto> list = drawshowdao.getList(dto);
+		List<DrawShowDto> list = drawshowdao.getLottoApplyList(dto);
 
 		request.setAttribute("list", list);
+		
 	}
+
+	
 
 }
 

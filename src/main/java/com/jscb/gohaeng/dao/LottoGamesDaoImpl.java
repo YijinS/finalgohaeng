@@ -40,4 +40,11 @@ public class LottoGamesDaoImpl implements LottoGamesDao {
 		return dto;
 	}
 
+	@Override
+	public void lottoDrawInsert(LottoGamesDto dto) {
+		sqlSession.insert("LottoGames.insert", dto);
+		
+	}
+
+	
 }
