@@ -2,6 +2,7 @@ package com.jscb.gohaeng;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -17,6 +18,9 @@ import com.jscb.gohaeng.dto.LottoGamesDto;
 
 @Service
 public class IndexServiceImpl implements IndexService {
+	
+	@Autowired
+	private LottoGamesDao dao;
 
 	@Autowired
 	private LottoGamesDao lottoGamesDao;
@@ -45,6 +49,40 @@ public class IndexServiceImpl implements IndexService {
 		mView.addObject("fortune", todayFortune);
 
 		return mView;
+	}
+	
+//로또 번호 파싱하기
+	@Override
+	public void lottonum() throws IOException {
+		
+		LottoGamesDto dto = new LottoGamesDto();
+		
+		String url = "http://www.nlotto.co.kr/common.do?method=main";
+		
+		Document doc = Jsoup.connect(url).get();
+		
+		Elements contens = doc.select("div.content");
+		
+		System.out.println(contens);
+		String winnum = "";
+		
+		for(int i=1; i<=6; i++) {
+			int num = Integer.parseInt(contens.select("span#drwtNo"+i).text());
+			winnum += String.format("%02d", num);
+		}
+		dto.setWinningNum(winnum);
+		
+		String bonus = contens.select("span#bnusNo").text();
+		dto.setBonusNum(bonus);
+		
+		int games = Integer.parseInt(contens.select("strong#lottoDrwNo").text());
+		dto.setGames(games);
+		
+		String drawdate = contens.select("span#drwNoDate").text();
+		dto.setDrawDate(drawdate);
+		
+		dao.lottoDrawInsert(dto);
+		
 	}
 
 	public static void main(String args[]) throws IOException {

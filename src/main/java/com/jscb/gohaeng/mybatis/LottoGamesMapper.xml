@@ -27,4 +27,9 @@
 				(SELECT * FROM LOTTO_GAMES_MANAGEMENT ORDER BY LGM_GAMES DESC) LGM)
 		WHERE NUM = 1
 	</select>
+	<insert id="insert" parameterType="com.jscb.gohaeng.dto.LottoGamesDto">
+		INSERT INTO LOTTO_GAMES_MANAGEMENT
+		(LGM_GAMES,LGM_WINNING_NUM,LGM_BONUS_NUM,LGM_DRAW_DATE)
+		VALUES(#{games},#{winningNum},#{bonusNum},#{drawDate})
+	</insert>
 </mapper>

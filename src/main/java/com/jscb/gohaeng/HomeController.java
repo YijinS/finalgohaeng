@@ -25,15 +25,16 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public ModelAndView home(ModelAndView mView) throws IOException {
-		
+
 		indexService.crawlingFortune(mView);
 		indexService.getLastLotto(mView);
 
-		 mView.setViewName("common.index");
+		mView.setViewName("common.index");
 
+		// 여기부분이나 service쪽에서 조건문 걸어서 최근회차가 있으면 실행안되게 하고싶어!!
+		indexService.lottonum();
 		return mView;
 	}
-	
 
 	@ResponseBody
 	@RequestMapping("/ajax")

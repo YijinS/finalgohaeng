@@ -81,7 +81,7 @@
 
 							<!-- Paging END -->
 							<div class="action right">
-								<a class="btn_common mid blu" href="#" style="cursor: pointer;">상담등록</a>
+								<a class="btn_common mid blu" href="insertform.do" style="cursor: pointer;">상담등록</a>
 							</div>
 						</div>
 					</form>
