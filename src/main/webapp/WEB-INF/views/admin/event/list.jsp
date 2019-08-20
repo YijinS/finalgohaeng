@@ -8,7 +8,7 @@
 	<div class="content_wrap content_interview_winner">
 		<!-- --------------------------------------- 컨텐트 시작 ----------------------------------------------- -->
 
-
+		<h4 class="mb-5">게시물 관리</h4>
 		<div>
 		<table class="table table-hover">
 			<thead>
@@ -25,17 +25,16 @@
 			<tbody>
 				<c:forEach var="list" items="${eventList}">
 					<fmt:formatDate value="${list.startDate }" var="start"
-						pattern="yyyy-MM-dd HH:mm" />
+						pattern="yyyy-MM-dd" />
 					<fmt:formatDate value="${list.endDate }" var="end"
-						pattern="yyyy-MM-dd HH:mm" />
+						pattern="yyyy-MM-dd" />
 					<fmt:formatDate value="${list.drawDate }" var="draw"
-						pattern="yyyy-MM-dd HH:mm" />
+						pattern="yyyy-MM-dd" />
 					<tr>
-						<td><input class="form-check-input mt-0 ml-0" type="checkbox" value="" id="inlineCheckbox1"></td>
+						<td><input class="form-check-input mt-0 ml-0" type="checkbox" value="${list.index}" id="inlineCheckbox1" checked="checked"></td>
 						<td>${list.index}</td>
 						<td>진행중</td>
-						<td><a
-							href="detail.do?index=${list.index}&condition=${condition}&keyword=${encodedKeyword}">${list.title}</a></td>
+						<td><a href="detail?index=${list.index}&condition=${condition}&keyword=${encodedKeyword}">${list.title}</a></td>
 						<td>${start}</td>
 						<td>${end}</td>
 						<td>${draw}</td>

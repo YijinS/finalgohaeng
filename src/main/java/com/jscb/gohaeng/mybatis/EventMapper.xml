@@ -55,7 +55,7 @@
 	<select id="getDetail" resultMap="eventDto" parameterType="com.jscb.gohaeng.dto.EventDto">
 		SELECT * FROM EVENT WHERE EVENT_INDEX = #{index}
 	</select>
-	<select id="getDetail2" resultMap="eventDto" parameterType="com.jscb.gohaeng.dto.EventDto">
+	<select id="getDetail2" resultMap="eventDto" parameterType="int">
 		SELECT * FROM EVENT WHERE EVENT_INDEX = #{index}
 	</select>
 <!-- 	<select id="getDetail2" resultMap="eventDto" parameterType="int">

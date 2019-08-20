@@ -104,7 +104,7 @@ public class EventServiceImpl implements EventService {
 			request.setAttribute("error", "error");
 		}
 		
-		request.setAttribute("dto", eventDto);
+		request.setAttribute("eventDto", eventDto);
 		
 	}
 
