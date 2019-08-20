@@ -1,6 +1,7 @@
 package com.jscb.gohaeng;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class HomeController {
 	private LottoGamesDao lottoGamesDao;
 	
 	@RequestMapping("/")
-	public ModelAndView home(ModelAndView mView) throws IOException {
+	public ModelAndView home(ModelAndView mView) throws IOException, ParseException {
 
 		indexService.crawlingFortune(mView);
 		indexService.getLastLotto(mView);

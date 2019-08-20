@@ -24,4 +24,7 @@ public interface MemberDao {
 	public void updateProfile(MemberDto dto);
 	//예치금 수정
 	public void updateDeposit(DepositDto dto);
+	//email인증
+	public void updateAuthKey(MemberDto dto);
+	public void userAuthStatus(String email);
 }
