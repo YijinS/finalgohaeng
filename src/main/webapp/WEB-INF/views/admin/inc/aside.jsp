@@ -32,7 +32,7 @@
             	<a id="QA_Lnb_Menu2489" href="${pageContext.request.contextPath}/store/1" menuno="2489" treeno="2712" class="board"> 판매점 </a>
             </li>
             <li class="">
-                <a id="QA_Lnb_Menu2488" href="#" menuno="2488" treeno="2711" class="member"> 이벤트 </a>
+                <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/event/list" menuno="2488" treeno="2711" class="member"> 이벤트 </a>
             </li>
                
                 <li class="depth1 expandable collapsable">
@@ -50,7 +50,7 @@
   
          <div class="ftp ">
          	<a href="#">
-         		<img src="${pageContext.request.contextPath}/resources/images/layout/logo-footer.png" alt="고행복권" style="padding-left:20px;" >
+         		<img src="${pageContext.request.contextPath }/resources/images/index/logo-header.png" alt="고행복권" style="margin-left: -6px;" >
          	</a>
            <!-- 
             <strong class="title">파일 업로드 사용 용량</strong> &nbsp;<a href="#none"
