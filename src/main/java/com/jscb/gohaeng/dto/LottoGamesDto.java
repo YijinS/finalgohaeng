@@ -7,13 +7,13 @@ public class LottoGamesDto {
 	private int games;
 	private String winningNum;
 	private String bonusNum;
-	private String drawDate;
+	private Date drawDate;
 	private int winningAmount;
 	private Date paymentDate;
 	
 	public LottoGamesDto() {}
 
-	public LottoGamesDto(int games, String winningNum, String bonusNum, String drawDate, int winningAmount,
+	public LottoGamesDto(int games, String winningNum, String bonusNum, Date drawDate, int winningAmount,
 			Date paymentDate) {
 		super();
 		this.games = games;
@@ -48,11 +48,11 @@ public class LottoGamesDto {
 		this.bonusNum = bonusNum;
 	}
 
-	public String getDrawDate() {
+	public Date getDrawDate() {
 		return drawDate;
 	}
 
-	public void setDrawDate(String drawDate) {
+	public void setDrawDate(Date drawDate) {
 		this.drawDate = drawDate;
 	}
 

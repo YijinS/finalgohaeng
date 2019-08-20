@@ -46,5 +46,10 @@ public class LottoGamesDaoImpl implements LottoGamesDao {
 		
 	}
 
+	@Override
+	public int getLastGames(int games) {
+		return ((Integer)sqlSession.selectOne("LottoGames.getLastGames", games)).intValue();
+	}
+
 	
 }

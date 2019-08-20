@@ -227,9 +227,14 @@
 												이메일주소<span class="req">*<span class="accessibility">별표</span></span>
 											</th>
 											<td>
-												<input id="email_id" type="text" name="email1" value=""> 
+												<input type="email" id="email" name="email" >
+												<%--<a href="emailAuth.do"><input type="button" id="certification" value="이메일 인증"/></a>
+												 <input type="hidden" id="pInput" value="${authkey}">
+												<input type="text" id="prcheck" value="인증미확인"/> --%>
 
-												<span class="unit">@</span> 
+												<!-- 잠시 보류
+												
+												 <span class="unit">@</span> 
 
 												<input id="email_domain" type="text" name="email2" value=""> 
 												
@@ -250,9 +255,28 @@
 													<option value="orgio.net">orgio.net</option>
 													<option value="paran.com">paran.com</option>
 													<option value="gmail.com">gmail.com</option>
-												</select>
+												</select> -->
 											</td>
 										</tr>
+										<!-- <script>
+										window.addEventListener("load", function () {
+											var email = document.querySelector("email").value;
+											var btn = document.querySelector("#certification");
+											//var newWindow;
+											
+											btn.onclick = function() {
+												if(email == ""){
+													alert("메일을 입력해 주세요");
+													return;
+												}
+												else{
+													 //window.name = "parentForm";
+													alert("인증메일 발송");
+													//newWindow = window.open("guest/emailauth.jsp","childForm", "width=570, height=350, resizable = no, scrollbars = no")
+												}	
+											};
+										});
+										</script> -->
 
 										<tr class="addr">
 											<th scope="row">주소</th>
@@ -323,7 +347,6 @@
 									<input type="submit" class="btn_common lrg blu" value="회원가입">
 							</div>
 						</form>
-
 
 						<!-- mainForm END -->
 
