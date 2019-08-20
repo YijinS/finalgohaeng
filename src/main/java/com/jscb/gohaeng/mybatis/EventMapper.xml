@@ -75,10 +75,9 @@
 	<insert id="insert" parameterType="com.jscb.gohaeng.dto.EventDto">
 		INSERT INTO EVENT
 		(EVENT_INDEX, EVENT_TITLE, EVENT_DRAW_DATE, EVENT_SUBTITLE, 
-		EVENT_CONTENT, EVENT_ENABLE, EVENT_START_DATE, EVENT_END_DATE, 
-		EVENT_REG_DATE, EVENT_DISPLAY)
+		EVENT_CONTENT, EVENT_START_DATE, EVENT_END_DATE)
 		VALUES(EVENT_SEQ.NEXTVAL, #{title}, #{drawDate}, #{subTitle}, #{content},
-		#{enable}, #{startDate}, #{endDate}, SYSDATE, #{display})	
+		#{startDate}, #{endDate})	
 	</insert>
 </mapper>
 

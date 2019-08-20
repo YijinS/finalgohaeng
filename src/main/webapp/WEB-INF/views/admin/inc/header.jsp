@@ -40,8 +40,8 @@
 
 <div class="header">
     <h1 class="logo">
-        <a href="/admin/php/shop1/main.php">
-            <img src="" alt="고행복권"  style="height: 28px;width: 150px; margin: 0px; border: 0px;">
+        <a href="${pageContext.request.contextPath }/admin/index">
+            <img src="${pageContext.request.contextPath }/resources/images/index/logo-footer-w.png" alt="고행복권"  style="width: 98px; margin-top: -39px; margin-left:35px; border: 0px;">
         </a>
     </h1>
     <ul class="util" id="gnb">
