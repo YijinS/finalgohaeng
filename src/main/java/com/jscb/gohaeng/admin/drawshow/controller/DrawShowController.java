@@ -20,7 +20,7 @@ public class DrawShowController {
    private DrawShowService drawshowservice;
    
    @RequestMapping("/admin/drawshow/lotto/list")
-   public ModelAndView list(HttpServletRequest request) {
+   public ModelAndView lottolist(HttpServletRequest request) {
       
       drawshowservice.getList(request);
       

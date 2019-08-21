@@ -30,6 +30,7 @@
 			value="java:comp/env/jdbc/myoracle" />
 	</beans:bean>
 
+
 	<!-- SqlSessionFactory 객체 -->
 	<beans:bean id="sessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -40,6 +41,13 @@
 
 	<!-- 웹소켓 -->
 	<mvc:resources location="/WEB-INF/resources/js/" mapping="/js/**"></mvc:resources>
+
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<!-- 
+		SqlSession 인터페이스를 구현한 
+		SqlSessionTemplate(SqlSession) 객체 
+		Dao 가 의존하는 객체 
+	-->
 	
 	<!-- Websocket -->
 	<websocket:handlers>
@@ -88,6 +96,14 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/upload/**" location="/upload/" />
+	
+	
+	<!-- Multipart 폼 전송 처리를 위한 bean 설정 -->
+	<beans:bean id="multipartResolver" 
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10240000"/>
+	</beans:bean>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -98,15 +114,15 @@
 	</beans:bean>
 
 
+	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<beans:property name="contentType" value="application/json;charset=UTF-8" />
+	</beans:bean>
 
-	<context:component-scan
-		base-package="com.jscb.gohaeng" />
-	<context:component-scan
-		base-package="com.jscb.gohaeng.*" />
-	<context:component-scan
-		base-package="com.jscb.gohaeng.*.*" />
-	<context:component-scan
-		base-package="com.jscb.gohaeng.admin.*.*" />
+	<context:component-scan base-package="com.jscb.gohaeng" />
+	<context:component-scan base-package="com.jscb.gohaeng.*" />
+	<context:component-scan base-package="com.jscb.gohaeng.*.*" />
+	<context:component-scan base-package="com.jscb.gohaeng.admin.*.*" />
+
 
 
 </beans:beans>

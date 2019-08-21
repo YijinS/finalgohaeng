@@ -17,7 +17,7 @@
 	<select id="getData" parameterType="int" resultMap="lottoGames">
 		SELECT * FROM LOTTO_GAMES_MANAGEMENT
 		WHERE LGM_GAMES = #{games}
-	</select>
+	</select>	
 	
 	<select id="getLastData" resultMap="lottoGames">
 		SELECT *
@@ -26,5 +26,13 @@
 			FROM
 				(SELECT * FROM LOTTO_GAMES_MANAGEMENT ORDER BY LGM_GAMES DESC) LGM)
 		WHERE NUM = 1
+	</select>
+	<insert id="insert" parameterType="com.jscb.gohaeng.dto.LottoGamesDto">
+		INSERT INTO LOTTO_GAMES_MANAGEMENT
+		(LGM_GAMES,LGM_WINNING_NUM,LGM_BONUS_NUM,LGM_DRAW_DATE)
+		VALUES(#{games},#{winningNum},#{bonusNum},#{drawDate})
+	</insert>
+	<select id="getLastGames" parameterType="int" resultType="int">
+		SELECT LGM_GAMES FROM LOTTO_GAMES_MANAGEMENT WHERE LGM_GAMES=#{games}
 	</select>
 </mapper>

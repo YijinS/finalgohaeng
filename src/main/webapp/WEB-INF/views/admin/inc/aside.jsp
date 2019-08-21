@@ -50,7 +50,7 @@
   
          <div class="ftp ">
          	<a href="#">
-         		<img src="${pageContext.request.contextPath}/resources/images/layout/logo-footer.png" alt="고행복권" style="padding-left:20px;" >
+         		<img src="${pageContext.request.contextPath }/resources/images/index/logo-header.png" alt="고행복권" style="margin-left: -6px;" >
          	</a>
            <!-- 
             <strong class="title">파일 업로드 사용 용량</strong> &nbsp;<a href="#none"

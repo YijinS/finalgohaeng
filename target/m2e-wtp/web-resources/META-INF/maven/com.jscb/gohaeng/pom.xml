@@ -16,6 +16,18 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
+		<!-- mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
 		<!-- Crawling -->
 		<!-- https://mvnrepository.com/artifact/edu.uci.ics/crawler4j -->
 		<dependency>
@@ -196,6 +208,18 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>4.3.6.RELEASE</version>
+		</dependency>
+		
+		<!--엑셀 파일을 다루기 위한 라이브러리 https://mvnrepository.com/artifact/org.apache.poi/poi-->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.16</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.16</version>
 		</dependency>
 
 		<!-- 실시간 채팅 웹 소캣 -->

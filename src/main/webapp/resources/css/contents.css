@@ -1536,6 +1536,61 @@ h3.middle_title {margin-left:6px; color:#194382; font-size:15px; font-weight:bol
 
 
 }
+/* 645 구매내역 팝업 */
+.popup-645paper {display:inline-block; width:360px; padding:23px 25px 25px; background:#fff; border-radius:3px; vertical-align:middle; text-align:left; color:#555}
+.popup-645paper h2 {font-size:16px; color:#2d2d2d; border-bottom:1px solid #ddd; padding-bottom:15px}
+.popup-645paper .date-info {padding:20px 25px 17px; border-bottom:1px dashed #ddd}
+.popup-645paper .date-info ul {margin-top:18px}
+.popup-645paper .date-info ul li {font-size:14px; color:#777}
+.popup-645paper .date-info ul li span {display:inline-block; letter-spacing:0.15em}
+.popup-645paper .date-info ul li:last-child span {letter-spacing:0}
+.popup-645paper .date-info ul li ~ li {margin-top:3px}
+.popup-645paper .date-info .barcode {margin-top:8px; font-size:13px}
+.popup-645paper .paper .date-info .barcode span {display:inline-blopck; white-space:nowrap; color:#777}
+.popup-645paper .paper .date-info .barcode span ~ span {margin-left:3px}
+.popup-645paper .date-info h3 {}
+.popup-645paper .date-info h3::after {content:""; display:block; clear:both}
+.popup-645paper .date-info h3 * {float:left;}
+.popup-645paper .date-info h3 span {width:92px; height:39px; background:url(../images/common/logo-paper.png); text-indent:-999em}
+.popup-645paper .date-info h3 strong {float:right; padding-top:12px; font-size:25px; color:#333}
+.popup-645paper .selected {padding-top:20px}
+.popup-645paper .selected ul {padding-bottom:20px; border-bottom:1px dashed #ddd}
+.popup-645paper .selected ul li {font-size:15px}
+.popup-645paper .selected ul li::after {content:""; display:block; clear:both}
+.popup-645paper .selected ul li ~ li {margin-top:20px}
+.popup-645paper .selected ul li * {float:left;}
+.popup-645paper .selected ul li strong {padding-left:5px; font-weight:normal;}
+.popup-645paper .selected ul li strong span {width:16px}
+.popup-645paper .selected ul li strong span ~ span {width:60px}
+.popup-645paper .selected ul li .nums {float:right}
+.popup-645paper .selected ul li .nums span {width:37px; text-align:center;}
+.popup-645paper .selected .total {padding-top:19px; text-align:right; font-size:15px}
+.popup-645paper .selected .total .won {padding-right:2px; font-family:'돋움', Dotum, sans-serif;}
+.popup-645paper .selected .total strong ~ strong {padding:15px}
+.popup-645paper .btns {margin-top:28px; text-align:center}
+.popup-645paper .btns .btn_common {margin:0 3px}
+/* 645 구매내역 팝업2 */
+.popup-645paper .selected {padding-top:15px}
+.popup-645paper .selected ul {padding-bottom:16px}
+.popup-645paper .selected ul li ~ li {margin-top:11px}
+.popup-645paper .selected ul li strong {height:24px; line-height:24px; vertical-align:middle}
+.popup-645paper .selected ul li strong span {float:none; display:inline-block}
+.popup-645paper .selected ul li .nums span {position:relative; height:24px; line-height:24px}
+.popup-645paper .selected ul li .nums span .ball_645.sml {float:none; position:absolute; top:0; left:50%; margin-left:-12px; width:24px}
+/* 고액당첨내역 관련 팝업 */
+.popup_cert_prize .list_icon_circle > li {padding-left:110px; padding-top:2px; min-height:120px}
+.popup_cert_prize .list_icon_circle > li:after {width:89px; height:89px}
+.popup_cert_prize .list_icon_circle .list_text_common {margin-top:13px}
+.popup_cert_prize .list_icon_circle .list_text_common li ~ li {margin-top:3px}
+.popup_cert_prize .form_div {margin-top:20px}
+.popup_cert_prize .form_div .note {margin-bottom:6px}
+.popup_cert_prize .form_div .agreement {margin-top:10px; color:#777}
+.popup_cert_prize .form_div + .list_text_common {margin-top:40px; padding:13px 0 17px; border-top:1px solid #ddd}
+.popup_cert_prize .list_text_common + .btns_bottom {border-top:1px solid #ddd}
+/* 고액당첨 수령인증 팝업 */
+.popup_cert_highprize .box_visual_top .copy .inner {padding-right:230px; background-image:url(../images/mypage/bg_top_cert_highprize.png); background-position:100% 50%}
+.popup_cert_highprize .list_icon_circle > li.ico1:after {background-image:url(../images/mypage/ico_cert_highprize_pop1.png)}
+.popup_cert_highprize .list_icon_circle > li.ico2:after {background-image:url(../images/mypage/ico_cert_highprize_pop2.png)}
 
 
 @media screen and (max-width: 480px) {

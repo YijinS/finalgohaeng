@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 	<div class="body">
@@ -288,56 +288,35 @@
 										</tr>
 									</thead>
 									<tbody>
-
-
-
-										<tr>
-											<td colspan="7" class="nodata">최근 구입내역이 없습니다.</td>
-										</tr>
-
-
+										<c:choose>
+											<c:when test="${not empty list}">
+												<c:forEach var="purchase" items="${list }">
+												<fmt:formatDate var="issueDate" value="${purchase.issueDate }" pattern="yyyy-MM-dd"/>
+													<tr>
+														<td>${issueDate}</td>
+														<td>${purchase.lgmGames }</td>
+														<td>로또 6/45</td>
+														<td>
+															<a href="${pageContext.request.contextPath }/mypage/lottolist?pi=${purchase.index }"
+																onclick="window.open(this.href, '_blanck', 'width=360, height=560'); return false"">
+																${purchase.index }
+															</a>
+														</td>
+														<td>미구현</td>
+														<td></td>
+														<td></td>
+													</tr>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+												<tr>
+													<td colspan="7" class="nodata">최근 구입내역이 없습니다.</td>
+												</tr>
+											</c:otherwise>
+										</c:choose>
 									</tbody>
 								</table>
 							</div>
-
-							<div class="group_content">
-								<div class="group_title">
-									<h4 class="title">미확인 게임내역</h4>
-									<a class="link_common"
-										href="/myPage.do?method=notScratchListView">자세히 보기</a>
-								</div>
-								<table convert="true" class="tbl_data tbl_data_col">
-									<caption>구입일자, 복권명, 회차, 수량, 주문번호 등 미확인 게임내역</caption>
-									<colgroup>
-										<col>
-										<col>
-										<col>
-										<col>
-										<col>
-									</colgroup>
-									<thead>
-										<tr>
-											<th scope="col">구입일자</th>
-											<th scope="col">복권명</th>
-											<th scope="col">회차</th>
-											<th scope="col">수량</th>
-											<th scope="col">주문번호</th>
-										</tr>
-									</thead>
-									<tbody>
-
-
-
-										<tr>
-											<td colspan="5" class="nodata">미확인 게임내역이 없습니다.</td>
-										</tr>
-
-
-									</tbody>
-								</table>
-							</div>
-
-
 
 							<!-- -------------------------------------------------------------------------------------- -->
 						</div>

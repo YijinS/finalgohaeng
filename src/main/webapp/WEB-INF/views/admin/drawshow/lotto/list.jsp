@@ -57,7 +57,7 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<form id="questionlistfrm">
+						<form id="questionlistfrm" method="post">
 						<input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>			
 						</form>
 						<input type="button" name="btn" id="btn" value="확인" onclick="fnGetdata();" />
@@ -73,7 +73,7 @@
 											chkArray.push(this.value);
 										});
 								$('#hiddenValue').val(chkArray);
-								$('#questionlistfrm').attr('action','list.do');
+								$('#questionlistfrm').attr('action','/admin/drawshow/lotto/list.do');
 								$('#questionlistfrm').submit();
 								alert($('#hiddenValue').val()); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
 
