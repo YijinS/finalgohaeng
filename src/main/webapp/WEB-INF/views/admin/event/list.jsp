@@ -10,14 +10,16 @@
 
 
 		<div>
-		<table class="table table-bordered">
+		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>번호</th>
-					<th>작성자</th>
-					<th>제목</th>
-					<th>시작일</th>
-					<th>종료일</th>
+					<th style="width: 5%;">선택</th>
+					<th style="width: 6%;">번호</th>
+					<th style="width: 10%;">분류</th>
+					<th style="width: 34%;">제목</th>
+					<th style="width: 15%;">시작일</th>
+					<th style="width: 15%;">종료일</th>
+					<th style="width: 15%;">추첨일</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,20 +28,25 @@
 						pattern="yyyy-MM-dd HH:mm" />
 					<fmt:formatDate value="${list.endDate }" var="end"
 						pattern="yyyy-MM-dd HH:mm" />
+					<fmt:formatDate value="${list.drawDate }" var="draw"
+						pattern="yyyy-MM-dd HH:mm" />
 					<tr>
+						<td><input class="form-check-input mt-0 ml-0" type="checkbox" value="" id="inlineCheckbox1"></td>
 						<td>${list.index}</td>
-						<td>관리자</td>
+						<td>진행중</td>
 						<td><a
 							href="detail.do?index=${list.index}&condition=${condition}&keyword=${encodedKeyword}">${list.title}</a></td>
 						<td>${start}</td>
 						<td>${end}</td>
+						<td>${draw}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		
-		<a class="btn btn-primary" href="${pageContext.request.contextPath }/admin/event/insertform.do" role="button">등록</a>
-
+		<a class="btn btn-primary" href="${pageContext.request.contextPath }/admin/event/insertform" role="button">등록</a>
+		<a class="btn btn-secondary" href="${pageContext.request.contextPath }/admin/event/delete" role="button">삭제</a>
+		<a class="btn btn-secondary" href="${pageContext.request.contextPath }/admin/event/drop" role="button">마감</a>
 		<div class="page-display">
 			<ul class="pagination">
 				<c:choose>

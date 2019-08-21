@@ -11,51 +11,69 @@
 		<result property="storeAddr" column="STORE_ADDR" />
 	</resultMap>
 	
+	<select id="getStoreName" resultMap="StoreDto" parameterType="com.jscb.gohaeng.dto.StoreDto">
+
+		SELECT * FROM STORE
+		<choose>
+			<when test="storeName != null and storeName != '' and radio_select != null and radio_select == 'close'">
+				WHERE UPPER(STORE_NAME) LIKE UPPER('%'||#{storeName}||'%') AND STORE_ENABLE = 0 
+			</when>
+			<when test="storeName != null and storeName != '' and radio_select != null and radio_select == 'open'">
+				WHERE UPPER(STORE_NAME) LIKE UPPER('%'||#{storeName}||'%') AND STORE_ENABLE = 1
+			</when>
+			<otherwise>
+				WHERE UPPER(STORE_NAME) LIKE UPPER('%'||#{storeName}||'%')
+			</otherwise>
+		</choose>
+		
+		ORDER BY STORE_NAME ASC
+		
+	</select>
+	
+
+	<select id="getGulist"
+		parameterType="com.jscb.gohaeng.dto.StoreDto" resultMap="StoreDto">
+		SELECT * FROM
+		STORE WHERE STORE_ADDR LIKE '%'||#{storeAddr}||'%'
+	</select>
+
 	<select id="list" parameterType="int" resultMap="StoreDto">
-	 SELECT * FROM STORE WHERE STORE_ABLE_GAMES = #{storeAbleGames}
+		<!-- 로또 또는 연급 판매점 뽑는 곳 -->
+		SELECT * FROM STORE WHERE STORE_ABLE_GAMES = #{storeAbleGames}
 	</select>
 
 	<select id="getCount"
 		parameterType="com.jscb.gohaeng.dto.StoreDto" resultType="int">
 
-		SELECT NVL(MAX(ROWNUM), 0) FROM STORE
+		SELECT
+		NVL(MAX(ROWNUM), 0) FROM STORE
+		<choose>
+			<when test="radio_select != null and radio_select == 'close'">
+				WHERE STORE_ENABLE = 0
+			</when>
+			<when test="radio_select != null and radio_select == 'open'">
+				WHERE STORE_ENABLE = 1
+			</when>
+		</choose>
 
 	</select>
 
 	<select id="getList" resultMap="StoreDto"
 		parameterType="com.jscb.gohaeng.dto.StoreDto">
-		<!-- SELECT * FROM STORE ORDER BY STORE_INDEX ASC -->
 
-		SELECT * 
+		SELECT *
 		FROM
-			(SELECT result1.*, ROWNUM AS rnum
-			FROM
-				(SELECT * FROM STORE
-				<choose>
-					<when test="radio_select != null and radio_select == 'close'">
-						WHERE STORE_ENABLE = 0
-					</when>
-					<when test="radio_select != null and radio_select == 'open'">
-						WHERE STORE_ENABLE = 1
-					</when>
-					<!-- <otherwise>
-						<choose>
-							(1.lotto 2.pension 3.all
-							<when
-								test="storeAbleGames != null and storeAbleGames == 3">
-								WHERE STORE_ABLE_GAMES = 3
-							</when>
-							<when
-								test="storeAbleGames != null and storeAbleGames == 1">
-								WHERE STORE_ABLE_GAMES = 1
-							</when>
-							<when
-								test="storeAbleGames != null and storeAbleGames == 2">
-								WHERE STORE_ABLE_GAMES = 2
-							</when>
-						</choose>
-					</otherwise> -->
-				</choose>
+		(SELECT result1.*, ROWNUM AS rnum
+		FROM
+		(SELECT * FROM STORE
+		<choose>
+			<when test="radio_select != null and radio_select == 'close'">
+				WHERE STORE_ENABLE = 0
+			</when>
+			<when test="radio_select != null and radio_select == 'open'">
+				WHERE STORE_ENABLE = 1
+			</when>
+		</choose>
 
 		ORDER BY STORE_INDEX DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum}

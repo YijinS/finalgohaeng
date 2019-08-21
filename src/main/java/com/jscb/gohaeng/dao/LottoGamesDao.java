@@ -9,4 +9,6 @@ public interface LottoGamesDao {
 	public List<LottoGamesDto> getList();
 	public LottoGamesDto getData(int games);
 	public LottoGamesDto getLastData();
+	public void lottoDrawInsert(LottoGamesDto dto);
+	public int getLastGames(int games);
 }

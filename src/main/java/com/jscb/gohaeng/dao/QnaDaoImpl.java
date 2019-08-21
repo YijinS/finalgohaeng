@@ -37,4 +37,10 @@ public class QnaDaoImpl implements QnaDao{
 		return session.selectOne("qna.getCount",dto);
 	}
 
+	@Override
+	public void insert(QnaDto dto) {
+		session.insert("qna.insert", dto);
+		
+	}
+
 }

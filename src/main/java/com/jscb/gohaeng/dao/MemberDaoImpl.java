@@ -72,4 +72,16 @@ public class MemberDaoImpl implements MemberDao {
 		
 	}
 
+	@Override
+	public void updateAuthKey(MemberDto dto) {
+		sqlSession.update("member.updateAuthKey",dto);
+		
+	}
+
+	@Override
+	public void userAuthStatus(String email) {
+		sqlSession.update("member.userAuthStatus", email);
+		
+	}
+
 }

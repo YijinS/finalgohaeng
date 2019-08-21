@@ -15,10 +15,29 @@ public class MemberDto {
 	private int checkSms;
 	private int checkEmail;
 	private int checkSales;
+	//email인증관련
+	private String authKey;
+	private int authStatus;
 	
 	public MemberDto() {}
-	public MemberDto(String id, String pwd, String name, int deposit, Date birthday, String hp, String email,
+	
+	public MemberDto(String id, String pwd, String name, Date birthday, String hp, String email,
 			String addr, int checkSms, int checkEmail, int checkSales) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.birthday = birthday;
+		this.hp = hp;
+		this.email = email;
+		this.addr = addr;
+		this.checkSms = checkSms;
+		this.checkEmail = checkEmail;
+		this.checkSales = checkSales;
+	}
+	//email인증관련 생성자
+	public MemberDto(String id, String pwd, String name, int deposit, Date birthday, String hp, String email,
+			String addr, int checkSms, int checkEmail, int checkSales, String authKey, int authStatus) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -31,8 +50,9 @@ public class MemberDto {
 		this.checkSms = checkSms;
 		this.checkEmail = checkEmail;
 		this.checkSales = checkSales;
+		this.authKey = authKey;
+		this.authStatus = authStatus;
 	}
-
 
 	public String getId() {
 		return id;
@@ -101,11 +121,11 @@ public class MemberDto {
 	public int getCheckSms() {
 		return checkSms;
 	}
-	
+
 	public void setCheckSms(int checkSms) {
 		this.checkSms = checkSms;
 	}
-	
+
 	public int getCheckEmail() {
 		return checkEmail;
 	}
@@ -120,6 +140,22 @@ public class MemberDto {
 
 	public void setCheckSales(int checkSales) {
 		this.checkSales = checkSales;
+	}
+
+	public String getAuthKey() {
+		return authKey;
+	}
+
+	public void setAuthKey(String authKey) {
+		this.authKey = authKey;
+	}
+
+	public int getAuthStatus() {
+		return authStatus;
+	}
+
+	public void setAuthStatus(int authStatus) {
+		this.authStatus = authStatus;
 	}
 	
 	

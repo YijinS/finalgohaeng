@@ -26,6 +26,7 @@ public class StoreServiceImpl implements StoreService {
 
 	@Override
 	public List<StoreDto> getList(int storeAbleGames) {
+//		로또 또는 연금 뽑기 
 		List<StoreDto> list = storedao.getList(storeAbleGames);
 		
 		return list;
@@ -36,19 +37,6 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public void getList(HttpServletRequest request) {
 		StoreDto dto = new StoreDto();
-		
-		// 셀렉트 박스 
-//		/*
-//		 * String lotto_pension = request.getParameter("lotto_pension");
-//		 * if(lotto_pension.equals("total")) { // 취급복권(1.lotto 2.pension 3.all
-//		 * dto.setStoreAbleGames(3); } else if(lotto_pension.equals("lotto")) {
-//		 * dto.setStoreAbleGames(1); } else if(lotto_pension.equals("pension"))
-//		 * dto.setStoreAbleGames(2);
-//		 * 
-//		 * System.out.println(lotto_pension); request.setAttribute("lotto_pension",
-//		 * lotto_pension);
-//		 */
-		
 		//라디오 & 페이징
 		
 		String open_close = request.getParameter("open&close");
@@ -131,6 +119,21 @@ public class StoreServiceImpl implements StoreService {
 
 	}
 
+
+
+	@Override
+	public List<StoreDto> selectGulist(StoreDto dto) {
+		List<StoreDto> list = storedao.getGulist(dto);
+		return list;
+	}
+
+
+
+	@Override
+	public List<StoreDto> selectStoreName(StoreDto dto) {
+		List<StoreDto> list = storedao.getStoreName(dto);
+		return list;
+	}
 
 
 }

@@ -40,5 +40,18 @@ resultMap="QnaDto">
 <select id="getCount" parameterType="com.jscb.gohaeng.dto.QnaDto"
 resultType="int">
 	SELECT NVL(MAX(ROWNUM), 0) FROM CONSULTING
+	<choose>
+		<when test="searchType != null and searchType == 'reply'">
+			WHERE CONSULTING_REPLY IS NOT NULL
+		</when>
+		<when test="searchType != null and searchType == 'unreply'">
+			WHERE CONSULTING_REPLY IS NULL
+		</when>
+	</choose>
 </select>
+<insert id="insert" parameterType="com.jscb.gohaeng.dto.QnaDto">
+	INSERT INTO CONSULTING
+	(CONSULTING_INDEX,MEMBER_ID,CONSULTING_CATEGORY,CONSULTING_TITLE,CONSULTING_CONTENT) 
+	VALUES(CONSULTING_SEQ.NEXTVAL,'312a',#{category},#{title},#{content})
+</insert>
 </mapper>

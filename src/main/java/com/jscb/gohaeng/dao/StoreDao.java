@@ -13,4 +13,6 @@ public interface StoreDao {
 	public void insert(StoreDto dto); 
 	public void update(StoreDto dto); 
 	public int getCount(StoreDto dto);
+	public List<StoreDto> getGulist(StoreDto dto);
+	public List<StoreDto> getStoreName(StoreDto dto);
 }

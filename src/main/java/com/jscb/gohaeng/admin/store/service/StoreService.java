@@ -17,4 +17,7 @@ public interface StoreService {
 	public void insertform();
 	public void insert(StoreDto dto);
 	public void update(StoreDto dto);
+	public List<StoreDto> selectGulist(StoreDto dto);
+	public List<StoreDto> selectStoreName(StoreDto dto);
+	
 }

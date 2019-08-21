@@ -8,7 +8,7 @@
 <div class="article">
 	<div class="container">
 		<h3>이벤트 등록하기</h3>
-		<form action="insert.do" method="post">
+		<form action="insert" method="post">
 			<div class="form-group">
 			<label for="title">제목</label>
 			<input type="text" class="form-control" name="title" id="title" />
@@ -20,6 +20,10 @@
 			<div class="form-group">
 			<label for="endDate">이벤트 종료일</label>
 			<input type="date" name="endDate" class="form-control">
+			</div>
+			<div class="form-group">
+			<label for="drawDate">추첨일</label>
+			<input type="date" name="drawDate" class="form-control">
 			</div>
 			<div class="form-group">
 			<label for="subTitle">설명</label>
@@ -36,7 +40,7 @@
 				<label class="form-check-label" for="dpOptions">비공개</label>
 				</div>
 			<div class="text-right">
-				<a href="${pageContext.request.contextPath }/admin/event/list.do" class="btn btn-secondary btn-lg">취소</a>
+				<a href="${pageContext.request.contextPath }/admin/event/list" class="btn btn-secondary btn-lg">취소</a>
 				<input type="button" class="btn btn-primary btn-lg" onclick="submitContents(this);" value="등록" />
 			</div>
 		</form>

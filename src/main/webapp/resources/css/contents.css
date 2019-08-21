@@ -571,18 +571,18 @@ h3.middle_title {margin-left:6px; color:#194382; font-size:15px; font-weight:bol
 .content_seller_info .box_option h4 strong {color:#007bc3; font-weight:500}
 .wrap_option wrap_option1{float: left;}
 .content_seller_info .wrap_option:after {content:""; display:block; clear:both}
-.content_seller_info .wrap_option1 {float: left; margin-bottom:20px}
+.content_seller_info .wrap_option1 {float: left; margin-bottom:20px; width:100%;}
 .content_seller_info .wrap_option1 .box_option {float:left; width:440px}
 .content_seller_info .wrap_option1 .box_option ~ .box_option {float:right}
 .content_seller_info .wrap_option1 .box_option .forms:after {content:""; display:block; clear:both}
 .content_seller_info .wrap_option1 .box_option .forms select,
 .content_seller_info .wrap_option1 .box_option .forms input[type="text"],
 .content_seller_info .wrap_option1 .box_option .forms .btn_common {float:left}
-.content_seller_info .wrap_option1 .box_option .forms input[type="text"] + .btn_common {margin-left:-1px}
-.content_seller_info .wrap_option1 .box_option .forms input[type="text"] + .btn_common {margin-left:-1px}
+.content_seller_info .wrap_option1 .box_option .forms input[type="text"] + .btn_common {margin-left:6px;}
+.content_seller_info .wrap_option1 .box_option .forms input[type="text"] + .btn_common {margin-left:6px;}
 .content_seller_info .wrap_option1 .box_option .forms select + input[type="text"],
 .content_seller_info .wrap_option1 .box_option .forms select + .btn_common,
-.content_seller_info .wrap_option1 .box_option .forms select + select {margin-left:5px}
+.content_seller_info .wrap_option1 .box_option .forms select + select {margin-left:5px; height: 27px;}
 .content_seller_info .wrap_option1 .box_option .forms .btn_common {width:42px; padding:0}
 .content_seller_info .wrap_option1 .box_option1 .forms select {width:162px; width:calc(50% - 26px)}
 .content_seller_info .wrap_option1 .box_option2 .forms select {width:140px}

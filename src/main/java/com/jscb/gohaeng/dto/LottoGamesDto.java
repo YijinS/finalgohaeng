@@ -71,6 +71,8 @@ public class LottoGamesDto {
 	public void setPaymentDate(Date paymentDate) {
 		this.paymentDate = paymentDate;
 	}
+
+	
 	
 	
 }

@@ -43,20 +43,21 @@
 							<tbody>
 
 								<c:forEach var="list" items="${list}">
-									<tr>
-										<th><input type="checkbox" name="ckBox"
-											id="cBox${list.index}" value="${list.index}"></th>
+									<c:if test="${list.category eq 0}">
+										<tr>
+										<th><input type="checkbox" name="ckBox" id="cBox${list.index}" value="${list.index}"></th>
 										<td>${list.index}</td>
 										<td>${list.memberId}</td>
 										<td>모집기간안정함</td>
 										<fmt:formatDate var="date" value="${list.drawDate}"
 											pattern="yyyy-MM-dd" />
 										<td>${date}</td>										
-									</tr>									
+									</tr>	
+									</c:if>								
 								</c:forEach>
 							</tbody>
 						</table>
-						<form id="questionlistfrm">
+						<form id="questionlistfrm" method="post">
 						<input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>			
 						</form>
 						<input type="button" name="btn" id="btn" value="확인" onclick="fnGetdata();" />
@@ -72,7 +73,7 @@
 											chkArray.push(this.value);
 										});
 								$('#hiddenValue').val(chkArray);
-								$('#questionlistfrm').attr('action','list.do');
+								$('#questionlistfrm').attr('action','/admin/drawshow/lotto/list.do');
 								$('#questionlistfrm').submit();
 								alert($('#hiddenValue').val()); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
 
@@ -80,12 +81,14 @@
 						</script>
 
 						<!-- cBox 전체 선택 -->
-						<!-- <script>
-                  $('input[name=selected_all]').on('change', function(){
-                     $('input[name=ckBox]').prop('checked', this.checked);
-                  });
-                  </script>
- -->
+						<script>
+							$('input[name=selected_all]').on(
+									'change',
+									function() {
+										$('input[name=ckBox]').prop('checked',
+												this.checked);
+									});
+						</script>
 
 						<div class="wrap_paginate">
 							<div class="paginate_common" id="page_box">
@@ -100,4 +103,3 @@
 		</section>
 	</div>
 </div>
->>>>>>> refs/remotes/choose_remote_name/master
