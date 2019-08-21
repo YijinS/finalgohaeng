@@ -1,5 +1,6 @@
 package com.jscb.gohaeng.mypage.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +12,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.dao.DepositDao;
+import com.jscb.gohaeng.dao.LottoDao;
+import com.jscb.gohaeng.dao.LottoGamesDao;
 import com.jscb.gohaeng.dao.MemberDao;
+import com.jscb.gohaeng.dao.PurchaseLottoDao;
 import com.jscb.gohaeng.dto.DepositDto;
+import com.jscb.gohaeng.dto.LottoDto;
+import com.jscb.gohaeng.dto.LottoGamesDto;
 import com.jscb.gohaeng.dto.MemberDto;
+import com.jscb.gohaeng.dto.PurchaseLottoDto;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
@@ -23,6 +30,15 @@ public class MyPageServiceImpl implements MyPageService {
 	
 	@Autowired
 	MemberDao memberDao;
+	
+	@Autowired
+	PurchaseLottoDao purchaseLottoDao;
+	
+	@Autowired
+	LottoDao lottoDao;
+	
+	@Autowired
+	LottoGamesDao lottoGamesDao;
 	
 	@Transactional
 	public void chargeDeposit(HttpServletRequest request,HttpSession session) {
@@ -90,6 +106,31 @@ public class MyPageServiceImpl implements MyPageService {
 		
 		List<DepositDto> list = depositDao.getWithDrawList(id,0);
 		mView.addObject("withDrawList",list);
+	}
+
+	@Override
+	public void getPurchaseList(ModelAndView mView, HttpSession session) {
+		
+		MemberDto member = (MemberDto)session.getAttribute("member");
+		String id = member.getId();
+		List<PurchaseLottoDto> list = purchaseLottoDao.getList(id);
+		mView.addObject("list",list);
+		
+	}
+
+	@Override
+	public void viewPurchasedLotto(ModelAndView mView, Integer plIndex) {
+		
+		PurchaseLottoDto pld = purchaseLottoDao.getData(plIndex);
+		int games = pld.getLgmGames();
+		Date issuedate = pld.getIssueDate();
+		
+		LottoGamesDto lgm = lottoGamesDao.getData(games);
+		
+		List<LottoDto> lottoList = lottoDao.getList(plIndex);
+		mView.addObject("issueDate",issuedate);
+		mView.addObject("lottoGames",lgm);
+		mView.addObject("lottoList",lottoList);
 	}
 
 }

@@ -17,7 +17,7 @@
 	<select id="getData" parameterType="int" resultMap="lottoGames">
 		SELECT * FROM LOTTO_GAMES_MANAGEMENT
 		WHERE LGM_GAMES = #{games}
-	</select>
+	</select>	
 	
 	<select id="getLastData" resultMap="lottoGames">
 		SELECT *

@@ -31,6 +31,7 @@ public class LottoGamesDaoImpl implements LottoGamesDao {
 		
 		return dto;
 	}
+	
 
 	@Override
 	public LottoGamesDto getLastData() {

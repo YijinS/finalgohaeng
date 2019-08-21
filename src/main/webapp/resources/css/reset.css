@@ -23,6 +23,7 @@ a.disabled {cursor:default}
 h1, h2, h3, h4, h5, h6, strong {/*font-weight:normal*/}
 *:focus {}
 
+
 /* form element */
 /* radio, checkbox */
 /*input[type="checkbox"] {display:none}

@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
+
 <!-- <section class="head-text">
 	<div class="container text-center text-secondary">
 		<p>고통을 함께하는 고행복권 :)</p>
@@ -21,18 +23,26 @@
 	
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mr-auto w-100 justify-content-end">
-	      <li class="nav-item">
-	        <a class="nav-link" href="#">로그인</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="#">회원가입</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="#">마이페이지</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="#">고객센터</a>
-	      </li>
+	    <c:choose>
+         	<c:when test="${empty sessionScope.member }">
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/guest/login">로그인</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/guest/signup">회원가입</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>          		
+         	</c:when>
+         	
+         	<c:otherwise>
+         		<c:if test="${sessionScope.member.id eq 'ADMIN' }">
+         			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/home">관리자 페이지</a></li>
+         		</c:if>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/mypage/deposit/1">예치금 : ${member.deposit }원 </a></li>
+				<li class="nav-item"><a class="nav-link" href="#">${sessionScope.member.name }님</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/guest/logout">로그아웃</a></li>
+				<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/mypage/home">마이페이지</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
+			</c:otherwise>
+       	</c:choose>
+
 	    </ul>
 	  </div>
   </div>

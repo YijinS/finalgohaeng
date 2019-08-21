@@ -15,4 +15,6 @@ public interface MyPageService {
 	public void withDraw(HttpServletRequest request,HttpSession session);
 	public void getDepositHistory(ModelAndView mView,HttpSession session);
 	public void getWithDrawList(ModelAndView mView, HttpSession session);
+	public void getPurchaseList(ModelAndView mView, HttpSession session);
+	public void viewPurchasedLotto(ModelAndView mView,Integer plIndex);
 }

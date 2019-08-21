@@ -85,11 +85,10 @@ public class GuestServiceImpl implements GuestService {
 		System.out.println(url);
 
 		
-//		if(url != null && url != "") {
-//			mView.setViewName("");
-//		}
-		
-		mView.setViewName("redirect:"+url);
+		if(url != null && url != "")
+			mView.setViewName("redirect:"+url);
+		else
+			mView.setViewName("redirect:/home2");
 			
 	}
 
