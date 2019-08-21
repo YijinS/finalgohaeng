@@ -9,24 +9,31 @@
         <nav class="gnbNav">
             <div class="util">
             	<c:choose>
-            		<c:when test="${empty sessionScope.member }">
-						<ul>
-							<li><a href="${pageContext.request.contextPath }/guest/login">로그인</a></li>
-							<li><a href="${pageContext.request.contextPath }/guest/signup">회원가입</a></li>
-							<li><a href="#">마이페이지</a></li>
-							<li><a href="#">고객센터</a></li>
-						</ul>            		
-            		</c:when>
-            		<c:otherwise>
-						<ul>
-							<li><a href="${pageContext.request.contextPath }/mypage/deposit/1">예치금 : ${member.deposit }원 </a></li>
-							<li><a href="#">${sessionScope.member.name }님</a></li>
-							<li><a href="${pageContext.request.contextPath }/guest/logout">로그아웃</a></li>
-							<li><a href="${pageContext.request.contextPath }/mypage/home">마이페이지</a></li>
-							<li><a href="#">고객센터</a></li>
-						</ul>
-					</c:otherwise>
-            	</c:choose>
+                  <c:when test="${empty sessionScope.member }">
+                  <ul>
+                     <li><a href="${pageContext.request.contextPath }/guest/login">로그인</a></li>
+                     <li><a href="${pageContext.request.contextPath }/guest/signup">회원가입</a></li>
+                     <li><a href="#">마이페이지</a></li>
+                     <li><a href="#">고객센터</a></li>
+                  </ul>                  
+                  </c:when>
+                  <c:otherwise>
+                  <ul>
+                     <c:choose>
+                        <c:when test="${sessionScope.member.id eq 'ADMIN' }">
+                           <li><a href="${pageContext.request.contextPath }/home2">관리자 페이지</a></li>
+                        </c:when>
+                        <c:otherwise>
+                           <li><a href="${pageContext.request.contextPath }/mypage/deposit/1">예치금 : ${member.deposit }원 </a></li>
+                        </c:otherwise>
+                     </c:choose>
+                     <li><a href="#">${sessionScope.member.name }님</a></li>
+                     <li><a href="${pageContext.request.contextPath }/guest/logout">로그아웃</a></li>
+                     <li><a href="${pageContext.request.contextPath }/mypage/home">마이페이지</a></li>
+                     <li><a href="#">고객센터</a></li>
+                  </ul>
+               </c:otherwise>
+               </c:choose>
                 
             </div>
             <div id="gnb" class="gnb">

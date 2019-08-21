@@ -2,18 +2,20 @@ package com.jscb.gohaeng.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class EventDto {
 
 	private int index;
 	private String title;
-	private Date drawDate;
 	private String subTitle;
 	private String content;
 	private int enable;
+	private int display;
+	private Date drawDate;
 	private Date startDate;
 	private Date endDate;
 	private Date regDate;
-	private int display;
 	
 	private int startRowNum;
 	private int endRowNum;

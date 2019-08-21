@@ -44,7 +44,8 @@ public class GuestServiceImpl implements GuestService {
 		String birth = request.getParameter("birthday");
 		Date birthday = df.parse(birth);
 		
-		String addr = "주소API 필요";
+		/* String addr = "주소API 필요"; */
+		String addr = request.getParameter("addr1")+""+request.getParameter("addr2");
 		String hp = request.getParameter("tel1")+"-"+request.getParameter("tel2")+"-"+request.getParameter("tel3");
 		String email = request.getParameter("email1")+"@"+request.getParameter("email2");
 		int checkSms = Integer.parseInt(request.getParameter("checkSms"));

@@ -20,7 +20,7 @@ public class HomeController {
 	public ModelAndView home(ModelAndView mView) throws IOException {
 
 		/* mView.setViewName("common.indexa"); */
-		 mView.setViewName("admin.drawshow.lotto.list");
+		 mView.setViewName("common.index");
 
 		return mView;
 	}

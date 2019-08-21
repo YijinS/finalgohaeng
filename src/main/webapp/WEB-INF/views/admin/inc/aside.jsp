@@ -32,7 +32,7 @@
             	<a id="QA_Lnb_Menu2489" href="${pageContext.request.contextPath}/store/1" menuno="2489" treeno="2712" class="board"> 판매점 </a>
             </li>
             <li class="">
-                <a id="QA_Lnb_Menu2488" href="#" menuno="2488" treeno="2711" class="member"> 이벤트 </a>
+                <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/event/list" menuno="2488" treeno="2711" class="member"> 이벤트 </a>
             </li>
                
                 <li class="depth1 expandable collapsable">
