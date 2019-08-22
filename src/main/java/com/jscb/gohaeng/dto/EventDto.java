@@ -2,6 +2,8 @@ package com.jscb.gohaeng.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class EventDto {
 
 	private int index;
@@ -15,6 +17,7 @@ public class EventDto {
 	private Date drawDate;
 	private int display;
 	private int hit;
+
 	private int startRowNum;
 	private int endRowNum;
 	

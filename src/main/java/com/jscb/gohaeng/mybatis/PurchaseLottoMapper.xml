@@ -25,10 +25,20 @@
 		WHERE NUM = 1
 	</select>
 	
-	<select id="getList" parameterType="string" resultMap="purchaseLottoDto">
-		SELECT * FROM PURCHASE_LOTTO()
+	<select id="getList" parameterType="java.util.Map" resultMap="purchaseLottoDto">
+		SELECT * FROM PURCHASE_LOTTO
 		<if test="id != null and id !='' ">
 			WHERE MEMBER_ID = #{id}
 		</if>
 	</select>
+	
+	<select id="getData" parameterType="int" resultMap="purchaseLottoDto">
+		SELECT * FROM PURCHASE_LOTTO
+		WHERE PL_INDEX = #{plIndex}
+	</select>
+	
+<!-- 	<select id="getGames" parameterType="int" resultType="int">
+		SELECT LGM_GAMES FROM PURCHASE_LOTTO
+		WHERE PL_INDEX = #{plIndex}
+	</select> -->
 </mapper>

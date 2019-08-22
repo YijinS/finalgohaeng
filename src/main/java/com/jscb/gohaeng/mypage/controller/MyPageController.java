@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jscb.gohaeng.dao.PurchaseLottoDao;
 import com.jscb.gohaeng.mypage.service.MyPageService;
 
 @RequestMapping("/mypage/")
@@ -18,12 +20,28 @@ public class MyPageController {
 	
 	@Autowired
 	MyPageService myPageService;
+
+	
 	/*-------------------------home 매핑------------------------*/
 	@RequestMapping("home")
-	public String home() {
+	public ModelAndView authHome(ModelAndView mView
+			,HttpServletRequest request
+			,HttpSession session) {
 		
-		return "mypage.home.1";
+		myPageService.getPurchaseList(mView, session);
+		mView.setViewName("mypage.home.1");
+		return mView;
 	}
+	
+	@RequestMapping("lottolist")
+	public ModelAndView lottoList(ModelAndView mView
+			,@RequestParam(name = "pi") Integer plIndex) {
+		
+		myPageService.viewPurchasedLotto(mView,plIndex);
+		mView.setViewName("mypage/home/lottoList");
+		return mView;
+	}
+	
 	/*-------------------------home 매핑------------------------*/
 	
 	/*-------------------------예치금 매핑------------------------*/

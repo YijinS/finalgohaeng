@@ -61,7 +61,44 @@ h3.middle_title {margin-left:6px; color:#194382; font-size:15px; font-weight:bol
 .pw_search ul {width:335px}
 .pw_search .pw_search_comment {height:32px; margin:15px 0 15px 0; line-height:16px; text-align:center}
 
+/* 아이디/비밀번호 찾기 */
+.content_find_idpass .find_what:after {content:""; display:block; clear:both}
+.content_find_idpass .find_what .set {float:left; width:440px; padding:39px; border:1px solid #ddd; background:#fff}
+.content_find_idpass .find_what .set:after {content:""; display:block; clear:both}
+.content_find_idpass .find_what .set ~ .set {float:right}
+.content_find_idpass .find_what .set h4 {font-size:28px; font-weight:300}
+.content_find_idpass .find_what .set .desc {margin-top:20px; line-height:22px; color:#12a19a; font-weight:300}
+.content_find_idpass .find_what .set .mid {height:87px; margin-top:15px; padding-top:20px; border-top:1px solid #ddd}
+.content_find_idpass .find_what .set .mid p {margin-top:-4px; color:#555; line-height:22px}
+.content_find_idpass .find_what .set .cert {float:left; width:calc(50% - 4px); padding-top:70px; height:107px; text-align:center; font-size:15px; color:#888; box-sizing:border-box; border:1px solid #ddd; background-color:#fafafa; background-repeat:no-repeat}
+.content_find_idpass .find_what .set .cert ~ .cert {float:right}
+.content_find_idpass .find_what .set .cert.phone {background-image:url(/images/member/ico-cert-phone-g.png); background-position:50% 20px}
+.content_find_idpass .find_what .set .cert.ipin {background-image:url(/images/member/ico-cert-ipin-g.png); background-position:50% 22px}
+.content_find_idpass .find_what .set.pass .mid {text-align:center}
+.content_find_idpass .find_what .set.pass .mid *{vertical-align:middle}
+.content_find_idpass .find_what .set.pass .mid label {display:inline-block; line-height:34px; padding-right:27px}
+.content_find_idpass .find_what .set.pass .mid label + input[type="text"] {width:250px}
+.content_find_idpass .find_what .set.id .mid label {display:inline-block; line-height:34px; padding-right:27px}
+.content_find_idpass .find_what .set.id .mid label + input[type="text"] {width:250px}
 
+/* 아이디,비밀번호찾기 결과 */
+.content_find_idpass .box_result_find {padding:59px; border:1px solid #ddd; background:#fff; text-align:center}
+.content_find_idpass .box_result_find .sleep,
+.content_find_idpass .box_result_find .copy {margin-bottom:55px; font-size:18px; line-height:25px}
+.content_find_idpass .box_result_find .copy strong {color:#007bc3; font-weight:300}
+.content_find_idpass .box_result_find .sleep strong {font-weight:500; color:#333}
+.content_find_idpass .box_result_find .sleep ~ .copy {margin-top:15px}
+.content_find_idpass .box_result_find .print {display:inline-block; margin-bottom:25px; padding-bottom:29px; border-bottom:1px solid #ddd}
+.content_find_idpass .box_result_find .print p {position:relative; height:65px; padding-left:83px; font-size:28px; line-height:64px; color:#1d1d1d}
+.content_find_idpass .box_result_find .print p:after {content:""; position:absolute; left:0; top:50%; margin-top:-32.5px; width:65px; height:65px; border-radius:100%; background:#12a19a url(../images/ico-find-idpass.png) 50% 50% no-repeat}
+.content_find_idpass .box_result_find .print p strong {color:#12a19a; font-weight:300}
+.content_find_idpass .box_result_find .btns .btn_common {padding:0; width:216px; margin:0 3px}
+.content_find_idpass .box_result_find .btns ul {margin-top:-15px}
+.content_find_idpass .box_result_find .btns ul li {display:inline-block}
+.content_find_idpass .box_result_find .btns ul li .btn_common {display:block; margin-top:13px}
+.content_find_idpass .box_result_find .btns ul li span {display:inline-block; position:relative;  height:25px; line-height:24px; padding:0 18px; font-weight:300; color:#fff; background:#007bc3}
+.content_find_idpass .box_result_find .btns ul li span:after {content:""; position:absolute; left:50%; margin-left:-6px; bottom:-10px; width:0; height:0; border-style:solid; border-width:10px 6px 0 6px; border-color:#007bc3 transparent transparent transparent;}
+.content_find_idpass .box_result_find + .prgrp_common {margin-top:17px}
 /* 2-x-x */
 /* 복권정보 */
 /* 구매하기  */
@@ -1536,6 +1573,61 @@ h3.middle_title {margin-left:6px; color:#194382; font-size:15px; font-weight:bol
 
 
 }
+/* 645 구매내역 팝업 */
+.popup-645paper {display:inline-block; width:360px; padding:23px 25px 25px; background:#fff; border-radius:3px; vertical-align:middle; text-align:left; color:#555}
+.popup-645paper h2 {font-size:16px; color:#2d2d2d; border-bottom:1px solid #ddd; padding-bottom:15px}
+.popup-645paper .date-info {padding:20px 25px 17px; border-bottom:1px dashed #ddd}
+.popup-645paper .date-info ul {margin-top:18px}
+.popup-645paper .date-info ul li {font-size:14px; color:#777}
+.popup-645paper .date-info ul li span {display:inline-block; letter-spacing:0.15em}
+.popup-645paper .date-info ul li:last-child span {letter-spacing:0}
+.popup-645paper .date-info ul li ~ li {margin-top:3px}
+.popup-645paper .date-info .barcode {margin-top:8px; font-size:13px}
+.popup-645paper .paper .date-info .barcode span {display:inline-blopck; white-space:nowrap; color:#777}
+.popup-645paper .paper .date-info .barcode span ~ span {margin-left:3px}
+.popup-645paper .date-info h3 {}
+.popup-645paper .date-info h3::after {content:""; display:block; clear:both}
+.popup-645paper .date-info h3 * {float:left;}
+.popup-645paper .date-info h3 span {width:92px; height:39px; background:url(../images/common/logo-paper.png); text-indent:-999em}
+.popup-645paper .date-info h3 strong {float:right; padding-top:12px; font-size:25px; color:#333}
+.popup-645paper .selected {padding-top:20px}
+.popup-645paper .selected ul {padding-bottom:20px; border-bottom:1px dashed #ddd}
+.popup-645paper .selected ul li {font-size:15px}
+.popup-645paper .selected ul li::after {content:""; display:block; clear:both}
+.popup-645paper .selected ul li ~ li {margin-top:20px}
+.popup-645paper .selected ul li * {float:left;}
+.popup-645paper .selected ul li strong {padding-left:5px; font-weight:normal;}
+.popup-645paper .selected ul li strong span {width:16px}
+.popup-645paper .selected ul li strong span ~ span {width:60px}
+.popup-645paper .selected ul li .nums {float:right}
+.popup-645paper .selected ul li .nums span {width:37px; text-align:center;}
+.popup-645paper .selected .total {padding-top:19px; text-align:right; font-size:15px}
+.popup-645paper .selected .total .won {padding-right:2px; font-family:'돋움', Dotum, sans-serif;}
+.popup-645paper .selected .total strong ~ strong {padding:15px}
+.popup-645paper .btns {margin-top:28px; text-align:center}
+.popup-645paper .btns .btn_common {margin:0 3px}
+/* 645 구매내역 팝업2 */
+.popup-645paper .selected {padding-top:15px}
+.popup-645paper .selected ul {padding-bottom:16px}
+.popup-645paper .selected ul li ~ li {margin-top:11px}
+.popup-645paper .selected ul li strong {height:24px; line-height:24px; vertical-align:middle}
+.popup-645paper .selected ul li strong span {float:none; display:inline-block}
+.popup-645paper .selected ul li .nums span {position:relative; height:24px; line-height:24px}
+.popup-645paper .selected ul li .nums span .ball_645.sml {float:none; position:absolute; top:0; left:50%; margin-left:-12px; width:24px}
+/* 고액당첨내역 관련 팝업 */
+.popup_cert_prize .list_icon_circle > li {padding-left:110px; padding-top:2px; min-height:120px}
+.popup_cert_prize .list_icon_circle > li:after {width:89px; height:89px}
+.popup_cert_prize .list_icon_circle .list_text_common {margin-top:13px}
+.popup_cert_prize .list_icon_circle .list_text_common li ~ li {margin-top:3px}
+.popup_cert_prize .form_div {margin-top:20px}
+.popup_cert_prize .form_div .note {margin-bottom:6px}
+.popup_cert_prize .form_div .agreement {margin-top:10px; color:#777}
+.popup_cert_prize .form_div + .list_text_common {margin-top:40px; padding:13px 0 17px; border-top:1px solid #ddd}
+.popup_cert_prize .list_text_common + .btns_bottom {border-top:1px solid #ddd}
+/* 고액당첨 수령인증 팝업 */
+.popup_cert_highprize .box_visual_top .copy .inner {padding-right:230px; background-image:url(../images/mypage/bg_top_cert_highprize.png); background-position:100% 50%}
+.popup_cert_highprize .list_icon_circle > li.ico1:after {background-image:url(../images/mypage/ico_cert_highprize_pop1.png)}
+.popup_cert_highprize .list_icon_circle > li.ico2:after {background-image:url(../images/mypage/ico_cert_highprize_pop2.png)}
 
 
 @media screen and (max-width: 480px) {

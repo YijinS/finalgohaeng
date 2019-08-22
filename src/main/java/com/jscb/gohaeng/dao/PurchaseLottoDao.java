@@ -10,5 +10,6 @@ public interface PurchaseLottoDao {
 	public List<PurchaseLottoDto> getList(String id);
 	public void insert(PurchaseLottoDto dto);
 	public int getLastIndex();
-	
+	public PurchaseLottoDto getData(int plIndex);
+	//public int getGames(int plIndex);
 }

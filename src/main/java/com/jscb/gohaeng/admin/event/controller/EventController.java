@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -31,25 +30,25 @@ public class EventController {
 	@Autowired
 	private EventService eventService;
 
-	//이벤트 목록 요청처리
 	@RequestMapping("list")
 	public ModelAndView List(HttpServletRequest request) {
 
 		eventService.getEventList(request);
-		
-//		mView.setViewName("admin.event.list");
-		
+
+		//		mView.setViewName("admin.event.list");
+
 		return new ModelAndView("admin.event.list");
 	}
 
 	//이벤트 자세히 보기 요청처리
 	@RequestMapping("detail")
 	public String detail(HttpServletRequest request) {
-		
+
 		eventService.getEventDetail(request);
-		
+
 		return "admin.event.detail";
 	}
+
 	
 	@RequestMapping("detail2")
 	public String detail2(HttpServletRequest request) {
@@ -94,10 +93,10 @@ public class EventController {
 	}
 	
 	//새 이벤트 추가 폼 요청 처리
+
 	@RequestMapping("insertform")
 	public ModelAndView insertform
-			(HttpServletRequest request){
-		
+	(HttpServletRequest request){
 		return new ModelAndView("admin.event.insertform");
 	}
 	
@@ -116,6 +115,7 @@ public class EventController {
 	    });
 	}
 	//새 이벤트 추가 요청 처리
+
 	@RequestMapping(value="insert",
 			method=RequestMethod.POST)
 	public ModelAndView insert(HttpServletRequest request
@@ -123,8 +123,7 @@ public class EventController {
 			,@RequestParam(name="endtDate", required = false) Date endDate
 			,@RequestParam(name="drawtDate", required = false) Date drawDate
 			,@ModelAttribute EventDto eventDto) {
-		
-		
+
 		System.out.println("컨트롤러********************************************************************");
 		eventDto.setStartDate(startDate);
 		eventDto.setEndDate(endDate);
@@ -142,36 +141,37 @@ public class EventController {
 		//dto.setStartDate(startDate1);
 		//dto.setEndDate(endDate1);
 		eventService.regEvent(eventDto);
+
 		//글 목록 보기로 리다일렉트 이동 
 		return new ModelAndView("redirect:/admin/event/list");
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	/* ---------------- 이벤트 추첨관리 컨트롤러 ---------------- */
 	/*
 	@RequestMapping(value = "management", method = RequestMethod.GET)
 	public ModelAndView manageEventList(ModelAndView mView) {
-		
+
 		mView.setViewName("admin.event.magagement.list");
-		
+
 		return mView;
 	}
-	
+
 	@RequestMapping(value = "management", method = RequestMethod.POST)
 	public ModelAndView manageEventList(HttpServletRequest request) {
-		
+
 		applyEventService.
 		mView.setViewName("admin.event.magagement.list");
-		
+
 		return mView;
 	}
-	*/
-	
-	
+	 */
+
+
 }
 //4.0버전
 //@Controller

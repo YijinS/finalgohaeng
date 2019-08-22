@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -94,7 +93,6 @@
 						<tr>
 						<td><input type="text" id="sample6_extraAddress" placeholder="참고항목"></td>
 						</tr>
-			<!-- 			<td><input type="text" id="addr" name="storeAddr"></td> -->
 					<tr>
 						<th scope="row">취급복권</th>
 						<td><input type="text" id="games" name="storeAbleGames" placeholder="1.lotto 2.pension 3.all"> </td> 

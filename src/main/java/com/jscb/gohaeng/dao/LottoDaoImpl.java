@@ -1,6 +1,8 @@
 package com.jscb.gohaeng.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,10 @@ public class LottoDaoImpl implements LottoDao {
 		
 		List<LottoDto> list;
 		
-		list = sqlSession.selectList("lotto.getList",plIndex);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("plIndex",plIndex);
+		
+		list = sqlSession.selectList("lotto.getList",map);
 		
 		return list;
 	}

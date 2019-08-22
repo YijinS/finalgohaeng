@@ -78,4 +78,12 @@ public class PurchaseServiceImpl implements PurchaseService {
 		mView.setViewName("redirect:/home2");
 	}
 
+	@Override
+	public void getPurchaseData(ModelAndView mView) {
+		
+		LottoGamesDto lgm = lottoGamesDao.getLastData();
+		mView.addObject("lastGame",lgm);
+		
+	}
+
 }
