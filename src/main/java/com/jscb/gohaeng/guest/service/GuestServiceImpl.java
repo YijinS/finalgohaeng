@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,12 +50,18 @@ public class GuestServiceImpl implements GuestService {
 		
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
 		String name = request.getParameter("name");
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		dto.setName(name);
 		dto.setId(id);
-		dto.setPwd(pwd);
+		dto.setPwd(encoder.encode(pwd));
+		
+		
+		
+		
 		
 		String birth = request.getParameter("birthday");
 		Date birthday = df.parse(birth);
@@ -111,7 +119,7 @@ public class GuestServiceImpl implements GuestService {
 		MemberDto dto = memberDao.getData(id);
 
 		if(dto != null)
-			if(dto.getPwd().equals(pwd)) {
+			if(BCrypt.checkpw(pwd, dto.getPwd())) {
 				map.put("check", true);
 				return map;
 			}
@@ -119,7 +127,24 @@ public class GuestServiceImpl implements GuestService {
 		map.put("check",false);
 		return map;
 	}
+	
+	public Map<String,Object> check(String id, String email) {
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+		
+		MemberDto dto = memberDao.getData(id);
 
+		if(dto != null)
+			if(dto.getEmail().equals(email)) {
+				map.put("check", true);
+				return map;
+			}
+		
+		map.put("check",false);
+		return map;
+	}
+	
+	
 	@Override
 	public void successLogin(ModelAndView mView
 			,HttpServletRequest request
@@ -135,7 +160,7 @@ public class GuestServiceImpl implements GuestService {
 		if(url != null && url != "")
 			mView.setViewName("redirect:"+url);
 		else
-			mView.setViewName("redirect:/home2");
+			mView.setViewName("redirect:/");
 			
 	}
 

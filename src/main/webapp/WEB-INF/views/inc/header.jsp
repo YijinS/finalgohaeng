@@ -19,7 +19,14 @@
             		</c:when>
             		<c:otherwise>
 						<ul>
-							<li><a href="${pageContext.request.contextPath }/mypage/deposit/1">예치금 : ${member.deposit }원 </a></li>
+							<c:choose>
+								<c:when test="${sessionScope.member.id eq 'ADMIN' }">
+									<li><a href="${pageContext.request.contextPath }/home2">관리자 페이지</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="${pageContext.request.contextPath }/mypage/deposit/1">예치금 : ${member.deposit }원 </a></li>
+								</c:otherwise>
+							</c:choose>
 							<li><a href="#">${sessionScope.member.name }님</a></li>
 							<li><a href="${pageContext.request.contextPath }/guest/logout">로그아웃</a></li>
 							<li><a href="${pageContext.request.contextPath }/mypage/home">마이페이지</a></li>
@@ -31,11 +38,11 @@
             </div>
             <div id="gnb" class="gnb">
                 <ul>
-                    <li class="gnb1"><a href="#">복권구매</a>
+                    <li class="gnb1"><a href="${pageContext.request.contextPath }/purchase/lotto645">복권구매</a>
                         <div class="group">
                             <ul>
-                                <li class="gnb1_1"><a href="#"><strong>로또 6/45</strong><span>매주 토요일 추첨<br>6개 숫자 직접 선택</span></a></li>
-                                <li class="gnb1_2"><a href="#"><strong>연금복권520</strong><span>매주 수요일  추첨<br>500만원씩 20년 지급</span></a></li>
+                                <li class="gnb1_1"><a href="${pageContext.request.contextPath }/purchase/lotto645"><strong>로또 6/45</strong><span>매주 토요일 추첨<br>6개 숫자 직접 선택</span></a></li>
+                                <li class="gnb1_2"><a href="${pageContext.request.contextPath }/purchase/pension520"><strong>연금복권520</strong><span>매주 수요일  추첨<br>500만원씩 20년 지급</span></a></li>
                             </ul>
                         </div>
                     </li>
@@ -116,7 +123,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="basic gnb4"><a href="#">판매점</a>
+                    <li class="basic gnb4"><a href="${pageContext.request.contextPath }/store/sellerinfo/1">판매점</a>
                         <div class="group">
                             <ul>
                                 <li><a href="#">구입처 안내</a>
@@ -137,14 +144,14 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="basic gnb5"><a href="#">이벤트</a>
+                    <li class="basic gnb5"><a href="${pageContext.request.contextPath }/event/list">이벤트</a>
                         <div class="group">
                             <ul>
                                 <li><a href="#">이벤트</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="basic gnb6"><a href="#">행복공감</a>
+                    <li class="basic gnb6"><a href="${pageContext.request.contextPath }/happy/healthy/1">행복공감</a>
                         <div class="group">
                             <ul>
                                 <li><a href="#">건전한 복권문화</a>

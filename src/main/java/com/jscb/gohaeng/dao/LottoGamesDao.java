@@ -7,8 +7,10 @@ import com.jscb.gohaeng.dto.LottoGamesDto;
 public interface LottoGamesDao {
 	
 	public List<LottoGamesDto> getList();
+	public List<LottoGamesDto> getList(int start, int end);
 	public LottoGamesDto getData(int games);
 	public LottoGamesDto getLastData();
 	public void lottoDrawInsert(LottoGamesDto dto);
 	public int getLastGames(int games);
+	public List<Integer> getGames();
 }
