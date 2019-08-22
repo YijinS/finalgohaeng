@@ -12,7 +12,9 @@
 		<result property="endDate" column="EVENT_END_DATE" />
 		<result property="regDate" column="EVENT_REG_DATE" />
 		<result property="display" column="EVENT_DISPLAY" />
+		<result property="hit" column="EVENT_HIT" />
 	</resultMap>
+	
 	<select id="getCount" parameterType="com.jscb.gohaeng.dto.EventDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM EVENT
@@ -29,6 +31,8 @@
 			</when>
 		</choose>
 	</select>
+	
+	<!-- 이벤트 전체 or 검색된 목록 -->
 	<select id="getList" resultMap="eventDto" parameterType="com.jscb.gohaeng.dto.EventDto">
 		SELECT *
 		FROM
@@ -52,11 +56,39 @@
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	
+	<!-- 
 	<select id="getDetail" resultMap="eventDto" parameterType="com.jscb.gohaeng.dto.EventDto">
 		SELECT * FROM EVENT WHERE EVENT_INDEX = #{index}
 	</select>
-	<select id="getDetail2" resultMap="eventDto" parameterType="int">
-		SELECT * FROM EVENT WHERE EVENT_INDEX = #{index}
+	 -->
+	 <select id="getDetail" parameterType="com.jscb.gohaeng.dto.EventDto" resultMap="eventDto">
+		SELECT result1.*
+		FROM
+			(SELECT EVENT_INDEX, EVENT_TITLE, EVENT_SUBTITLE, EVENT_CONTENT, EVENT_HIT, 
+			EVENT_REG_DATE, EVENT_START_DATE, EVENT_END_DATE, EVENT_DRAW_DATE, 
+			EVENT_DISPLAY, EVENT_ENABLE, 
+			LAG(EVENT_TITLE,1,'이전글') OVER(ORDER BY EVENT_INDEX DESC) AS prevTitle,
+			LAG(EVENT_INDEX, 1, 0) OVER(ORDER BY EVENT_INDEX DESC) AS prevNum,
+			LEAD(EVENT_INDEX, 1, 0) OVER(ORDER BY EVENT_INDEX DESC) AS nextNum,
+			LEAD(EVENT_TITLE,1,'다음글') OVER(ORDER BY EVENT_INDEX DESC) AS nextTitle
+			FROM EVENT
+			ORDER BY EVENT_INDEX DESC) result1
+		WHERE EVENT_INDEX=#{index}
+	</select>
+	 
+	<select id="getDetail2" parameterType="int" resultMap="eventDto">
+		SELECT result1.*
+		FROM
+			(SELECT EVENT_INDEX, EVENT_TITLE, EVENT_SUBTITLE, EVENT_CONTENT, EVENT_HIT, 
+			EVENT_REG_DATE, EVENT_START_DATE, EVENT_END_DATE, EVENT_DRAW_DATE, 
+			EVENT_DISPLAY, EVENT_ENABLE, 
+			LAG(EVENT_TITLE,1,'이전글') OVER(ORDER BY EVENT_INDEX DESC) AS prevTitle,
+			LAG(EVENT_INDEX, 1, 0) OVER(ORDER BY EVENT_INDEX DESC) AS prevNum,
+			LEAD(EVENT_INDEX, 1, 0) OVER(ORDER BY EVENT_INDEX DESC) AS nextNum,
+			LEAD(EVENT_TITLE,1,'다음글') OVER(ORDER BY EVENT_INDEX DESC) AS nextTitle
+			FROM EVENT
+			ORDER BY EVENT_INDEX DESC) result1
+		WHERE EVENT_INDEX=#{index}
 	</select>
 <!-- 	<select id="getDetail2" resultMap="eventDto" parameterType="int">
 		SELECT result1.*
@@ -71,13 +103,40 @@
 			ORDER BY EVENT_INDEX DESC) result1
 		WHERE EVENT_INDEX=#{index}
 	</select> -->
-	
+	<!-- 이벤트 등록 -->
 	<insert id="insert" parameterType="com.jscb.gohaeng.dto.EventDto">
 		INSERT INTO EVENT
 		(EVENT_INDEX, EVENT_TITLE, EVENT_DRAW_DATE, EVENT_SUBTITLE, 
 		EVENT_CONTENT, EVENT_START_DATE, EVENT_END_DATE)
-		VALUES(EVENT_SEQ.NEXTVAL, #{title}, #{drawDate}, #{subTitle}, #{content},
-		#{startDate}, #{endDate})	
+		VALUES(EVENT_SEQ.NEXTVAL, #{title}, #{drawDate, jdbcType=DATE}, #{subTitle}, #{content},
+		#{startDate, jdbcType=DATE}, #{endDate, jdbcType=DATE})	
 	</insert>
+	<!-- 조회수 증가 -->
+	<update id="addHitCount" parameterType="int">
+		UPDATE EVENT 
+		SET EVENT_HIT = EVENT_HIT+1 
+		WHERE EVENT_INDEX = #{index}
+	</update>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

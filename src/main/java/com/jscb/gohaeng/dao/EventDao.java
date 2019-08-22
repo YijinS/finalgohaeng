@@ -21,5 +21,7 @@ public interface EventDao {
 	//update(EventDto eventDto);
 	//글삭제
 	//public void delete(int index);
+	//조회수 1증가 시키기
+	public void addHitCount(int index);
 
 }

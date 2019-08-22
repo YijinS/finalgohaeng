@@ -13,7 +13,7 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th style="width: 5%;">선택</th>
+					<th style="width: 5%;"><input class="form-check-input mt-0 ml-0" type="checkbox" name="selected_all"></th>
 					<th style="width: 6%;">번호</th>
 					<th style="width: 10%;">분류</th>
 					<th style="width: 34%;">제목</th>
@@ -31,7 +31,7 @@
 					<fmt:formatDate value="${list.drawDate }" var="draw"
 						pattern="yyyy-MM-dd" />
 					<tr>
-						<td><input class="form-check-input mt-0 ml-0" type="checkbox" value="${list.index}" id="inlineCheckbox1" checked="checked"></td>
+						<td><input class="form-check-input mt-0 ml-0" name="ckBox" type="checkbox" value="${list.index}" id="inlineCheckbox1"></td>
 						<td>${list.index}</td>
 						<td>진행중</td>
 						<td><a href="detail?index=${list.index}&condition=${condition}&keyword=${encodedKeyword}">${list.title}</a></td>
@@ -42,7 +42,15 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		
+		<!-- cBox 전체 선택 -->
+		<script>
+			$('input[name=selected_all]').on(
+					'change',
+					function() {
+						$('input[name=ckBox]').prop('checked',
+								this.checked);
+					});
+		</script>
 		<a class="btn btn-primary" href="${pageContext.request.contextPath }/admin/event/insertform" role="button">등록</a>
 		<a class="btn btn-secondary" href="${pageContext.request.contextPath }/admin/event/delete" role="button">삭제</a>
 		<a class="btn btn-secondary" href="${pageContext.request.contextPath }/admin/event/drop" role="button">마감</a>
@@ -51,7 +59,7 @@
 				<c:choose>
 					<c:when test="${startPageNum ne 1 }">
 						<li><a
-							href="list.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedKeyword }">
+							href="list?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedKeyword }">
 								&laquo; </a></li>
 					</c:when>
 					<c:otherwise>
@@ -63,11 +71,11 @@
 					<c:choose>
 						<c:when test="${i eq pageNum }">
 							<li class="active"><a
-								href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedKeyword }">${i }</a></li>
+								href="list?pageNum=${i }&condition=${condition }&keyword=${encodedKeyword }">${i }</a></li>
 						</c:when>
 						<c:otherwise>
 							<li><a
-								href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedKeyword }">${i }</a></li>
+								href="list?pageNum=${i }&condition=${condition }&keyword=${encodedKeyword }">${i }</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -75,7 +83,7 @@
 				<c:choose>
 					<c:when test="${endPageNum lt totalPageCount }">
 						<li><a
-							href="list.do?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedKeyword }">
+							href="list?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedKeyword }">
 								&raquo; </a></li>
 					</c:when>
 					<c:otherwise>
@@ -86,7 +94,7 @@
 		</div>
 		<%-- 글 검색 기능 폼 --%>
 
-		<form action="list.do" method="get">
+		<form action="list" method="get">
 			<label for="condition">검색조건</label> <select name="condition"
 				id="condition">
 				<option value="titlecontent"

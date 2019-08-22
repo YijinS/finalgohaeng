@@ -2,25 +2,27 @@ package com.jscb.gohaeng.admin.event.service;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.jscb.gohaeng.dao.EventCommentDao;
 import com.jscb.gohaeng.dao.EventDao;
+import com.jscb.gohaeng.dto.EventCommentDto;
 import com.jscb.gohaeng.dto.EventDto;
+import com.jscb.gohaeng.dto.MemberDto;
 
 @Service
 public class EventServiceImpl implements EventService {
 
 	@Autowired
 	private EventDao eventDao;
+	@Autowired
+	private EventCommentDao eventCommentDao;
 
 	static final int PAGE_ROW_COUNT = 5;
 	static final int PAGE_DISPLAY_COUNT = 5;
@@ -92,9 +94,8 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public void getEventDetail(HttpServletRequest request) {
-		
+		/*
 		EventDto eventDto = null;
-		
 		try {
 			eventDto = eventDao.getDetail(Integer.parseInt(request.getParameter("index")));
 		}catch (Exception e) {
@@ -103,33 +104,155 @@ public class EventServiceImpl implements EventService {
 			System.out.println("이벤트 인덱스 에러");
 			request.setAttribute("error", "error");
 		}
-		
 		request.setAttribute("eventDto", eventDto);
+		*/
+		
+		//파라미터로 전달되는 글번호
+		int eventIndex = Integer.parseInt(request.getParameter("index"));
+		
+		//검색과 관련된 파라미터를 읽어와 본다.
+		String keyword = request.getParameter("keyword");
+		String condition = request.getParameter("condition");
+		
+		//EventDto 객체 생성 (select 할 때 필요한 정보를 담기 위해)
+		EventDto eventDto = new EventDto();
+		
+		if(keyword != null) {//검색 키워드가 전달된 경우
+			if(condition.equals("titlecontent")) {//제목+내용 검색
+				eventDto.setTitle(keyword);
+				eventDto.setContent(keyword);
+			}else if(condition.equals("title")) {
+				eventDto.setTitle(keyword);
+			}else if(condition.equals("subTitle")) {
+				eventDto.setSubTitle(keyword);
+			}
+			//request에 검색 조건과 키워드 담기
+			request.setAttribute("condition", condition);
+			/*
+			검색 키워드에는 한글이 포함될 가능성이 있기 때문에
+			링크에 그대로 출력가능하도록 하기 위해 미리 인코딩을 해서
+			request에 담아준다.
+			 */
+			String encodedKeyword = null;
+			
+			try {
+				encodedKeyword = URLEncoder.encode(keyword, "utf-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			//인코딩된 키워드와 인코딩 안된 키워드를 모두 담는다.
+			request.setAttribute("encodedKeyword", encodedKeyword);
+			request.setAttribute("keyword", keyword);
+		}
+		//EventDto 에 글번호도 담기
+		eventDto.setIndex(eventIndex);
+		
+		//조회수 1 증가 시키기
+		eventDao.addHitCount(eventIndex);
+		//글정보를 얻어와서
+		EventDto eventDto2 = eventDao.getDetail(eventDto);
+		System.out.println();
+		System.out.println();
+		System.out.println("*************************"+eventIndex+"************************************************************************");
+		System.out.println();
+		System.out.println();
+		//댓글 목록 얻어오기
+		List<EventCommentDto> eventCommentList = 
+				eventCommentDao.getList(eventIndex);
+		System.out.println(eventCommentList+"************************************************************************");
+		//request 에 글정보를 담고
+		request.setAttribute("eventDto", eventDto2);
+		//request 에 댓글목록도 담아야한다
+		request.setAttribute("commentList", eventCommentList);
+	}
+
+	@Override
+	public void regEvent(EventDto eventDto){
+		
+		System.out.println("서비스*****************************************");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println(eventDto.getTitle());
+		System.out.println(eventDto.getIndex());
+		System.out.println(eventDto.getSubTitle());
+		System.out.println(eventDto.getStartDate());
+		System.out.println(eventDto.getEndDate());
+		System.out.println(eventDto.getDrawDate());
+		System.out.println(eventDto.getDisplay());
+		System.out.println(eventDto.getContent());
+		
+		eventDao.insert(eventDto);
+	}
+
+	@Override
+	public void saveComment(HttpServletRequest request) {
+		
+		//댓글 작성자
+		String writerId = ((MemberDto)request.getSession().getAttribute("member")).getId();
+		//댓글의 그룹번호
+		int eventIndex = Integer.parseInt(request.getParameter("eventIndex"));
+		//댓글 대상자 아이디
+		String targetId = request.getParameter("targetId");
+		//댓글의 내용
+		String commentContent = request.getParameter("commentContent");
+		//댓글 내에서의 그룹번호(null 이면 원글의 댓글이다)
+		String commentGroup = request.getParameter("commentGroup");
+		//저장할 댓글의 primary key 값이 필요하다
+		int seq = eventCommentDao.getSequence();
+		
+		//댓글 정보를 Dto에 담기
+		EventCommentDto eventCommentDto = new EventCommentDto();
+		eventCommentDto.setIndex(seq);
+		eventCommentDto.setWriterId(writerId);
+		eventCommentDto.setTargetId(targetId);
+		eventCommentDto.setContent(commentContent);
+		eventCommentDto.setEventIndex(eventIndex);
+		
+		if(commentGroup == null) { //원글의 댓글인 경우
+			//댓글의 글번호가 댓글의 그룹번호가 된다.
+			eventCommentDto.setCommentGroup(seq);
+		}else { //댓글의 댓글인 경우
+			//commentGroup 번호가 댓글의 그룹번호가 된다.
+			eventCommentDto.setCommentGroup(
+					Integer.parseInt(commentGroup));
+		}
+		
+		//댓글 정보를 DB에 저장한다.
+		eventCommentDao.insert(eventCommentDto);
 		
 	}
 
 	@Override
-	public void regEvent(HttpServletRequest request) throws ParseException {
-		
-		System.out.println("서비스*****************************************");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String subTitle = request.getParameter("subTitle");
-		Date startDate = sdf.parse(request.getParameter("startDate"));
-		Date endDate = sdf.parse(request.getParameter("endDate"));
-		Date drawDate = sdf.parse(request.getParameter("drawDate"));
-		
-		EventDto eventDto = new EventDto();
-		eventDto.setTitle(title);
-		eventDto.setSubTitle(subTitle);
-		eventDto.setContent(content);
-		eventDto.setStartDate(startDate);
-		eventDto.setEndDate(endDate);
-		eventDto.setDrawDate(drawDate);
-		eventDao.insert(eventDto);
+	public void updateComment(EventCommentDto eventCommentDto) {
+		//댓글 내용 수정 반영하기
+		eventCommentDao.update(eventCommentDto);
+	}
+
+	@Override
+	public void deleteComment(int eventCommentIndex) {
+		//댓글 삭제
+		eventCommentDao.delete(eventCommentIndex);
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

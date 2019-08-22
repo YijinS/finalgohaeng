@@ -59,9 +59,9 @@
 						</tr>
 					</tbody>
 				</table>
-				<a href="list.do" id="" class="btn_common form list">목록</a> 
-				<a href="#" id="" class="btn_common form edit">수정</a> 
-				<a href="delete.do?index=${dto.index}" id="" class="btn_common form remove">삭제</a>
+				<a href="list" id="" class="btn_common form list">목록</a> 
+				<a href="updateform?index=${dto.index}" id="" class="btn_common form edit">수정</a> 
+				<a href="delete?index=${dto.index}" id="" class="btn_common form remove">삭제</a>
 			</form>
 		</div>
 	</div>

@@ -66,7 +66,7 @@
 					</tbody>
 				</table>
 				<div class="action right">
-					<a href="#" id="review_order_btn" class="btn_common form"
+					<a href="${pageContext.request.contextPath }/admin/notice/insertform" id="review_order_btn" class="btn_common form"
 						title="새창 열림">등록</a>
 				</div>
 				<div class="page-display">

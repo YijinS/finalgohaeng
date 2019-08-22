@@ -22,12 +22,12 @@
 
 				<c:if test="${eventDto.prevNum ne 0 }">
 					<a
-						href="detail?index=${eventDto.prevNum }&condition=${condition}&keyword=${encodedKeyword}">이전글</a>
+						href="detail?num=${eventDto.prevNum }&condition=${condition}&keyword=${encodedKeyword}">이전글</a>
 				</c:if>
 
 				<c:if test="${eventDto.nextNum ne 0 }">
 					<a
-						href="detail?index=${eventDto.nextNum }&condition=${condition}&keyword=${encodedKeyword}">다음글</a>
+						href="detail?num=${eventDto.nextNum }&condition=${condition}&keyword=${encodedKeyword}">다음글</a>
 				</c:if>
 
 				<table class="table table-bordered table-condensed">
@@ -79,14 +79,14 @@
 					<c:forEach items="${commentList }" var="tmp">
 						<c:choose>
 							<c:when test="${tmp.deleted ne 'yes' }">
-								<li class="comment" id="comment${tmp.index }" <c:if test="${tmp.index ne tmp.commentGroup }">style="padding-left:50px;"</c:if> >
-									<c:if test="${tmp.index ne tmp.commentGroup }">
+								<li class="comment" id="comment${tmp.index }" <c:if test="${tmp.index ne tmp.commentGoup }">style="padding-left:50px;"</c:if> >
+									<c:if test="${tmp.index ne tmp.commentGoup }">
 										<img class="reply_icon" src="${pageContext.request.contextPath}/resources/images/re.gif"/>
 									</c:if>
 									<dl>
 										<dt>
 											<span>${tmp.writerId }</span>
-											<c:if test="${tmp.index ne tmp.commentGroup }">
+											<c:if test="${tmp.index ne tmp.commentGoup }">
 												to <strong>${tmp.targetId }</strong>
 											</c:if>
 											<span>${tmp.regDate }</span>
@@ -111,7 +111,7 @@
 										<input type="hidden" name="eventIndex" value="${eventDto.index }" />
 										<!-- 덧글 대상 -->
 										<input type="hidden" name="targetId" value="${tmp.writerId }" />
-										<input type="hidden" name="commentGroup" value="${tmp.commentGroup }" />
+										<input type="hidden" name="commentGoup" value="${tmp.commentGoup }" />
 										<textarea name="commentContent"><c:if test="${empty sessionScope.member }">로그인이 필요합니다.</c:if></textarea>
 										<button type="submit">등록</button>
 									</form>	
@@ -126,7 +126,7 @@
 								</li>				
 							</c:when>
 							<c:otherwise>
-								<li <c:if test="${tmp.index ne tmp.commentGroup }">style="padding-left:50px;"</c:if> >삭제된 댓글 입니다.</li>
+								<li <c:if test="${tmp.index ne tmp.commentGoup }">style="padding-left:50px;"</c:if> >삭제된 댓글 입니다.</li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
