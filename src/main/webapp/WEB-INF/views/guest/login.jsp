@@ -50,7 +50,7 @@
 
 								<div class="links">
 									<a class="btn_common lrg" href="${pageContext.request.contextPath }/guest/signup.do">회원가입</a> 
-									<a class="btn_common lrg" href="#">아이디/비밀번호찾기</a>
+									<a class="btn_common lrg" href="${pageContext.request.contextPath }/guest/findidpw">아이디/비밀번호찾기</a>
 								</div>
 							</fieldset>
 						</div>

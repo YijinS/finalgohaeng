@@ -27,29 +27,37 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto w-100 justify-content-end">
-				<c:choose>
-					<c:when test="${empty sessionScope.member }">
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath }/guest/login">로그인</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath }/guest/signup">회원가입</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
-					</c:when>
+            <c:choose>
+               <c:when test="${empty sessionScope.member }">
+                  <li class="nav-item"><a class="nav-link"
+                     href="${pageContext.request.contextPath }/guest/login">로그인</a></li>
+                  <li class="nav-item"><a class="nav-link"
+                     href="${pageContext.request.contextPath }/guest/signup">회원가입</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
+               </c:when>
 
-					<c:otherwise>
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath }/mypage/deposit/1">예치금
-								: ${member.deposit }원 </a></li>
-						<li class="nav-item"><a class="nav-link" href="#">${sessionScope.member.name }님</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath }/guest/logout">로그아웃</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath }/mypage/home">마이페이지</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
-					</c:otherwise>
-				</c:choose>
-			</ul>
+               <c:otherwise>
+                  <c:choose>
+                        <c:when test="${sessionScope.member.id eq 'ADMIN' }">
+                           <li class="nav-item"><a class="nav-link"
+                           href="${pageContext.request.contextPath }/home2">관리자 페이지</a></li>
+                        </c:when>
+                        <c:otherwise>
+                           <li class="nav-item"><a class="nav-link"
+                           href="${pageContext.request.contextPath }/mypage/deposit/1">예치금
+                              : ${member.deposit }원 </a></li>
+                        </c:otherwise>
+                  </c:choose>
+                  <li class="nav-item"><a class="nav-link" href="#">${sessionScope.member.name }님</a></li>
+                  <li class="nav-item"><a class="nav-link"
+                     href="${pageContext.request.contextPath }/guest/logout">로그아웃</a></li>
+                  <li class="nav-item"><a class="nav-link"
+                     href="${pageContext.request.contextPath }/mypage/home">마이페이지</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
+               </c:otherwise>
+            </c:choose>
+         </ul>
 		</div>
 	</div>
 	<div class="container" id="header-bot">

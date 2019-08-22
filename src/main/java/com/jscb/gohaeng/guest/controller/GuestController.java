@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -101,5 +102,33 @@ public class GuestController {
 //		mView.setViewName("guest/emailauth");
 //		return mView;
 //	}
+	
+	/*-------------------id/pwd찾기-----------------------*/
+	@RequestMapping("findidpw")
+	public ModelAndView findidpw(ModelAndView mView) {
+		mView.setViewName("guest.findidpw");
+		return mView;
+	}
+	
+	/*-------------------id찾기-----------------------*/
+	@PostMapping("findid")
+	public ModelAndView findid(@RequestParam(name="name")String name
+			,@RequestParam(name="email")String email
+			, ModelAndView mView) {
+		guestService.findid(name,email,mView);
+		mView.setViewName("guest.findid");
+		return mView;
+	}
+	
+	/*-------------------pw찾기-----------------------*/
+	@PostMapping("findpw")
+	public ModelAndView findpw(@RequestParam(name="id")String id
+			,@RequestParam(name="email")String email,
+			ModelAndView mView) throws UnsupportedEncodingException, MessagingException {
+		
+		guestService.findpw(id,email,mView);
+		mView.setViewName("guest.findpw");
+		return mView;
+	}
 
 }

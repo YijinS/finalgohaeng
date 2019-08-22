@@ -22,4 +22,6 @@ public interface GuestService {
 	public void logout(HttpSession session);
 	//public void emailAuth(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException;
 	public void userAuthStatus(String email);
+	public void findid(String name, String email, ModelAndView mView);
+	public void findpw(String id, String email, ModelAndView mView) throws MessagingException, UnsupportedEncodingException;
 }
