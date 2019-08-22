@@ -3565,112 +3565,7 @@
 							</div>
 						</div>
 						<div class="box_chart">
-							<div class="chart" id="chart_div"
-								style="width: 400px; height: 400px">
-								<div style="position: relative;">
-									<div dir="ltr"
-										style="position: relative; width: 400px; height: 400px;">
-										<div
-											style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"
-											aria-label="차트입니다.">
-											<svg width="400" height="400" aria-label="차트입니다."
-												style="overflow: hidden;">
-                                                    <defs id="defs"></defs>
-                                                    <rect x="0" y="0"
-													width="400" height="400" stroke="none" stroke-width="0"
-													fill="#ffffff"></rect>
-                                                    <g>
-                                                        <path
-													d="M200,200L200,0A200,200,0,0,1,396.1452788344655,160.92277401158336L200,200A0,0,0,0,0,200,200"
-													stroke="#ffffff" stroke-width="1" fill="#fbc400"></path>
-                                                        <text
-													text-anchor="start" x="273.1918958422856"
-													y="86.7065887809407" font-family="Noto Sans KR"
-													font-size="20" stroke="none" stroke-width="0"
-													fill="#ffffff">21.9%</text>
-                                                    </g>
-                                                    <g>
-                                                        <path
-													d="M200,200L396.1452788344655,160.92277401158336A200,200,0,0,1,260.10280499656534,390.7554791651994L200,200A0,0,0,0,0,200,200"
-													stroke="#ffffff" stroke-width="1" fill="#69c8f2"></path>
-                                                        <text
-													text-anchor="start" x="306.0851165556236"
-													y="284.8878043684455" font-family="Noto Sans KR"
-													font-size="20" stroke="none" stroke-width="0"
-													fill="#ffffff">23.3%</text>
-                                                    </g>
-                                                    <g>
-                                                        <path
-													d="M200,200L71.38087556693756,46.84282311927919A200,200,0,0,1,200,0L200,200A0,0,0,0,0,200,200"
-													stroke="#ffffff" stroke-width="1" fill="#b0d840"></path>
-                                                        <text
-													text-anchor="start" x="119.50636279015578"
-													y="56.000700719754775" font-family="Noto Sans KR"
-													font-size="20" stroke="none" stroke-width="0"
-													fill="#ffffff">11.1%</text>
-                                                    </g>
-                                                    <g>
-                                                        <path
-													d="M200,200L29.383776463629715,304.35566235805A200,200,0,0,1,71.38087556693742,46.84282311927933L200,200A0,0,0,0,0,200,200"
-													stroke="#ffffff" stroke-width="1" fill="#aaaaaa"></path>
-                                                        <text
-													text-anchor="start" x="23.36615741603282"
-													y="182.35197474570447" font-family="Noto Sans KR"
-													font-size="20" stroke="none" stroke-width="0"
-													fill="#ffffff">22.6%</text>
-                                                    </g>
-                                                    <g>
-                                                        <path
-													d="M200,200L260.10280499656534,390.7554791651994A200,200,0,0,1,29.383776463629715,304.35566235805L200,200A0,0,0,0,0,200,200"
-													stroke="#ffffff" stroke-width="1" fill="#ff7272"></path>
-                                                        <text
-													text-anchor="start" x="118.20063599816393"
-													y="357.3398392443223" font-family="Noto Sans KR"
-													font-size="20" stroke="none" stroke-width="0"
-													fill="#ffffff">21.1%</text>
-                                                    </g>
-                                                    <g></g>
-                                                </svg>
-											<div aria-label="차트의 데이터를 나타낸 표입니다."
-												style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;">
-												<table>
-													<thead>
-														<tr>
-															<th></th>
-															<th></th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td>1-10 번</td>
-															<td>1,139</td>
-														</tr>
-														<tr>
-															<td>11-20 번</td>
-															<td>1,212</td>
-														</tr>
-														<tr>
-															<td>21-30 번</td>
-															<td>1,100</td>
-														</tr>
-														<tr>
-															<td>31-40 번</td>
-															<td>1,178</td>
-														</tr>
-														<tr>
-															<td>41-45 번</td>
-															<td>579</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-									<div aria-hidden="true"
-										style="display: none; position: absolute; top: 410px; left: 410px; white-space: nowrap; font-family: &amp; amp; quot; Noto Sans KR&amp;amp; quot;; font-size: 20px;">
-										11.1%</div>
-									<div></div>
-								</div>
+							<div id="piechart" class="chart" style="width:400px;height:400px">
 							</div>
 							<ul id="chartLegend1" class="legend_basic">
 								<li><span class="color ball1"></span><span>1번~10번</span></li>
@@ -3679,9 +3574,38 @@
 								<li><span class="color ball4"></span><span>31번~40번</span></li>
 								<li><span class="color ball5"></span><span>41번~45번</span></li>
 							</ul>
-							<div id="hideDescChart" class="accessibility">1-10 번21.9%
-								11-20 번23.3% 21-30 번21.1% 31-40 번22.6% 41-45 번11.1%</div>
 						</div>
+						<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+					    <script type="text/javascript">
+					      google.charts.load('current', {'packages':['corechart']});
+					      google.charts.setOnLoadCallback(drawChart);
+					
+					      function drawChart() {
+					
+					        var data = google.visualization.arrayToDataTable([
+					          ['번호', '당첨횟수'],
+					          ['1~10번',     5],
+					          ['11~20번',      6],
+					          ['21~30번',  2],
+					          ['31~40번 ', 2],
+					          ['41~45번',    7]
+					        ]);
+					
+					        var options = {
+					          'chartArea':{left:0,top:0,width:"100%",height:"100%"},
+					          'height': 400,
+					          'width': 400,
+					          'legend' : 'none',
+					          'fontSize' : 20,
+					          'fontName' : 'Noto Sans KR',
+					          'colors' : ['#fbc400','#69c8f2','#ff7272','#aaa','#b0d840']
+					        };
+					
+					        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+							
+					        chart.draw(data, options);
+					      }
+					    </script>
 						<table class="tbl_data tbl_data_col">
 							<caption>회차별 당첨번호 및 보너스 번호 통계</caption>
 							<colgroup>

@@ -10,14 +10,35 @@
 		<result property="paymentDate" column="LGM_PAYMENT_DATE" />
 	</resultMap>
 	
-	<select id="getList" resultMap="lottoGames">
-		SELECT * FROM LOTTO_GAMES_MANAGEMENT ORDER BY LGM_GAMES DESC
+	<select id="getGames" resultType="int">
+		SELECT LGM_GAMES
+		FROM
+			(SELECT * FROM LOTTO_GAMES_MANAGEMENT ORDER BY LGM_GAMES DESC)
 	</select>
+	
+	<select id="getList" parameterType="java.util.Map"  resultMap="lottoGames">
+		SELECT *
+		FROM
+    		(SELECT * FROM LOTTO_GAMES_MANAGEMENT ORDER BY LGM_GAMES DESC)
+		<if test="start != 0">
+			WHERE LGM_GAMES BETWEEN #{start} AND #{end}
+		</if>
+	</select>
+	
+	<select id="getList1" parameterType="map">
+		SELECT *
+		FROM
+			(SELECT ROWNUM NUM, A.*
+			FROM
+				(SELECT * FROM LOTTO_GAMES_MANAGEMENT ORDER BY LGM_GAMES DESC)A)
+		WHERE NUM
+	</select>
+	
 	
 	<select id="getData" parameterType="int" resultMap="lottoGames">
 		SELECT * FROM LOTTO_GAMES_MANAGEMENT
 		WHERE LGM_GAMES = #{games}
-	</select>
+	</select>	
 	
 	<select id="getLastData" resultMap="lottoGames">
 		SELECT *

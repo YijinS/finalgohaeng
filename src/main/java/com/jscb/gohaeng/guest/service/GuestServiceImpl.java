@@ -50,20 +50,21 @@ public class GuestServiceImpl implements GuestService {
 
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
 		String name = request.getParameter("name");
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		dto.setName(name);
 		dto.setId(id);
-		dto.setPwd(pwd);
+		dto.setPwd(encoder.encode(pwd));
 
 		String birth = request.getParameter("birthday");
 		Date birthday = df.parse(birth);
-		dto.setBirthday(birthday);
-
-		String addr = "주소API 필요";
-		String hp = request.getParameter("tel1") + "-" + request.getParameter("tel2") + "-"
-				+ request.getParameter("tel3");
+		dto.setBirthday(birthday);		
+		/* String addr = "주소API 필요"; */
+		String addr = request.getParameter("addr1")+""+request.getParameter("addr2");
+		String hp = request.getParameter("tel1")+"-"+request.getParameter("tel2")+"-"+request.getParameter("tel3");
 		String email = request.getParameter("email");
 		dto.setAddr(addr);
 		dto.setHp(hp);
@@ -111,8 +112,8 @@ public class GuestServiceImpl implements GuestService {
 
 		MemberDto dto = memberDao.getData(id);
 
-		if (dto != null)
-			if (dto.getPwd().equals(pwd)) {
+		if(dto != null)
+			if(BCrypt.checkpw(pwd, dto.getPwd())) {
 				map.put("check", true);
 				return map;
 			}
@@ -120,7 +121,24 @@ public class GuestServiceImpl implements GuestService {
 		map.put("check", false);
 		return map;
 	}
+	
+	public Map<String,Object> check(String id, String email) {
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+		
+		MemberDto dto = memberDao.getData(id);
 
+		if(dto != null)
+			if(dto.getEmail().equals(email)) {
+				map.put("check", true);
+				return map;
+			}
+		
+		map.put("check",false);
+		return map;
+	}
+	
+	
 	@Override
 	public void successLogin(ModelAndView mView, HttpServletRequest request, HttpSession session) {
 
@@ -129,11 +147,11 @@ public class GuestServiceImpl implements GuestService {
 		String url = request.getParameter("url");
 		System.out.println(url);
 
-//		if(url != null && url != "") {
-//			mView.setViewName("");
-//		}
-
-		mView.setViewName("redirect:" + url);
+		
+		if(url != null && url != "")
+			mView.setViewName("redirect:"+url);
+		else
+			mView.setViewName("redirect:/");
 
 	}
 

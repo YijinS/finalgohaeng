@@ -1,8 +1,14 @@
 package com.jscb.gohaeng.gameresult.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -115,4 +121,61 @@ public class GameResultController {
 		return "gameresult.pension520.6";
 	}
 	/*------------------------- pension520 매핑------------------------------*/
+	
+	/*------------------------- lottoStat 매핑------------------------------*/
+	
+	@RequestMapping("lottostat/1")
+	public ModelAndView lottoStatIndex(ModelAndView mView) {
+		
+		mView.setViewName("gameresult.lottostat.1");
+		
+		return mView;
+	}
+	
+	@RequestMapping("lottostat/2")
+	public ModelAndView lottoStatByNumber(ModelAndView mView
+			,@RequestParam(name="start",defaultValue = "0")Integer start
+			,@RequestParam(name="end",defaultValue = "0")Integer end
+			,@RequestParam(name="bonus",defaultValue = "1")Integer bonus) {
+		
+		
+		System.out.println(start);
+		System.out.println(end);
+		System.out.println("**********************************************************");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start",start);
+		map.put("end",end);
+		map.put("bonus",bonus);
+		
+		System.out.println(map.get("start"));
+		System.out.println(map.get("end"));
+		System.out.println(map.get("bonus"));
+		
+		mView.addObject("save",map);
+		mView.addObject("games",gameResultService.getGames());
+		mView.addObject("list",gameResultService.getStatByNumber(start,end,bonus));
+		mView.setViewName("gameresult.lottostat.2");
+		
+		return mView;
+	}
+	
+	@RequestMapping("lottostat/3")
+	public ModelAndView lottoStatByColor(ModelAndView mView
+			,@RequestParam(name="start",defaultValue = "0")Integer start
+			,@RequestParam(name="end",defaultValue = "0")Integer end) {
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start",start);
+		map.put("end",end);
+		
+		
+		mView.addObject("save",map);
+		mView.addObject("games",gameResultService.getGames());
+		mView.setViewName("gameresult.lottostat.3");
+		return mView;
+	}
+	
+	
+	/*------------------------- lottoStat 매핑------------------------------*/
 }
