@@ -106,15 +106,29 @@
 	<!-- 이벤트 등록 -->
 	<insert id="insert" parameterType="com.jscb.gohaeng.dto.EventDto">
 		INSERT INTO EVENT
-		(EVENT_INDEX, EVENT_TITLE, EVENT_DRAW_DATE, EVENT_SUBTITLE, 
-		EVENT_CONTENT, EVENT_START_DATE, EVENT_END_DATE)
+			(EVENT_INDEX, EVENT_TITLE, EVENT_DRAW_DATE, EVENT_SUBTITLE, 
+			EVENT_CONTENT, EVENT_START_DATE, EVENT_END_DATE)
 		VALUES(EVENT_SEQ.NEXTVAL, #{title}, #{drawDate, jdbcType=DATE}, #{subTitle}, #{content},
-		#{startDate, jdbcType=DATE}, #{endDate, jdbcType=DATE})	
+			#{startDate, jdbcType=DATE}, #{endDate, jdbcType=DATE})	
 	</insert>
 	<!-- 조회수 증가 -->
 	<update id="addHitCount" parameterType="int">
 		UPDATE EVENT 
 		SET EVENT_HIT = EVENT_HIT+1 
+		WHERE EVENT_INDEX = #{index}
+	</update>
+	<!-- 이벤트 한개 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM EVENT WHERE EVENT_INDEX = #{index}
+	</delete>
+	<!-- 이벤트 수정 -->
+	<update id="update" parameterType="com.jscb.gohaeng.dto.EventDto">
+		UPDATE EVENT
+		SET EVENT_TITLE = #{title}, EVENT_SUBTITLE = #{subTitle},
+			EVENT_DRAW_DATE = #{drawDate, jdbcType=DATE}, 
+		 	EVENT_START_DATE = #{startDate, jdbcType=DATE}, 
+		 	EVENT_END_DATE = #{endDate, jdbcType=DATE}, 
+			EVENT_CONTENT = #{content}
 		WHERE EVENT_INDEX = #{index}
 	</update>
 </mapper>

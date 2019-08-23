@@ -2,13 +2,13 @@ package com.jscb.gohaeng.admin.event.service;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.dao.EventCommentDao;
 import com.jscb.gohaeng.dao.EventDao;
@@ -170,7 +170,7 @@ public class EventServiceImpl implements EventService {
 	public void regEvent(EventDto eventDto){
 		
 		System.out.println("서비스*****************************************");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		/* SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); */
 		System.out.println(eventDto.getTitle());
 		System.out.println(eventDto.getIndex());
 		System.out.println(eventDto.getSubTitle());
@@ -232,6 +232,35 @@ public class EventServiceImpl implements EventService {
 		//댓글 삭제
 		eventCommentDao.delete(eventCommentIndex);
 	}
+
+	@Override
+	public void deleteEvent(int index) {
+		
+		eventDao.delete(index);
+	}
+
+	@Override
+	public void deleteEventList(List<String> indexList) {
+		
+		for(String index : indexList) {
+			eventDao.delete(Integer.parseInt(index));
+		}
+		
+	}
+	
+	@Override
+	public void getUpdateData(ModelAndView mView, int index) {
+		
+		EventDto eventDto = eventDao.getDetail(index);
+		mView.addObject("eventDto", eventDto);
+	}
+
+	@Override
+	public void updateEvent(EventDto eventDto) {
+		
+		eventDao.update(eventDto);
+	}
+
 
 }
 

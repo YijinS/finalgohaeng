@@ -20,17 +20,6 @@
 				</c:if>
 
 				<h3>카페 글 상세 보기</h3>
-				<%-- 
-				<c:if test="${eventDto.prevNum ne 0 }">
-					<a
-						href="detail?num=${eventDto.prevNum }&condition=${condition}&keyword=${encodedKeyword}">이전글</a>
-				</c:if>
-
-				<c:if test="${eventDto.nextNum ne 0 }">
-					<a
-						href="detail?num=${eventDto.nextNum }&condition=${condition}&keyword=${encodedKeyword}">다음글</a>
-				</c:if>
- --%>
 				<table class="table table-bordered table-condensed">
 					<fmt:formatDate value="${eventDto.startDate }" var="start"
 						pattern="yyyy-MM-dd" />

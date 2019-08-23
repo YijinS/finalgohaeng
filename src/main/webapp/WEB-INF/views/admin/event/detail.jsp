@@ -66,81 +66,90 @@
 				    <td>${eventDto.display }</td>
 				  </tr>
 				</table>
-				<a href="updateform?num=${eventDto.index }">수정</a>
+				<a href="updateform?index=${eventDto.index }">수정</a>
 				<a href="javascript:deleteConfirm()">삭제</a>
 				<%-- 로그인된 아이디와 글 작성자가 같은 경우 수정,삭제 --%>
-				<%-- <c:if test="${id eq dto.writer }">
-					<a href="updateform.do?num=${dto.num }">수정</a>
+				<%-- <c:if test="${sessionScope.member eq 'ADMIN' }">
+					<a href="updateform?index=${eventDto.index }">수정</a>
 					<a href="javascript:deleteConfirm()">삭제</a>
 				</c:if> --%>
 				<!-- 댓글 목록 -->
 				<div class="comments">
 					<ul>
-					<c:forEach items="${commentList }" var="tmp">
-						<c:choose>
-							<c:when test="${tmp.deleted ne 'yes' }">
-								<li class="comment" id="comment${tmp.index }" <c:if test="${tmp.index ne tmp.commentGroup }">style="padding-left:50px;"</c:if> >
-									<c:if test="${tmp.index ne tmp.commentGroup }">
-										<img class="reply_icon" src="${pageContext.request.contextPath}/resources/images/re.gif"/>
-									</c:if>
-									<dl>
-										<dt>
-											<span>${tmp.writerId }</span>
-											<c:if test="${tmp.index ne tmp.commentGroup }">
+						<c:forEach items="${commentList }" var="tmp">
+							<fmt:formatDate var="regDate" value="${tmp.regDate }" pattern="yyyy-MM-dd HH:mm:ss"/>
+							<c:choose>
+								<c:when test="${tmp.deleted ne 'yes' }">
+									<li class="comment" id="comment${tmp.index }"
+										<c:if test="${tmp.index ne tmp.commentGroup }">style="padding-left:50px;"</c:if>>
+										<c:if test="${tmp.index ne tmp.commentGroup }">
+											<img class="reply_icon"
+												src="${pageContext.request.contextPath}/resources/images/re.gif" />
+										</c:if>
+										<dl>
+											<dt>
+												<span>${tmp.writerId }</span>
+												<c:if test="${tmp.index ne tmp.commentGroup }">
 												to <strong>${tmp.targetId }</strong>
-											</c:if>
-											<span>${tmp.regDate }</span>
-											<a href="javascript:" class="reply_link">답글</a> |
-											<c:choose>
-												<%-- 로그인된 아이디와 댓글의 작성자가 같으면 --%>
-												<c:when test="${sessionScope.member eq tmp.writerId }">
-													<a href="javascript:" class="comment-update-link">수정</a>&nbsp;&nbsp;
+												</c:if>
+												<span>${regDate}</span> <a href="javascript:"
+													class="reply_link">답글</a> |
+												<c:choose>
+													<%-- 로그인된 아이디와 댓글의 작성자가 같으면 --%>
+													<c:when test="${sessionScope.member.id eq tmp.writerId }">
+														<a href="javascript:" class="comment-update-link">수정</a>&nbsp;&nbsp;
 													<a href="javascript:deleteComment(${tmp.index })">삭제</a>
-												</c:when>
-												<c:otherwise>
-													<a href="javascript:">신고</a>
-												</c:otherwise>
-											</c:choose>
-										</dt>
-										<dd>
-											<pre>${tmp.content }</pre>
-										</dd>
-									</dl>
-									<form class="comment-insert-form" action="commentinsert" method="post">
-										<!-- 덧글 그룹 -->
-										<input type="hidden" name="eventIndex" value="${eventDto.index }" />
-										<!-- 덧글 대상 -->
-										<input type="hidden" name="targetId" value="${tmp.writerId }" />
-										<input type="hidden" name="commentGroup" value="${tmp.commentGroup }" />
-										<textarea name="commentContent"><c:if test="${empty sessionScope.member }">로그인이 필요합니다.</c:if></textarea>
-										<button type="submit">등록</button>
-									</form>	
-									<!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 -->				
-									<c:if test="${sessionScope.member eq tmp.writerId }">
-										<form class="comment-update-form" action="comment_update.do">
-											<input type="hidden" name="index" value="${tmp.index }" />
-											<textarea name="commentContent">${tmp.content }</textarea>
-											<button type="submit">수정</button>
-										</form>
-									</c:if>
-								</li>				
-							</c:when>
-							<c:otherwise>
-								<li <c:if test="${tmp.index ne tmp.commentGroup }">style="padding-left:50px;"</c:if> >삭제된 댓글 입니다.</li>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
+													</c:when>
+													<c:otherwise>
+														<a href="javascript:">신고</a>
+													</c:otherwise>
+												</c:choose>
+											</dt>
+											<dd>
+												<pre>${tmp.content }</pre>
+											</dd>
+										</dl>
+										<form class="comment-insert-form" action="commentinsert"
+											method="post">
+											<!-- 덧글 그룹 -->
+											<input type="hidden" name="eventIndex"
+												value="${eventDto.index }" />
+											<!-- 덧글 대상 -->
+											<input type="hidden" name="targetId" value="${tmp.writerId }" />
+											<input type="hidden" name="commentGroup"
+												value="${tmp.commentGroup }" />
+											<textarea name="commentContent"><c:if
+													test="${empty sessionScope.member }">로그인이 필요합니다.</c:if></textarea>
+											<button type="submit">등록</button>
+										</form> <!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 --> <c:if
+											test="${sessionScope.member.id eq tmp.writerId }">
+											<form class="comment-update-form" action="commentupdate">
+												<input type="hidden" name="index" value="${tmp.index }" />
+												<textarea name="content">${tmp.content }</textarea>
+												<button type="submit">수정</button>
+											</form>
+										</c:if>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<li
+										<c:if test="${tmp.index ne tmp.commentGroup }">style="padding-left:50px;"</c:if>>삭제된
+										댓글 입니다.</li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
 					</ul>
 					<div class="clearfix"></div>
 					<!-- 원글에 댓글을 작성할수 있는 폼 -->
 					<div class="comment_form">
 						<form action="commentinsert" method="post">
 							<!-- 댓글의 그룹번호는 원글의 글번호 -->
-							<input type="hidden" name="index" value="${eventDto.index }"/>
+							<input type="hidden" name="eventIndex" value="${eventDto.index }" />
 							<!-- 댓글의 대상자는 원글의 작성자 -->
 							<%-- <input type="hidden" name="target_id" value="${dto.writer }"/> --%>
-							<input type="hidden" name="targetId" value="ADMIN"/>
-							<textarea name="commentContent"><c:if test="${empty sessionScope.member }">로그인이 필요합니다.</c:if></textarea>
+							<input type="hidden" name="targetId" value="ADMIN" />
+							<textarea name="commentContent"><c:if
+									test="${empty sessionScope.member.id }">로그인이 필요합니다.</c:if></textarea>
 							<button type="submit">등록</button>
 						</form>
 					</div>
@@ -149,7 +158,8 @@
 		</div>
 	</div>
 </div>
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.js"></script>
 <script>
 function deleteConfirm(){
 	var isDelete=confirm("글을 삭제 하시겠습니까?");
@@ -198,16 +208,16 @@ function deleteConfirm(){
 	});
 	
 	//댓글 삭제를 눌렀을때 호출되는 함수
-	function deleteComment(num){
+	function deleteComment(index){
 		var isDelete=confirm("확인을 누르면 댓글이 삭제 됩니다.");
 		if(isDelete){
 			$.ajax({
 				url:"commentdelete",
 				method:"post",
-				data:{"num":num},
+				data:{"index":index},
 				success:function(responseData){
 					if(responseData.isSuccess){
-						var sel="#comment"+num;
+						var sel="#comment"+index;
 						$(sel).text("삭제된 댓글 입니다.");
 					}
 				}
@@ -248,5 +258,75 @@ function deleteConfirm(){
 		}
 	}
 </script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+/* 글 내용의 경계선 표시 */
+.content {
+	border: 1px dotted #cecece;
+}
+/* 글 내용안에 있는 이미지의 크기 제한 */
+.content img {
+	max-width: 100%;
+}
+/* 댓글에 관련된 css */
+.comments ul {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+.comments ul li {
+	border-top: 1px solid #888; /* li 의 윗쪽 경계선 */
+}
+
+.comments dt {
+	margin-top: 5px;
+}
+
+.comments dd {
+	margin-left: 26px;
+}
+
+.comments form textarea, .comments form button {
+	float: left;
+}
+
+.comments li {
+	clear: left;
+}
+
+.comments form textarea {
+	width: 85%;
+	height: 100px;
+}
+
+.comments form button {
+	width: 15%;
+	height: 100px;
+}
+/* 댓글에 댓글을 다는 폼과 수정폼을 일단 숨긴다. */
+.comment form {
+	display: none;
+}
+
+.comment {
+	position: relative;
+}
+
+.comment .reply_icon {
+	width: 8px;
+	height: 8px;
+	position: absolute;
+	top: 10px;
+	left: 30px;
+}
+
+.comments .user-img {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+}
+</style>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">

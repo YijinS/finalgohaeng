@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <main>
 <div id="article" class="contentsArticle">
 	<div class="header_article">
@@ -55,11 +55,12 @@
 					</thead>
 					<tbody>
 						<c:forEach var="list" items="${list}">
+						<fmt:formatDate value="${list.regDate }" var="regDate" pattern="yyyy-MM-dd HH:mm:ss"/>
 							<tr>
 								<td>${list.index}</td>
 								<td><a href="detail.do?index=${list.index}">${list.title}</a></td>
 								<td>파일</td>
-								<td>${list.regDate}</td>
+								<td>${regDate}</td>
 								<td>${list.hit}</td>
 							</tr>
 						</c:forEach>

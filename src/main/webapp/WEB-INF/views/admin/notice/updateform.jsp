@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -9,6 +8,7 @@
 	<div class="container">
 		<h3>공지사항 수정하기</h3>
 		<form action="update" method="post">
+			<fmt:formatDate value="${dto.regDate }" var="regDate" pattern="yyyy-MM-dd HH:mm:ss"/>
 			<input type="hidden" name="index" value="${dto.index }" />
 			<fieldset disabled>
 				<div class="form-group">
@@ -17,7 +17,7 @@
 				</div>
 				<div class="form-group">
 					<label for="regDate">작성일</label>
-					<input type="text" id="regDate" class="form-control" placeholder="${dto.regDate }"/>	
+					<input type="text" id="regDate" class="form-control" placeholder="${regDate }"/>	
 				</div>
 			</fieldset>
 			<div class="form-group">
@@ -25,7 +25,7 @@
 			<input type="text" class="form-control" name="title" id="title" value="${dto.title }"/>
 			</div>
 			<label for="content">내용</label>
-			<textarea name="content" id="content" style=" width: 100%; height: 400px;">${dto.title }</textarea>
+			<textarea name="content" id="content" style=" width: 100%; height: 400px;">${dto.content }</textarea>
 			<div class="text-right">
 				<a href="${pageContext.request.contextPath }/admin/notice/list" class="btn btn-secondary btn-lg">취소</a>
 				<input type="button" class="btn btn-primary btn-lg" onclick="submitContents(this);" value="등록" />

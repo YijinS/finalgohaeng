@@ -1,5 +1,6 @@
 package com.jscb.gohaeng.admin.event.controller;
 
+import java.util.List;
 import java.beans.PropertyEditorSupport;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,8 +36,6 @@ public class EventController {
 
 		eventService.getEventList(request);
 
-		//		mView.setViewName("admin.event.list");
-
 		return new ModelAndView("admin.event.list");
 	}
 
@@ -48,20 +47,11 @@ public class EventController {
 
 		return "admin.event.detail";
 	}
-
-	
-	@RequestMapping("detail2")
-	public String detail2(HttpServletRequest request) {
-		
-		eventService.getEventDetail(request);
-		
-		return "admin.event.detail2";
-	}
 	
 	//댓글 추가 요청 처리
 	@RequestMapping(value = "commentinsert", method = RequestMethod.POST)
-	public ModelAndView authCommentInsert(HttpServletRequest request,
-			@RequestParam int index, ModelAndView mView) {
+	public ModelAndView commentInsert(HttpServletRequest request,
+			@RequestParam(name="eventIndex") int index, ModelAndView mView) {
 		eventService.saveComment(request);
 		mView.setViewName("redirect:/admin/event/detail?index="+index);
 		return mView;
@@ -69,7 +59,7 @@ public class EventController {
 	
 	@RequestMapping(value = "commentupdate", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> authCommentUpdate(HttpServletRequest request,
+	public Map<String, Object> commentUpdate(HttpServletRequest request,
 			@ModelAttribute EventCommentDto eventCommentDto) {
 		eventService.updateComment(eventCommentDto);
 		// {"isSuccess":true} 형식의 json 문자열이 출력되도록 Map객체를 리턴해준다
@@ -81,7 +71,7 @@ public class EventController {
 	//댓글 삭제 요청 처리
 	@RequestMapping(value = "commentdelete", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> authCommentDelete(HttpServletRequest request,
+	public Map<String, Object> commentDelete(HttpServletRequest request,
 			@RequestParam int index) {
 		
 		//서비스를 이용해서 댓글 삭제 후
@@ -145,12 +135,48 @@ public class EventController {
 		//글 목록 보기로 리다일렉트 이동 
 		return new ModelAndView("redirect:/admin/event/list");
 	}
+	
+	
+	@RequestMapping("delete")
+	public String delete(@RequestParam int index) {
+		eventService.deleteEvent(index);
+		return "redirect:admin/event/list";
+	}
+	
+	//리스트에서 체크된 항목받아서 지우기
+	@RequestMapping(value = "deletelist", method = RequestMethod.POST)
+	@ResponseBody
+	public Object deleteCheckedList(
+			@RequestParam(value = "indexList[]") List<String> indexList) {
+		
+		eventService.deleteEventList(indexList);
+		//리턴값
+        Map<String, Object> retVal = new HashMap<String, Object>();
+        
+        //성공했다고 처리
+        retVal.put("code", "OK");
+        retVal.put("message", "선택된 항목이 삭제되었습니다.");
+        
+        return retVal;
 
+	}
+	
+	@RequestMapping("updateform")
+	public ModelAndView updateform(HttpServletRequest request,
+			@RequestParam int index, ModelAndView mView) {
+		
+		eventService.getUpdateData(mView, index);
+		mView.setViewName("admin.event.updateform");
+		return mView;
+	}
 
-
-
-
-
+	@RequestMapping("update")
+	public ModelAndView update(HttpServletRequest request,
+			@ModelAttribute EventDto eventDto) {
+		
+		eventService.updateEvent(eventDto);
+		return new ModelAndView("redirect:/admin/event/detail?index="+eventDto.getIndex());
+	}
 	/* ---------------- 이벤트 추첨관리 컨트롤러 ---------------- */
 	/*
 	@RequestMapping(value = "management", method = RequestMethod.GET)

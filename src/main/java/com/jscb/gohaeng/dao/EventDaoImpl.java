@@ -50,5 +50,17 @@ public class EventDaoImpl implements EventDao {
 		sqlSession.update("event.addHitCount", index);
 	}
 
+	@Override
+	public void delete(int index) {
+		
+		sqlSession.delete("event.delete", index);
+	}
+
+	@Override
+	public void update(EventDto eventDto) {
+		
+		sqlSession.update("event.update", eventDto);
+	}
+
 
 }

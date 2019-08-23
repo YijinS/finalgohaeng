@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -42,17 +41,8 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<!-- cBox 전체 선택 -->
-		<script>
-			$('input[name=selected_all]').on(
-					'change',
-					function() {
-						$('input[name=ckBox]').prop('checked',
-								this.checked);
-					});
-		</script>
 		<a class="btn btn-primary" href="${pageContext.request.contextPath }/admin/event/insertform" role="button">등록</a>
-		<a class="btn btn-secondary" href="${pageContext.request.contextPath }/admin/event/delete" role="button">삭제</a>
+		<a class="btn btn-secondary" id="delete" href="javasjavascript:" role="button">삭제</a>
 		<a class="btn btn-secondary" href="${pageContext.request.contextPath }/admin/event/drop" role="button">마감</a>
 		<div class="page-display">
 			<ul class="pagination">
@@ -117,6 +107,81 @@
 		<!-- --------------------------------------------컨텐트 끝 ------------------------------------------ -->
 	</div>
 </div>
+</div>
+
+<!-- checkBox 전체 선택 -->
+<script>
+	$('input[name=selected_all]').on(
+			'change',
+			function() {
+				$('input[name=ckBox]').prop('checked',
+						this.checked);
+			});
+	
+	
+	$(document).ready(function(){
+        
+        $("#delete").click(function() {
+            //배열 선언
+            var indexArray = [];
+            
+            $('input[name="ckBox"]:checked').each(function(i){//체크된 리스트 저장
+            	indexArray.push($(this).val());
+            });
+            
+            var objParams = {
+                    "indexList" : indexArray        //인덱스배열 저장
+                };
+            
+            //ajax 호출
+            $.ajax({
+                url         :   "${pageContext.request.contextPath }/admin/event/deletelist",
+                dataType    :   "json",
+                contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
+                type        :   "post",
+                data        :   objParams,
+                success     :   function(retVal){
+
+                    if(retVal.code == "OK") {
+                        alert(retVal.message);
+                        window.location.href = "${pageContext.request.contextPath }/admin/event/list";
+                    } else {
+                        alert(retVal.message);
+                    }
+                     
+                },
+                error       :   function(request, status, error){
+                    console.log("AJAX_ERROR");
+                }
+            });
+            
+        })
+        
+    });
+
+</script>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
