@@ -10,4 +10,5 @@ public interface QnaDao {
 	public void delete(int index);
 	// 글의 갯수
 	public int getCount(QnaDto dto);
+	public void insert(QnaDto dto);
 }

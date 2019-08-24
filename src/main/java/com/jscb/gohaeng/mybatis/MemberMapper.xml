@@ -13,10 +13,15 @@
 		<result property="checkSms" column="MEMBER_CHECK_SMS" />
 		<result property="checkEmail" column="MEMBER_CHECK_EMAIL" />
 		<result property="checkSales" column="MEMBER_CHECK_SALES" />
+		<result property="authKey" column="MEMBER_AUTHKEY" />
+		<result property="authStatus" column="MEMBER_AUTHSTATUS" />
 	</resultMap>
 	<insert id="insert" parameterType="com.jscb.gohaeng.dto.MemberDto">
-		INSERT INTO MEMBER VALUES
-		(#{id}, #{pwd}, #{name}, 0, #{birthday}, #{hp}, #{email}, #{addr}, #{checkSms}
+		INSERT INTO MEMBER 
+		(MEMBER_ID,MEMBER_PWD,MEMBER_NAME,MEMBER_BIRTHDAY,MEMBER_HP,MEMBER_EMAIL,
+		MEMBER_ADDR,MEMBER_CHECK_SMS,MEMBER_CHECK_EMAIL,MEMBER_CHECK_SALES)
+		VALUES	
+		(#{id}, #{pwd}, #{name},#{birthday}, #{hp}, #{email}, #{addr}, #{checkSms}
 		, #{checkEmail}, #{checkSales})
 	</insert>
 	<select id="getData" parameterType="string" resultMap="memberDto">
@@ -37,6 +42,30 @@
 				MEMBER_DEPOSIT - #{price}
 			</otherwise>			
 		</choose>		
+		WHERE MEMBER_ID = #{id}
+	</update>
+	
+	<update id="updateAuthKey" parameterType="com.jscb.gohaeng.dto.MemberDto">
+		UPDATE MEMBER SET MEMBER_AUTHKEY = #{authKey} WHERE MEMBER_EMAIL = #{email}
+	</update>
+	<update id="userAuthStatus" parameterType="string">
+		UPDATE MEMBER SET MEMBER_AUTHSTATUS = 1 WHERE MEMBER_EMAIL = #{email}
+	</update>
+	
+	<select id="getId" parameterType="map" resultType="string">
+		SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_NAME=#{name,jdbcType=VARCHAR} AND MEMBER_EMAIL= #{email,jdbcType=VARCHAR}
+	</select>
+	<update id="updatePwd" parameterType="map">
+		UPDATE MEMBER SET MEMBER_PWD = #{pwd} WHERE MEMBER_ID = #{id}
+	</update>
+	<update id="update"
+		parameterType="com.jscb.gohaeng.dto.MemberDto">
+		UPDATE MEMBER
+		SET
+		MEMBER_PWD = #{pwd}, MEMBER_DEPOSIT = #{deposit}, MEMBER_HP = #{hp},
+		MEMBER_EMAIL = #{email}, MEMBER_ADDR = #{addr}, MEMBER_CHECK_SMS =
+		#{checkSms},
+		MEMBER_CHECK_EMAIL = #{checkEmail}, MEMBER_CHECK_SALES = #{checkSales}
 		WHERE MEMBER_ID = #{id}
 	</update>
 </mapper>

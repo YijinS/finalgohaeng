@@ -8,7 +8,7 @@
 <div class="article">
 	<div class="container">
 		<h3>이벤트 등록하기</h3>
-		<form action="insert.do" method="post">
+		<form action="insert" method="post">
 			<div class="form-group">
 			<label for="title">제목</label>
 			<input type="text" class="form-control" name="title" id="title" />
@@ -20,6 +20,10 @@
 			<div class="form-group">
 			<label for="endDate">이벤트 종료일</label>
 			<input type="date" name="endDate" class="form-control">
+			</div>
+			<div class="form-group">
+			<label for="drawDate">추첨일</label>
+			<input type="date" name="drawDate" class="form-control">
 			</div>
 			<div class="form-group">
 			<label for="subTitle">설명</label>
@@ -36,7 +40,7 @@
 				<label class="form-check-label" for="dpOptions">비공개</label>
 				</div>
 			<div class="text-right">
-				<a href="${pageContext.request.contextPath }/admin/event/list.do" class="btn btn-secondary btn-lg">취소</a>
+				<a href="${pageContext.request.contextPath }/admin/event/list" class="btn btn-secondary btn-lg">취소</a>
 				<input type="button" class="btn btn-primary btn-lg" onclick="submitContents(this);" value="등록" />
 			</div>
 		</form>
@@ -47,8 +51,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/SmartEditor/js/HuskyEZCreator.js" charset="utf-8"></script>
- 
+<!-- SmartEditor 에서 필요한 javascript 로딩  -->
+<script src="${pageContext.request.contextPath }/resources/SmartEditor/js/HuskyEZCreator.js"></script>
 <script>
 	var oEditors = [];
 	
@@ -58,7 +62,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
 		elPlaceHolder: "content",
-		sSkinURI: "${pageContext.request.contextPath }/resources/SmartEditor/SmartEditor2Skin.html",	
+		sSkinURI: "${pageContext.request.contextPath}/resources/SmartEditor/SmartEditor2Skin.html",	
 		htParams : {
 			bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 			bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)

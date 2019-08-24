@@ -1,19 +1,29 @@
 package com.jscb.gohaeng;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jscb.gohaeng.dao.LottoGamesDao;
 import com.jscb.gohaeng.dto.FortuneDto;
+import com.jscb.gohaeng.dto.LottoGamesDto;
 
 @Service
 public class IndexServiceImpl implements IndexService {
+	
+	@Autowired
+	private LottoGamesDao lottoGamesDao;
 
 	@Override
 	public ModelAndView crawlingFortune(ModelAndView mView) throws IOException {
@@ -35,12 +45,52 @@ public class IndexServiceImpl implements IndexService {
 
 			todayFortune.add(new FortuneDto(czs[i], fortune));
 		}
-		
+
 		mView.addObject("fortune", todayFortune);
-		
+
 		return mView;
 	}
 	
+//로또 번호 파싱하기
+	@Override
+	public void lottonum() throws IOException, ParseException {
+		
+		LottoGamesDto dto = new LottoGamesDto();
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		
+		String url = "http://www.nlotto.co.kr/common.do?method=main";
+		
+		Document doc = Jsoup.connect(url).get();
+		
+		Elements contens = doc.select("div.content");
+		
+		System.out.println(contens);
+		String winnum = "";
+		
+		for(int i=1; i<=6; i++) {
+			int num = Integer.parseInt(contens.select("span#drwtNo"+i).text());
+			winnum += String.format("%02d", num);
+		}
+		dto.setWinningNum(winnum);
+		
+		String bonus = contens.select("span#bnusNo").text();
+		dto.setBonusNum(bonus);
+		
+		int games = Integer.parseInt(contens.select("strong#lottoDrwNo").text());
+		dto.setGames(games);
+		
+		String drawdate_ = contens.select("span#drwNoDate").text();
+		Date drawdate = df.parse(drawdate_);
+		dto.setDrawDate(drawdate);
+		
+		Integer getLastGames = lottoGamesDao.getLastGames(games);
+		//if(getLastGames == null ? true:false)
+		if(getLastGames != games)
+			lottoGamesDao.lottoDrawInsert(dto);
+		
+	}
+
 	public static void main(String args[]) throws IOException {
 		for(int i=0;i<10;i++) {
 			String url = "https://dhlottery.co.kr/gameResult.do?method=byWin&drwNo="+(i+1);
@@ -67,6 +117,14 @@ public class IndexServiceImpl implements IndexService {
 //			System.out.println(lottoNum.html());
 //		}
 
-		
 	}
+	/* --------------- 인덱스페이지 로또번호 출력용 --------------- */
+	@Override
+	public void getLastLotto(ModelAndView mView) {
+		
+		LottoGamesDto lottoGame = lottoGamesDao.getLastData();
+		mView.addObject("lottoGame", lottoGame);
+
+	}
+
 }

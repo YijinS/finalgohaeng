@@ -37,13 +37,18 @@ public class PurchaseController {
 		return mView;
 	}
 	
-	/*
-	@RequestMapping("lotto645")
-	public String lotto645() {
 	
-		return "purchase/lotto645";
+	@RequestMapping("lotto645a")
+	public ModelAndView authLotto645a(HttpServletRequest request
+			,ModelAndView mView) {
+		
+		purchaseService.getPurchaseData(mView);
+		
+		mView.setViewName("purchase.lotto645");
+		
+		return mView;
 	}
-	*/
+	
 	
 	@RequestMapping("pension520")
 	public String pension520() {

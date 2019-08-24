@@ -1,6 +1,8 @@
 package com.jscb.gohaeng.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +45,28 @@ public class PurchaseLottoDaoImpl implements PurchaseLottoDao {
 	public List<PurchaseLottoDto> getList(String id) {
 		
 		List<PurchaseLottoDto> list;
-		list = sqlSession.selectList("purchaseLotto.getList",id);
+		// String 형태로 mybatis에 보내면 getter 오류가 나서 Map에 담아서 보내줌
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("id", id);
+		
+		list = sqlSession.selectList("purchaseLotto.getList",map);
 		
 		return list;
+	}
+
+//	@Override
+//	public int getGames(int plIndex) {
+//		
+//		int games = sqlSession.selectOne("purchaseLotto.getGames",plIndex);
+//		return games;
+//	}
+
+	@Override
+	public PurchaseLottoDto getData(int plIndex) {
+		
+		PurchaseLottoDto dto = sqlSession.selectOne("purchaseLotto.getData",plIndex);
+		
+		return dto;
 	}
 
 }

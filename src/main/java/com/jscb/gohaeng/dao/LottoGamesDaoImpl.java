@@ -1,6 +1,8 @@
 package com.jscb.gohaeng.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,22 @@ public class LottoGamesDaoImpl implements LottoGamesDao {
 		
 		return list;
 	}
+	
+	@Override
+	public List<LottoGamesDto> getList(int start, int end) {
+		
+		List<LottoGamesDto> list;
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start",start);
+		map.put("end",end);
 
+		
+		list = sqlSession.selectList("LottoGames.getList", map);
+		
+		return list;
+	}
+	
 	@Override
 	public LottoGamesDto getData(int games) {
 		
@@ -31,6 +48,7 @@ public class LottoGamesDaoImpl implements LottoGamesDao {
 		
 		return dto;
 	}
+	
 
 	@Override
 	public LottoGamesDto getLastData() {
@@ -40,4 +58,26 @@ public class LottoGamesDaoImpl implements LottoGamesDao {
 		return dto;
 	}
 
+	@Override
+	public void lottoDrawInsert(LottoGamesDto dto) {
+		sqlSession.insert("LottoGames.insert", dto);
+		
+	}
+
+	@Override
+	public int getLastGames(int games) {
+		return ((Integer)sqlSession.selectOne("LottoGames.getLastGames", games)).intValue();
+	}
+
+	@Override
+	public List<Integer> getGames() {
+
+		List<Integer> games = sqlSession.selectList("LottoGames.getGames");
+		
+		return games;
+	}
+
+	
+
+	
 }

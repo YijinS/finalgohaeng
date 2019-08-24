@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.dao.NoticeDao;
@@ -125,6 +124,37 @@ public class NoticeServiceImpl implements NoticeService {
 	public void delete(int index) {
 		noticeDao.delete(index);
 
+	}
+
+	@Override
+	public void regNotice(HttpServletRequest request) {
+		
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		
+		NoticeDto noticeDto = new NoticeDto();
+		noticeDto.setTitle(title);
+		noticeDto.setContent(content);
+		System.out.println();
+		System.out.println();
+		System.out.println("***********ㅈㅈㅈㅈㅈㅈㅈㅈㅈ    "+title+"***********ㅈㅈㅈㅈㅈㅈㅈㅈㅈ    ");
+		System.out.println("***********ㅈㅈㅈㅈㅈㅈㅈㅈㅈ    "+content+"***********ㅈㅈㅈㅈㅈㅈㅈㅈㅈ    ");
+		System.out.println();
+		System.out.println();
+		noticeDao.insert(noticeDto);
+	}
+
+	@Override
+	public void getUpdateData(ModelAndView mView, int index) {
+		
+		NoticeDto dto = noticeDao.getData(index);
+		mView.addObject("dto", dto);
+	}
+
+	@Override
+	public void updateNotice(NoticeDto dto) {
+		
+		noticeDao.update(dto);
 	}
 
 }
