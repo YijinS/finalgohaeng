@@ -33,6 +33,15 @@ public class GameResultServiceImpl implements GameResultService {
 		mView.addObject("list",list);
 
 	}
+	
+	@Override
+	public List<LottoGamesDto> getGamesList(int start, int end) {
+		
+		List<LottoGamesDto> list;
+		list = lottoGamesDao.getList(start, end);
+		
+		return list;
+	}
 
 	@Override
 	public LottoGamesDto getData(int games) {
@@ -72,6 +81,51 @@ public class GameResultServiceImpl implements GameResultService {
 		return map;
 		
 	}
+	
+public Map<String,Object> getColorByNumber(int start,int end) {
+		
+		List<LottoGamesDto> list = lottoGamesDao.getList(start,end);
+		int[] nums = new int[45];
+		for(LottoGamesDto lotto : list) {
+			for(int i=0;i<6;i++) {
+				String text = lotto.getWinningNum();
+				Integer num = Integer.parseInt(text.substring(i*2, (i+1)*2));
+				nums[num-1]++;
+			}
+			int bonusNum = Integer.parseInt(lotto.getBonusNum());
+			nums[bonusNum-1]++;
+		}
+		
+		Integer first = 0;
+		Integer second = 0;
+		Integer third = 0;
+		Integer fourth = 0;
+		Integer fifth = 0;
+		
+		for(int i=0;i<45;i++) {
+			if(i<11)
+				first += nums[i];
+			else if(i<21)
+				second += nums[i];
+			else if(i<31)
+				third += nums[i];
+			else if(i<41)
+				fourth += nums[i];
+			else
+				fifth += nums[i];
+		}
+		
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("first",first);
+		map.put("second",second);
+		map.put("third",third);
+		map.put("fourth",fourth);
+		map.put("fifth",fifth);
+		
+		return map;
+		
+	}
 
 	@Override
 	public List<Integer> getGames() {
@@ -80,5 +134,7 @@ public class GameResultServiceImpl implements GameResultService {
 		
 		return list;
 	}
+
+	
 
 }
