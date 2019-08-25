@@ -58,7 +58,7 @@ public class GuestController {
 
 		guestService.logout(session);
 
-		return "redirect:/home";
+		return "redirect:/";
 	}
 
 	/*-------------------로그아웃 매핑-----------------------*/

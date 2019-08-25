@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/reset.css?ver=1" />
 <link rel="stylesheet"
@@ -26,7 +26,7 @@
 			</nav>
 			<!-- -------------------------------------- -->
 			<!-- ----------메인컨텐츠---------- 영역 -->
-			<main id="article" class="contentsArticle">
+			<main id="article" class="contentsArticle" style="font-family: 'Roboto', 'Noto Sans KR', sans-serif;">
 			<div class="game-645-wrap">
 				<div class="game-645-header">
 					<div class="current">
@@ -35,7 +35,8 @@
 								<span>제</span><strong id="curRound">${lastGame.games+1}</strong><span>회</span>
 							</h2>
 							<p>
-								<fmt:formatDate var="drawDate" value="${lastGame.drawDate}" pattern="yy-MM-dd"/>
+								<fmt:formatDate var="drawDate" value="${lastGame.drawDate}"
+									pattern="yy-MM-dd" />
 								<span>추첨일</span><strong id="countTime">${drawDate}</strong>
 							</p>
 						</div>
@@ -46,30 +47,31 @@
 						</ul>
 					</div>
 					<div class="past">
-						<h3>
+						<h3 style="color:white;">
 							<strong>${lastGame.games}</strong>회 당첨결과
 						</h3>
 						<p>
-						<c:forEach begin="0" end="5" varStatus="vs" step="1">
-							<fmt:parseNumber var="num" value="${fn:substring(lastGame.winningNum,vs.index*2,vs.count*2) }" />
-							<c:choose>
-								<c:when test="${num lt 11 }">
-									<span class="ball color1"><span>${num }</span></span>
-								</c:when>
-								<c:when test="${num lt 21 }">
-									<span class="ball color2"><span>${num }</span></span>
-								</c:when>
-								<c:when test="${num lt 31 }">
-									<span class="ball color3"><span>${num }</span></span>
-								</c:when>
-								<c:when test="${num lt 41 }">
-									<span class="ball color4"><span>${num }</span></span>
-								</c:when>
-								<c:otherwise>
-									<span class="ball color5"><span>${num }</span></span>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
+							<c:forEach begin="0" end="5" varStatus="vs" step="1">
+								<fmt:parseNumber var="num"
+									value="${fn:substring(lastGame.winningNum,vs.index*2,vs.count*2) }" />
+								<c:choose>
+									<c:when test="${num lt 11 }">
+										<span class="ball color1"><span>${num }</span></span>
+									</c:when>
+									<c:when test="${num lt 21 }">
+										<span class="ball color2"><span>${num }</span></span>
+									</c:when>
+									<c:when test="${num lt 31 }">
+										<span class="ball color3"><span>${num }</span></span>
+									</c:when>
+									<c:when test="${num lt 41 }">
+										<span class="ball color4"><span>${num }</span></span>
+									</c:when>
+									<c:otherwise>
+										<span class="ball color5"><span>${num }</span></span>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
 
 							<span class="ext">보너스번호</span>
 							<c:choose>
@@ -99,19 +101,17 @@
 						<div class="header">
 							<h3>로또 구매방법 선택</h3>
 							<ul id="tabWay2Buy">
-								<li class="active"><a href="#divWay2Buy1" id="num1"
-									onclick="selectWayTab(0); return false;"><strong>혼합선택</strong><span>원하시는
-											번호를 직접입력 또는 자동으로 구매할 수 있습니다.</span></a></li>
-								<li><a href="#divWay2Buy1" id="num2"
-									onclick="selectWayTab(1); return false;"><strong>자동번호발급</strong><span>구매
-											수량 전체를 자동번호로 발급 받을 수 있습니다.</span></a></li>
-								<li><a href="#divWay2Buy2" id="num3"
-									onclick="selectWayTab(2); return false;"><strong>직전회차번호</strong><span>지난회차
-											구매한 최근 5게임 번호를 선택할 수 있습니다.</span></a></li>
-								<li><a href="#divWay2Buy3" id="num4"
-									onclick="selectWayTab(3); return false;"><strong>나의로또번호</strong><span>저장한
-											나의 로또번호에서 선택해서 구매할 수 있습니다.</span></a></li>
+								<li class="active">
+									<a href="#" id="mix" ><strong>혼합선택</strong><span>원하시는
+											번호를 직접입력 또는 자동으로 구매할 수 있습니다.</span></a>
+								</li>
+								<li>
+									<a href="#" id="auto" ><strong>자동번호발급</strong><span>구매
+											수량 전체를 자동번호로 발급 받을 수 있습니다.</span></a>
+								</li>
+								
 							</ul>
+							
 							<input type="hidden" id="selectedTab" name="selectedTab"
 								value="0"> <input type="hidden" id="ROUND_DRAW_DATE"
 								name="ROUND_DRAW_DATE" value="2019/08/24"> <input
@@ -133,16 +133,153 @@
 										<c:forEach var="number" begin="1" end="45" step="1">
 
 											<input type="checkbox" id="check645num${number }"
-												name="check645num" onchange="checkLength645($(this))"
-												value="${number }">
-											<label for="check645num${number }" style="padding-left:0px;">${number }</label>
+												name="check645num" value="${number }">
+											<label for="check645num${number }" style="padding-left: 0px;">${number }</label>
 										</c:forEach>
 
+											<div id="coverPaper" class="box-autoselect" style="display: none;">
+												<div class="inner">
+													<div class="inner2">
+														<p>구매하기 완료 시 <br>로또번호가 자동으로 <br>발급됩니다.</p>
+													</div>
+												</div>
+											</div>
+										<script>
+											$(function(){
+												// 왼쪽버튼
+												var leftBtn = $("#tabWay2Buy li");
+												var leftvalue;
+												var cover = $("#coverPaper");
+												leftBtn.click(function(){
+													
+													leftBtn.removeClass("active");
+													$(this).addClass("active");
+												
+													leftvalue = $(this).find('a').attr('id');
+													
+													if(leftvalue == 'auto')
+														cover.css('display','');
+													else
+														cover.css('display','none');
+
+												});
+
+												var check = $("#checkNumGroup input[type=checkbox]");
+												check.click(function(e){
+													// checked 갯수
+													var checked = $("#checkNumGroup input:checked");
+													var leng = checked.length;
+													// 6개 이상 체크방지
+													if(leng > 6){
+														alert("6개넘음");
+														$(this).prop('checked', false);
+													}
+													
+												});
+
+												var reset = $("#select_reset");
+												reset.click(function(){
+													check.prop("checked",false);
+												});
+
+
+												var alphabet = ['A','B','C','D','E'];
+												var a = 0;
+												var selectBtn = $("#btnSelectNum");
+												//테스트
+												var del = $("#delA");
+												del.click(function(){
+													var a = $("input[name=methodA]");
+													alert("method : "+a.val());
+												});
+												selectBtn.click(function () {
+
+													//var auto = $("#select_auto");
+													var checked = $("#checkNumGroup input:checked");
+													var amt = parseInt($("#amoundApply option:selected").val());
+													console.log("amt : "+amt);
+													console.log("시작 a : "+a);
+													console.log("a+amt : "+(a+amt));
+													
+													if(a+amt > 5){
+														alert("최대 5장 구매 가능합니다.");
+														return;
+													}
+													
+
+													for(var j=0;j<amt;j++){
+														var methodlabel = $("#method"+alphabet[a]);
+														var method_ = "input[name=method"+alphabet[a]+"]";
+														console.log(method_);
+														var method = $(method_);
+														console.log("method.val() = "+method.val());
+
+														if(leftvalue == 'auto'){
+															methodlabel.text("자동");
+															method.val(1);
+															console.log("입력후 method : "+method.val());
+															for(var i=0;i<6;i++){
+																var id = "#num"+(i+1)+alphabet[a];
+																var span = $(id);
+																span.addClass("ball");
+																span.text("0");
+															}
+														}
+														else{
+															methodlabel.text("수동");
+															method.val(2);
+															console.log("입력후 method : "+method.val());
+															checked.each(function (i, data) {
+																var id = "#num"+(i+1)+alphabet[a];
+																var span = $(id);
+																var num = data.value;
+
+																if(num < 11)
+																	span.addClass("color1");
+																else if(num < 21)
+																	span.addClass("color2");
+																else if(num < 31)
+																	span.addClass("color3");
+																else if(num < 41)
+																	span.addClass("color4");
+																else
+																	span.addClass("color5");
+
+																span.text(data.value);
+																var inputNum = $("input[name=num"+(i+1)+alphabet[a]+"]");
+																inputNum.val(data.value);
+																console.log(inputNum.val());
+															});
+														}
+														
+														a++;
+													}
+													
+													payAmt.text((a)*1000);
+													console.log("끝 a : "+a);
+												});
+												var payAmt = $("#payAmt");
+												var deposit = $("#myDeposit");
+
+												var buyForm = $("#buyForm");
+
+												var btnBuy = $("#btnBuy");
+												btnBuy.click(function(e){
+													e.preventDefault();
+													console.log("payAmt : "+payAmt.text());
+													console.log("deposit : "+deposit.text());
+													if(parseInt(payAmt.text()) > parseInt(deposit.text()))
+														alert("예치금이 부족합니다.");
+													else
+														buyForm.submit();
+												})
+											});
+										</script>
+
 										<div class="action">
-											<span class="btn"><input type="button" id="" name=""
-												value="초기화" onclick="resetNumber645()"></span> <input
-												class="checkbox" type="checkbox" id="checkAutoSelect"
-												name="checkAutoSelect"><label for="checkAutoSelect"><span>자동선택</span></label>
+											<span class="btn"><input type="button" id="select_reset" name="" value="초기화"></span>
+											<input class="checkbox" type="checkbox" id="select_auto" name="checkAutoSelect">
+											<label for="select_auto"><span>자동선택</span></label>
 											<span class="btn"><input type="button"
 												id="btnRegMyNumber" value="나의번호등록"></span>
 										</div>
@@ -159,15 +296,15 @@
 									</div>
 								</div>
 								<div class="amount">
-									<label for="amoundApply">적용수량</label> <select id="amoundApply"
-										name="" onchange="paperTextChange(this.value)">
+									<label for="amoundApply">적용수량</label> 
+									<select id="amoundApply" name="">
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
 										<option value="4">4</option>
 										<option value="5">5</option>
-									</select> <input type="button" class="button lrg confirm"
-										id="btnSelectNum" name="btnSelectNum" value="확인">
+									</select> 
+									<input type="button" class="button lrg confirm" id="btnSelectNum" name="btnSelectNum" value="확인">
 								</div>
 							</div>
 							<!-- //번호선택/자동번호발급 -->
@@ -224,103 +361,37 @@
 						</div>
 						<div class="game" id="selectRow">
 							<ul>
-								<!-- loop -->
-								<li><strong><span>A</span><span id="selectGbnA">미지정</span></strong>
-									<div class="nums">
-										<span id="num0A"></span>
-										<!-- 볼 컬러 1~10 color1, 11~20 color2, 21~30 color3 31~40 color4, 41~45 color5 -->
-										<span id="num1A"></span> <span id="num2A"></span> <span
-											id="num3A"></span> <span id="num4A"></span> <span id="num5A"></span>
-									</div>
-									<div class="btn">
-										<input type="button" class="button mid" id="btnUptA"
-											name="btnUpt" value="수정"> <input type="button"
-											class="button mid" id="btnDelA" name="btnDel" value="삭제">
-										<input type="button" class="button mid" id="btnCpyA"
-											name="btnCpy" value="번호복사">
-									</div></li>
-								<!-- //loop -->
-								<!-- loop -->
-								<li><strong><span>B</span><span id="selectGbnB">미지정</span></strong>
-									<div class="nums">
-										<span id="num0B"></span>
-										<!-- 볼 컬러 1~10 color1, 11~20 color2, 21~30 color3 31~40 color4, 41~45 color5 -->
-										<span id="num1B"></span> <span id="num2B"></span> <span
-											id="num3B"></span> <span id="num4B"></span>
-										<!-- 자동선택 번호 -->
-										<span id="num5B"></span>
-									</div>
-									<div class="btn">
-										<input type="button" class="button mid" id="btnUptB"
-											name="btnUpt" value="수정"> <input type="button"
-											class="button mid" id="btnDelB" name="btnDel" value="삭제">
-										<input type="button" class="button mid" id="btnCpyB"
-											name="btnCpy" value="번호복사">
-									</div></li>
-								<!-- //loop -->
-								<!-- loop -->
-								<li><strong><span>C</span><span id="selectGbnC">미지정</span></strong>
-									<div class="nums">
-										<span id="num0C"></span>
-										<!-- 자동선택 번호 -->
-										<span id="num1C"></span> <span id="num2C"></span> <span
-											id="num3C"></span> <span id="num4C"></span> <span id="num5C"></span>
-									</div>
-									<div class="btn">
-										<input type="button" class="button mid" id="btnUptC"
-											name="btnUpt" value="수정"> <input type="button"
-											class="button mid" id="btnDelC" name="btnDel" value="삭제">
-										<input type="button" class="button mid" id="btnCpyC"
-											name="btnCpy" value="번호복사">
-									</div></li>
-								<!-- //loop -->
-								<!-- loop : 미지정 -->
-								<li><strong><span>D</span><span id="selectGbnD">미지정</span></strong>
-									<div class="nums">
-										<span id="num0D"></span>
-										<!-- 미지정 -->
-										<span id="num1D"></span> <span id="num2D"></span> <span
-											id="num3D"></span> <span id="num4D"></span> <span id="num5D"></span>
-									</div>
-									<div class="btn">
-										<input type="button" class="button mid" id="btnUptD"
-											name="btnUpt" value="수정"> <input type="button"
-											class="button mid" id="btnDelD" name="btnDel" value="삭제">
-										<input type="button" class="button mid" id="btnCpyD"
-											name="btnCpy" value="번호복사">
-									</div></li>
-								<!-- //loop -->
-								<!-- loop : 미지정 -->
-								<li><strong><span>E</span><span id="selectGbnE">미지정</span></strong>
-									<div class="nums">
-										<span id="num0E"></span>
-										<!-- 미지정 -->
-										<span id="num1E"></span> <span id="num2E"></span> <span
-											id="num3E"></span> <span id="num4E"></span> <span id="num5E"></span>
-									</div>
-									<div class="btn">
-										<input type="button" class="button mid" id="btnUptE"
-											name="btnUpt" value="수정"> <input type="button"
-											class="button mid" id="btnDelE" name="btnDel" value="삭제">
-										<input type="button" class="button mid" id="btnCpyE"
-											name="btnCpy" value="번호복사">
-									</div></li>
-								<!-- //loop -->
+								<form id="buyForm" method="post">
+								<c:forTokens var="ch" items="A,B,C,D,E" delims=",">
+									<li>
+										<strong><span>${ch }</span><span id="method${ch }">미지정</span></strong>
+										<input type="hidden" name="method${ch }" value="0" />
+										<div class="nums">
+											<c:forEach var="num" begin="1" end="6">
+												<span id="num${num}${ch}"></span>
+												<input type="hidden" name="num${num}${ch}" value="0" />
+											</c:forEach>
+										</div>
+										<div class="btn">
+											<input type="button" class="button mid" id="del${ch}" name="del${ch}" value="삭제">
+										</div>
+									</li>
+								</c:forTokens>
+								</form>
 							</ul>
 						</div>
 						<div class="footer">
 							<div class="set set1">
-								<span>보유예치금</span> <input type="button" class="button sml" id="" name="" value="충전"> 
-								<strong>
-									<span id="moneyBalance">${sessionScope.member.deposit }</span><span>원</span>
+								<span>보유예치금</span> <input type="button" class="button sml" id=""
+									name="" value="충전"> <strong> <span
+									id="myDeposit">${sessionScope.member.deposit }</span><span>원</span>
 								</strong>
 							</div>
 							<div class="set set2">
 								<span>결제금액</span> <strong><span id="payAmt">0</span><span>원</span></strong>
 							</div>
 							<input type="button" class="button buy" id="btnBuy" name="btnBuy"
-								value="구매하기"> <input type="hidden" class="button buy"
-								id="btnBuy_send" name="btnBuy_send" value="실구매">
+								value="구매하기">
 						</div>
 					</div>
 					<!-- //선택 확인 -->

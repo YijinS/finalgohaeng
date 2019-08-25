@@ -26,7 +26,9 @@
 	</select>
 	
 	<select id="getList" parameterType="java.util.Map" resultMap="purchaseLottoDto">
-		SELECT * FROM PURCHASE_LOTTO
+		SELECT * 
+		FROM 
+			(SELECT * FROM PURCHASE_LOTTO ORDER BY PL_ISSUE_DATE DESC)
 		<if test="id != null and id !='' ">
 			WHERE MEMBER_ID = #{id}
 		</if>
