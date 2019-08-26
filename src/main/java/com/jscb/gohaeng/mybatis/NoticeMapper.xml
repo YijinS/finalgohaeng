@@ -4,6 +4,7 @@
 
 <resultMap type="com.jscb.gohaeng.dto.NoticeDto" id="NoticeDto">
 	<result property="index" column="NOTICE_INDEX"/>
+	<result property="writerId" column="WRITER_ID"/>
 	<result property="title" column="NOTICE_TITLE"/>
 	<result property="content" column="NOTICE_CONTENT"/>
 	<result property="hit" column="NOTICE_HIT"/>
@@ -60,8 +61,40 @@ resultMap="NoticeDto">
 </select>
 <!-- 조회수 증가 -->
 <update id="addHitCount" parameterType="int">
-	 UPDATE NOTICE
-		SET NOTICE_HIT=NOTICE_HIT+1
-		WHERE NOTICE_INDEX=#{index}
+	UPDATE NOTICE
+	SET NOTICE_HIT=NOTICE_HIT+1
+	WHERE NOTICE_INDEX=#{index}
 </update>
+<!-- 공지사항 등록 -->
+<insert id="insert" parameterType="com.jscb.gohaeng.dto.NoticeDto">
+	INSERT INTO NOTICE
+	(NOTICE_INDEX, WRITER_ID, NOTICE_TITLE, NOTICE_CONTENT)
+	VALUES(NOTICE_SEQ.NEXTVAL, 'ADMIN',  #{title}, #{content})	
+</insert>
+<!-- 공지사항 수정 -->
+<update id="update" parameterType="com.jscb.gohaeng.dto.NoticeDto">
+	UPDATE NOTICE
+	SET NOTICE_TITLE = #{title}, NOTICE_CONTENT = #{content}
+	WHERE NOTICE_INDEX = #{index}
+</update>
+
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -15,4 +15,8 @@ public interface NoticeDao {
 	public void delete(int index);
 	//조회수 증가 시키기
 	public void addHitCount(int index);
+	// 글 추가
+	public void insert(NoticeDto dto);
+	// 글 수정
+	public void update(NoticeDto dto);
 }

@@ -105,3 +105,4 @@
 		</section>
 	</div>
 </div>
+<c:set var="member" value="${sessionScope.member }" />

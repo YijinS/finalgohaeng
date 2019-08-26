@@ -5,7 +5,7 @@
 
 	<!-- 최상위 root 요청에 응답 -->
 	<welcome-file-list>
-		<welcome-file>home.do</welcome-file>
+		<welcome-file>home</welcome-file>
 	</welcome-file-list>
 
 	<!-- The definition of the Root Spring Container shared by all Servlets 

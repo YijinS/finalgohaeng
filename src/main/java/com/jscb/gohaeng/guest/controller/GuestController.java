@@ -60,7 +60,7 @@ public class GuestController {
 		
 		guestService.logout(session);
 
-		return "redirect:/home";
+		return "redirect:/";
 	}
 	/*-------------------로그아웃 매핑-----------------------*/
 
@@ -130,6 +130,33 @@ public class GuestController {
 //		return mView;
 //	}
 	
+	/*-------------------id/pwd찾기-----------------------*/
+	@RequestMapping("findidpw")
+	public ModelAndView findidpw(ModelAndView mView) {
+		mView.setViewName("guest.findidpw");
+		return mView;
+	}
+	
+	/*-------------------id찾기-----------------------*/
+	@PostMapping("findid")
+	public ModelAndView findid(@RequestParam(name="name")String name
+			,@RequestParam(name="email")String email
+			, ModelAndView mView) {
+		guestService.findid(name,email,mView);
+		mView.setViewName("guest.findid");
+		return mView;
+	}
+	
+	/*-------------------pw찾기-----------------------*/
+	@PostMapping("findpw")
+	public ModelAndView findpw(@RequestParam(name="id")String id
+			,@RequestParam(name="email")String email,
+			ModelAndView mView) throws UnsupportedEncodingException, MessagingException {
+		
+		guestService.findpw(id,email,mView);
+		mView.setViewName("guest.findpw");
+		return mView;
+	}
 
 
 }

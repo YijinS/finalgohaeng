@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
@@ -91,7 +93,6 @@ public class MyPageServiceImpl implements MyPageService {
 
 		depositDao.insert(deposit);
 		memberDao.updateDeposit(deposit);
-
 		// 세션에 있는 member 객체 업데이트 해준것. (예치금 변경된것)
 		session.setAttribute("member", memberDao.getData(id));
 
@@ -172,6 +173,31 @@ public class MyPageServiceImpl implements MyPageService {
 		System.out.println("dto1111111111111111111111111" + email + addr);
 		memberDao.update(dto);
 
+	}
+
+	@Override
+	public void changepwd(ModelAndView mView, HttpSession session, String pwd, String newpwd) {
+		
+		//세션객체 얻어오기
+		MemberDto member = (MemberDto)session.getAttribute("member");
+		//id에 해당하는 회원 정보가 있는지 확인하기!
+		String id = member.getId();
+		MemberDto dto = memberDao.getData(id);
+		String exist= "ok";
+		
+		//id가 존재하는지
+		if(dto != null) {
+			if(BCrypt.checkpw(pwd, dto.getPwd())) {
+				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+				dto.setPwd(encoder.encode(newpwd));
+				memberDao.update(dto);
+				mView.addObject("exist", exist);
+			}
+		}
+		else {
+			exist = "no";
+			mView.addObject("exist", exist);
+		}
 	}
 
 }

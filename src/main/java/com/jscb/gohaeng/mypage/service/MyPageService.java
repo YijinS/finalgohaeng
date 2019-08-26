@@ -18,8 +18,9 @@ public interface MyPageService {
 	public void getWithDrawList(ModelAndView mView, HttpSession session);
 	public void getPurchaseList(ModelAndView mView, HttpSession session);
 	public void viewPurchasedLotto(ModelAndView mView,Integer plIndex);
+
 	public void getData(ModelAndView mView, HttpSession session);
 	public void update( HttpServletRequest request, HttpSession session);
-	
 
+	public void changepwd(ModelAndView mView,HttpSession session, String pwd, String newpwd);
 }

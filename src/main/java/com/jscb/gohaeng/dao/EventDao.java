@@ -18,8 +18,10 @@ public interface EventDao {
 	//글 추가
 	public void insert(EventDto eventDto);
 	//글 수정 public void
-	//update(EventDto eventDto);
+	public void update(EventDto eventDto);
 	//글삭제
-	//public void delete(int index);
+	public void delete(int index);
+	//조회수 1증가 시키기
+	public void addHitCount(int index);
 
 }

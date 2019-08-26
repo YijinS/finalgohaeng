@@ -48,6 +48,18 @@ public class NoticeDaoImpl implements NoticeDao{
 		
 	}
 
+	@Override
+	public void insert(NoticeDto dto) {
+		session.insert("notice.insert", dto);
+		
+	}
+
+	@Override
+	public void update(NoticeDto dto) {
+		session.update("notice.update", dto);
+		
+	}
+
 	
 
 }

@@ -1,7 +1,9 @@
 package com.jscb.gohaeng.dao;
 
+
 import javax.servlet.http.HttpSession;
 
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -52,12 +54,11 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 
-
-	@Override
-	public void updatePwd(MemberDto dto) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void updatePwd(Map<String, String> map) {
+//		sqlSession.update("member.updatePwd", map);
+//		
+//	}
 
 	@Override
 	public void updateProfile(MemberDto dto) {
@@ -84,12 +85,14 @@ public class MemberDaoImpl implements MemberDao {
 		
 	}
 
-	@Override
-	public void update(MemberDto dto) {
-		sqlSession.update("member.update", dto);
-		  System.out.println("dto1111111111111111111111111"+ dto );
+		@Override
+		public void update(MemberDto dto) {
+			sqlSession.update("member.update", dto);
+			
+		}
+
+	public String getId(Map<String, String> map) {
+		return sqlSession.selectOne("member.getId", map);
 	}
-
-
 
 }

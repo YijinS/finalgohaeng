@@ -17,7 +17,7 @@ import com.jscb.gohaeng.dto.AddrDto;
 import com.jscb.gohaeng.dto.StoreDto;
 
 
-@Controller
+@Controller("adminStoreController")
 public class StoreController {
 
 	@Autowired

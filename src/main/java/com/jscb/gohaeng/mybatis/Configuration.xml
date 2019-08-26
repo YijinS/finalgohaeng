@@ -41,6 +41,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/jscb/gohaeng/mybatis/DepositMapper.xml"/>
 		<mapper resource="com/jscb/gohaeng/mybatis/EventMapper.xml"/>
 		<mapper resource="com/jscb/gohaeng/mybatis/WidthdrawMapper.xml"/>
+		<mapper resource="com/jscb/gohaeng/mybatis/EventMapper.xml"/>
+		<mapper resource="com/jscb/gohaeng/mybatis/FaqMapper.xml"/>
+		<mapper resource="com/jscb/gohaeng/mybatis/EventCommentMapper.xml"/>
+		<mapper resource="com/jscb/gohaeng/mybatis/BoardMapper.xml"/>
+
    </mappers>
 
 </configuration>

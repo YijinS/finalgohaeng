@@ -5,6 +5,7 @@ import java.util.Date;
 public class NoticeDto {
 	
 	private int index;
+	private String writerId;
 	private String title;
 	private String content;
 	private int hit;
@@ -20,11 +21,11 @@ public class NoticeDto {
 	private String nextTitle;
 
 	public NoticeDto() {}
-
-	public NoticeDto(int index, String title, String content, int hit, Date regDate, int startRowNum, int endRowNum,
-			int prevNum, int nextNum, String prevTitle, String nextTitle) {
+	public NoticeDto(int index, String writerId, String title, String content, int hit, Date regDate, int startRowNum,
+			int endRowNum, int prevNum, int nextNum, String prevTitle, String nextTitle) {
 		super();
 		this.index = index;
+		this.writerId = writerId;
 		this.title = title;
 		this.content = content;
 		this.hit = hit;
@@ -37,6 +38,7 @@ public class NoticeDto {
 		this.nextTitle = nextTitle;
 	}
 
+
 	public int getIndex() {
 		return index;
 	}
@@ -45,6 +47,13 @@ public class NoticeDto {
 		this.index = index;
 	}
 
+	public String getWriterId() {
+		return writerId;
+	}
+	public void setWriterId(String writerId) {
+		this.writerId = writerId;
+	}
+	
 	public String getTitle() {
 		return title;
 	}

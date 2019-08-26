@@ -2,6 +2,8 @@ package com.jscb.gohaeng.dao;
 
 import javax.servlet.http.HttpSession;
 
+import java.util.HashMap;
+import java.util.Map;
 import com.jscb.gohaeng.dto.DepositDto;
 import com.jscb.gohaeng.dto.MemberDto;
 
@@ -22,7 +24,7 @@ public interface MemberDao {
 	public boolean isExist(String inputId);
 
 	//비밀번호 수정하는 메소드
-	public void updatePwd(MemberDto dto);
+	//public void updatePwd(Map<String, String> map);
 	//프로파일 이미지를 수정하는 메소드
 	public void updateProfile(MemberDto dto);
 	//예치금 수정
@@ -33,5 +35,8 @@ public interface MemberDao {
 	
 	//회원정보 수정 
 	public void update(MemberDto dto);
+
+	//아이디찾기
+	public String getId(Map<String, String> map);
 
 }
