@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jscb.gohaeng.callcenter.service.FaqService;
 import com.jscb.gohaeng.callcenter.service.QnaService;
 import com.jscb.gohaeng.dto.QnaDto;
 
@@ -15,7 +16,8 @@ import com.jscb.gohaeng.dto.QnaDto;
 @Controller
 public class CallcenterController {
 	
-//	@Autowired
+	@Autowired
+	private FaqService faqservice;
 //	private QnaService service;
 	
 	/*----------------------- 건전한 복권문화  -----------------------*/
@@ -27,7 +29,12 @@ public class CallcenterController {
 	}
 	
 	/*----------------------- 자주묻는질문  -----------------------*/
-	
+	@RequestMapping("faq/list")
+	public ModelAndView faqlist(ModelAndView mView) {
+		faqservice.getList(mView);
+		mView.setViewName("callcenter.faq.list");
+		return mView;
+	}
 	
 	/*----------------------- 1:1상담  -----------------------*/
 	@RequestMapping("qna/list")

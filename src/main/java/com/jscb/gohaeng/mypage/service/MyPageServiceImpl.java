@@ -1,12 +1,15 @@
 package com.jscb.gohaeng.mypage.service;
 
 import java.util.Date;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,113 +27,177 @@ import com.jscb.gohaeng.dto.PurchaseLottoDto;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
-	
+
 	@Autowired
 	DepositDao depositDao;
-	
+
 	@Autowired
 	MemberDao memberDao;
-	
+
 	@Autowired
 	PurchaseLottoDao purchaseLottoDao;
-	
+
 	@Autowired
 	LottoDao lottoDao;
-	
+
 	@Autowired
 	LottoGamesDao lottoGamesDao;
-	
+
 	@Transactional
-	public void chargeDeposit(HttpServletRequest request,HttpSession session) {
-		
-		
-		MemberDto dto = (MemberDto)session.getAttribute("member");
+	public void chargeDeposit(HttpServletRequest request, HttpSession session) {
+
+		MemberDto dto = (MemberDto) session.getAttribute("member");
 		String id = dto.getId();
 		int price = Integer.parseInt(request.getParameter("amt"));
 		String bank = "고행은행";
 		String account = "없음";
 		System.out.println("충전금액임");
 		System.out.println(price);
-		
+
 		DepositDto deposit = new DepositDto();
 		deposit.setId(id);
 		deposit.setInout(1);
 		deposit.setBank(bank);
 		deposit.setPrice(price);
 		deposit.setAccount(account);
-		
+
 		depositDao.insert(deposit);
 		memberDao.updateDeposit(deposit);
-		
+
 		// 세션에 있는 member 객체 업데이트 해준것. (예치금 변경된것)
 		session.setAttribute("member", memberDao.getData(id));
 	}
 
 	@Override
 	public void getDepositHistory(ModelAndView mView, HttpSession session) {
-		
-		MemberDto dto = (MemberDto)session.getAttribute("member");
+
+		MemberDto dto = (MemberDto) session.getAttribute("member");
 		List<DepositDto> list = depositDao.getList(dto.getId());
-		mView.addObject("depositList",list);
+		mView.addObject("depositList", list);
 	}
 
-	
 	@Transactional
 	public void withDraw(HttpServletRequest request, HttpSession session) {
-		MemberDto dto = (MemberDto)session.getAttribute("member");
+		MemberDto dto = (MemberDto) session.getAttribute("member");
 		String id = dto.getId();
 		int price = Integer.parseInt(request.getParameter("price"));
 		String bank = request.getParameter("bank");
 		String account = request.getParameter("account");
-		
+
 		DepositDto deposit = new DepositDto();
 		deposit.setId(id);
 		deposit.setInout(0);
 		deposit.setBank(bank);
 		deposit.setPrice(price);
 		deposit.setAccount(account);
-		
+
 		depositDao.insert(deposit);
 		memberDao.updateDeposit(deposit);
-		
 		// 세션에 있는 member 객체 업데이트 해준것. (예치금 변경된것)
 		session.setAttribute("member", memberDao.getData(id));
-		
+
 	}
 
 	@Override
 	public void getWithDrawList(ModelAndView mView, HttpSession session) {
-		
-		MemberDto dto = (MemberDto)session.getAttribute("member");
+
+		MemberDto dto = (MemberDto) session.getAttribute("member");
 		String id = dto.getId();
-		
-		List<DepositDto> list = depositDao.getWithDrawList(id,0);
-		mView.addObject("withDrawList",list);
+
+		List<DepositDto> list = depositDao.getWithDrawList(id, 0);
+		mView.addObject("withDrawList", list);
 	}
 
 	@Override
 	public void getPurchaseList(ModelAndView mView, HttpSession session) {
-		
-		MemberDto member = (MemberDto)session.getAttribute("member");
+
+		MemberDto member = (MemberDto) session.getAttribute("member");
 		String id = member.getId();
 		List<PurchaseLottoDto> list = purchaseLottoDao.getList(id);
-		mView.addObject("list",list);
-		
+		mView.addObject("list", list);
+
 	}
 
 	@Override
 	public void viewPurchasedLotto(ModelAndView mView, Integer plIndex) {
-		
+
 		PurchaseLottoDto pld = purchaseLottoDao.getData(plIndex);
 		int games = pld.getLgmGames();
 		Date issuedate = pld.getIssueDate();
-		
+
 		LottoGamesDto lgm = lottoGamesDao.getData(games);
-		
+
 		List<LottoDto> lottoList = lottoDao.getList(plIndex);
-		mView.addObject("issueDate",issuedate);
-		mView.addObject("lottoGames",lgm);
-		mView.addObject("lottoList",lottoList);
+		mView.addObject("issueDate", issuedate);
+		mView.addObject("lottoGames", lgm);
+		mView.addObject("lottoList", lottoList);
+	}
+
+	@Override
+	public void getData(ModelAndView mView, HttpSession session) {
+		MemberDto member = (MemberDto) session.getAttribute("member");
+		MemberDto dto = new MemberDto();
+
+		// id에 해당하는 회원 정보가 있는지 확인하기!
+		String id = member.getId();
+		dto = memberDao.getData(id);
+		mView.addObject("dto", dto);
+	}
+
+	@Override
+	public void update(HttpServletRequest request, HttpSession session) {
+		MemberDto member = (MemberDto) session.getAttribute("member");
+		MemberDto dto = new MemberDto();
+		// id에 해당하는 회원 정보가 있는지 확인하기!
+		String id = member.getId();
+		String email = request.getParameter("email");
+		String addr = request.getParameter("addr1") + request.getParameter("addr2");
+
+		int checkSms = Integer.parseInt(request.getParameter("checkSms"));
+		int checkEmail = Integer.parseInt(request.getParameter("checkEmail"));
+		int checkSales = Integer.parseInt(request.getParameter("checkSales"));
+		/*
+		 * int checkSms = (int) request.getAttribute("checkSms"); int checkEmail = (int)
+		 * request.getAttribute("checkEmail"); int checkSales = (int)
+		 * request.getAttribute("checkSales");
+		 */
+		
+		dto.setId(id);
+		dto.setEmail(email);
+		dto.setAddr(addr);
+		
+		dto.setCheckEmail(checkEmail); 
+		dto.setCheckSales(checkSales);
+		dto.setCheckSms(checkSms);
+		 
+		System.out.println("dto1111111111111111111111111" + email + addr);
+		memberDao.update(dto);
+
+	}
+
+	@Override
+	public void changepwd(ModelAndView mView, HttpSession session, String pwd, String newpwd) {
+		
+		//세션객체 얻어오기
+		MemberDto member = (MemberDto)session.getAttribute("member");
+		//id에 해당하는 회원 정보가 있는지 확인하기!
+		String id = member.getId();
+		MemberDto dto = memberDao.getData(id);
+		String exist= "ok";
+		
+		//id가 존재하는지
+		if(dto != null) {
+			if(BCrypt.checkpw(pwd, dto.getPwd())) {
+				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+				dto.setPwd(encoder.encode(newpwd));
+				memberDao.update(dto);
+				mView.addObject("exist", exist);
+			}
+		}
+		else {
+			exist = "no";
+			mView.addObject("exist", exist);
+		}
 	}
 
 }

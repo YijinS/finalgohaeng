@@ -10,5 +10,7 @@ public interface IndexService {
 	public ModelAndView crawlingFortune(ModelAndView mView) throws IOException;
 	public void lottonum() throws IOException, ParseException;
 	public void getLastLotto(ModelAndView mView);
+	//로또 전체회차
+	public void totalgames() throws IOException, ParseException;
 	
 }

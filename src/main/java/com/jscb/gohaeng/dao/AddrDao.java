@@ -9,6 +9,5 @@ public interface AddrDao {
 	public List<AddrDto> getList(AddrDto dto);
 	public List<AddrDto> getSido();
 	public List<AddrDto> getGu(AddrDto dto);
-
-	 public List<StoreDto> getGulist(StoreDto dto);
+	public List<StoreDto> getGulist(StoreDto dto);
 }

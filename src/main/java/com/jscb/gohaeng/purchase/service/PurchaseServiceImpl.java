@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.dao.LottoDao;
 import com.jscb.gohaeng.dao.LottoGamesDao;
+import com.jscb.gohaeng.dao.MemberDao;
 import com.jscb.gohaeng.dao.PurchaseLottoDao;
 import com.jscb.gohaeng.dto.LottoDto;
 import com.jscb.gohaeng.dto.LottoGamesDto;
@@ -23,6 +24,8 @@ import com.jscb.gohaeng.dto.PurchaseLottoDto;
 public class PurchaseServiceImpl implements PurchaseService {
 	
 	@Autowired
+	MemberDao memberDao;
+	@Autowired
 	PurchaseLottoDao purchaseLottoDao;
 	@Autowired
 	LottoDao lottoDao;
@@ -31,17 +34,16 @@ public class PurchaseServiceImpl implements PurchaseService {
 	
 	// 로또 구매하기
 	@Transactional
-	public void buyLotto(ModelAndView mView, HttpServletRequest request, HttpSession session) {
+	public void buyLotto(ModelAndView mView
+			, PurchaseLottoDto dto
+			, List<LottoDto> list
+			, HttpSession session) {
 		
-		// 구매하기 위한 기본정보 꺼내오기
-		MemberDto member = (MemberDto)session.getAttribute("member");
-		//int storeIndex = Integer.parseInt(request.getParameter("store_index"));
 		int storeIndex = 0; // 0 이 인터넷복권
+		// 최신 회차 가져오기
 		LottoGamesDto lgm = lottoGamesDao.getLastData();
 		
 		// dto 에 구매정보 담기
-		PurchaseLottoDto dto = new PurchaseLottoDto();
-		dto.setMemberId(member.getId());
 		dto.setStoreIndex(storeIndex);
 		dto.setLgmGames(lgm.getGames());
 		
@@ -49,33 +51,25 @@ public class PurchaseServiceImpl implements PurchaseService {
 		purchaseLottoDao.insert(dto);
 		// 방금 구매한 인덱스 꺼내오기
 		int plIndex = purchaseLottoDao.getLastIndex();
-		List<LottoDto> list = new ArrayList<LottoDto>();
-		for(int i=0;i<5;i++) {
-			String paramname = String.format("num%d", i+1);
-			String paramname2 = String.format("method%d", i+1);
-			String lottoNum = request.getParameter(paramname);
-			
-			// 더이상 들어있는 내용이 없으면 for문 멈춤
-			if(lottoNum == null || lottoNum.equals(""))
-				break;
-			
-			int method = Integer.parseInt(request.getParameter(paramname2));
-			
-			
-			
-			// lottoDto 에 채워주고
-			LottoDto lottoDto = new LottoDto();
-			lottoDto.setNum(lottoNum);
-			lottoDto.setMethod(method);
-			lottoDto.setPlIndex(plIndex);
-			
-			// list에 추가함
-			list.add(lottoDto);	
-		}
 		
+		// 인덱스 lottoDto 에 각각 넣어주기
+		for(LottoDto lotto:list)
+			lotto.setPlIndex(plIndex);
+
 		// 2번째   Lotto 테이블에 list를 등록함
 		lottoDao.insert(list);
-		mView.setViewName("redirect:/home2");
+		
+		int payAmt = list.size() * 1000;
+		System.out.println("구매금액 : "+payAmt);
+		MemberDto member = memberDao.getData(dto.getMemberId());
+		int deposit = member.getDeposit()-payAmt;
+		System.out.println("예치금에서 구매금액을 뺀 금액 : "+deposit);
+		member.setDeposit(deposit);
+		
+		memberDao.update(member);
+		session.setAttribute("member", member);
+		
+		mView.setViewName("redirect:/");
 	}
 
 	@Override

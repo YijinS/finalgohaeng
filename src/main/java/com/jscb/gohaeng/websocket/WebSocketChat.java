@@ -24,15 +24,18 @@ public class WebSocketChat {
     
     private static final List<Session> sessionList=new ArrayList<Session>();;
     private static final Logger logger = LoggerFactory.getLogger(WebSocketChat.class);
+    
     public WebSocketChat() {
         // TODO Auto-generated constructor stub
         System.out.println("웹소켓(서버) 객체생성");
     }
+    
     @RequestMapping(value="/chat.do")
     public ModelAndView getChatViewPage(ModelAndView mav) {
         mav.setViewName("chat");
         return mav;
     }
+    
     @OnOpen
     public void onOpen(Session session) {
         logger.info("Open session id:"+session.getId());
@@ -62,6 +65,7 @@ public class WebSocketChat {
             System.out.println(e.getMessage());
         }
     }
+    
     @OnMessage
     public void onMessage(String message,Session session) {
         logger.info("Message From "+message.split(",")[1] + ": "+message.split(",")[0]);
@@ -74,6 +78,7 @@ public class WebSocketChat {
         }
         sendAllSessionToMessage(session, message);
     }
+    
     @OnError
     public void onError(Throwable e,Session session) {
         
