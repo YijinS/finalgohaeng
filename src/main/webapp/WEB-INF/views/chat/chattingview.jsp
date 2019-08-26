@@ -25,7 +25,7 @@
 <title>Chatting page</title>
 </head>
 <body>
-	<h1>Chatting Page (id: ${userid})</h1>
+	<h1>채팅방 (id: ${userid})</h1>
 	<div>
 		<input type="button" id="chattinglistbtn" value="채팅 참여자 리스트">
 	</div>
@@ -49,7 +49,7 @@
 <script type="text/javascript">
 $(function(){
 	$("#chattinglistbtn").click(function(){
-		var infodialog = new $.Zebra_Dialog('<strong>채팅방 참여자 리스트:</strong><br>'+$('#sessionuserid').val(),
+		var infodialog = new $.Zebra_Dialog('<strong>채팅방 참여자 :</strong><br>'+$('#sessionuserid').val(),
 		{
 			title: 'Chatting List',
 			type: 'confirmation',
@@ -89,7 +89,7 @@ function sendMessage(){
 function onMessage(evt){  //변수 안에 function자체를 넣음.
 	var data = evt.data;
 	
-	console.log("evt.data" + evt.data);
+	console.log("evt.data" + evt.data);  /* 14xbvj1l|채팅 내용<br/> */
 	
 	var sessionid = null;
 	var message = null;
@@ -103,16 +103,15 @@ function onMessage(evt){  //변수 안에 function자체를 넣음.
 	
 	//current session id//
 	var currentuser_session = $('#sessionuserid').val();
-	console.log('current session id: ' + currentuser_session);
-	
 	sessionid = strArray[0]; //현재 메세지를 보낸 사람의 세션 등록//
 	message = strArray[1]; //현재 메세지를 저장//
 	
+	console.log('current session id:' + currentuser_session);  
 	//나와 상대방이 보낸 메세지를 구분하여 영역을 나눈다.//
 	if(sessionid == currentuser_session){
 		var printHTML = "<div class='well'>";
 		printHTML += "<div class='alert alert-info'>";
-		printHTML += "<strong>["+ essionid +"] -> "+message+"</strong>";
+		printHTML += "<strong>(id)"+ currentuser_session+" : "+message+"</strong>";
 		printHTML += "</div>";
 		printHTML += "</div>";
 		
@@ -121,15 +120,14 @@ function onMessage(evt){  //변수 안에 function자체를 넣음.
 	} else{
 		var printHTML = "<div class='well'>";
 		printHTML += "<div class='alert alert-warning'>";
-		printHTML += "<strong>["+sessionid+"] -> "+message+"</strong>";
+		printHTML += "<strong>(id)"+currentuser_session+" : "+message+"</strong>";
 		printHTML += "</div>";
 		printHTML += "</div>";
 		
 		$("#chatdata").append(printHTML);
 	}
-	
-	console.log('chatting data: ' + data);
   	/* sock.close(); */
+
 }
     
 function onClose(evt){

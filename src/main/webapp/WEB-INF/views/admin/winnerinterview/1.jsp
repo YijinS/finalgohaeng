@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <main>
 <div id="article">
@@ -20,7 +21,8 @@
 							<strong class="game">${list.wiIndex}</strong> 
 							<a href="1detail?wiIndex=${list.wiIndex}">${list.wiTitle}</a>
 							<br>
-							<span class="date"><strong>작성일: </strong>${list.wiRegDate}</span> <br>
+							<span class="date"><strong>작성일: </strong><fmt:formatDate value="${list.wiRegDate}"
+											pattern="yyyy-MM-dd" /></span> <br>
 							<p class="comment">
 								<strong>소감한마디 : </strong><span></span>
 							</p>

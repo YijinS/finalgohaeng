@@ -28,13 +28,22 @@ public class HomeController {
 	@RequestMapping("/")
 	public ModelAndView home(ModelAndView mView) throws IOException, ParseException {
 
-		indexService.crawlingFortune(mView);
+		indexService.crawlingFortune(mView); 
 		indexService.getLastLotto(mView);
 
 		//indexService.totalgames();
 		mView.setViewName("common.index");
 
 		//indexService.lottonum();
+		return mView;
+	}
+	
+	@RequestMapping("/admin/adminindex")
+	public ModelAndView adminIndex(ModelAndView mView){
+
+
+		mView.setViewName("admin/adminindex");
+
 		return mView;
 	}
 

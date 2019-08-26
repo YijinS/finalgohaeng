@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jscb.gohaeng.dto.MemberDto;
+import com.jscb.gohaeng.dto.WidthdrawDto;
 import com.jscb.gohaeng.guest.service.GuestService;
 
 @RequestMapping("/guest/")
@@ -55,13 +57,38 @@ public class GuestController {
 	/*-------------------로그아웃 매핑-----------------------*/
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
-
+		
 		guestService.logout(session);
 
 		return "redirect:/";
 	}
-
 	/*-------------------로그아웃 매핑-----------------------*/
+
+
+	
+	/*-------------------회원 탈퇴 -----------------------*/
+	@GetMapping("withdrawform")
+	public ModelAndView withdrawform(ModelAndView mView) {
+		
+		mView.setViewName("mypage.personaldata.3");
+		return mView;
+	}
+	
+	@RequestMapping(value="widthdraw2" , method = {RequestMethod.GET, RequestMethod.POST }) 
+	public String withdraw(String id, HttpSession session, WidthdrawDto dto, HttpServletRequest request) {
+		
+		
+		guestService.insert(dto);
+		
+		guestService.delete(request.getParameter("userId"));
+
+		return "mypage.personaldata.widthdraw";
+		
+	}
+
+	/*-------------------회원 탈퇴 -----------------------*/
+
+	/*-------------------회원가입 매핑-----------------------*/
 
 	@GetMapping("signup")
 	public String signupform() {
@@ -130,5 +157,6 @@ public class GuestController {
 		mView.setViewName("guest.findpw");
 		return mView;
 	}
+
 
 }

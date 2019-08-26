@@ -14,7 +14,7 @@ import com.jscb.gohaeng.dto.MemberDto;
 @Controller
 public class ChattingController {
 	
-	@RequestMapping(value="/chatting.do", method = RequestMethod.GET)
+	@RequestMapping(value="/chatting", method = RequestMethod.GET)
 	public ModelAndView chat(ModelAndView mv, HttpSession session) {
 		
 		MemberDto member = (MemberDto)session.getAttribute("member");
@@ -26,15 +26,12 @@ public class ChattingController {
 		//시큐리티가 적용되 세션 값을 user를 이용해 불러온다
 		//웹 소켓에서 사용하는 세션 값은 user의 값과 동일하다
 		//스프링에선 시큐리티 통한 세션관리 권장 
-		/*
-		 * User user =
+		/* User user =
 		 * (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		 */
 //		오류!!! getAuthentication() returned null. It means that for Spring security, there is no currently authenticated user.
 		
-		
-		
-		System.out.println("user name : " + member.getId());
+		System.out.println("user name : " + member.getName());
 		
 		System.out.println("normal chat page");
 		
