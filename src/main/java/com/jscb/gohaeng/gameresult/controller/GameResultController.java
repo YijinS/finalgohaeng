@@ -43,7 +43,7 @@ public class GameResultController {
 	public ModelAndView gamesDraw(ModelAndView mView) {
 		
 		gameResultService.getLastGames(mView);
-		gameResultService.getGamesList(mView);
+		mView.addObject("list",gameResultService.getGames());
 		
 		mView.setViewName("gameresult.lotto645.1");
 		return mView;
@@ -172,6 +172,8 @@ public class GameResultController {
 		
 		mView.addObject("save",map);
 		mView.addObject("games",gameResultService.getGames());
+		mView.addObject("list",gameResultService.getColorByNumber(start, end));
+		mView.addObject("gamesList",gameResultService.getGamesList(start, end));
 		mView.setViewName("gameresult.lottostat.3");
 		return mView;
 	}

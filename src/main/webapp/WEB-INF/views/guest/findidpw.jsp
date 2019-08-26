@@ -32,22 +32,49 @@
 				</div>
 				<div>
 					<div class="content_wrap content_find_idpass">
+						<div>
 						<form action="findid" method="post">
 							<div class="find_what">
 								<div class="set id">
 									<h4>아이디 찾기</h4>
 									<p class="desc">
-										아이디는 회원가입시 입력한 이름과 이메일을 <br>통해 확인하실 수 있습니다.
+										아이디는 회원가입시<br>입력한 이름과 이메일을 통해 확인하실 수 있습니다.
 									</p>
 									<div class="mid">
-										<label for="idenUserId">이름</label><input type="text" size="10"
-											name="name" id="name"><br /> <label for="idenUserId">이메일</label><input
-											type="text" size="10" name="email" id="email"> <input
-											class="btn_common lrg blu" type="submit" value="확인" />
+										<label for="idenUserId">이름</label>
+										<input type="text" size="10" name="name" id="name">
+										<label for="idenUserId">이메일</label>
+										<input type="text" size="10" name="email" id="email">
+										<div>
+											<input class="btn_common lrg blu" type="submit" value="확인" />
+										</div>
 									</div>
 								</div>
+							</div>
 						</form>
-						<form action="findpw"  method="post">
+						</div>
+						<div>
+						<form action="findpw" method="post">
+							<div class="find_what">
+								<div class="set pass">
+									<h4>비밀번호 찾기</h4>
+									<p class="desc">
+										회원가입시 입력한 정보와 <br>일치하면 임시 비밀번호를 이메일로 보내드립니다.
+									</p>
+									<div class="mid">
+										<label for="idenUserId">아이디</label>
+										<input type="text" size="10" name="id" id="name">
+										<label for="idenUserId">이메일</label>
+										<input type="text" size="10" name="email" id="email">
+										<div>
+											<input class="btn_common lrg blu" type="submit" value="확인" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+						</div>
+						<!-- <form action="findpw" method="post">
 							<div class="set pass">
 								<h4>비밀번호 찾기</h4>
 								<p class="desc">
@@ -60,11 +87,10 @@
 										class="btn_common lrg blu" type="submit" value="확인" />
 								</div>
 							</div>
-						</form>
+						</form> -->
 					</div>
 				</div>
 			</div>
+		</section>
 	</div>
-	</section>
-</div>
 </div>

@@ -3,30 +3,57 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<div class="container">
-	<p><strong>${id }</strong> 님 로그인중...</p>
-	<h3>카페 글 수정 폼 입니다.</h3>
-	<form action="update.do" method="post">
-		<%-- 폼 제출할때 글번호도 전송되게 하기 위해 --%>
-		<input type="hidden" name="num" value="${dto.num }" />
-		<label for="num">글번호</label>
-		<input type="text" id="num" value="${dto.num }"  disabled="disabled"/>
-		<br/>
-		<label for="title">제목</label>
-		<input type="text" name="title" id="title" value="${dto.title }" />
-		<br/>
-		<label for="content">내용</label>
-		<textarea name="content" id="content">${dto.content }</textarea>
-		<div>
-			<input type="button" onclick="pasteHTML();" value="본문에 내용 넣기" />
-			<input type="button" onclick="showHTML();" value="본문 내용 가져오기" />
-			<input type="button" onclick="submitContents(this);" value="서버로 내용 전송" />
-			<input type="button" onclick="setDefaultFont();" value="기본 폰트 지정하기 (궁서_24)" />
-		</div>	
-	</form>
+
+
+<div class="article">
+	<div class="container">
+		<h3>이벤트 등록하기</h3>
+		<form action="update" method="post">
+			<input type="hidden" name="index" value="${eventDto.index }" />
+			<div class="form-group">
+			<label for="title">제목</label>
+			<input type="text" class="form-control" name="title" id="title" value="${eventDto.title }" />
+			</div>
+			<div class="form-group">
+			<label for="startDate">이벤트 시작일</label>
+			<input type="date" name="startDate" class="form-control" value="${eventDto.startDate }">
+			</div>
+			<div class="form-group">
+			<label for="endDate">이벤트 종료일</label>
+			<input type="date" name="endDate" class="form-control" value="${eventDto.endDate }">
+			</div>
+			<div class="form-group">
+			<label for="drawDate">추첨일</label>
+			<input type="date" name="drawDate" class="form-control" value="${eventDto.drawDate }">
+			</div>
+			<div class="form-group">
+			<label for="subTitle">설명</label>
+			<input type="text" class="form-control" name="subTitle" id="title" value="${eventDto.subTitle }"/>
+			</div>
+			<label for="content">내용</label>
+			<textarea name="content" id="content" style=" width: 100%; height: 400px;">${eventDto.content }</textarea>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="dpOptions" id="dpOptions1" checked="checked" value="0">
+				<label class="form-check-label" for="dpOptions">공개</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="dpOptions" id="dpOptions2" value="1">
+				<label class="form-check-label" for="dpOptions">비공개</label>
+				</div>
+			<div class="text-right">
+				<a href="${pageContext.request.contextPath }/admin/event/list" class="btn btn-secondary btn-lg">취소</a>
+				<input type="button" class="btn btn-primary btn-lg" onclick="submitContents(this);" value="등록" />
+			</div>
+		</form>
+	</div>
 </div>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-latest.js"></script>
 <!-- SmartEditor 에서 필요한 javascript 로딩  -->
-<script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
+<script src="${pageContext.request.contextPath }/resources/SmartEditor/js/HuskyEZCreator.js"></script>
 <script>
 	var oEditors = [];
 	
@@ -36,7 +63,7 @@
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
 		elPlaceHolder: "content",
-		sSkinURI: "${pageContext.request.contextPath}/SmartEditor/SmartEditor2Skin.html",	
+		sSkinURI: "${pageContext.request.contextPath}/resources/SmartEditor/SmartEditor2Skin.html",	
 		htParams : {
 			bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 			bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -79,6 +106,3 @@
 		oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
 	}
 </script>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">

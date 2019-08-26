@@ -4,7 +4,7 @@
 <header>
     <div class="nav_wrap">
 
-        <h1><a href="${pageContext.request.contextPath }/home2"><img src="${pageContext.request.contextPath }/resources/images/logo-header.png" alt="Gohaeng"></a></h1>
+        <h1><a href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/images/logo-header.png" alt="Gohaeng"></a></h1>
         <h2 class="hide">대메뉴</h2>
         <nav class="gnbNav">
             <div class="util">
