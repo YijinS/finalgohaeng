@@ -89,8 +89,7 @@ public class StoreController {
 
 	//새글 추가 폼 요청 처리
 	@RequestMapping("/store/1insertform")
-	public ModelAndView insertform
-	(HttpServletRequest request){
+	public ModelAndView insertform(HttpServletRequest request){
 
 		return new ModelAndView("admin.store.lotto.1insertform");
 	}

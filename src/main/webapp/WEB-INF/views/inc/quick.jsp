@@ -1,9 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <aside id="asideQuick" class="quick_aside fold">
 	<a href="#" class="toggle">"퀵메뉴열기"</a>
 	<div class="inner">
+		<c:choose>
+			<c:when test="${not empty sessionScope.member.id}">
+				<ul>
+					<li id="chatting"><a id="chatting" class="btn_search"
+						onclick="${pageContext.request.contextPath}/chatting','a','resizable=no width=700 height=800');return false"
+						href="${pageContext.request.contextPath}/chatting" title="새창">
+							<img src="https://image.flaticon.com/icons/svg/1256/1256649.svg"
+							alt="" style="width: 50px; heigth: 50px" />
+					</a></li>
+				</ul>
+			</c:when>
+		</c:choose>
 		<ul class="prog">
 			<li class="p1"><a href="#">나의복권<br>건전지수
 			</a></li>
@@ -21,6 +34,15 @@
 		<a class="#">위로가기</a>
 	</div>
 </aside>
+<script>
+var chatting = document.getElementById('chatting');
+chatting.on("click", function(){
+	alert("chatting");
+})
+
+
+
+</script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var spread;

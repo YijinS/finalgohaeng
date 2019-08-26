@@ -20,13 +20,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.TempKey;
 import com.jscb.gohaeng.dao.MemberDao;
+import com.jscb.gohaeng.dao.WidthrawDao;
 import com.jscb.gohaeng.dto.MemberDto;
+import com.jscb.gohaeng.dto.WidthdrawDto;
 
 @Service
 public class GuestServiceImpl implements GuestService {
 
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	private WidthrawDao wdDao;
+	
+	
 	//email인증 관련
 	@Autowired 
 	private JavaMailSender mailSender; 
@@ -152,6 +159,27 @@ public class GuestServiceImpl implements GuestService {
 		memberDao.userAuthStatus(email);
 		
 	}
+
+	@Override
+	public void withdraw(HttpSession session) {
+		session.removeAttribute("member");
+		
+	}
+
+	@Override
+	public void delete(String id) {
+		memberDao.delete(id);
+		
+	}
+
+	@Override
+	public void insert(WidthdrawDto dto) {
+		wdDao.insert(dto);
+		
+	}
+
+	
+	
 	
 	
 //	@Override

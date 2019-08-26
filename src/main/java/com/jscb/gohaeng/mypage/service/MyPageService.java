@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.dto.DepositDto;
+import com.jscb.gohaeng.dto.MemberDto;
 
 public interface MyPageService {
 	
@@ -17,4 +18,8 @@ public interface MyPageService {
 	public void getWithDrawList(ModelAndView mView, HttpSession session);
 	public void getPurchaseList(ModelAndView mView, HttpSession session);
 	public void viewPurchasedLotto(ModelAndView mView,Integer plIndex);
+	public void getData(ModelAndView mView, HttpSession session);
+	public void update( HttpServletRequest request, HttpSession session);
+	
+
 }

@@ -21,7 +21,7 @@
                   <ul>
                      <c:choose>
                         <c:when test="${sessionScope.member.id eq 'ADMIN' }">
-                           <li><a href="${pageContext.request.contextPath }/home2">관리자 페이지</a></li>
+                           <li><a href="${pageContext.request.contextPath }/admin/adminindex">관리자 페이지</a></li>
                         </c:when>
                         <c:otherwise>
                            <li><a href="${pageContext.request.contextPath }/mypage/deposit/1">예치금 : ${member.deposit }원 </a></li>

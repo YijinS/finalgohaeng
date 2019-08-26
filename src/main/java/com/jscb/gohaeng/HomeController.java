@@ -27,7 +27,7 @@ public class HomeController {
 	@RequestMapping("/")
 	public ModelAndView home(ModelAndView mView) throws IOException, ParseException {
 
-		indexService.crawlingFortune(mView);
+		indexService.crawlingFortune(mView); 
 		indexService.getLastLotto(mView);
 
 
@@ -35,6 +35,15 @@ public class HomeController {
 
 		// 여기부분이나 service쪽에서 조건문 걸어서 최근회차가 있으면 실행안되게 하고싶어!!
 		indexService.lottonum();
+		return mView;
+	}
+	
+	@RequestMapping("/admin/adminindex")
+	public ModelAndView adminIndex(ModelAndView mView){
+
+
+		mView.setViewName("admin/adminindex");
+
 		return mView;
 	}
 

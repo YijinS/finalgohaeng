@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.dto.MemberDto;
+import com.jscb.gohaeng.dto.WidthdrawDto;
 
 public interface GuestService {
 	
@@ -22,4 +23,12 @@ public interface GuestService {
 	public void logout(HttpSession session);
 	//public void emailAuth(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException;
 	public void userAuthStatus(String email);
+	public void insert(WidthdrawDto dto);
+	
+	
+	
+	public void withdraw(HttpSession session); //회원 세션 제거
+	public void delete(String id); //회원 정보 제거 
+
+	
 }

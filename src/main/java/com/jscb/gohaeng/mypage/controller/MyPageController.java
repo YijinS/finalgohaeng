@@ -6,12 +6,17 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.dao.PurchaseLottoDao;
+import com.jscb.gohaeng.dto.MemberDto;
+import com.jscb.gohaeng.dto.StoreDto;
+import com.jscb.gohaeng.dto.WidthdrawDto;
 import com.jscb.gohaeng.mypage.service.MyPageService;
 
 @RequestMapping("/mypage/")
@@ -92,4 +97,29 @@ public class MyPageController {
 		return "redirect:/mypage/deposit/3";
 	}
 	/*-------------------------예치금 매핑------------------------*/
+	
+	/*-------------------개인정보 수정 -----------------------*/
+	@GetMapping("editData")
+	public ModelAndView editDataform(ModelAndView mView, HttpSession session) {
+		myPageService.getData(mView, session);
+	
+	
+		mView.setViewName("mypage.personaldata.1");
+
+		return mView;
+	}
+	
+	@PostMapping("editData2")
+	public String editData(ModelAndView mView, HttpServletRequest request, HttpSession session) {
+		myPageService.update(request, session);
+		myPageService.getData(mView, session); 
+		return "mypage.personaldata.1edit";
+	}
+	/*
+	 * @RequestMapping(value="editDataform" , method = {RequestMethod.GET,
+	 * RequestMethod.POST }) public String editData(@ModelAttribute MemberDto dto) {
+	 * myPageService.update(dto);
+	 * 
+	 * return "mypage.personaldata.1"; }
+	 */
 }
