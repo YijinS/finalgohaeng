@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="eventComment">
+
+	<resultMap type="com.jscb.gohaeng.dto.EventCommentDto" id="eventCommentDto">
+		<result property="index" column="EC_INDEX" />
+		<result property="writerId" column="EC_WRITER_ID" />
+		<result property="content" column="EC_CONTENT" />
+		<result property="targetId" column="EC_TARGET_ID" />
+		<result property="eventIndex" column="EVENT_INDEX" />
+		<result property="commentGroup" column="EC_COMMENT_GROUP" />
+		<result property="deleted" column="EC_DELETED" />
+		<result property="regDate" column="EC_REG_DATE" />
+	</resultMap>
+	
+	<select id="getSequence" resultType="int">
+		SELECT EC_SEQ.nextval FROM DUAL
+	</select>
+	
+	<insert id="insert" parameterType="com.jscb.gohaeng.dto.EventCommentDto">
+		INSERT INTO EVENT_COMMENT(EC_INDEX, EC_WRITER_ID, EC_CONTENT, EC_TARGET_ID, 
+			EVENT_INDEX, EC_COMMENT_GROUP )
+		VALUES(#{index}, #{writerId}, #{content}, #{targetId}, #{eventIndex},
+			#{commentGroup} )
+	</insert>
+
+	<select id="getList" parameterType="int" resultMap="eventCommentDto">
+		SELECT EC_INDEX, EC_WRITER_ID, EC_CONTENT, EC_TARGET_ID, 
+			EVENT_INDEX, EC_COMMENT_GROUP, EC_DELETED, EC_REG_DATE 
+		FROM EVENT_COMMENT 
+		INNER JOIN MEMBER 
+		ON EVENT_COMMENT.EC_WRITER_ID = MEMBER.MEMBER_ID 
+		WHERE EVENT_INDEX = #{eventIndex} 
+		ORDER BY EC_COMMENT_GROUP ASC, EC_INDEX ASC
+	</select>
+	
+	<update id="delete" parameterType="int">
+		UPDATE EVENT_COMMENT 
+		SET EC_DELETED = 'yes' 
+		WHERE EC_INDEX = #{index}
+	</update>
+	
+	<update id="update" parameterType="com.jscb.gohaeng.dto.EventCommentDto">
+		UPDATE EVENT_COMMENT 
+		SET EC_CONTENT = #{content} 
+		WHERE EC_INDEX = #{index}
+	</update>
+	
+</mapper>

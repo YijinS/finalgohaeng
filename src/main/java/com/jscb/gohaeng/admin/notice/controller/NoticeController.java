@@ -4,11 +4,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.admin.notice.service.NoticeService;
+import com.jscb.gohaeng.dto.NoticeDto;
 @Controller
 public class NoticeController {
 	
@@ -34,5 +37,60 @@ public class NoticeController {
 		noticeService.delete(index);
 		return "admin.notice.delete";
 	}
+	
+	@RequestMapping("/admin/notice/insertform")
+	public ModelAndView insertform(HttpServletRequest request) {
+		
+		return new ModelAndView("admin.notice.insertform");
+	}
+	
+	@RequestMapping(value = "/admin/notice/insert", method = RequestMethod.POST)
+	public ModelAndView insert(HttpServletRequest request) {
+		
+		noticeService.regNotice(request);
+		return new ModelAndView("redirect:/admin/notice/list");
+	}
+	
+	@RequestMapping("/admin/notice/updateform")
+	public ModelAndView updateform(HttpServletRequest request,
+			@RequestParam int index, ModelAndView mView) {
+		
+		noticeService.getUpdateData(mView, index);
+		mView.setViewName("admin.notice.updateform");
+		return mView;
+	}
+	
+	@RequestMapping("/admin/notice/update")
+	public ModelAndView update(HttpServletRequest request,
+			@ModelAttribute NoticeDto dto) {
+		
+		noticeService.updateNotice(dto);
+		return new ModelAndView("redirect:/admin/notice/detail?index="+dto.getIndex());
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

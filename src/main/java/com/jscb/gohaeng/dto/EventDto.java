@@ -11,37 +11,47 @@ public class EventDto {
 	private String subTitle;
 	private String content;
 	private int enable;
-	private int display;
-	private Date drawDate;
 	private Date startDate;
 	private Date endDate;
 	private Date regDate;
-	
+	private Date drawDate;
+	private int display;
+	private int hit;
+
 	private int startRowNum;
 	private int endRowNum;
+	
+	private String prevTitle;
+	private String nextTitle;
 	
 	private int prevNum;
 	private int nextNum;
 	
 	public EventDto() {}
-	public EventDto(int index, String title, Date drawDate, String subTitle, String content, int enable, Date startDate,
-			Date endDate, Date regDate, int display, int startRowNum, int endRowNum, int prevNum, int nextNum) {
+	public EventDto(int index, String title, String subTitle, String content, int enable, Date startDate, Date endDate,
+			Date regDate, Date drawDate, int display, int hit, int startRowNum, int endRowNum, String prevTitle,
+			String nextTitle, int prevNum, int nextNum) {
 		super();
 		this.index = index;
 		this.title = title;
-		this.drawDate = drawDate;
 		this.subTitle = subTitle;
 		this.content = content;
 		this.enable = enable;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.regDate = regDate;
+		this.drawDate = drawDate;
 		this.display = display;
+		this.hit = hit;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
+		this.prevTitle = prevTitle;
+		this.nextTitle = nextTitle;
 		this.prevNum = prevNum;
 		this.nextNum = nextNum;
 	}
+
+
 
 	public int getIndex() {
 		return index;
@@ -127,5 +137,24 @@ public class EventDto {
 	public void setDisplay(int display) {
 		this.display = display;
 	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+	public String getPrevTitle() {
+		return prevTitle;
+	}
+	public void setPrevTitle(String prevTitle) {
+		this.prevTitle = prevTitle;
+	}
+	public String getNextTitle() {
+		return nextTitle;
+	}
+	public void setNextTitle(String nextTitle) {
+		this.nextTitle = nextTitle;
+	}
+	
 	
 }

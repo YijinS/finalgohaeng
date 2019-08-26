@@ -67,7 +67,7 @@
 									<span class="unit label">회차 바로가기</span> <input type="hidden" name="drwNo"> <select
 										id="dwrNoList" title="회차 선택">
 										<c:forEach var="num" items="${list }">
-											<option value="${num.games }">${num.games }</option>
+											<option value="${num }">${num }</option>
 										</c:forEach>
 									</select> <a id="searchBtn" class="btn_common form blu"
 										href="javascript:void(0)">조회</a>

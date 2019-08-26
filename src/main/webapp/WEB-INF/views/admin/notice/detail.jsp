@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <main>
 <div id="article" class="contentsArticle">
 	<div class="header_article">
@@ -12,6 +14,7 @@
 			<form id="searchList" method="post">
 				<input type="hidden" id="noticeSerial" name="noticeSerial">
 				<table class="tbl_data tbl_board_view">
+				<fmt:formatDate value="${dto.regDate }" var="regDate" pattern="yyyy-MM-dd HH:mm:ss"/>
 					<caption>제목, 등록일, 첨부파일 등 공지사항 상세</caption>
 					<colgroup>
 						<col style="width: 105px">
@@ -24,7 +27,7 @@
 						</tr>
 						<tr>
 							<th scope="row">등록일</th>
-							<td>${dto.regDate}</td>
+							<td>${regDate}</td>
 						</tr>
 						<tr>
 							<th scope="row">조회수</th>
@@ -59,9 +62,9 @@
 						</tr>
 					</tbody>
 				</table>
-				<a href="list.do" id="" class="btn_common form list">목록</a> 
-				<a href="#" id="" class="btn_common form edit">수정</a> 
-				<a href="delete.do?index=${dto.index}" id="" class="btn_common form remove">삭제</a>
+				<a href="list" id="" class="btn_common form list">목록</a> 
+				<a href="updateform?index=${dto.index}" id="" class="btn_common form edit">수정</a> 
+				<a href="delete?index=${dto.index}" id="" class="btn_common form remove">삭제</a>
 			</form>
 		</div>
 	</div>
