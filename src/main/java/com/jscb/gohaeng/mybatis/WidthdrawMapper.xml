@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="widthdraw">
+
+	<resultMap type="com.jscb.gohaeng.dto.WidthdrawDto" id="WidthdrawDto">
+		<result property="wdIndex" column="WD_INDEX" />
+		<result property="reason" column="WD_OPINION" />
+		<result property="opinion" column="WD_REASON" />
+	</resultMap>
+
+	<insert id="insert" parameterType="com.jscb.gohaeng.dto.WidthdrawDto">
+		INSERT INTO WIDTHDRAW
+		(
+		WD_INDEX, 
+		WD_OPINION, 
+		WD_REASON
+		)
+		VALUES
+		(
+		WD_SEQ.NEXTVAL, 
+		<choose>
+			<when test="reason !=null">#{reason},</when>
+			<otherwise>' ',</otherwise>
+		</choose>
+		<choose>
+			<when test="opinion !=null">#{opinion}</when>
+			<otherwise>' '</otherwise>
+		</choose>		
+		)
+	</insert>
+	
+
+
+
+
+
+
+
+</mapper>

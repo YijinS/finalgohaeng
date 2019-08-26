@@ -4629,20 +4629,6 @@ body.gButtonFixed #content { padding-bottom:130px; }
 #snb > li.collapsable:after { display:none; }
 #snb > li > a { position:relative; display:block; line-height:1; padding:17px 26px 19px 42px; font-size:14px; color:#686b72; }
 
-
-/* aside 아이콘 이미지  */
-/* #snb > li > a:before { content:""; position:absolute; top:18px; left:17px; display:block; width:15px; height:15px; background:url("//img.echosting.cafe24.com/ec/mode/influencer/common/sfix_lnb.png") no-repeat; }
-  #snb > li .product:before { background-position:0 0; }
-  #snb > li .order:before { background-position:-25px 0; }
-  #snb > li .member:before { background-position:-50px 0; }
-  #snb > li .board:before { background-position:-75px 0; }
-  #snb > li .design:before { background-position:-100px 0; }
-  #snb > li .promotion:before { background-position:-125px 0; }
-  #snb > li .calculate:before { background-position:-150px 0; }
-  #snb > li .appstore:before { background-position:-175px 0; }
-  #snb > li .market:before { left:16px; width:17px; background-position:-200px 0; } */
-  /* 
-#snb > li > a:before {content:""; position:absolute; top:18px; left:17px; display:block; width:15px; height:15px;}   */
  .product:before {content:""; position:absolute; top:18px; left:17px; display:block; width:15px; height:15px;background:url("https://www.freepik.com/free-icon/light-bulb_932992.htm#page=1&position=33") no-repeat; }
   
 #snb > li.collapsable a:before,

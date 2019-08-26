@@ -38,7 +38,7 @@
 							</ul></li>
 						<li id="07-06"><a href="#" class="menuLnb"><span>행복더하기
 									신청</span></a></li>
-						<li id="07-07"><a href="#" class="menuLnb"><span>개인정보</span></a>
+						<li id="07-07"><a href="#" class="menuLnb collabable"><span>개인정보</span></a>
 							<ul class="lnb_dep2" style="display: none;">
 								<li id="07-07-01"><a href="#"><span> 개인정보변경</span></a></li>
 								<li id="07-07-02"><a href="#"><span> 비밀번호변경</span></a></li>
@@ -81,9 +81,8 @@
 								가능함)</li>
 						</ul>
 					</div>
-
-					<form id="userOut" name="userOut" method="post"
-						action="/userSsl.do?method=MemberOutProc">
+					<!-- action="widthdraw" -->
+					<form id="userOut" name="userOut" method="post">
 						<input type="hidden" value="searchfox" name="userId" id="userId">
 						<input type="hidden" value="0" name="cashBalance" id="cashBalance">
 						<input type="hidden" value="0" name="noncashBalance"
@@ -109,13 +108,11 @@
 								<tbody>
 									<tr>
 										<th scope="row">이름</th>
-										<td>홍길동</td>
+										<td>${sessionScope.member.name }</td>
 									</tr>
 									<tr>
-										<th scope="row">탈퇴사유<span class="req">*<span
-												class="accessibility">별표</span></span></th>
-										<td><select id="withdrawCode" name="withdrawCode"
-											title="탈퇴 사유 선택">
+										<th scope="row">탈퇴사유<span class="req">*<span class="accessibility">별표</span></span></th>
+										<td><select onclick="selectReason()" id="withdrawCode" name="reason" title="탈퇴 사유 선택">
 												<option value="">선택해주세요.</option>
 												<option value="WD55">ID변경</option>
 												<option value="WD11">장기간 부재</option>
@@ -129,24 +126,23 @@
 									</tr>
 									<tr>
 										<th scope="row">기타의견</th>
-										<td><textarea id="withdrawContent" name="withdrawContent"
-												title="기타의견"></textarea></td>
+										<td><textarea id="withdrawContent" name="opinion" title="기타의견"></textarea></td>
 									</tr>
 								</tbody>
 							</table>
+							<div class="btns_submit">
+								<a class="btn_common lrg" href="${pageContext.request.contextPath }/">취소하기</a>
+								<div class="btn_common lrg blu"><a onclick="deleteUser()">탈퇴하기</a></div> 
+							</div>
 						</div>
 					</form>
 					<form name="outFrm">
-						<input type="hidden" value="out" name="type" id="type"> <input
-							type="hidden" value="save" name="status" id="status"> <input
-							type="hidden" value="" name="popwithdrawCode"
-							id="popwithdrawCode"> <input type="hidden" value=""
-							name="popwithdrawContent" id="popwithdrawContent">
+						<input type="hidden" value="out" name="type" id="type"> 
+						<input type="hidden" value="save" name="status" id="status"> 
+						<input type="hidden" value="" name="popwithdrawCode" id="popwithdrawCode"> 
+						<input type="hidden" value="" name="popwithdrawContent" id="popwithdrawContent">
 					</form>
-					<div class="btns_submit">
-						<a class="btn_common lrg" href="#">취소하기</a>
-						<button class="btn_common lrg blu" onclick="deleteUser()">탈퇴하기</button>
-					</div>
+					
 
 				</div>
 			</div>
@@ -154,5 +150,23 @@
 			<!-- -------------------------------------- -->
 		</section>
 	</div>
+<script type="text/javascript">
+
+function selectReason(){
+    var reason = $("#withdrawCode > option:selected").val();
+    console.log(reason);
+}
+
+// 비밀번호 미입력시 경고창
+function deleteUser(){
+	 alert("정말로 탈퇴?");
+	 var test = "${member.id }";
+	 document.getElementById("userId").value=test;
+	   //javascript 를 이용해서 redirect 이동 시키기 
+	 //location.href="widthdraw2?id=${member.id }"; 
+	document.getElementById("userOut").action = "widthdraw2";
+	document.getElementById("userOut").submit();
+}
+</script>
 </div>
 <!-- ----------------------------------------------------- -->

@@ -16,6 +16,7 @@
 		<result property="authKey" column="MEMBER_AUTHKEY" />
 		<result property="authStatus" column="MEMBER_AUTHSTATUS" />
 	</resultMap>
+	
 	<insert id="insert" parameterType="com.jscb.gohaeng.dto.MemberDto">
 		INSERT INTO MEMBER 
 		(MEMBER_ID,MEMBER_PWD,MEMBER_NAME,MEMBER_BIRTHDAY,MEMBER_HP,MEMBER_EMAIL,
@@ -24,12 +25,37 @@
 		(#{id}, #{pwd}, #{name},#{birthday}, #{hp}, #{email}, #{addr}, #{checkSms}
 		, #{checkEmail}, #{checkSales})
 	</insert>
+	
 	<select id="getData" parameterType="string" resultMap="memberDto">
 		SELECT * FROM MEMBER WHERE MEMBER_ID = #{id}
 	</select>
+	
 	<select id="isExist" parameterType="string" resultType="string">
 		SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_ID = #{id}
 	</select>
+	
+	<!-- 회원 탈퇴 & 개인정보 수정 -->
+	
+	<delete id="delete" parameterType="string">
+		DELETE FROM MEMBER WHERE MEMBER_ID = #{id}
+	</delete>
+	
+	<update id="update" parameterType="com.jscb.gohaeng.dto.MemberDto">
+		UPDATE MEMBER
+		SET 
+		MEMBER_HP=#{hp},
+		MEMBER_EMAIL=#{email},
+		MEMBER_ADDR=#{addr}
+		WHERE
+		MEMBER_ID=#{id}
+		<!-- ,
+		MEMBER_CHECK_SMS=#{checkSms},
+		MEMBER_CHECK_EMAIL=#{checkEmail},
+		MEMBER_CHECK_SALES=#{checkSales} -->
+		
+	</update>
+	
+	<!-- 회원 탈퇴 & 개인정보 수정 -->
 	
 	<update id="updateDeposit" parameterType="com.jscb.gohaeng.dto.DepositDto">
 		UPDATE MEMBER 

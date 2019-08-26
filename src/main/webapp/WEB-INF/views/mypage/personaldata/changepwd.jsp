@@ -20,12 +20,12 @@
 								<li id="07-02-03"><a href="#"><span> 고액당첨내역</span></a></li>
 							</ul></li>
 						<li id="07-03"><a href="#" class="menuLnb"><span>구매현황분석</span></a></li>
-						<li id="07-04" class="active"><a href="#" class="menuLnb"><span>건전구매
+						<li id="07-04"><a href="#" class="menuLnb"><span>건전구매
 									프로그램</span></a>
-							<ul class="lnb_dep2" style="">
+							<ul class="lnb_dep2" style="display: none;">
 								<li id="07-04-01"><a href="#" class="menuLnb"><span>건전구매
 											프로그램 홈</span></a></li>
-								<li id="07-04-02" class="active"><a href="#"><span>
+								<li id="07-04-02" ><a href="#"><span>
 											셀프진단평가 </span></a></li>
 								<li id="07-04-03"><a href="#"><span> 셀프구매계획 </span></a></li>
 								<li id="07-04-04"><a href="#"><span> 셀프휴식계획 </span></a></li>
@@ -38,10 +38,10 @@
 							</ul></li>
 						<li id="07-06"><a href="#" class="menuLnb"><span>행복더하기
 									신청</span></a></li>
-						<li id="07-07"><a href="#" class="menuLnb"><span>개인정보</span></a>
-							<ul class="lnb_dep2" style="display: none;">
+						<li id="07-07" class="active"><a href="#" class="menuLnb"><span>개인정보</span></a>
+							<ul class="lnb_dep2" style="">
 								<li id="07-07-01"><a href="#"><span> 개인정보변경</span></a></li>
-								<li id="07-07-02"><a href="#"><span> 비밀번호변경</span></a></li>
+								<li id="07-07-02" class="active"><a href="#"><span> 비밀번호변경</span></a></li>
 								<li id="07-07-03"><a href="#"><span> 회원탈퇴 </span></a></li>
 							</ul></li>
 					</ul>
@@ -68,7 +68,7 @@
 								<span class="req">*</span> 는 필수입력 사항입니다.
 							</p>
 						</div>
-						<form method="post" name="userIdCheckForm">
+						<form method="post" name="userIdCheckForm" action="changepwdupdate">
 							<table class="tbl_form_write">
 								<caption>비밀번호 변경 정보 입력 테이블</caption>
 								<colgroup>
@@ -78,34 +78,88 @@
 								<tbody>
 									<tr>
 										<th>현재 비밀번호<span class="req">*</span></th>
-										<td><input type="password" name="password"
+										<td><input type="password" name="pwd"
 											title="현재 비밀번호" autocomplete="off"></td>
 									</tr>
 									<tr>
 										<th>변경할 비밀번호<span class="req">*</span></th>
-										<td><input type="password" id="login_pw_input"
-											name="password1" title="새 비밀번호" autocomplete="off"
-											onkeyup="checkPassword();"> <span id="pwResultText"
-											class="comt_valid color_key1">9~14자의 영문대소문자,숫자,특수문자 사용
-										</span></td>
+										<td>
+											<input type="password" id="newpwd" name="newpwd" title="새 비밀번호" autocomplete="off"> 
+											<span id="check-pwd"></span>
+										</td>
 									</tr>
 									<tr>
 										<th>변경할 비밀번호<span class="req">*</span></th>
-										<td><input type="password" id="login_pw_input_confirm"
-											name="password2"
-											onkeyup="(event.keyCode || event.which) == 13 &amp;&amp; f_confirm()"
-											title="새 비밀번호 확인" autocomplete="off"> <span
-											id="pwConfirmResultText" class="comt_valid">*패스워드를 한번
-												더 입력하시기 바랍니다.</span></td>
+										<td>
+											<input type="password" id="newpwd2" name="newpwd2" title="새 비밀번호 확인" autocomplete="off"> 
+											<span id="check-pwd2" >*패스워드를 한번 더 입력하시기 바랍니다.</span>
+										</td>
 									</tr>
 								</tbody>
 							</table>
 							<div class="btns_submit">
-								<a class="btn_common lrg" href="#">취소</a> <a
-									class="btn_common lrg blu" href="javascript:void(0)"
-									onclick="f_confirm()">변경</a>
+								<a class="btn_common lrg" href="#">취소</a>
+								<button id="submit" class="btn_common lrg blu">변경</button>								
 							</div>
 						</form>
+						<script>
+						window.addEventListener("load", function () {
+							var tbody = document.querySelector("tbody");
+							
+							var pwd = tbody.querySelector("input[name=pwd]");
+							var newpwd = tbody.querySelector("input[name=newpwd]");
+							var newpwd2 = tbody.querySelector("input[name=newpwd2]");
+							var check = tbody.querySelector("#check-pwd");
+							var pwdcheck = tbody.querySelector("#check-pwd2");
+
+							var submit = document.querySelector("#submit");
+							
+							newpwd.oninput = function () {
+								if (newpwd.value.includes(" ")) {
+									check.innerText = "공백은 포함될 수 없습니다.";
+									check.style.color = "red";
+									check.value = "not";
+									newpwd.style.border = "2px solid orangered";
+
+								} else {
+									check.innerText = "";
+									check.value = "ok";
+									newpwd.style.border = "2px solid green";
+								}
+							}
+							
+							newpwd2.oninput = function () {
+								if (newpwd.value == newpwd2.value) {
+									pwdcheck.innerText = "일치합니다."
+									pwdcheck.style.color = "green";
+									newpwd.style.border = "2px solid green";
+									newpwd2.style.border = "2px solid green";
+									pwdcheck.value = "ok";
+								} else {
+									pwdcheck.innerText = "불일치합니다."
+									pwdcheck.style.color = "red";
+									newpwd2.style.border = "2px solid orangered";
+									pwdcheck.value = "not";
+								}
+							};
+							
+							submit.onclick = function (e) {	
+								if (check.value != "ok" || pwdcheck.value != "ok") {
+									alert("비밀번호를 다시 확인하십시오.");
+									e.preventDefault();
+									return;
+								}
+								else if(pwd.value == null || pwd.value==""){
+									alert("현재비밀번호를 다시 확인하십시오.");
+									e.preventDefault();
+									return;
+								}
+								 else
+									submit(); 
+							};
+							
+						});
+						</script>
 					</div>
 				</div>
 			</div>

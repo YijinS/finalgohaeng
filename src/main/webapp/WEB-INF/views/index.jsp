@@ -15,7 +15,7 @@
    class="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-column border-bottom border-secondary">
    <div class="container" id="header-top">
       <a class="navbar-brand" href="${pageContext.request.contextPath }/home"> 
-      	<img src="${pageContext.request.contextPath }/resources/images/index/logo-header.png" width="190px" alt="">
+         <img src="${pageContext.request.contextPath }/resources/images/index/logo-header.png" width="190px" alt="">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse"
          data-target="#navbarSupportedContent"
@@ -36,17 +36,17 @@
                </c:when>
 
                <c:otherwise>
-	               <c:choose>
-	               		<c:when test="${sessionScope.member.id eq 'ADMIN' }">
-		               		<li class="nav-item"><a class="nav-link"
-		                     href="${pageContext.request.contextPath }/home2">관리자 페이지</a></li>
-	               		</c:when>
-	               		<c:otherwise>
-		               		<li class="nav-item"><a class="nav-link"
-		                     href="${pageContext.request.contextPath }/mypage/deposit/1">예치금
-		                        : ${member.deposit }원 </a></li>
-	               		</c:otherwise>
-	               </c:choose>
+                  <c:choose>
+                        <c:when test="${sessionScope.member.id eq 'ADMIN' }">
+                           <li class="nav-item"><a class="nav-link"
+                           href="${pageContext.request.contextPath }/home2">관리자 페이지</a></li>
+                        </c:when>
+                        <c:otherwise>
+                           <li class="nav-item"><a class="nav-link"
+                           href="${pageContext.request.contextPath }/mypage/deposit/1">예치금
+                              : ${member.deposit }원 </a></li>
+                        </c:otherwise>
+                  </c:choose>
                   <li class="nav-item"><a class="nav-link" href="#">${sessionScope.member.name }님</a></li>
                   <li class="nav-item"><a class="nav-link"
                      href="${pageContext.request.contextPath }/guest/logout">로그아웃</a></li>
@@ -548,15 +548,6 @@
       </div>
    </div>
 </footer>
-
-
-
-
-
-
-
-
-
 
 
 

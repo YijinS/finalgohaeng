@@ -5,6 +5,7 @@ import java.text.ParseException;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,14 +28,22 @@ public class HomeController {
 	@RequestMapping("/")
 	public ModelAndView home(ModelAndView mView) throws IOException, ParseException {
 
-		indexService.crawlingFortune(mView);
+		indexService.crawlingFortune(mView); 
 		indexService.getLastLotto(mView);
 
-
+		//indexService.totalgames();
 		mView.setViewName("common.index");
 
-		// 여기부분이나 service쪽에서 조건문 걸어서 최근회차가 있으면 실행안되게 하고싶어!!
 		//indexService.lottonum();
+		return mView;
+	}
+	
+	@RequestMapping("/admin/adminindex")
+	public ModelAndView adminIndex(ModelAndView mView){
+
+
+		mView.setViewName("admin/adminindex");
+
 		return mView;
 	}
 
@@ -64,6 +73,14 @@ public class HomeController {
 
 		return mView;
 	}
+	
+	//스케쥴러
+	@Scheduled(cron = "0 0 21 ? * SAT")
+	public void lottonum() throws IOException, ParseException {
+		indexService.lottonum();
+		System.out.println("********************************스케쥴러 동작하니");
+	}
+	
 	
 }
 

@@ -1,10 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<!-- 다음 주소  -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("sample6_extraAddress").value = extraAddr;
+                
+                } else {
+                    document.getElementById("sample6_extraAddress").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
+
+<!-- 다음 주소 끝 -->
 <div class="body">
 	<div class="containerWrap">
 		<section class="contentSection">
+
 			<!-- ----------왼쪽메뉴---------- 영역 -->
 			<nav class="lnbNav">
 
@@ -49,500 +105,173 @@
 
 			</nav>
 			<!-- -------------------------------------- -->
-			<!-- ----------메인컨텐츠---------- 영역 -->
-			<main id="article" class="contentsArticle">
-			<div class="header_article">
-				<h3 class="sub_title">개인정보변경</h3>
-				<p class="location">
-					<a class="home" href="/"> Home </a><span class="gt">&gt;</span><a
-						href="#">마이페이지</a><span class="gt">&gt;</span><a href="#"><span>개인정보</span></a><span
-						class="gt">&gt;</span><a href="#"> 개인정보변경</a>
-				</p>
-			</div>
-			<div>
-				<div class="content_wrap content_join_form">
-					<form name="frm" id="frm" method="post">
-						<input type="hidden" name="userId" id="userId" value="ididurid">
-						<input type="hidden" name="userName" id="userName" value="홍길동">
-						<input type="hidden" name="email_check" id="email_check"
-							value="FAIL"> <input type="hidden" name="mobile_check"
-							id="mobile_check" value="FAIL"> <input type="hidden"
-							name="num_bldg" id="num_bldg" value="1536025031100220001228515">
-						<input type="hidden" name="zipNo1" id="zipNo1" value="177">
-						<input type="hidden" name="zipNo2" id="zipNo2" value="23">
-						<input type="hidden" name="birYear" id="birYear" value="1995">
-						<input type="hidden" name="birMonth" id="birMonth" value="07">
-						<input type="hidden" name="birDay" id="birDay" value="26">
-						<div class="group_content">
-							<div class="group_title">
-								<h4 class="title">개인정보 입력</h4>
-								<p class="note_req">
-									<span class="req">*</span> 는 필수입력 사항입니다.
-								</p>
+			<div id="article" class="contentsArticle">
+				<div class="header_article">
+					<h3 class="sub_title">회원정보입력</h3>
+					<p class="location">
+						<a class="${pageContext.request.contextPath }/home" href="/"> Home </a><span class="gt">&gt;</span><a
+							href="${pageContext.request.contextPath }/guest/login">회원서비스</a><span class="gt">&gt;</span><a
+							href="${pageContext.request.contextPath }/guest/signup">회원가입</a>
+					</p>
+				</div>
+
+				<div>
+					<div class="content_wrap content_join_form">
+						<!-- -------------------------------------------------------------------------------------- -->
+
+						<!-- 회원가입 Param BEGIN -->
+						<!-- 본인인증 후 결과 처리 Form -->
+						<!-- 테그의 네임과 ibatis의 프로퍼티 값이 같아야 한다.	기존 소스의 성격을 최대 한 수정 하지 않고 하기 위해 이름이 추가 된 것 -->
+						<form method="post" action="editData2">
+
+
+
+							<!-- 회원가입 Param END -->
+
+							<!-- 개인정보 입력 start -->
+							<div class="group_content">
+								<div class="group_title">
+									<h4 class="title">개인정보 수정 </h4>
+								</div>
+								<table class="tbl_form_write">
+									<caption>아이디, 비밀번호, 생년월일, 휴대폰번호, 이메일 주소, 주소 등 정보를
+										입력합니다.</caption>
+
+									<colgroup>
+										<col style="width: 125px">
+										<col>
+									</colgroup>
+
+									<tbody>
+									
+									
+										<tr class="name">
+											<th scope="row">
+												이름<span class="req">*<span class="accessibility">별표</span></span>
+											</th>
+											<td>
+												${dto.name }
+											</td>
+										</tr>
+										
+										
+										<tr class="id">
+											<th scope="row">
+												아이디<span class="req">*<span class="accessibility">별표</span></span>
+											</th>
+											<td>
+												${dto.id }
+												
+											</td>
+										</tr>
+										
+
+										<tr class="birth">
+											<th scope="row">
+												생년월일<span class="req">*<span class="accessibility">별표</span></span>
+											</th>
+											<fmt:formatDate var="date" value="${dto.birthday }" pattern="yyyy-MM-dd" /> <td>${date}</td>
+										</tr>
+										
+										
+										<tr class="hp">
+											<th scope="row">
+												휴대폰번호<span class="req">*<span class="accessibility">별표</span></span>
+											</th>
+											<td>
+												<input id="mobile3" value="${dto.hp }"  type="text" > 
+											<td>
+										</tr>
+
+										<tr class="email">
+											<th scope="row">
+												이메일주소<span class="req">*<span class="accessibility">별표</span></span>
+											</th>
+											<td>
+												<input type="email" id="email" name="email" value="${dto.email }"  >
+												
+											</td>
+										</tr>
+
+										<tr class="addr">
+											<th scope="row">주소</th>
+											<td>
+												<div class="brk">
+													<input type="text" name="zipCode" id="sample6_postcode" placeholder="우편번호">
+													<input class="btn_common form" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+												</div>
+												<input type="text" size="30" name="addr1" id="sample6_address" value="${dto.addr }"><br>
+												<input type="text" id="sample6_detailAddress" placeholder="상세주소">
+												<input type="text" size="30" name="addr2" id="sample6_extraAddress" placeholder="참고항목">
+												<p class="comt_valid">이벤트 당첨 시 경품제공을 위한 주소정보입니다.</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
-							<table class="tbl_form_write">
-								<caption>아이디, 생년월일, 휴대폰번호, 이메일 주소, 주소 등 정보를 확인하고
-									수정합니다.</caption>
-								<colgroup>
-									<col style="width: 125px">
-									<col>
-								</colgroup>
-								<tbody>
-									<tr class="name">
-										<th scope="row">이름<span class="req">*</span></th>
-										<td>홍길동</td>
-									</tr>
-									<tr class="id">
-										<th scope="row">아이디<span class="req">*</span></th>
-										<td>ididurid</td>
-									</tr>
-									<tr class="birth">
-										<th scope="row">생년월일<span class="req">*</span></th>
-										<td><select id="birYearSel" name="birYearSel"
-											title="년도 선택" disabled="">
-
-												<option value="2019">2019</option>
-
-												<option value="2018">2018</option>
-
-												<option value="2017">2017</option>
-
-												<option value="2016">2016</option>
-
-												<option value="2015">2015</option>
-
-												<option value="2014">2014</option>
-
-												<option value="2013">2013</option>
-
-												<option value="2012">2012</option>
-
-												<option value="2011">2011</option>
-
-												<option value="2010">2010</option>
-
-												<option value="2009">2009</option>
-
-												<option value="2008">2008</option>
-
-												<option value="2007">2007</option>
-
-												<option value="2006">2006</option>
-
-												<option value="2005">2005</option>
-
-												<option value="2004">2004</option>
-
-												<option value="2003">2003</option>
-
-												<option value="2002">2002</option>
-
-												<option value="2001">2001</option>
-
-												<option value="2000">2000</option>
-
-												<option value="1999">1999</option>
-
-												<option value="1998">1998</option>
-
-												<option value="1997">1997</option>
-
-												<option value="1996">1996</option>
-
-												<option value="1995" selected="">1995</option>
-
-												<option value="1994">1994</option>
-
-												<option value="1993">1993</option>
-
-												<option value="1992">1992</option>
-
-												<option value="1991">1991</option>
-
-												<option value="1990">1990</option>
-
-												<option value="1989">1989</option>
-
-												<option value="1988">1988</option>
-
-												<option value="1987">1987</option>
-
-												<option value="1986">1986</option>
-
-												<option value="1985">1985</option>
-
-												<option value="1984">1984</option>
-
-												<option value="1983">1983</option>
-
-												<option value="1982">1982</option>
-
-												<option value="1981">1981</option>
-
-												<option value="1980">1980</option>
-
-												<option value="1979">1979</option>
-
-												<option value="1978">1978</option>
-
-												<option value="1977">1977</option>
-
-												<option value="1976">1976</option>
-
-												<option value="1975">1975</option>
-
-												<option value="1974">1974</option>
-
-												<option value="1973">1973</option>
-
-												<option value="1972">1972</option>
-
-												<option value="1971">1971</option>
-
-												<option value="1970">1970</option>
-
-												<option value="1969">1969</option>
-
-												<option value="1968">1968</option>
-
-												<option value="1967">1967</option>
-
-												<option value="1966">1966</option>
-
-												<option value="1965">1965</option>
-
-												<option value="1964">1964</option>
-
-												<option value="1963">1963</option>
-
-												<option value="1962">1962</option>
-
-												<option value="1961">1961</option>
-
-												<option value="1960">1960</option>
-
-												<option value="1959">1959</option>
-
-												<option value="1958">1958</option>
-
-												<option value="1957">1957</option>
-
-												<option value="1956">1956</option>
-
-												<option value="1955">1955</option>
-
-												<option value="1954">1954</option>
-
-												<option value="1953">1953</option>
-
-												<option value="1952">1952</option>
-
-												<option value="1951">1951</option>
-
-												<option value="1950">1950</option>
-
-												<option value="1949">1949</option>
-
-												<option value="1948">1948</option>
-
-												<option value="1947">1947</option>
-
-												<option value="1946">1946</option>
-
-												<option value="1945">1945</option>
-
-												<option value="1944">1944</option>
-
-												<option value="1943">1943</option>
-
-												<option value="1942">1942</option>
-
-												<option value="1941">1941</option>
-
-												<option value="1940">1940</option>
-
-												<option value="1939">1939</option>
-
-												<option value="1938">1938</option>
-
-												<option value="1937">1937</option>
-
-												<option value="1936">1936</option>
-
-												<option value="1935">1935</option>
-
-												<option value="1934">1934</option>
-
-												<option value="1933">1933</option>
-
-												<option value="1932">1932</option>
-
-												<option value="1931">1931</option>
-
-												<option value="1930">1930</option>
-
-												<option value="1929">1929</option>
-
-												<option value="1928">1928</option>
-
-												<option value="1927">1927</option>
-
-												<option value="1926">1926</option>
-
-												<option value="1925">1925</option>
-
-												<option value="1924">1924</option>
-
-												<option value="1923">1923</option>
-
-												<option value="1922">1922</option>
-
-												<option value="1921">1921</option>
-
-												<option value="1920">1920</option>
-
-												<option value="1919">1919</option>
-
-												<option value="1918">1918</option>
-
-												<option value="1917">1917</option>
-
-												<option value="1916">1916</option>
-
-												<option value="1915">1915</option>
-
-												<option value="1914">1914</option>
-
-												<option value="1913">1913</option>
-
-												<option value="1912">1912</option>
-
-												<option value="1911">1911</option>
-
-												<option value="1910">1910</option>
-
-												<option value="1909">1909</option>
-
-												<option value="1908">1908</option>
-
-												<option value="1907">1907</option>
-
-												<option value="1906">1906</option>
-
-												<option value="1905">1905</option>
-
-												<option value="1904">1904</option>
-
-												<option value="1903">1903</option>
-
-												<option value="1902">1902</option>
-
-												<option value="1901">1901</option>
-
-										</select> <span class="unit">년</span> <select id="birMonthSel"
-											name="birMonthSel" title="월 선택" disabled="">
-
-												<option value="01">01</option>
-
-												<option value="02">02</option>
-
-												<option value="03">03</option>
-
-												<option value="04">04</option>
-
-												<option value="05">05</option>
-
-												<option value="06">06</option>
-
-												<option value="07" selected="">07</option>
-
-												<option value="08">08</option>
-
-												<option value="09">09</option>
-
-												<option value="10">10</option>
-
-												<option value="11">11</option>
-
-												<option value="12">12</option>
-
-										</select> <span class="unit">월</span> <select id="birDaySel"
-											name="birDaySel" title="일 선택" disabled="">
-
-												<option value="01">01</option>
-
-												<option value="02">02</option>
-
-												<option value="03">03</option>
-
-												<option value="04">04</option>
-
-												<option value="05">05</option>
-
-												<option value="06">06</option>
-
-												<option value="07">07</option>
-
-												<option value="08">08</option>
-
-												<option value="09">09</option>
-
-												<option value="10">10</option>
-
-												<option value="11">11</option>
-
-												<option value="12">12</option>
-
-												<option value="13">13</option>
-
-												<option value="14">14</option>
-
-												<option value="15">15</option>
-
-												<option value="16">16</option>
-
-												<option value="17">17</option>
-
-												<option value="18">18</option>
-
-												<option value="19">19</option>
-
-												<option value="20">20</option>
-
-												<option value="21">21</option>
-
-												<option value="22">22</option>
-
-												<option value="23">23</option>
-
-												<option value="24">24</option>
-
-												<option value="25">25</option>
-
-												<option value="26" selected="">26</option>
-
-												<option value="27">27</option>
-
-												<option value="28">28</option>
-
-												<option value="29">29</option>
-
-												<option value="30">30</option>
-
-												<option value="31">31</option>
-
-										</select> <span class="unit">일</span></td>
-									</tr>
-									<tr class="cellp">
-										<th scope="row">휴대폰번호<span class="req">*</span></th>
-										<td><select id="hp1" name="hp1" title="핸드폰 앞자리 번호 선택"
-											disabled="">
-												<option value="010" selected="selected">010</option>
-												<option value="011">011</option>
-												<option value="016">016</option>
-												<option value="017">017</option>
-												<option value="018">018</option>
-												<option value="019">019</option>
-										</select> <span class="unit">-</span> <input id="hp2" name="hp2"
-											type="text" value="1234" title="핸드폰 중간자리 번호 입력" maxlength="4"
-											disabled=""> <span class="unit">-</span> <input
-											id="hp3" name="hp3" type="text" value="5678"
-											title="핸드폰 뒷자리 번호 입력" maxlength="4" disabled=""> <a
-											class="btn_common form" href="javascript:void(0)"
-											onclick="nameCheckReq()" title="새창 열림">본인인증</a> <span
-											class="comt_valid">* 본인인증 후 수정 가능합니다.</span></td>
-									</tr>
-									<tr class="mail">
-										<th scope="row">이메일<span class="req">*</span></th>
-										<td><input id="emailAddr1" type="text" name="emailAddr1"
-											value="gildong1234" title="e-mail 아이디 입력" maxlength="20">
-											<span class="unit">@</span> <input id="emailAddr2"
-											name="emailAddr2" type="text" value="naver.com"
-											title="e-mail 도메인 입력" maxlength="20"> <select
-											id="emailAddr3" name="emailAddr3"
-											onchange="$('#emailAddr2').val(this.value);"
-											title="e-mail 도메인 선택">
-												<option value="">직접입력</option>
-												<option value="nate.com">nate.com</option>
-												<option value="naver.com" selected="selected">naver.com</option>
-												<option value="daum.net">daum.net</option>
-												<option value="dreamwiz.com">dreamwiz.com</option>
-										</select></td>
-									</tr>
-									<tr class="addr">
-										<th scope="row">주소</th>
-										<td>
-											<div class="brk">
-												<input id="zipCode" name="zipCode" type="text" title="우편번호"
-													value="17723" readonly=""> <a
-													class="btn_common form" href="#" id="gozip" title="새창 열림"
-													onclick="event.preventDefault()">우편번호 찾기</a>
-											</div>
-											<div class="brk">
-												<input type="text" size="30" name="address" id="address"
-													title="주소" value="서울특별시 환상로 77-9" maxlength="40"
-													readonly=""> <input type="text" size="30"
-													name="addressDetail" id="addressDetail" title="주소" value=""
-													maxlength="40">
-											</div>
-											<p class="comt_valid">이벤트 당첨 시 경품제공을 위한 주소정보입니다.</p>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<div class="group_content">
-							<div class="group_title">
-								<h4 class="title">정보수신여부 및 관심항목 설정</h4>
+							<!-- 개인정보 입력 end -->
+							<!-- 정보수신여부 및 관심항목 설정 start -->
+							<div class="group_content">
+								<div class="group_title">
+									<h4 class="title">정보수신여부 및 관심항목 설정</h4>
+								</div>
+								<table class="tbl_form_write">
+									<caption>SMS, 이메일, 판매원 모집 등 정보수신여부 설정</caption>
+
+									<colgroup>
+										<col style="width: 125px">
+										<col style="width: 325px">
+										<col style="width: 125px">
+										<col>
+									</colgroup>
+
+									<tbody>
+										<tr>
+											<th scope="row">SMS수신여부</th>
+											<td>
+												<input type="radio" name="checkSms" id="smsFlagY" value="1" checked="">
+												<label for="smsFlagY">예</label>
+												<input type="radio" name="checkSms" id="smsFlagN" value="0">
+												<label for="smsFlagN">아니오</label>
+											</td>
+
+											<th scope="row">이메일 수신여부</th>
+											<td>
+												<input type="radio" name="checkEmail" id="emailFlagY" value="1" checked="">
+												<label for="emailFlagY">예</label> 
+												<input type="radio" name="checkEmail" id="emailFlagN" value="0">
+												<label for="emailFlagN">아니오</label>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">판매원모집 <br>SMS 수신여부</th>
+											<td colspan="3">
+												<input type="radio" name="checkSales" id="intJoinSmsY" value="1">
+												<label for="intJoinSmsY">예</label>
+												<input type="radio" name="checkSales" id="intJoinSmsN" value="0" checked="">
+												<label for="intJoinSmsN">아니오</label>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
-							<table class="tbl_form_write">
-								<caption>SMS, 이메일, 판매인 모집 등 정보수신여부 설정</caption>
-								<colgroup>
-									<col style="width: 125px">
-									<col style="width: 325px">
-									<col style="width: 125px">
-									<col>
-								</colgroup>
-								<tbody>
-									<tr>
-										<th scope="row">SMS 수신여부</th>
-										<td><input type="radio" name="smsServiceDate"
-											id="smsServiceDateY" value="Y"><label
-											for="smsServiceDateY">예</label> <input type="radio"
-											name="smsServiceDate" id="smsServiceDateN" value="N"
-											checked=""><label for="smsServiceDateN">아니오</label></td>
-										<th scope="row">이메일 수신여부</th>
-										<td><input type="radio" name="emailServiceDate"
-											id="emailServiceDateY" value="Y"><label
-											for="emailServiceDateY">예</label> <input type="radio"
-											name="emailServiceDate" id="emailServiceDateN" value="N"
-											checked=""><label for="emailServiceDateN">아니오</label>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">판매인모집 <br>SMS 수신여부
-										</th>
-										<td colspan="3"><input type="radio" name="intJoinSms"
-											id="intJoinSmsY" value="Y"><label for="intJoinSmsY">예</label>
-											<input type="radio" name="intJoinSms" id="intJoinSmsN"
-											value="N" checked=""><label for="intJoinSmsN">아니오</label>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<div class="btns_submit">
-							<a class="btn_common lrg" href="#">취소</a> <input type="button"
-								class="btn_common lrg blu" id="updatego" value="변경">
-						</div>
-					</form>
-					<iframe name="proIframe" id="proIframe" width="0" height="0"
-						title="proModify"></iframe>
+							<!-- 정보수신여부 및 관심항목 설정 end -->
+							<div class="btns_submit">
+									<input type="button" class="btn_common lrg" onclick="mainForm.reset()" value="초기화"> 
+									<input type="submit" class="btn_common lrg blu" value="수정">
+							</div>
+						</form>
+
+						<!-- mainForm END -->
+
+						<iframe name="proIframe" id="proIframe" width="0" height="0"
+							title="proJoin"></iframe>
+
+
+						<!-- -------------------------------------------------------------------------------------- -->
+					</div>
 				</div>
 			</div>
-			</main>
-			<!-- -------------------------------------- -->
 		</section>
 	</div>
 </div>
-<!-- ----------------------------------------------------- -->
