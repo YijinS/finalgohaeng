@@ -92,4 +92,26 @@ public class MyPageController {
 		return "redirect:/mypage/deposit/3";
 	}
 	/*-------------------------예치금 매핑------------------------*/
+	/*-------------------------개인정보 수정------------------------*/
+	@RequestMapping("personaldata/modifylogin")
+	public ModelAndView modifylogin(ModelAndView mView) {
+		mView.setViewName("mypage.personaldata.modifylogin");
+		return mView;
+	}
+	/*-------------------------비밀번호 변경------------------------*/
+	@GetMapping("personaldata/changepwd")
+	public ModelAndView changepwd(ModelAndView mView) {
+		mView.setViewName("mypage.personaldata.changepwd");
+		return mView;
+	}
+	
+	@PostMapping("personaldata/changepwdupdate")
+	public ModelAndView changepwd(ModelAndView mView,HttpSession session
+			,@RequestParam(name="pwd")String pwd
+			,@RequestParam(name="newpwd")String newpwd ) {
+		myPageService.changepwd(mView,session,pwd,newpwd);
+		mView.setViewName("mypage/personaldata/changepwdupdate");
+		return mView;
+	}
+	
 }

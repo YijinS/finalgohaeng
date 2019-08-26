@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faq">
+<resultMap type="com.jscb.gohaeng.dto.FaqDto" id="FaqDto">
+<result property="index" column="FAQ_INDEX"/>
+<result property="question" column="FAQ_QUESTION"/>
+<result property="answer" column="FAQ_ANSWER"/>
+<result property="category" column="FAQ_CATEGORY"/>
+</resultMap>
+
+<select id="getList" resultMap="FaqDto">
+	SELECT * FROM FAQ
+</select>
+</mapper>

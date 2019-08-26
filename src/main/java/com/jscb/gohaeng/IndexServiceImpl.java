@@ -12,6 +12,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -52,9 +53,9 @@ public class IndexServiceImpl implements IndexService {
 	}
 	
 //로또 번호 파싱하기
+	//@Scheduled(cron = "0 59 20 * * 6")//초 분 시 일 월 요일
 	@Override
 	public void lottonum() throws IOException, ParseException {
-		
 		LottoGamesDto dto = new LottoGamesDto();
 		
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -84,10 +85,12 @@ public class IndexServiceImpl implements IndexService {
 		Date drawdate = df.parse(drawdate_);
 		dto.setDrawDate(drawdate);
 		
-		Integer getLastGames = lottoGamesDao.getLastGames(games);
-		//if(getLastGames == null ? true:false)
-		if(getLastGames != games)
-			lottoGamesDao.lottoDrawInsert(dto);
+		//스케쥴러 동작하면 이것 필요없음.
+//		Integer getLastGames = lottoGamesDao.getLastGames(games);
+//		//if(getLastGames == null ? true:false)
+//		if(getLastGames != games)
+//			lottoGamesDao.lottoDrawInsert(dto);
+		lottoGamesDao.lottoDrawInsert(dto);
 		
 	}
 
@@ -125,6 +128,45 @@ public class IndexServiceImpl implements IndexService {
 		LottoGamesDto lottoGame = lottoGamesDao.getLastData();
 		mView.addObject("lottoGame", lottoGame);
 
+	}
+	/* --------------- 전체회차 로또번호 데이터베이스에 넣기 --------------- */
+	@Override
+	public void totalgames() throws IOException, ParseException {
+		LottoGamesDto dto = new LottoGamesDto();
+		
+		DateFormat df = new SimpleDateFormat("yyyyMMdd");
+		for(int i=4; i<=14; i++) {
+		String url ="https://dhlottery.co.kr/gameResult.do?method=byWin&drwNo="+i;
+		dto.setGames(i);
+		
+		Document doc = Jsoup.connect(url).get();
+		Elements contens = doc.select(".win_result");
+		String winnum="";
+		
+			String num =contens.select(".num.win span").text();
+			System.out.println("********************num"+num);
+			String[] num_ = num.split("\\s");
+			
+			for(int j=0; j<num_.length; j++) {
+				System.out.println("*************** num_"+num_[j]);
+				int nums = Integer.parseInt(num_[j]);
+				winnum += String.format("%02d", nums);
+				System.out.println("********************nums"+nums);
+			}
+			System.out.println("********************winnum"+winnum);
+		dto.setWinningNum(winnum);
+		String bonus = contens.select(".num.bonus span").text();
+		dto.setBonusNum(bonus);
+		
+		String date = contens.select(".desc").text();
+		String str1 = date.substring(1, 5);
+		String str2 = date.substring(7, 9);
+		String str3 = date.substring(11, 13);
+		String drawdate_ = str1+str2+str3;
+		Date drawdate = df.parse(drawdate_);
+		dto.setDrawDate(drawdate);
+		lottoGamesDao.lottoDrawInsert(dto);
+		}
 	}
 
 }
