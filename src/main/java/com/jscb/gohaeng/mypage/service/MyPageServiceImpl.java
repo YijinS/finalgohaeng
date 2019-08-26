@@ -159,4 +159,20 @@ public class MyPageServiceImpl implements MyPageService {
 		}
 	}
 
+//	@Override
+//	public void checkpwd(ModelAndView mView, String pwd, HttpSession session) {
+//		
+//		//세션객체 얻어오기
+//		MemberDto member = (MemberDto)session.getAttribute("member");
+//		//id에 해당하는 회원 정보 가져오기
+//		String id = member.getId();
+//		MemberDto dto = memberDao.getData(id);
+//		//회원에 대한 비밀번호 비교
+//		if(dto.getPwd().equals(pwd)) {
+//			mView.setViewName("mypage.personaldata.changepwd");
+//		}
+//		else
+//			mView.setViewName("mypage.personaldata.modifylogin");
+//	}
+
 }

@@ -4,14 +4,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.jscb.gohaeng.dao.PurchaseLottoDao;
+import com.jscb.gohaeng.dto.MemberDto;
 import com.jscb.gohaeng.mypage.service.MyPageService;
 
 @RequestMapping("/mypage/")
@@ -93,14 +94,51 @@ public class MyPageController {
 	}
 	/*-------------------------예치금 매핑------------------------*/
 	/*-------------------------개인정보 수정------------------------*/
-	@RequestMapping("personaldata/modifylogin")
-	public ModelAndView modifylogin(ModelAndView mView) {
+	@GetMapping("personaldata/modifylogin")
+	public ModelAndView modifylogin(ModelAndView mView
+			,@RequestParam(name="url")String url) {
+		mView.addObject("url",url);
 		mView.setViewName("mypage.personaldata.modifylogin");
+		return mView;
+	}
+
+//	@PostMapping("personaldata/modifylogin1")
+//	public boolean modifylogin1(ModelAndView mView, @RequestParam(name = "pwd") String pwd, HttpSession session) {
+//		// myPageService.checkpwd(mView,pwd,session);
+//		
+//		// 세션객체 얻어오기
+//		MemberDto member = (MemberDto) session.getAttribute("member");
+//		// id에 해당하는 회원 정보 가져오기
+//		String id = member.getId();
+//		MemberDto dto = memberDao.getData(id);
+//		// 회원에 대한 비밀번호 비교
+//		if (!dto.getPwd().equals(pwd)) {
+//			//return"redirect:/mypage/personaldata/modifylogin";
+//			return false;
+//		}
+//		return true;
+//	}
+	
+	@PostMapping("personaldata/modifylogin1")
+	public ModelAndView modifylogin1(HttpSession session
+			,ModelAndView mView
+			, HttpServletRequest request
+			,@RequestParam(name="url")String url) {
+		MemberDto member = (MemberDto)session.getAttribute("member");
+		String check = "ok";
+		if(BCrypt.checkpw(request.getParameter("pwd"), member.getPwd())){
+			session.setAttribute("check", check);
+		}
+		System.out.println(url);
+		if(url != null && !url.equals(""))
+			mView.setViewName("redirect:"+url);
+		else
+			mView.setViewName("redirect:/");
 		return mView;
 	}
 	/*-------------------------비밀번호 변경------------------------*/
 	@GetMapping("personaldata/changepwd")
-	public ModelAndView changepwd(ModelAndView mView) {
+	public ModelAndView sosochangepwd(ModelAndView mView,HttpServletRequest request) {
 		mView.setViewName("mypage.personaldata.changepwd");
 		return mView;
 	}

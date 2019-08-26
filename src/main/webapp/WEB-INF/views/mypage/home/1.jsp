@@ -58,7 +58,7 @@
 										신청</span></a></li>
 
 							<li id="07-07"><a
-								href="#"
+								href="${pageContext.request.contextPath }/mypage/personaldata/modifylogin"
 								class="menuLnb"><span>개인정보</span></a>
 								<ul class="lnb_dep2" style="display: none;">
 									<li id="07-07-01"><a
