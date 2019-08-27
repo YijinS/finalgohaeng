@@ -14,7 +14,7 @@
 <nav
    class="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-column border-bottom border-secondary">
    <div class="container" id="header-top">
-      <a class="navbar-brand" href="${pageContext.request.contextPath }/home"> 
+      <a class="navbar-brand" href="${pageContext.request.contextPath }/"> 
          <img src="${pageContext.request.contextPath }/resources/images/index/logo-header.png" width="190px" alt="">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse"

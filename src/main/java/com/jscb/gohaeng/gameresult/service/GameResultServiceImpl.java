@@ -1,6 +1,7 @@
 package com.jscb.gohaeng.gameresult.service;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,11 +19,17 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jscb.gohaeng.dao.LottoGamesDao;
 import com.jscb.gohaeng.dto.LottoGamesDto;
 
+
 @Service
 public class GameResultServiceImpl implements GameResultService {
 	
 	@Autowired
 	LottoGamesDao lottoGamesDao;
+	
+	//한 페이지에 나타낼 row 의 갯수 
+	static final int PAGE_ROW_COUNT=10;
+	//하단 디스플레이 페이지 갯수 
+	static final int PAGE_DISPLAY_COUNT=5;
 	
 	@Override
 	public void getLastGames(ModelAndView mView) {
@@ -195,7 +202,9 @@ public Map<String,Object> getColorByNumber(int start,int end) {
 
         // 데이터 부분 생성
         for(LottoGamesDto lotto : list) {
-            
+        	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+        	String drawDate = sf.format(lotto.getDrawDate());
+        	
             row = sheet.createRow(rowNo++);
             cell = row.createCell(0);
             cell.setCellStyle(bodyStyle);
@@ -205,7 +214,7 @@ public Map<String,Object> getColorByNumber(int start,int end) {
             cell.setCellValue(""+lotto.getWinningNum());
             cell = row.createCell(2);
             cell.setCellStyle(bodyStyle);
-            cell.setCellValue(""+lotto.getDrawDate());
+            cell.setCellValue(""+drawDate);
         }
 
         // 컨텐츠 타입과 파일명 지정
@@ -222,6 +231,40 @@ public Map<String,Object> getColorByNumber(int start,int end) {
 		}
        
 
+	}
+
+	@Override
+	public Map<String, Object> getPageList(int page, int start, int end) {
+
+		
+		//전체 row 의 갯수를 읽어온다.
+		int totalRow=lottoGamesDao.getTotalCount(start, end);
+		//전체 페이지의 갯수 구하기
+		int totalPageCount=
+				(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
+		//시작 페이지 번호
+		int startPageNum=
+			1+((page-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
+		//끝 페이지 번호
+		int endPageNum=startPageNum+PAGE_DISPLAY_COUNT-1;
+		//끝 페이지 번호가 잘못된 값이라면 
+		if(totalPageCount < endPageNum){
+			endPageNum=totalPageCount; //보정해준다. 
+		}
+		
+		
+		List<LottoGamesDto> list = lottoGamesDao.getList(page, PAGE_ROW_COUNT, start, end);
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("list",list);
+		map.put("startPageNum",startPageNum);
+		map.put("endPageNum",endPageNum);
+		map.put("pageNum",page);
+		map.put("totalPageCount",totalPageCount);
+		map.put("totalRow",totalRow);
+		map.put("current", page);
+		
+		return map;
 	}
 
 

@@ -83,7 +83,7 @@
 								<form id="frm" name="frm" method="post">
 									<input type="hidden" name="sortOrder" value="DESC"> 
 									<span>
-										<select id="sttDrwNo" name="start" title="조회 시작회차 선택">
+										<select id="sttDrwNo" name="startgames" title="조회 시작회차 선택">
 											<c:forEach var="game" items="${games }" varStatus="vs">
 												<c:choose>
 													<c:when test="${save.start ne 0 and save.start eq game}">
@@ -99,7 +99,7 @@
 											</c:forEach>
 										</select> 
 										<span class="unit">~</span> 
-										<select id="edDrwNo" name="end" title="조회 종료회차 선택">
+										<select id="edDrwNo" name="endgames" title="조회 종료회차 선택">
 											<c:forEach var="game" items="${games }" varStatus="vs">
 												<c:choose>
 													<c:when test="${save.end ne 0 and save.end eq game}">
@@ -114,7 +114,7 @@
 												</c:choose>
 											</c:forEach>
 										</select>
-									</span> 
+									</span>
 									<a id="search_btn" class="btn_common form blu" href="#">조회</a>
 								</form>
 								<script>
@@ -122,7 +122,9 @@
 										var form = $("#frm");
 										var btn = $("#search_btn");
 										
-										btn.click(function(){
+										btn.click(function(e){
+											e.preventDefault();
+											history.replaceState({},null,location.pathname);
 											form.submit();
 										});
 									});
@@ -199,7 +201,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="tmp" items="${gamesList }">
+								<c:forEach var="tmp" items="${datas.list }">
 								<fmt:formatDate var="drawDate" value="${tmp.drawDate }" pattern="yyyy-MM-dd"/>
 									<tr>
 										<td>${tmp.games }</td>
@@ -254,45 +256,31 @@
 							</tbody>
 						</table>
 						<div class="paginate_common" id="page_box">
-							<a href="#" class="current" title="현재 위치"><strong>1</strong></a>
-							<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-							<a href="#">6</a> <a href="#">7</a> <a href="#">8</a> <a href="#">9</a>
-							<a href="#">10</a> <a class="go next" href="#">다음 페이지</a> <a
-								class="go end" href="#">끝 페이지</a>
-							<form name="sendComSearchForm" method="post">
-								<input type="hidden" name="kind" value=""> <input
-									type="hidden" name="keyword" value=""> <input
-									type="hidden" name="startDate" value=""> <input
-									type="hidden" name="endDate" value=""> <input
-									type="hidden" name="searchDate" value=""> <input
-									type="hidden" name="search" value=""> <input
-									type="hidden" name="contentsCode" value=""> <input
-									type="hidden" name="olddate" value="0"> <input
-									type="hidden" name="lottoId" value="null"> <input
-									type="hidden" name="pop" value=""> <input type="hidden"
-									name="userId2" value="null"> <input type="hidden"
-									name="cooperationId" value="null"> <input type="hidden"
-									name="statusCode" value=""> <input type="hidden"
-									name="lottoRound" value=""> <input type="hidden"
-									name="sttDrwNo" value="1"> <input type="hidden"
-									name="edDrwNo" value="868"> <input type="hidden"
-									name="addr1" value=""> <input type="hidden"
-									name="addr2" value=""> <input type="hidden"
-									name="keyword1" value=""> <input type="hidden"
-									name="keyword2" value=""> <input type="hidden"
-									name="keyword3" value=""> <input type="hidden"
-									name="keyword4" value=""> <input type="hidden"
-									name="keyword5" value=""> <input type="hidden"
-									name="appType" value=""> <input type="hidden"
-									name="etcTxt1" value="">
-							</form>
-							<script>
-								function goComSearchForm(boardUrl) {
-									document.sendComSearchForm.action = boardUrl;
-									document.sendComSearchForm.submit();
-								}
-							</script>
+							<a class="go first" href="3?start=${save.start}&end=${save.end}">처음 페이지</a>
+							<c:if test="${datas.startPageNum ne 1 }">
+								<a class="go prev" href="3?page=${datas.startPageNum-1 }&start=${save.start}&end=${save.end}">
+									이전 페이지
+								</a>
+							</c:if>
+							<c:forEach var="i" begin="${datas.startPageNum }" end="${datas.endPageNum }" step="1">
+								<c:choose>
+									<c:when test="${i eq datas.pageNum }">
+										<a class="current" title="현재 위치" href="3?page=${i }&start=${save.start}&end=${save.end}"><strong>${i }</strong></a>
+									</c:when>
+									<c:otherwise>
+										<a href="3?page=${i }&start=${save.start}&end=${save.end }">${i }</a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
 
+							<c:if test="${datas.endPageNum lt datas.totalPageCount }">
+								<a class="go next" href="3?page=${datas.endPageNum+1 }&start=${save.start }&end=${save.end }">
+									다음 페이지
+								</a>
+							</c:if>
+							<a class="go end" href="3?page=${datas.totalPageCount }&start=${save.start }&end=${save.end }">
+								끝 페이지
+							</a>
 						</div>
 						<div class="btns_function bottom">
 							<div class="left">
