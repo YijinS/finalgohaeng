@@ -100,8 +100,8 @@ public class MyPageController {
 
 	
 	/*-------------------개인정보 수정 -----------------------*/
-	@GetMapping("editData")
-	public ModelAndView sosoeditDataform(ModelAndView mView, HttpSession session,HttpServletRequest request) {
+	@GetMapping("personaldata/editData")
+	public ModelAndView editDataform(ModelAndView mView, HttpSession session) {
 		myPageService.getData(mView, session);
 	
 	
@@ -110,19 +110,12 @@ public class MyPageController {
 		return mView;
 	}
 	
-	@PostMapping("editData2")
+	@PostMapping("personaldata/editData2")
 	public String editData(ModelAndView mView, HttpServletRequest request, HttpSession session) {
 		myPageService.update(request, session);
 		myPageService.getData(mView, session); 
 		return "mypage.personaldata.1edit";
 	}
-	/*
-	 * @RequestMapping(value="editDataform" , method = {RequestMethod.GET,
-	 * RequestMethod.POST }) public String editData(@ModelAttribute MemberDto dto) {
-	 * myPageService.update(dto);
-	 * 
-	 * return "mypage.personaldata.1"; }
-	 */
 
 	/*-------------------------개인정보 수정------------------------*/
 	@GetMapping("personaldata/modifylogin")
@@ -132,23 +125,6 @@ public class MyPageController {
 		mView.setViewName("mypage.personaldata.modifylogin");
 		return mView;
 	}
-
-//	@PostMapping("personaldata/modifylogin1")
-//	public boolean modifylogin1(ModelAndView mView, @RequestParam(name = "pwd") String pwd, HttpSession session) {
-//		// myPageService.checkpwd(mView,pwd,session);
-//		
-//		// 세션객체 얻어오기
-//		MemberDto member = (MemberDto) session.getAttribute("member");
-//		// id에 해당하는 회원 정보 가져오기
-//		String id = member.getId();
-//		MemberDto dto = memberDao.getData(id);
-//		// 회원에 대한 비밀번호 비교
-//		if (!dto.getPwd().equals(pwd)) {
-//			//return"redirect:/mypage/personaldata/modifylogin";
-//			return false;
-//		}
-//		return true;
-//	}
 	
 	@PostMapping("personaldata/modifylogin1")
 	public ModelAndView modifylogin1(HttpSession session

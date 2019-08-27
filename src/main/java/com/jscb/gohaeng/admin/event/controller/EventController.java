@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.admin.event.service.EventService;
+import com.jscb.gohaeng.dto.ApplyEventDto;
 import com.jscb.gohaeng.dto.EventCommentDto;
 import com.jscb.gohaeng.dto.EventDto;
 //3.0버전
@@ -32,7 +33,7 @@ public class EventController {
 	private EventService eventService;
 
 	@RequestMapping("list")
-	public ModelAndView List(HttpServletRequest request) {
+	public ModelAndView list(HttpServletRequest request) {
 
 		eventService.getEventList(request);
 
@@ -46,6 +47,17 @@ public class EventController {
 		eventService.getEventDetail(request);
 
 		return "admin.event.detail";
+	}
+	
+	//이벤트 신청 처리
+	@RequestMapping(value = "detail/applyevent", method = RequestMethod.POST)
+	public void applyevent(@ModelAttribute ApplyEventDto applyEventDto
+			, @RequestParam(name="eventIndex") int index
+			, @RequestParam(name="memberId") String id) {
+		applyEventDto.setId(id);
+		applyEventDto.setIndex(index);
+		eventService.applyEvent(applyEventDto);
+		
 	}
 	
 	//댓글 추가 요청 처리
@@ -114,25 +126,7 @@ public class EventController {
 			,@RequestParam(name="drawtDate", required = false) Date drawDate
 			,@ModelAttribute EventDto eventDto) {
 
-		System.out.println("컨트롤러********************************************************************");
-		eventDto.setStartDate(startDate);
-		eventDto.setEndDate(endDate);
-		eventDto.setDrawDate(drawDate);
-		System.out.println(eventDto.getTitle());
-		System.out.println(eventDto.getIndex());
-		System.out.println(eventDto.getSubTitle());
-		System.out.println(eventDto.getStartDate());
-		System.out.println(eventDto.getEndDate());
-		System.out.println(eventDto.getDrawDate());
-		System.out.println(eventDto.getDisplay());
-		System.out.println(eventDto.getContent());
-		System.out.println("컨트롤러********************************************************************");
-
-		//dto.setStartDate(startDate1);
-		//dto.setEndDate(endDate1);
 		eventService.regEvent(eventDto);
-
-		//글 목록 보기로 리다일렉트 이동 
 		return new ModelAndView("redirect:/admin/event/list");
 	}
 	
@@ -177,41 +171,6 @@ public class EventController {
 		eventService.updateEvent(eventDto);
 		return new ModelAndView("redirect:/admin/event/detail?index="+eventDto.getIndex());
 	}
-	/* ---------------- 이벤트 추첨관리 컨트롤러 ---------------- */
-	/*
-	@RequestMapping(value = "management", method = RequestMethod.GET)
-	public ModelAndView manageEventList(ModelAndView mView) {
-
-		mView.setViewName("admin.event.magagement.list");
-
-		return mView;
-	}
-
-	@RequestMapping(value = "management", method = RequestMethod.POST)
-	public ModelAndView manageEventList(HttpServletRequest request) {
-
-		applyEventService.
-		mView.setViewName("admin.event.magagement.list");
-
-		return mView;
-	}
-	 */
 
 
 }
-//4.0버전
-//@Controller
-//@RequestMapping("/admin/event/")
-//public class EventController {
-//
-//	@Autowired
-//	private EventService eventService;
-//
-//	@GetMapping("list")
-//	public String list(HttpServletRequest request, Model model) {
-//		
-//		eventService.getEventList(request);
-//		
-//		return "admin.event.list";
-//	}
-//}

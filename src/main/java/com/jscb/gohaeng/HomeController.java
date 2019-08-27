@@ -38,7 +38,7 @@ public class HomeController {
 		return mView;
 	}
 	
-	@RequestMapping("/admin/adminindex")
+	@RequestMapping("/admin/")
 	public ModelAndView adminIndex(ModelAndView mView){
 
 
@@ -57,21 +57,6 @@ public class HomeController {
 		String json = gson.toJson(dto);
 		
 		return json;
-	}
-
-
-	@RequestMapping(value="/home2",method = RequestMethod.GET)
-	public ModelAndView home2(ModelAndView mView,HttpServletRequest request) throws IOException {
-		indexService.crawlingFortune(mView);
-		String url = request.getRequestURI();
-		String query = request.getQueryString();
-		
-		System.out.println("url : " + url);
-		System.out.println("query : " + query);
-		/* mView.setViewName("common.indexa"); */
-		mView.setViewName("common.index");
-
-		return mView;
 	}
 	
 	//스케쥴러

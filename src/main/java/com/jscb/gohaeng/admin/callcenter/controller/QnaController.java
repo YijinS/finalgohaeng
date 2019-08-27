@@ -11,12 +11,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jscb.gohaeng.admin.callcenter.service.QnaService;
 
 @Controller
+@RequestMapping("/admin/callcenter/")
 public class QnaController {
 	
 	@Autowired
 	private QnaService qnaservice;
 	
-	@RequestMapping("/admin/callcenter/qna/list")
+	@RequestMapping("qna/list")
 	public ModelAndView list(HttpServletRequest request) {
 		qnaservice.getList(request);
 		//radio버튼 값 전달되는지 확인해봄.
@@ -24,7 +25,7 @@ public class QnaController {
 		return new ModelAndView("admin.callcenter.qna.list");
 	}
 	
-	@RequestMapping("/admin/callcenter/qna/detail")
+	@RequestMapping("qna/detail")
 	public ModelAndView detail(@RequestParam int index,
 			ModelAndView mView) {
 		qnaservice.getData(index, mView);
@@ -32,7 +33,7 @@ public class QnaController {
 		return mView;
 	}
 	
-	@RequestMapping("admin/callcenter/qna/delete")
+	@RequestMapping("qna/delete")
 	public String delete(@RequestParam int index) {
 		qnaservice.delete(index);
 		return "admin.callcenter.qna.delete";

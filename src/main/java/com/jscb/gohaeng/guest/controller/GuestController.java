@@ -120,15 +120,6 @@ public class GuestController {
 		mView.setViewName("guest/emailConfirm");
 		return mView;
 	}
-
-//	@RequestMapping("emailAuth")
-//	public ModelAndView emailAuth(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
-//		System.out.println("email-------->"+request.getParameter("email"));
-//		guestService.emailAuth(request);
-//		ModelAndView mView = new ModelAndView();
-//		mView.setViewName("guest/emailauth");
-//		return mView;
-//	}
 	
 	/*-------------------id/pwd찾기-----------------------*/
 	@RequestMapping("findidpw")

@@ -687,7 +687,7 @@ h3.middle_title {margin-left:6px; color:#194382; font-size:15px; font-weight:bol
 .comment_event .comment_write .agreement {margin-top:10px}
 .comment_event .comment_write .agreement .btn_common {margin-right:18px}
 .comment_event h5 {margin:40px 0 20px; font-size:16px; font-weight:500; color:#00619a}
-
+.container > .btnList > a { float: left;}
 
 /* 행복공감 */
 /*06-01-01 건전한 복권문화 > 복권바로알기 */

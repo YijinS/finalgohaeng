@@ -10,5 +10,9 @@
 	<select id="getApplyList" resultMap="ApplyEventDto">
 		SELECT * FROM APPLY_EVENT ORDER BY EVENT_INDEX
 	</select>
+	<insert id="insert" parameterType="com.jscb.gohaeng.dto.ApplyEventDto">
+		INSERT INTO APPLY_EVENT(EVENT_INDEX, MEMBER_ID, AE_RESULT)
+		VALUES(#{index}, #{id}, 1)
+	</insert>
 	
 </mapper>

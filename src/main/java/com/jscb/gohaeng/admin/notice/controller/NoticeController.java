@@ -13,18 +13,19 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jscb.gohaeng.admin.notice.service.NoticeService;
 import com.jscb.gohaeng.dto.NoticeDto;
 @Controller
+@RequestMapping("/admin/notice/")
 public class NoticeController {
 	
 	@Autowired
 	private NoticeService noticeService;
 	
-	@RequestMapping("/admin/notice/list")
+	@RequestMapping("list")
 	public ModelAndView list(HttpServletRequest request) {	
 		noticeService.getList(request);
 		return new ModelAndView("admin.notice.list");
 	}
 	
-	@RequestMapping("/admin/notice/detail")
+	@RequestMapping("detail")
 	public ModelAndView detail(@RequestParam int index, 
 			ModelAndView mView) {
 		noticeService.getData(index, mView);
@@ -32,26 +33,26 @@ public class NoticeController {
 		return mView;
 	}
 	
-	@RequestMapping("/admin/notice/delete")
+	@RequestMapping("delete")
 	public String delete(@RequestParam int index) {
 		noticeService.delete(index);
 		return "admin.notice.delete";
 	}
 	
-	@RequestMapping("/admin/notice/insertform")
+	@RequestMapping("insertform")
 	public ModelAndView insertform(HttpServletRequest request) {
 		
 		return new ModelAndView("admin.notice.insertform");
 	}
 	
-	@RequestMapping(value = "/admin/notice/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public ModelAndView insert(HttpServletRequest request) {
 		
 		noticeService.regNotice(request);
 		return new ModelAndView("redirect:/admin/notice/list");
 	}
 	
-	@RequestMapping("/admin/notice/updateform")
+	@RequestMapping("updateform")
 	public ModelAndView updateform(HttpServletRequest request,
 			@RequestParam int index, ModelAndView mView) {
 		
@@ -60,7 +61,7 @@ public class NoticeController {
 		return mView;
 	}
 	
-	@RequestMapping("/admin/notice/update")
+	@RequestMapping("update")
 	public ModelAndView update(HttpServletRequest request,
 			@ModelAttribute NoticeDto dto) {
 		

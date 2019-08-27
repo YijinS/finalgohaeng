@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.jscb.gohaeng.dto.ApplyEventDto;
 import com.jscb.gohaeng.dto.EventCommentDto;
 import com.jscb.gohaeng.dto.EventDto;
 
@@ -23,5 +25,7 @@ public interface EventService {
 	public void deleteEvent(int index);
 	//체크된 여러개의 이벤트를 삭제 하는 메소드 
 	public void deleteEventList(List<String> indexList);
+	public void applyEvent(ApplyEventDto applyEventDto);
+	
 
 }

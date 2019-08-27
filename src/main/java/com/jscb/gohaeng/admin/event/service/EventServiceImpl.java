@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jscb.gohaeng.dao.ApplyEventDao;
 import com.jscb.gohaeng.dao.EventCommentDao;
 import com.jscb.gohaeng.dao.EventDao;
+import com.jscb.gohaeng.dto.ApplyEventDto;
 import com.jscb.gohaeng.dto.EventCommentDto;
 import com.jscb.gohaeng.dto.EventDto;
 import com.jscb.gohaeng.dto.MemberDto;
@@ -23,6 +25,8 @@ public class EventServiceImpl implements EventService {
 	private EventDao eventDao;
 	@Autowired
 	private EventCommentDao eventCommentDao;
+	@Autowired
+	private ApplyEventDao appltEventDao;
 
 	static final int PAGE_ROW_COUNT = 5;
 	static final int PAGE_DISPLAY_COUNT = 5;
@@ -259,6 +263,12 @@ public class EventServiceImpl implements EventService {
 	public void updateEvent(EventDto eventDto) {
 		
 		eventDao.update(eventDto);
+	}
+
+	@Override
+	public void applyEvent(ApplyEventDto applyEventDto) {
+		
+		appltEventDao.insert(applyEventDto);
 	}
 
 

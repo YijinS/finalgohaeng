@@ -135,7 +135,7 @@ public class IndexServiceImpl implements IndexService {
 		LottoGamesDto dto = new LottoGamesDto();
 		
 		DateFormat df = new SimpleDateFormat("yyyyMMdd");
-		for(int i=4; i<=14; i++) {
+		for(int i=15; i<=868; i++) {
 		String url ="https://dhlottery.co.kr/gameResult.do?method=byWin&drwNo="+i;
 		dto.setGames(i);
 		
