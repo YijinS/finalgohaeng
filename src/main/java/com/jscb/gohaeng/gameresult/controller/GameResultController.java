@@ -191,4 +191,10 @@ public class GameResultController {
 	
 	
 	/*------------------------- lottoStat 매핑------------------------------*/
+	
+	@RequestMapping("winnerinterview")
+	public String winnerinterview() {
+		
+		return "gameresult.winningnews.1";
+	}
 }

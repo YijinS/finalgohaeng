@@ -9,7 +9,8 @@
 			<c:when test="${not empty sessionScope.member.id}">
 				<ul>
 					<li id="chatting"><a id="chatting" class="btn_search"
-						onclick="${pageContext.request.contextPath}/chatting','a','resizable=no width=700 height=800');return false"
+						
+						onclick="window.open(this.href, '_blanck', 'width=600, height=700'); return false"
 						href="${pageContext.request.contextPath}/chatting" title="새창">
 							<img src="https://image.flaticon.com/icons/svg/1256/1256649.svg"
 							alt="" style="width: 50px; heigth: 50px" />
@@ -18,15 +19,13 @@
 			</c:when>
 		</c:choose>
 		<ul class="prog">
-			<li class="p1"><a href="#">나의복권<br>건전지수
+			<li class="p1"><a href="#">복권<br>구매하기
 			</a></li>
-			<li class="p2"><a href="#">건전구매<br>캠페인
+			<li class="p2"><a href="#">판매점<br>조회
 			</a></li>
-			<li class="p3"><a href="#">건전구매<br>서약
+			<li class="p3"><a href="#">최근 당첨<br>번호보기
 			</a></li>
-			<li class="p4"><a href="#">자기관리<br>프로그램
-			</a></li>
-			<li class="p5"><a href="#">동행<br>클린센터
+			<li class="p4"><a href="#">통계 보기
 			</a></li>
 		</ul>
 	</div>
