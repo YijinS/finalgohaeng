@@ -108,7 +108,7 @@ public class GuestServiceImpl implements GuestService {
 		sendMail.setTo(dto.getEmail());
 		sendMail.send();
 
-//		request.setAttribute("email", email);
+		request.setAttribute("email", email);
 //		request.setAttribute("authkey", authkey);
 	}
 
@@ -166,6 +166,7 @@ public class GuestServiceImpl implements GuestService {
 	public void logout(HttpSession session) {
 
 		session.removeAttribute("member");
+		session.removeAttribute("check");
 
 	}
 
