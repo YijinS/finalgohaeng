@@ -31,19 +31,14 @@
 	</div>
 	<br>
 	<div>
-		<div>
-			<input type="text" id="message" style="height:500px; width: 300px;" /> 
-			<input type="button" id="sendBtn" value="전송" />
-		</div>
-		<br>
-		
-		
 		<div class="well" id="chatdata">
 			<!-- User Session Info Hidden -->
 			<input type="hidden" value='${userid}' id="sessionuserid">
+		</div><br>
+		<div class="fixed-bottom">
+			<input type="text" id="message" style="height:60px; width: 300px;" /> 
+			<input type="button" id="sendBtn" value="전송" />
 		</div>
-		
-		
 	</div>
 </body>
 <script type="text/javascript">

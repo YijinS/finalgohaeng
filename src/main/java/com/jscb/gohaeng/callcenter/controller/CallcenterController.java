@@ -36,6 +36,15 @@ public class CallcenterController {
 		return mView;
 	}
 	
+	
+	@RequestMapping("faq/1")
+	public ModelAndView faq1(ModelAndView mView) {
+		faqservice.getList(mView);
+		mView.setViewName("callcenter.faq.1");
+		return mView;
+	}
+	
+	
 	/*----------------------- 1:1상담  -----------------------*/
 	@RequestMapping("qna/list")
 	public ModelAndView list(ModelAndView mView) {

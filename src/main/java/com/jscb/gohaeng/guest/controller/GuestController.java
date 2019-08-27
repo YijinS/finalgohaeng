@@ -75,12 +75,10 @@ public class GuestController {
 	}
 	
 	@RequestMapping(value="widthdraw2" , method = {RequestMethod.GET, RequestMethod.POST }) 
-	public String withdraw(String id, HttpSession session, WidthdrawDto dto, HttpServletRequest request) {
+	public String withdraw(HttpSession session, WidthdrawDto dto, HttpServletRequest request) {
 		
 		
-		guestService.insert(dto);
-		
-		guestService.delete(request.getParameter("userId"));
+		guestService.deleteMember(session, dto);
 
 		return "mypage.personaldata.widthdraw";
 		
@@ -120,15 +118,6 @@ public class GuestController {
 		mView.setViewName("guest/emailConfirm");
 		return mView;
 	}
-
-//	@RequestMapping("emailAuth")
-//	public ModelAndView emailAuth(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
-//		System.out.println("email-------->"+request.getParameter("email"));
-//		guestService.emailAuth(request);
-//		ModelAndView mView = new ModelAndView();
-//		mView.setViewName("guest/emailauth");
-//		return mView;
-//	}
 	
 	/*-------------------id/pwd찾기-----------------------*/
 	@RequestMapping("findidpw")

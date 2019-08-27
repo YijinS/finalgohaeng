@@ -13,15 +13,15 @@
                   <ul>
                      <li><a href="${pageContext.request.contextPath }/guest/login">로그인</a></li>
                      <li><a href="${pageContext.request.contextPath }/guest/signup">회원가입</a></li>
-                     <li><a href="#">마이페이지</a></li>
-                     <li><a href="#">고객센터</a></li>
+                     <li><a href="${pageContext.request.contextPath }/mypage/home">마이페이지</a></li>
+                     <li><a href="${pageContext.request.contextPath }/callcenter/info">고객센터</a></li>
                   </ul>                  
                   </c:when>
                   <c:otherwise>
                   <ul>
                      <c:choose>
                         <c:when test="${sessionScope.member.id eq 'ADMIN' }">
-                           <li><a href="${pageContext.request.contextPath }/admin/adminindex">관리자 페이지</a></li>
+                           <li><a href="${pageContext.request.contextPath }/admin/">관리자 페이지</a></li>
                         </c:when>
                         <c:otherwise>
                            <li><a href="${pageContext.request.contextPath }/mypage/deposit/1">예치금 : ${member.deposit }원 </a></li>
@@ -93,14 +93,9 @@
                                 </li>
                                 <li><a href="#">로또6/45 당첨통계</a>
                                     <ul class="snb_dep3">
-                                        <li><a href="#">당첨통계</a></li>
-                                        <li><a href="#">번호별 통계</a></li>
-                                        <li><a href="#">색상 통계</a></li>
-                                        <li><a href="#">구간별 출현횟수</a></li>
-                                        <li><a href="#">기간별 미출현 번호</a></li>
-                                        <li><a href="#">홀짝통계</a></li>
-                                        <li><a href="#">연속번호 출현</a></li>
-                                        <li><a href="#">패턴분석표</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/lottostat/1">당첨통계</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/lottostat/2">번호별 통계</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/lottostat/3">색상 통계</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -108,8 +103,7 @@
                                 <li><a href="#">연금복권520 당첨통계</a></li>
                                 <li><a href="#">당첨소식</a>
                                     <ul class="snb_dep3">
-                                        <li><a href="#">당첨자 인터뷰</a></li>
-                                        <li><a href="#">당첨 소감 게시판</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/winnerinterview">당첨자 인터뷰</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">미수령 당첨금</a>
@@ -123,59 +117,35 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="basic gnb4"><a href="${pageContext.request.contextPath }/store/sellerinfo/1">판매점</a>
-                        <div class="group">
-                            <ul>
-                                <li><a href="#">구입처 안내</a>
-                                    <ul class="snb_dep3">
-                                        <li><a href="#">로또6/45판매점 조회</a></li>
-                                        <li><a href="#">즉석 및 연금복권 판매점 조회</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">당첨 판매점</a>
-                                    <ul class="snb_dep3">
-                                        <li><a href="#">회차별</a></li>
-                                        <li><a href="#">1등 배출점</a>
-                                        </li>
-                                        <li><a href="#">2등 배출점</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
+                    <li class="basic gnb4"><a href="${pageContext.request.contextPath }/store/1">판매점</a>
                     </li>
                     <li class="basic gnb5"><a href="${pageContext.request.contextPath }/event/list">이벤트</a>
-                        <div class="group">
-                            <ul>
-                                <li><a href="#">이벤트</a></li>
-                            </ul>
-                        </div>
                     </li>
                     <li class="basic gnb6"><a href="${pageContext.request.contextPath }/happy/healthy/1">행복공감</a>
                         <div class="group">
                             <ul>
-                                <li><a href="#">건전한 복권문화</a>
+                                <li><a href="${pageContext.request.contextPath }/happy/healthy/1">건전한 복권문화</a>
                                     <ul class="snb_dep3">
-                                        <li><a href="#">복권바로알기</a></li>
-                                        <li><a href="#">건전구매 프로그램</a></li>
-                                        <li><a href="#">건전화 캠페인</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/happy/healthy/1">복권바로알기</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/happy/healthy/2">건전구매 프로그램</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/happy/healthy/3">건전화 캠페인</a></li>
                                         <li><a href="#">건전화 책임규정</a></li>
                                         <li><a href="#">복권 과몰입 예방법</a></li>
                                         <li><a href="#">중독예방 및 상담안내</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">복권기금</a>
+                                <li><a href="${pageContext.request.contextPath }/happy/fund/1">복권기금</a>
                                     <ul class="snb_dep3">
-                                        <li><a href="#">복권기금소개</a></li>
-                                        <li><a href="#">기금사업 진행현황</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/happy/fund/1">복권기금소개</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/happy/fund/2">기금사업 진행현황</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">행복공감봉사단</a></li>
-                                <li><a href="#">홍보센터</a>
+                                <li><a href="${pageContext.request.contextPath }/happy/service">행복공감봉사단</a></li>
+                                <li><a href="${pageContext.request.contextPath }/happy/promotion">홍보센터</a>
                                     <ul class="snb_dep3">
-                                        <li><a href="#">광고</a></li>
-                                        <li><a href="#">보도자료</a></li>
-                                        <li><a href="#">공지사항</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/happy/promotion/1">광고</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/happy/promotion/2">보도자료</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/happy/promotion/3">공지사항</a></li>
                                     </ul>
                                 </li>
                             </ul>

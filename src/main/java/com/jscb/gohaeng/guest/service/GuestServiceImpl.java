@@ -108,7 +108,7 @@ public class GuestServiceImpl implements GuestService {
 		sendMail.setTo(dto.getEmail());
 		sendMail.send();
 
-//		request.setAttribute("email", email);
+		request.setAttribute("email", email);
 //		request.setAttribute("authkey", authkey);
 	}
 
@@ -166,6 +166,7 @@ public class GuestServiceImpl implements GuestService {
 	public void logout(HttpSession session) {
 
 		session.removeAttribute("member");
+		session.removeAttribute("check");
 
 	}
 
@@ -332,6 +333,17 @@ public class GuestServiceImpl implements GuestService {
 		} else
 			mView.addObject("dto", dto);
 
+	}
+
+	
+	//	회원탈퇴
+	@Transactional  
+	public void deleteMember(HttpSession session, WidthdrawDto dto) {
+		MemberDto memberdto = (MemberDto)session.getAttribute("member");
+		String id = memberdto.getId();	
+		wdDao.insert(dto);
+		memberDao.delete(id);
+		session.removeAttribute("member");
 	}
 
 //	@Override

@@ -9,6 +9,14 @@
       <put-attribute name="main" value="/WEB-INF/views/{1}.jsp" />
    </definition>
    
+   
+	
+	<definition name="form.*"
+		template="/WEB-INF/views/admin/inc/no-tiles.jsp">
+		<put-attribute name="main" value="/WEB-INF/views/admin/store/lotto/{1}.jsp"></put-attribute>
+	</definition>
+   
+   
 	<definition name="admin.*.*.*"
 		template="/WEB-INF/views/admin/inc/layout.jsp">
 		<put-attribute name="header"
@@ -55,10 +63,17 @@
 		
 	<!-- 타일즈 미적용 부분 -->
 
+<<<<<<< HEAD
 	<definition name="admin.store.lotto.1detail"
 		template="/WEB-INF/views/admin/inc/no-tiles.jsp">
-		<put-attribute name="main"
-			value="/WEB-INF/views/admin/store/lotto/1detail.jsp"></put-attribute>
+		<put-attribute name="main" value="/WEB-INF/views/admin/store/lotto/1detail.jsp"></put-attribute>
+		
+	</definition>
+	
+	<definition name="store.sellerinfo.1detail"
+		template="/WEB-INF/views/inc/no-tiles.jsp">
+		<put-attribute name="main" value="/WEB-INF/views/store/sellerinfo/1detail.jsp"></put-attribute>
+		
 	</definition>
 
 	<definition name="admin.store.lotto.1insertform"
@@ -73,6 +88,9 @@
 			value="/WEB-INF/views/admin/store/lotto/1editform.jsp"></put-attribute>
 	</definition>
 
+=======
+	
+>>>>>>> refs/remotes/origin/master
 
 
 </tiles-definitions>

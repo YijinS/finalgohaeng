@@ -635,7 +635,7 @@ h3.middle_title {margin-left:6px; color:#194382; font-size:15px; font-weight:bol
 .content_seller_info .note_result_search.bottom + .paginate_common {margin-top:-16px}
 .content_seller_info .tbl_data tr td.ta_left img {display:inline-block; margin-top:-2px; margin-left:3px}
 .content_seller_info .wrap_option2 {margin-bottom:40px}
-.content_seller_info .wrap_option2 .box_option {float:left; width:40%; height:220px; padding-bottom:0; margin:0 -1px 0 0}
+.content_seller_info .wrap_option2 .box_option {float:left; width:45%; height:220px; padding-bottom:0; margin:0 -1px 0 0}
 .content_seller_info .wrap_option2 .box_option ~ .box_option {float:right; width:calc(50% + 1px); margin:0 0 0 -1px}
 .content_seller_info .wrap_option2 .box_option .head {height:39px}
 .content_seller_info .wrap_option2 .box_option .head * {float:left}
@@ -687,7 +687,7 @@ h3.middle_title {margin-left:6px; color:#194382; font-size:15px; font-weight:bol
 .comment_event .comment_write .agreement {margin-top:10px}
 .comment_event .comment_write .agreement .btn_common {margin-right:18px}
 .comment_event h5 {margin:40px 0 20px; font-size:16px; font-weight:500; color:#00619a}
-
+.container > .btnList > a { float: left;}
 
 /* 행복공감 */
 /*06-01-01 건전한 복권문화 > 복권바로알기 */

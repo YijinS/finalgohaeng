@@ -77,6 +77,29 @@
 					<a href="updateform?index=${eventDto.index }">수정</a>
 					<a href="javascript:deleteConfirm()">삭제</a>
 				</c:if>
+				<!-- 버튼 영역  리스트가기 / 이벤트 참가신청 -->
+				<div class="btnList">
+					<a class="btn_common form" href="list">목록</a>
+					<form name="aeForm" id="aeForm" action="applyevent" method="post">
+						<input type="hidden" name="eventIndex" id="nowPage" value="${eventDto.index }">
+						<input type="hidden" name="memberId" id="nowPage" value="${sessionScope.member.id }">
+					</form>
+					<%-- 로그인 되었을때만 버튼 출력 --%>
+					<c:if test="${not empty sessionScope.member }">
+						<a class="btn_common form" id="aeBtn" href="#">이벤트 신청하기</a>
+					</c:if>
+					<script>
+						$(function(){
+							var aeBtn = $("#aeBtn");
+							var aeForm = $("#aeForm");
+							
+							aeBtn.click(function(){
+								aeForm.submit();
+							});
+						});
+					</script>
+				</div>
+				
 				<!-- 댓글 목록 -->
 				<div class="comments">
 					<ul>

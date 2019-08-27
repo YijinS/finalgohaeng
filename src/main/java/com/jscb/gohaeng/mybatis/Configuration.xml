@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/jscb/gohaeng/mybatis/EventMapper.xml"/>
 		<mapper resource="com/jscb/gohaeng/mybatis/FaqMapper.xml"/>
 		<mapper resource="com/jscb/gohaeng/mybatis/EventCommentMapper.xml"/>
-
+		<mapper resource="com/jscb/gohaeng/mybatis/ApplyEventMapper.xml"/>
    </mappers>
 
 </configuration>

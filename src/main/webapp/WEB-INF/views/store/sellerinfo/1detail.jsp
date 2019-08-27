@@ -1,18 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style>
-	#wrapper {width: 700px; height: 800px; }
-	.tbl_data {width: 600px; }
-	.popup_win_content { width: 600px; margin: 0;}
-	#map {width: 700px; height: 400px;}
-	#btn-list {width: 600px;}
-	#btn-list div { display: inline-block;}
-	#btn-list .btns_bottom.close { float: right;}
-	#btn-list a { margin: 0;}
-</style>
-<div id="wrapper">
-<div id="map"></div>
+
+<div id="map" style="width: 500px; height: 400px;"></div>
 <script>
 
 		
@@ -123,20 +113,19 @@
 				</tr>
 			</tbody>
 		</table>
-		<div id="btn-list">
-			<div class="btns_bottom">
-				<a class="btn_common mid" href="1editform.do?storeIndex=${dto.storeIndex}">수정</a>
-			</div>
-			<div class="btns_bottom">
-				<a class="btn_common mid" href="1delete.do?storeIndex=${dto.storeIndex}">삭제</a>
-			</div>
-			<div class="btns_bottom close">
-				<a href="#" class="btn_common mid"
-					onclick="self.close(); return false;">닫기</a>
-			</div>
+		<div class="btn_common form write">
+			<a href="1editform.do?storeIndex=${dto.storeIndex}">수정</a>
+		</div>
+		<div class="btn_common form delete">
+			<a href="1delete.do?storeIndex=${dto.storeIndex}">삭제</a>
+		</div>
+		<div class="btns_bottom">
+			<a href="#" class="btn_common mid"
+				onclick="self.close(); return false;">닫기</a>
 		</div>
 	</div>
-
+	<a href="#" class="popup_win_close"
+		onclick="self.close(); return false;">창 닫기</a>
 
 </section>
-</div>
+
