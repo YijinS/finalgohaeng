@@ -9,24 +9,14 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/common.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/contents.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/page.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/contents.css" />
 
 <style>
-html, body {
-	margin: 0px;
-	padding: 0px;
-	
-}
+html, body { margin: 0px;padding: 0px;} 
+body > div {position: relative;}
+#menu-wrapper { display: flex; justify-content: center;}
+.first-line{ margin-top: 100px; }
 
-#menu-wrapper {
-	display: inherit;
-	
-}
-.first-line{
-margin: 100px 0px 43px 250px;
-}
-
+#header {position: static;}
 .menu {
 
    	margin-left: 50px;
@@ -58,6 +48,7 @@ img{
 </head>
 
 <body>
+<div>
 <div id="header">
 
 	<div class="header">
@@ -137,48 +128,54 @@ img{
 <!-- --------------------------- main  --------------------------------------------------------->
 <div id="menu-wrapper">
 	<div class="first-line">
-		
-		<div class="menu">
 		<a href="${pageContext.request.contextPath }/admin/notice/list">
-		<img src="https://image.flaticon.com/icons/svg/0/535.svg" alt=""/></a>
+		<div class="menu">
+		<img src="https://image.flaticon.com/icons/svg/0/535.svg" alt=""/>
 		<strong>공지사항</strong>
 		</div>
+		</a>
 		
-		<div class="menu">
 		<a href="${pageContext.request.contextPath }/admin/callcenter/qna/list">
-		<img src="https://image.flaticon.com/icons/svg/1987/1987915.svg" alt=""/></a>
-		<strong>1:1 질문</strong>
-		</div>
-		
 		<div class="menu">
-		<a href="${pageContext.request.contextPath }/admin/callcenter/faq/list">
-		<img src="https://image.flaticon.com/icons/svg/839/839888.svg" alt=""/></a>
+		<img src="https://image.flaticon.com/icons/svg/1987/1987915.svg" alt=""/>
+		<strong>질문</strong>
+		</div>
+		</a>
+		
+		<a href="${pageContext.request.contextPath }/admin/event/list">
+		<div class="menu">
+		<img src="https://image.flaticon.com/icons/svg/839/839888.svg" alt=""/>
 		<strong>이벤트</strong>
 		</div>
+		</a>
+		
 		<br>
-		<div class="menu">
 		<a href="${pageContext.request.contextPath }/admin/winner_interview/1">
-		<img src="https://image.flaticon.com/icons/svg/942/942798.svg" alt=""/></a>
+		<div class="menu">
+		<img src="https://image.flaticon.com/icons/svg/942/942798.svg" alt=""/>
 		<strong>당첨자 인터뷰</strong>
 		</div>
+		</a>
 		
-		<div class="menu">
 		<a href="${pageContext.request.contextPath }/store/1">
-		<img src="https://image.flaticon.com/icons/svg/126/126122.svg" alt=""/></a>
+		<div class="menu">
+		<img src="https://image.flaticon.com/icons/svg/126/126122.svg" alt=""/>
 		<strong>판매점</strong>
 		</div>
+		</a>
 		
-		<div class="menu">
 		<a href="${pageContext.request.contextPath }/admin/drawshow/lotto/list">
-		<img src="https://image.flaticon.com/icons/svg/1986/1986424.svg" alt=""/></a>
+		<div class="menu">
+		<img src="https://image.flaticon.com/icons/svg/1986/1986424.svg" alt=""/>
 		<strong>참관신청</strong>
 		</div>
-		
+		</a>
 		
 		
 	</div>
 
 
+</div>
 </div>
 </body>
 </html>

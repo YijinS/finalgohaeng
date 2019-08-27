@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,7 @@ public class GameResultController {
 	public ModelAndView gamesDraw(ModelAndView mView) {
 		
 		gameResultService.getLastGames(mView);
-		mView.addObject("list",gameResultService.getGames());
+		mView.addObject("games",gameResultService.getGames());
 		
 		mView.setViewName("gameresult.lotto645.1");
 		return mView;
@@ -82,6 +83,16 @@ public class GameResultController {
 		
 		mView.setViewName("gameresult.lotto645.6");
 		return mView;
+	}
+	
+	
+	@RequestMapping("lotto645/exeldown")
+	public void exelDown(HttpServletResponse response
+			,@RequestParam(name="start",defaultValue = "0")Integer start
+			,@RequestParam(name="end",defaultValue = "0")Integer end) {
+		
+		gameResultService.getExelDown(response, start, end);
+		
 	}
 	
 	/*------------------------- lotto645 매핑------------------------------*/
@@ -180,4 +191,10 @@ public class GameResultController {
 	
 	
 	/*------------------------- lottoStat 매핑------------------------------*/
+	
+	@RequestMapping("winnerinterview")
+	public String winnerinterview() {
+		
+		return "gameresult.winningnews.1";
+	}
 }

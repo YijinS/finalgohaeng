@@ -14,7 +14,7 @@
 <nav
    class="navbar navbar-expand-lg navbar-light bg-white sticky-top flex-column border-bottom border-secondary">
    <div class="container" id="header-top">
-      <a class="navbar-brand" href="${pageContext.request.contextPath }/home"> 
+      <a class="navbar-brand" href="${pageContext.request.contextPath }/"> 
          <img src="${pageContext.request.contextPath }/resources/images/index/logo-header.png" width="190px" alt="">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -31,15 +31,14 @@
                      href="${pageContext.request.contextPath }/guest/login">로그인</a></li>
                   <li class="nav-item"><a class="nav-link"
                      href="${pageContext.request.contextPath }/guest/signup">회원가입</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
+                  <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/mypage/home">마이페이지</a></li>
+                  <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/callcenter/info">고객센터</a></li>
                </c:when>
 
                <c:otherwise>
                   <c:choose>
                         <c:when test="${sessionScope.member.id eq 'ADMIN' }">
-                           <li class="nav-item"><a class="nav-link"
-                           href="${pageContext.request.contextPath }/admin/adminindex">관리자 페이지</a></li>
+                           href="${pageContext.request.contextPath }/admin/">관리자 페이지</a></li>
                         </c:when>
                         <c:otherwise>
                            <li class="nav-item"><a class="nav-link"
@@ -52,7 +51,7 @@
                      href="${pageContext.request.contextPath }/guest/logout">로그아웃</a></li>
                   <li class="nav-item"><a class="nav-link"
                      href="${pageContext.request.contextPath }/mypage/home">마이페이지</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
+                  <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/callcenter/info">고객센터</a></li>
                </c:otherwise>
             </c:choose>
          </ul>
@@ -61,10 +60,10 @@
    <div class="container" id="header-bot">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
          <ul class="navbar-nav w-100 justify-content-around">
-            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/purchase/lotto645a">복권구매</a></li>
+            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/purchase/lotto645">복권구매</a></li>
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/gameinfo/lotto645/1">복권정보</a></li>
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/gameresult/lotto645/1">당첨결과</a></li>
-            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/user/store/1">판매점</a></li>
+            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/store/1">판매점</a></li>
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/event/list">이벤트</a></li>
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/happy/healthy/1">행복공감</a></li>
          </ul>
@@ -374,7 +373,7 @@
             <!-- <a class="btn-link text-secondary" href="#">+ 인터뷰 더보러가기</a> -->
             <div class="row">
                <div class="col text-center">
-                  <a class="btn-link text-secondary p-4" href="#"> <i
+                  <a class="btn-link text-secondary p-4" href="${pageContext.request.contextPath }/winnerinterview"> <i
                      class="material-icons align-middle">arrow_right</i> <span
                      class="align-middle text-decoration-none">인터뷰 더보러가기</span>
                   </a>
@@ -432,6 +431,14 @@
                      <p title="예치금충전 서비스 변경 안내">예치금충전 서비스 변경 안내</p>
                </a><span class="date">2019.07.22</span></li>
             </ul>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col text-center">
+            <a class="btn-link text-secondary p-4" href="${pageContext.request.contextPath }/notice/list"> <i
+               class="material-icons align-middle">arrow_right</i> <span
+               class="align-middle text-decoration-none">공지사항 더보러가기</span>
+            </a>
          </div>
       </div>
    </div>

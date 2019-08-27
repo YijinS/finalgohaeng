@@ -38,11 +38,11 @@
 							</ul></li>
 						<li id="07-06"><a href="#" class="menuLnb"><span>행복더하기
 									신청</span></a></li>
-						<li id="07-07" class="active"><a href="#" class="menuLnb"><span>개인정보</span></a>
+						<li id="07-07" class="active"><a href="${pageContext.request.contextPath }/mypage/personaldata/modifylogin" class="menuLnb"><span>개인정보</span></a>
 							<ul class="lnb_dep2" style="">
-								<li id="07-07-01"><a href="#"><span> 개인정보변경</span></a></li>
-								<li id="07-07-02" class="active"><a href="#"><span> 비밀번호변경</span></a></li>
-								<li id="07-07-03"><a href="#"><span> 회원탈퇴 </span></a></li>
+								<li id="07-07-01"><a href="${pageContext.request.contextPath }/mypage/personaldata/1"><span> 개인정보변경</span></a></li>
+								<li id="07-07-02" class="active"><a href="${pageContext.request.contextPath }/mypage/personaldata/changepwd"><span> 비밀번호변경</span></a></li>
+								<li id="07-07-03"><a href="${pageContext.request.contextPath }/mypage/personaldata/3"><span> 회원탈퇴 </span></a></li>
 							</ul></li>
 					</ul>
 				</div>

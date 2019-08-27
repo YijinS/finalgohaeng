@@ -11,12 +11,13 @@ import com.jscb.gohaeng.admin.winnerinterview.service.WinnerService;
 
 
 @Controller
+@RequestMapping("/admin/winner_interview/")
 public class WinnerInterviewController{
 
 	@Autowired
 	private WinnerService winnerService;
 
-	@RequestMapping("/admin/winner_interview/1")
+	@RequestMapping("1")
 	public ModelAndView list(ModelAndView mView) {
 		
 		winnerService.getList(mView);
@@ -27,7 +28,7 @@ public class WinnerInterviewController{
 		
 	}
 	
-	@RequestMapping(value="/admin/winner_interview/1detail", method = RequestMethod.GET)
+	@RequestMapping("1detail")
 	public ModelAndView getData(ModelAndView mView, int wiIndex) {
 		
 		winnerService.getDate(mView, wiIndex);
@@ -38,7 +39,7 @@ public class WinnerInterviewController{
 		
 	}
 
-	@RequestMapping("/admin/winner_interview/1delete")
+	@RequestMapping("1delete")
 	public String delete(@RequestParam int wiIndex) {
 
 		winnerService.delete(wiIndex);

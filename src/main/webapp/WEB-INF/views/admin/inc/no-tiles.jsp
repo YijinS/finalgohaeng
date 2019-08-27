@@ -29,7 +29,7 @@
 <title>관리자페이지</title>
 </head>
 
-<body>
+<body style="overflow: hidden;">
 	<tiles:insertAttribute name="main" />
 </body>
 </html>
