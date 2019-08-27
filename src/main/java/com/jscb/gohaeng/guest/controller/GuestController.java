@@ -75,12 +75,10 @@ public class GuestController {
 	}
 	
 	@RequestMapping(value="widthdraw2" , method = {RequestMethod.GET, RequestMethod.POST }) 
-	public String withdraw(String id, HttpSession session, WidthdrawDto dto, HttpServletRequest request) {
+	public String withdraw(HttpSession session, WidthdrawDto dto, HttpServletRequest request) {
 		
 		
-		guestService.insert(dto);
-		
-		guestService.delete(request.getParameter("userId"));
+		guestService.deleteMember(session, dto);
 
 		return "mypage.personaldata.widthdraw";
 		

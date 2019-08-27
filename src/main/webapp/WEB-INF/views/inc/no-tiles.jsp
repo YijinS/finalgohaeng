@@ -26,7 +26,7 @@
  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 <!-- 판매점 api 끝 -->
 
-<title>관리자페이지</title>
+<title>유저페이지</title>
 </head>
 
 <body>

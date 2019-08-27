@@ -31,5 +31,5 @@ public interface GuestService {
 
 	public void findid(String name, String email, ModelAndView mView);
 	public void findpw(String id, String email, ModelAndView mView) throws MessagingException, UnsupportedEncodingException;
-
+	public void deleteMember(HttpSession session, WidthdrawDto dto);
 }

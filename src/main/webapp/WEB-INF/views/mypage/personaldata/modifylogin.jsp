@@ -62,7 +62,7 @@
 			<div>
 				<div class="content_wrap content_login_modify">
 					<div class="box_login_modify">
-						<form name="frm" id="frm" method="post">
+						<form name="frm" action="editData" onsubmit="return checkValue()">
 							<input type="hidden" name="modifyType" id="modifyType" value="M">
 							<input type="hidden" name="userId" value="searchfox">
 							<p class="copy">
@@ -74,25 +74,24 @@
 								<caption>비밀번호 확인</caption>
 								<colgroup>
 									<col style="width: 120px">
-									<col>
+									<col> 
 								</colgroup>
-								<tbody>
+								<tbody> 
 									<tr>
 										<th scope="row">아이디</th>
-										<td>ididurid</td>
+										<td>${sessionScope.member.id }</td>
 									</tr>
 									<tr>
 										<th scope="row">비밀번호</th>
-										<td><input type="password" name="password"
-											title="비밀번호 입력"
+										<td><input type="password" name="password" title="비밀번호 입력"
 											onkeydown="$.enterCheck(window.event.keyCode);"
 											autocomplete="off"></td>
 									</tr>
 								</tbody>
 							</table>
 							<div class="btns_submit">
-								<a class="btn_common lrg" href="#">취소</a> <a
-									class="btn_common lrg blu" id="submit_btn" href="#">확인</a>
+								<a class="btn_common lrg" href="${pageContext.request.contextPath }/">취소</a> 
+								<input class="btn_common lrg blu" type="submit" id="submit_btn" value="정보수정"/>
 							</div>
 						</form>
 					</div>
@@ -103,4 +102,12 @@
 		</section>
 	</div>
 </div>
-<!-- ----------------------------------------------------- -->
+ <script type="text/javascript">
+        // 비밀번호 미입력시 경고창
+        function checkValue(){
+            if(!document.frm.password.value){
+                alert("비밀번호를 입력하지 않았습니다.");
+                return false;
+            }
+        }
+    </script>

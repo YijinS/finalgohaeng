@@ -334,6 +334,17 @@ public class GuestServiceImpl implements GuestService {
 
 	}
 
+	
+	//	회원탈퇴
+	@Transactional  
+	public void deleteMember(HttpSession session, WidthdrawDto dto) {
+		MemberDto memberdto = (MemberDto)session.getAttribute("member");
+		String id = memberdto.getId();	
+		wdDao.insert(dto);
+		memberDao.delete(id);
+		session.removeAttribute("member");
+	}
+
 //	@Override
 //	public void emailAuth(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
 //		

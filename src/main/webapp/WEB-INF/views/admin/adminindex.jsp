@@ -152,8 +152,8 @@ img{
 		
 		<div class="menu">
 		<a href="${pageContext.request.contextPath }/admin/callcenter/faq/list">
-		<img src="https://image.flaticon.com/icons/svg/1997/1997414.svg" alt=""/></a>
-		<strong>자주묻는 질문</strong>
+		<img src="https://image.flaticon.com/icons/svg/839/839888.svg" alt=""/></a>
+		<strong>이벤트</strong>
 		</div>
 		<br>
 		<div class="menu">
