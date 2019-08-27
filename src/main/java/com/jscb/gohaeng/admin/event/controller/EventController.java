@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.admin.event.service.EventService;
+import com.jscb.gohaeng.dto.ApplyEventDto;
 import com.jscb.gohaeng.dto.EventCommentDto;
 import com.jscb.gohaeng.dto.EventDto;
 //3.0버전
@@ -32,7 +33,7 @@ public class EventController {
 	private EventService eventService;
 
 	@RequestMapping("list")
-	public ModelAndView List(HttpServletRequest request) {
+	public ModelAndView list(HttpServletRequest request) {
 
 		eventService.getEventList(request);
 
@@ -46,6 +47,18 @@ public class EventController {
 		eventService.getEventDetail(request);
 
 		return "admin.event.detail";
+	}
+	
+	//이벤트 신청 처리
+	@RequestMapping(value = "detail/applyevent", method = RequestMethod.POST)
+	public void applyevent(@ModelAttribute ApplyEventDto applyEventDto
+			, @RequestParam(name="eventIndex") int index
+			, @RequestParam(name="memberId") String id) {
+		applyEventDto.setId(id);
+		applyEventDto.setIndex(index);
+		eventService.applyEvent(applyEventDto);
+		
+		
 	}
 	
 	//댓글 추가 요청 처리

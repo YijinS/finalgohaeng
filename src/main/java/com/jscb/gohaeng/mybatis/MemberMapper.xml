@@ -84,14 +84,4 @@
 	<update id="updatePwd" parameterType="map">
 		UPDATE MEMBER SET MEMBER_PWD = #{pwd} WHERE MEMBER_ID = #{id}
 	</update>
-	<update id="update"
-		parameterType="com.jscb.gohaeng.dto.MemberDto">
-		UPDATE MEMBER
-		SET
-		MEMBER_PWD = #{pwd}, MEMBER_DEPOSIT = #{deposit}, MEMBER_HP = #{hp},
-		MEMBER_EMAIL = #{email}, MEMBER_ADDR = #{addr}, MEMBER_CHECK_SMS =
-		#{checkSms},
-		MEMBER_CHECK_EMAIL = #{checkEmail}, MEMBER_CHECK_SALES = #{checkSales}
-		WHERE MEMBER_ID = #{id}
-	</update>
 </mapper>

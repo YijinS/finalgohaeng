@@ -54,14 +54,14 @@
 								<fmt:formatDate value="${list.endDate }" var="end"
 									pattern="yyyy-MM-dd" />
 								<li>
-									<a href="detail.do?index=${list.index}&condition=${condition}&keyword=${encodedKeyword}">
+									<a href="detail?index=${list.index}&condition=${condition}&keyword=${encodedKeyword}">
 										<img src="${pageContext.request.contextPath }/resources/img/event/event_01.jpg"
 										alt="가상계좌 입금수수료 보상 이벤트 썸네일" style="width: 245px;">
 									</a>
 									<div class="top">
 										<p class="subject">
 											<span class="label ing"> 진행중 </span>
-											<a href="detail.do?index=${list.index}&condition=${condition}&keyword=${encodedKeyword}">${list.title}</a>
+											<a href="detail?index=${list.index}&condition=${condition}&keyword=${encodedKeyword}">${list.title}</a>
 										</p>
 										<p class="summary"></p>
 									</div>
@@ -82,7 +82,7 @@
 								<c:choose>
 									<c:when test="${startPageNum ne 1 }">
 										<li><a
-											href="list.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedKeyword }">
+											href="list?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedKeyword }">
 												&laquo; </a></li>
 									</c:when>
 									<c:otherwise>

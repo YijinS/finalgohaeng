@@ -152,7 +152,7 @@
 									</h4>
 									<div class="action">
 										<div class="search">
-											<form id="frmSrch4" name="frmSrch4" method="post">
+											<form id="frmSrch4" name="frmSrch4" action="exeldown" method="post">
 												<input type="hidden" name="searchType" value="4"> 
 												<input type="hidden" id="nowPage4" name="nowPage"> 
 												<select id="rtlrSttus" name="rtlrSttus" title="조회옵션 선택">
@@ -163,8 +163,18 @@
 											</form>
 										</div>
 										<div class="btn">
-											<a id="exceldw" class="btn_common form" href="#">엑셀다운로드</a>
+											<a id="exelBtn" class="btn_common form" href="#">엑셀다운로드</a>
 										</div>
+										<script>
+											$(function(){
+												var exelBtn = $("#exelBtn");
+												var exelForm = $("#frmSrch4");
+												
+												exelBtn.click(function(){
+													exelForm.submit();
+												});
+											});
+										</script>
 									</div>
 								</div>
 							</div>
