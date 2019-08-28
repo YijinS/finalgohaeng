@@ -7,22 +7,54 @@
 	<div class="body">
 		<div class="containerWrap">
 			<section class="contentSection">
-				<!-- ----------왼쪽메뉴---------- 영역 -->
+				<!--왼쪽-->
 				<nav class="lnbNav">
-
+					<!-- left menu include -------------->
 					<div id="snb" class="lnb">
-						<h2 id="09" class="lnb_title">회원서비스</h2>
+						<h2 id="03" class="lnb_title">당첨결과</h2>
 						<ul id="lnb" class="lnb_dep1">
-							<li id="06-01" class="active"><a href="#" class="menuLnb"><span>건전한
-										복권문화</span></a></li>
-							<li id="06-02"><a href="#" class="menuLnb"><span>복권기금
-										찾기</span></a></li>
-							<li id="06-03"><a href="#" class="menuLnb"><span>행복공감
-										봉사단</span></a></li>
-							<li id="06-04"><a href="#" class="menuLnb"><span>홍보센터</span></a></li>
+							<li id="03-01"><a href="${pageContext.request.contextPath }/gameresult/lotto645/1" class="menuLnb"><span>로또6/45</span></a>
+								<ul class="lnb_dep2" style="display: none;">
+									<li id="03-01-01"><a href="${pageContext.request.contextPath }/gameresult/lotto645/1"><span> 회차별 당첨번호</span></a></li>
+									<li id="03-01-02"><a href="${pageContext.request.contextPath }/gameresult/lotto645/2"><span> 내번호 당첨확인</span></a></li>
+									<li id="03-01-03"><a href="${pageContext.request.contextPath }/gameresult/lotto645/3"><span> 당첨내역</span></a></li>
+									<li id="03-01-04"><a href="${pageContext.request.contextPath }/gameresult/lotto645/4"><span> 당첨금 지급안내</span></a></li>
+									<li id="03-01-05"><a href="${pageContext.request.contextPath }/gameresult/lotto645/5"><span> 추첨방송 다시보기</span></a></li>
+									<li id="03-01-06"><a href="${pageContext.request.contextPath }/gameresult/lotto645/6"><span> 추첨방송 참관신청</span></a></li>
+								</ul></li>
+							<li id="03-02"><a href="${pageContext.request.contextPath }/gameresult/pension520/1" class="menuLnb"><span>연금복권520</span></a>
+								<ul class="lnb_dep2" style="display: none;">
+									<li id="03-02-01"><a href="${pageContext.request.contextPath }/gameresult/pension520/1"><span> 회차별 당첨번호</span></a></li>
+									<li id="03-02-02"><a href="${pageContext.request.contextPath }/gameresult/pension520/2"><span> 내번호 당첨확인</span></a></li>
+									<li id="03-02-03"><a href="${pageContext.request.contextPath }/gameresult/pension520/3"><span> 당첨내역</span></a></li>
+									<li id="03-02-04"><a href="${pageContext.request.contextPath }/gameresult/pension520/4"><span> 당첨금 지급안내</span></a></li>
+									<li id="03-02-05"><a href="${pageContext.request.contextPath }/gameresult/pension520/5"><span> 추첨방송 다시보기</span></a></li>
+									<li id="03-02-06"><a href="${pageContext.request.contextPath }/gameresult/pension520/6"><span> 추첨방송 참관신청</span></a></li>
+								</ul></li>
+							<li id="03-05"><a href="${pageContext.request.contextPath }/gameresult/lottostat/1" class="menuLnb"><span>로또6/45
+										당첨통계</span></a>
+								<ul class="lnb_dep2" style="display: none;">
+									<li id="03-05-01" class="active"><a href="${pageContext.request.contextPath }/gameresult/lottostat/1"><span>
+												당첨통계</span></a></li>
+									<li id="03-05-02"><a href="${pageContext.request.contextPath }/gameresult/lottostat/2"><span> 번호별 통계</span></a></li>
+									<li id="03-05-03"><a href="${pageContext.request.contextPath }/gameresult/lottostat/3"><span> 색상 통계</span></a></li>
+									<li id="03-05-04"><a href="${pageContext.request.contextPath }/gameresult/lottostat/4"><span> 구간별 출현횟수</span></a></li>
+								</ul></li>
+							<li id="03-06"><a href="${pageContext.request.contextPath }/gameresult/pensionstat/1" class="menuLnb"><span
+									style="letter-spacing: -1px;">연금복권520 당첨통계</span></a></li>
+							<li id="03-07"><a href="${pageContext.request.contextPath }/gameresult/winningnews/1" class="menuLnb"><span>당첨소식</span></a>
+								<ul class="lnb_dep2" style="display: none;">
+									<li id="03-07-01"><a href="${pageContext.request.contextPath }/gameresult/winningnews/1"><span> 당첨자 인터뷰</span></a></li>
+									<li id="03-07-02"><a href="${pageContext.request.contextPath }/gameresult/winningnews/2"><span> 당첨 소감 게시판</span></a></li>
+								</ul></li>
+							<li id="03-08" class="active"><a href="${pageContext.request.contextPath }/gameresult/unreceived/1" class="menuLnb"><span>미수령
+										당첨금</span></a>
+								<ul class="lnb_dep2" style="display: block;">
+									<li id="03-08-01"><a href="${pageContext.request.contextPath }/gameresult/unreceived/1"><span> 로또6/45</span></a></li>
+									<li id="03-08-02" class="active"><a href="${pageContext.request.contextPath }/gameresult/unreceived/2"><span> 연금복권520</span></a></li>
+								</ul></li>
 						</ul>
 					</div>
-
 				</nav>
 				<!-- -------------------------------------- -->
 				<!-- ----------메인컨텐츠---------- 영역 -->

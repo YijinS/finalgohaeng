@@ -1,12 +1,22 @@
 package com.jscb.gohaeng.happy.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.jscb.gohaeng.happy.service.HappyService;
 
 @RequestMapping("/happy/")
 @Controller
 public class HappyController {
+	
+	@Autowired
+	HappyService happyService;
 	
 	/*----------------------- 건전한 복권문화  -----------------------*/
 	@RequestMapping("healthy/1")
@@ -65,10 +75,36 @@ public class HappyController {
 		return mView;
 	}
 	@RequestMapping("promotion/3")
-	public ModelAndView promotion3(ModelAndView mView) {
+	public ModelAndView promotion3(ModelAndView mView
+			,@RequestParam(name="page",defaultValue = "1") Integer page
+			,@RequestParam(name="condition",defaultValue = "") String condition
+			,@RequestParam(name="keyword",defaultValue = "") String keyword) {
 		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("page",page);
+		map.put("condition",condition);
+		map.put("keyword",keyword);
+		
+		mView.addObject("save",map);
+		mView.addObject("data",happyService.getNoticeList(map));
 		mView.setViewName("happy.promotion.3");
 		return mView;
 	}
-	
+	@RequestMapping("promotion/3_detail")
+	public ModelAndView promotionDetail(ModelAndView mView
+			,@RequestParam(name="index") Integer index
+			,@RequestParam(name="page",defaultValue = "1") Integer page
+			,@RequestParam(name="condition",defaultValue = "") String condition
+			,@RequestParam(name="keyword",defaultValue = "") String keyword) {
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("page",page);
+		map.put("condition",condition);
+		map.put("keyword",keyword);
+		
+		mView.addObject("save",map);
+		mView.addObject("dto",happyService.viewNoticeDetails(index));
+		mView.setViewName("happy.promotion.3_detail");
+		return mView;
+	}
 }

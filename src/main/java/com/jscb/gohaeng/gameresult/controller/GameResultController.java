@@ -216,12 +216,53 @@ public class GameResultController {
 		return mView;
 	}
 	
-	
+	@RequestMapping("lottostat/4")
+	public String lottostat4() {
+		return "gameresult.lottostat.4";
+	}
 	/*------------------------- lottoStat 매핑------------------------------*/
 	
-	@RequestMapping("winnerinterview")
+	
+	
+	
+	
+	/*------------------------- pensionStat 매핑------------------------------*/
+	@RequestMapping("pensionstat/1")
+	public String pensionstat1() {
+		return "gameresult.pensionstat.1";
+	}
+	/*------------------------- pensionStat 매핑------------------------------*/
+	
+	
+	
+	
+	
+	/*------------------------- winnerinterview 매핑------------------------------*/
+	@RequestMapping("winningnews/1")
 	public String winnerinterview() {
 		
 		return "gameresult.winningnews.1";
 	}
+	@RequestMapping("winningnews/2")
+	public String winningnews2() {
+		
+		return "gameresult.winningnews.2";
+	}
+	/*------------------------- winnerinterview 매핑------------------------------*/
+	
+	
+	
+	
+	/*------------------------- unreceived 매핑------------------------------*/
+	@RequestMapping("unreceived/1")
+	public String unreceived1() {
+		
+		return "gameresult.unreceived.1";
+	}
+	@RequestMapping("unreceived/2")
+	public String unreceived2() {
+		
+		return "gameresult.unreceived.2";
+	}
+	/*------------------------- unreceived 매핑------------------------------*/
 }
