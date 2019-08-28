@@ -10,28 +10,25 @@
 				<div id="snb" class="lnb">
 					<h2 id="06" class="lnb_title">행복공감</h2>
 					<ul id="lnb" class="lnb_dep1">
-						<li id="06-01" class="active"><a href="#" class="menuLnb"><span>건전한
+						<li id="06-01" class="active"><a href="${pageContext.request.contextPath }/happy/healthy/1" class="menuLnb"><span>건전한
 									복권문화</span></a>
 							<ul class="lnb_dep2" style="display: block;">
-								<li id="06-01-01" class="active"><a href="#"><span>복권바로알기</span></a></li>
-								<li id="06-01-02"><a href="#"><span>건전구매 프로그램</span></a></li>
-								<li id="06-01-03"><a href="#"><span>건전화 캠페인</span></a></li>
-								<li id="06-01-04"><a href="#"><span>건전화 책임규정</span></a></li>
-								<li id="06-01-05"><a href="#"><span>복권 과몰입 예방법</span></a></li>
-								<li id="06-01-06"><a href="#"><span>중독예방 및 상담안내</span></a></li>
+								<li id="06-01-01"><a href="${pageContext.request.contextPath }/happy/healthy/1"><span>복권바로알기</span></a></li>
+								<li id="06-01-02"><a href="${pageContext.request.contextPath }/happy/healthy/2"><span>건전구매 프로그램</span></a></li>
+								<li id="06-01-03" class="active"><a href="${pageContext.request.contextPath }/happy/healthy/3"><span>건전화 캠페인</span></a></li>
 							</ul></li>
-						<li id="06-02"><a href="#" class="menuLnb"><span>복권기금</span></a>
+						<li id="06-02"><a href="${pageContext.request.contextPath }/happy/fund/1" class="menuLnb"><span>복권기금</span></a>
 							<ul class="lnb_dep2" style="display: none;">
-								<li id="06-02-01"><a href="#"><span>복권기금소개</span></a></li>
-								<li id="06-02-02"><a href="#"><span>기금사업 진행현황</span></a></li>
+								<li id="06-02-01"><a href="${pageContext.request.contextPath }/happy/fund/1"><span>복권기금소개</span></a></li>
+								<li id="06-02-02"><a href="${pageContext.request.contextPath }/happy/fund/2"><span>기금사업 진행현황</span></a></li>
 							</ul></li>
-						<li id="06-03"><a href="#" class="menuLnb"><span>행복공감
+						<li id="06-03"><a href="${pageContext.request.contextPath }/happy/service" class="menuLnb"><span>행복공감
 									봉사단</span></a></li>
-						<li id="06-04"><a href="#" class="menuLnb"><span>홍보센터</span></a>
+						<li id="06-04"><a href="${pageContext.request.contextPath }/happy/promotion/1" class="menuLnb"><span>홍보센터</span></a>
 							<ul class="lnb_dep2" style="display: none;">
-								<li id="06-04-01"><a href="#"><span>광고</span></a></li>
-								<li id="06-04-02"><a href="#"><span>보도자료</span></a></li>
-								<li id="06-04-03"><a href="#"><span> 공지사항</span></a></li>
+								<li id="06-04-01"><a href="${pageContext.request.contextPath }/happy/promotion/1"><span>광고</span></a></li>
+								<li id="06-04-02"><a href="${pageContext.request.contextPath }/happy/promotion/2"><span>보도자료</span></a></li>
+								<li id="06-04-03"><a href="${pageContext.request.contextPath }/happy/promotion/3"><span> 공지사항</span></a></li>
 							</ul></li>
 					</ul>
 				</div>

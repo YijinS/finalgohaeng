@@ -11,13 +11,13 @@ import com.jscb.gohaeng.dto.StoreDto;
 public interface StoreService {
 	
 	public List<StoreDto> getList(int storeAbleGames);
-	public List<StoreDto> selectGulist(StoreDto dto);
-	public List<StoreDto> selectStoreName(StoreDto dto);
 	public void getList(HttpServletRequest request);
 	public void getData(ModelAndView mView, int storeIndex);
 	public void delete(int storeIndex);
 	public void insertform();
 	public void insert(StoreDto dto);
 	public void update(StoreDto dto);
+	public List<StoreDto> selectGulist(StoreDto dto);
+	public List<StoreDto> selectStoreName(StoreDto dto);
 	
 }

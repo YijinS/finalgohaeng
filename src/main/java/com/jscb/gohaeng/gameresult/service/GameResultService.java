@@ -21,4 +21,5 @@ public interface GameResultService {
 	public Map<String,Object> getColorByNumber(int start,int end);
 	public List<Integer> getGames();
 	public void getExelDown(HttpServletResponse response,int start,int end);
+	public Map<String,Object> getPageList(int page,int start,int end);
 }

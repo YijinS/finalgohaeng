@@ -16,6 +16,7 @@ import com.jscb.gohaeng.admin.store.service.StoreService;
 import com.jscb.gohaeng.dto.AddrDto;
 import com.jscb.gohaeng.dto.StoreDto;
 
+
 @Controller("adminStoreController")
 @RequestMapping("/admin/store/")
 public class StoreController {
@@ -82,6 +83,7 @@ public class StoreController {
 		return mView;
 
 	}
+
 
 	// 새글 추가 폼 요청 처리
 	@RequestMapping("1insertform")

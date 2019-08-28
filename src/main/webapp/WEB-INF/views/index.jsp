@@ -38,7 +38,6 @@
                <c:otherwise>
                   <c:choose>
                         <c:when test="${sessionScope.member.id eq 'ADMIN' }">
-                           <li class="nav-item"><a class="nav-link"
                            href="${pageContext.request.contextPath }/admin/">관리자 페이지</a></li>
                         </c:when>
                         <c:otherwise>

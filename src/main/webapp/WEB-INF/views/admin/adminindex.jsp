@@ -146,7 +146,7 @@ img{
 		
 		<a href="${pageContext.request.contextPath }/admin/event/list">
 		<div class="menu">
-		<img src="https://image.flaticon.com/icons/svg/1997/1997414.svg" alt=""/>
+		<img src="https://image.flaticon.com/icons/svg/839/839888.svg" alt=""/>
 		<strong>이벤트</strong>
 		</div>
 		</a>

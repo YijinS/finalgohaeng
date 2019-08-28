@@ -35,15 +35,20 @@
 											추첨방송 참관신청</span></a></li>
 							</ul>
 						</li>
-						<li id="03-02"><a href="${pageContext.request.contextPath }/gameresult/pension520/1" class="menuLnb"><span>연금복권520</span></a></li>
-
-						<li id="03-05"><a href="#" class="menuLnb"><span>로또6/45
-									당첨통계</span></a></li>
-						<li id="03-06"><a href="#" class="menuLnb"><span style="letter-spacing: -1px;">연금복권520
-									당첨통계</span></a></li>
-						<li id="03-07"><a href="#" class="menuLnb"><span>당첨소식</span></a></li>
-						<li id="03-08"><a href="#" class="menuLnb"><span>미수령
-									당첨금</span></a></li>
+						<li id="03-02"><a href="${pageContext.request.contextPath }/gameresult/pension520/1" class="menuLnb">
+							<span>연금복권520</span></a>
+						</li>
+						<li id="03-05"><a href="${pageContext.request.contextPath }/gameresult/lottostat/1" class="menuLnb">
+							<span>로또6/45 당첨통계</span></a>
+						</li>
+						<li id="03-06"><a href="${pageContext.request.contextPath }/gameresult/pensionstat/1" class="menuLnb">
+							<span style="letter-spacing: -1px;">연금복권520 당첨통계</span></a>
+						</li>
+						<li id="03-07"><a href="${pageContext.request.contextPath }/gameresult/winningnews/1" class="menuLnb">
+							<span>당첨소식</span></a></li>
+						<li id="03-08"><a href="${pageContext.request.contextPath }/gameresult/unreceived/1" class="menuLnb">
+							<span>미수령 당첨금</span></a>
+						</li>
 					</ul>
 				</div>
 			</nav>

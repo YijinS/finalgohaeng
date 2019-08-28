@@ -68,9 +68,12 @@
 						var pwd = $("#input_form").find("input[name=pwd]");
 							button.click(function(){
 								$.ajax({
-									url:'${pageContext.request.contextPath }/guest/loginCheck.do',
+									url:'${pageContext.request.contextPath }/guest/loginCheck',
 									type:'post',
-									data:{"id":id.val(),"pwd":pwd.val()},
+									data:{
+										"id":id.val(),
+										"pwd":pwd.val()
+									},
 									success:function(data){
 										if(data.check == true)
 											$("#login_form").submit();

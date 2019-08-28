@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,6 +25,7 @@ public class GameResultController {
 	
 	@Autowired
 	GameResultService gameResultService;
+	
 	
 	/*------------------------- lotto645 매핑------------------------------*/
 	
@@ -171,30 +174,95 @@ public class GameResultController {
 		return mView;
 	}
 	
-	@RequestMapping("lottostat/3")
-	public ModelAndView lottoStatByColor(ModelAndView mView
+	@GetMapping("lottostat/3")
+	public ModelAndView lottoStatByColorG(ModelAndView mView
 			,@RequestParam(name="start",defaultValue = "0")Integer start
-			,@RequestParam(name="end",defaultValue = "0")Integer end) {
+			,@RequestParam(name="end",defaultValue = "0")Integer end
+			,@RequestParam(name="page",defaultValue = "1")Integer page) {
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("start",start);
 		map.put("end",end);
+		map.put("page",page);
 		
 		
 		mView.addObject("save",map);
 		mView.addObject("games",gameResultService.getGames());
 		mView.addObject("list",gameResultService.getColorByNumber(start, end));
-		mView.addObject("gamesList",gameResultService.getGamesList(start, end));
+		mView.addObject("datas",gameResultService.getPageList(page, start, end));
+		
 		mView.setViewName("gameresult.lottostat.3");
 		return mView;
 	}
 	
+	@PostMapping("lottostat/3")
+	public ModelAndView lottoStatByColorP(ModelAndView mView
+			,@RequestParam(name="startgames",defaultValue = "0")Integer start
+			,@RequestParam(name="endgames",defaultValue = "0")Integer end) {
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start",start);
+		map.put("end",end);
+		map.put("page",1);
+		
+		
+		mView.addObject("save",map);
+		mView.addObject("games",gameResultService.getGames());
+		mView.addObject("list",gameResultService.getColorByNumber(start, end));
+		mView.addObject("datas",gameResultService.getPageList(1, start, end));
+		
+		mView.setViewName("gameresult.lottostat.3");
+		
+		return mView;
+	}
 	
+	@RequestMapping("lottostat/4")
+	public String lottostat4() {
+		return "gameresult.lottostat.4";
+	}
 	/*------------------------- lottoStat 매핑------------------------------*/
 	
-	@RequestMapping("winnerinterview")
+	
+	
+	
+	
+	/*------------------------- pensionStat 매핑------------------------------*/
+	@RequestMapping("pensionstat/1")
+	public String pensionstat1() {
+		return "gameresult.pensionstat.1";
+	}
+	/*------------------------- pensionStat 매핑------------------------------*/
+	
+	
+	
+	
+	
+	/*------------------------- winnerinterview 매핑------------------------------*/
+	@RequestMapping("winningnews/1")
 	public String winnerinterview() {
 		
 		return "gameresult.winningnews.1";
 	}
+	@RequestMapping("winningnews/2")
+	public String winningnews2() {
+		
+		return "gameresult.winningnews.2";
+	}
+	/*------------------------- winnerinterview 매핑------------------------------*/
+	
+	
+	
+	
+	/*------------------------- unreceived 매핑------------------------------*/
+	@RequestMapping("unreceived/1")
+	public String unreceived1() {
+		
+		return "gameresult.unreceived.1";
+	}
+	@RequestMapping("unreceived/2")
+	public String unreceived2() {
+		
+		return "gameresult.unreceived.2";
+	}
+	/*------------------------- unreceived 매핑------------------------------*/
 }
