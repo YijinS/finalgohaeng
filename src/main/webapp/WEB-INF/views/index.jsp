@@ -162,7 +162,7 @@
                prev.click(function(){
                   
                   var prevGame = (resultForm.find("#games").text()) - 1;
-                  
+                 
                   //alert(prevGame);
                   $.getJSON('${pageContext.request.contextPath}/ajax?games='+prevGame,function(data){
                      if(data==null){

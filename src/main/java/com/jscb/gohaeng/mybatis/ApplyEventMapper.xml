@@ -14,5 +14,7 @@
 		INSERT INTO APPLY_EVENT(EVENT_INDEX, MEMBER_ID, AE_RESULT)
 		VALUES(#{index}, #{id}, 1)
 	</insert>
-	
+	<select id="getData" parameterType="map" resultMap="ApplyEventDto">
+		SELECT * FROM APPLY_EVENT WHERE EVENT_INDEX = #{eventIndex} AND MEMBER_ID = #{memberId}
+	</select>
 </mapper>

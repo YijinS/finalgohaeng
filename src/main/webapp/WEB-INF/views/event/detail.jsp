@@ -78,23 +78,49 @@
 					<a href="javascript:deleteConfirm()">삭제</a>
 				</c:if>
 				<!-- 버튼 영역  리스트가기 / 이벤트 참가신청 -->
-				<div class="btnList">
-					<a class="btn_common form" href="list">목록</a>
+				<div class="btn-list">
+					<a class="btn_common mid" href="list" style="margin-right: 10px;">목록</a>
+					<c:choose>
+						<c:when test="${isExist != 'null' and isExist == true }">
+							<a class="btn_common mid blu" id="aeBtn" style="cursor: default; color: #fff;">이벤트 신청완료</a>
+						</c:when>
+						<c:otherwise>
+							<a class="btn_common mid blu" id="aeBtn" href="#" style="color: #fff;">이벤트 신청하기</a>
+						</c:otherwise>
+					</c:choose>
 					<form name="aeForm" id="aeForm" action="applyevent" method="post">
 						<input type="hidden" name="eventIndex" id="nowPage" value="${eventDto.index }">
 						<input type="hidden" name="memberId" id="nowPage" value="${sessionScope.member.id }">
 					</form>
-					<%-- 로그인 되었을때만 버튼 출력 --%>
-					<c:if test="${not empty sessionScope.member }">
-						<a class="btn_common form" id="aeBtn" href="#">이벤트 신청하기</a>
-					</c:if>
 					<script>
 						$(function(){
 							var aeBtn = $("#aeBtn");
 							var aeForm = $("#aeForm");
-							
+							var sessionId = "<%=session.getAttribute("member") %>";
+							var eventIndex = aeForm.find("input[name=eventIndex]");
+							var memberId = aeForm.find("input[name=memberId]");
 							aeBtn.click(function(){
-								aeForm.submit();
+								if(sessionId == 'null'){
+									var cururl = '/event/detail?index=${eventDto.index }';
+									alert("로그인이 필요합니다.");
+									$(location).attr('href','${pageContext.request.contextPath }/guest/login?url='+cururl);
+									return;
+								}
+								$.ajax({
+			                           url:'${pageContext.request.contextPath }/event/applyevent',
+			                           type:'post',
+			                           data:{
+			                              "eventIndex":eventIndex.val(),
+			                              "memberId":memberId.val()
+			                           },
+			                           success:function(data){
+			                              if(data.isSuccess == true)
+			                                 alert("이벤트 신청이 되셨습니다.");
+			                              $(location).attr('href','${pageContext.request.contextPath }/event/detail?index='+eventIndex.val());	
+			                           }
+			                        
+			                        });
+								
 							});
 						});
 					</script>
