@@ -24,7 +24,7 @@
 					<option value="title"
 						<c:if test="${condition eq 'title' }">selected</c:if>>제목</option>
 					<option value="subTitle"
-						<c:if test="${condition eq 'subTitle' }">selected</c:if>>소제목</option>
+						<c:if test="${condition eq 'subTitle' }">selected</c:if>>설명</option>
 				</select> <input type="text" name="keyword" placeholder="검색어 입력..."
 					value="${keyword }" />
 				<button type="submit" class="btn btn-primary btn-sm">검색</button>

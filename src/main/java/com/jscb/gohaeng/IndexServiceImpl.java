@@ -12,7 +12,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -167,6 +166,12 @@ public class IndexServiceImpl implements IndexService {
 		dto.setDrawDate(drawdate);
 		lottoGamesDao.lottoDrawInsert(dto);
 		}
+	}
+
+	@Override
+	public LottoGamesDto getLottoGames(int games) {
+		LottoGamesDto lottoGamesDto = lottoGamesDao.getData(games);
+		return lottoGamesDto;
 	}
 
 }

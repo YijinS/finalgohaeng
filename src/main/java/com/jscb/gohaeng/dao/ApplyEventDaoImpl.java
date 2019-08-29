@@ -34,4 +34,10 @@ public class ApplyEventDaoImpl implements ApplyEventDao {
 			return true;
 	}
 
+	@Override
+	public ApplyEventDto getDetail(ApplyEventDto applyEventDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
