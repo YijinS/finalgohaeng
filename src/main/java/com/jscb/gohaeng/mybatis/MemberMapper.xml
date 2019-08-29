@@ -39,22 +39,7 @@
 	<delete id="delete" parameterType="string">
 		DELETE FROM MEMBER WHERE MEMBER_ID = #{id}
 	</delete>
-	
-	<update id="update" parameterType="com.jscb.gohaeng.dto.MemberDto">
-		UPDATE MEMBER
-		SET 
-		MEMBER_HP=#{hp},
-		MEMBER_EMAIL=#{email},
-		MEMBER_ADDR=#{addr}
-		WHERE
-		MEMBER_ID=#{id}
-		<!-- ,
-		MEMBER_CHECK_SMS=#{checkSms},
-		MEMBER_CHECK_EMAIL=#{checkEmail},
-		MEMBER_CHECK_SALES=#{checkSales} -->
-		
-	</update>
-	
+
 	<!-- 회원 탈퇴 & 개인정보 수정 -->
 	
 	<update id="updateDeposit" parameterType="com.jscb.gohaeng.dto.DepositDto">

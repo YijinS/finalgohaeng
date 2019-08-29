@@ -30,22 +30,27 @@
 				<div>
 					<div class="content_wrap">
 						<!-- --------------------------------------- 컨텐트 시작 ----------------------------------------------- -->
-
-						
-						<form id="searchfrm" action="list.do" method="get">
-							<label for="condition">검색조건</label> <select name="condition"
-								id="condition">
-								<option value="titlecontent"
-									<c:if test="${condition eq 'titlecontent' }">selected</c:if>>제목+내용</option>
-								<option value="title"
-									<c:if test="${condition eq 'title' }">selected</c:if>>제목</option>
-								<option value="subTitle"
-									<c:if test="${condition eq 'subTitle' }">selected</c:if>>소제목</option>
-							</select> <input type="text" name="keyword" placeholder="검색어 입력..."
-								value="${keyword }" />
-							<button class="btn_common form blu"  type="submit">검색</button>
-						</form>
-
+						<div class="d-flex justify-content-end mb-3">
+							<c:if test="${not empty keyword }">
+								<p class="mr-3 align-middle">
+									<strong>${keyword }</strong> 라는 검색어로 <strong>${totalRow }</strong>
+									개의 글이 검색 되었습니다.
+								</p>
+							</c:if>
+							<form id="searchfrm" action="list.do" method="get">
+								<select name="condition"
+									id="condition">
+									<option value="titlecontent"
+										<c:if test="${condition eq 'titlecontent' }">selected</c:if>>제목+내용</option>
+									<option value="title"
+										<c:if test="${condition eq 'title' }">selected</c:if>>제목</option>
+									<option value="subTitle"
+										<c:if test="${condition eq 'subTitle' }">selected</c:if>>설명</option>
+								</select> <input type="text" name="keyword" placeholder="검색어 입력..."
+									value="${keyword }" />
+								<button class="btn_common form blu"  type="submit">검색</button>
+							</form>
+						</div>
 						<div class="list_pic_summ list_event">
 							<ul>
 							<c:forEach var="list" items="${eventList}">
@@ -54,7 +59,7 @@
 								<fmt:formatDate value="${list.endDate }" var="end"
 									pattern="yyyy-MM-dd" />
 								<li>
-									<a href="detail?index=${list.index}&condition=${condition}&keyword=${encodedKeyword}">
+									<a href="detail?index=${list.index}&condition=${condition}&keyword=${encodedKeyword}" style="float: left; margin-right: 20px; width: 246px; min-height: 125px;}">
 										<img src="${pageContext.request.contextPath }/resources/img/event/event_01.jpg"
 										alt="가상계좌 입금수수료 보상 이벤트 썸네일" style="width: 245px;">
 									</a>
@@ -77,7 +82,7 @@
 						</div>
 						
 						
-						<div class="page-display">
+						<div class="page-display d-flex justify-content-center mt-4">
 							<ul class="pagination">
 								<c:choose>
 									<c:when test="${startPageNum ne 1 }">

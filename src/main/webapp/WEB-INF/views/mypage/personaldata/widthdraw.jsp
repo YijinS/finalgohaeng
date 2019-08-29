@@ -8,5 +8,5 @@
    alert("회원탈퇴 되었습니다.");
    //javascript 를 이용해서 redirect 이동 시키기 /* 
    location.href="${pageContext.request.contextPath }/";
-   session.invalidate(); 
+ 
 </script>

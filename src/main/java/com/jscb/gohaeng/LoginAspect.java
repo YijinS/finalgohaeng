@@ -1,6 +1,7 @@
 package com.jscb.gohaeng;
 
 import java.net.URLEncoder;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.jscb.gohaeng.dto.MemberDto;
 
 @Aspect
 @Component
@@ -73,7 +76,7 @@ public class LoginAspect {
 		return mView;
 	}
 	
-	
+
 	@Around("execution(* soso*(..))")
 	public Object Check(ProceedingJoinPoint joinPoint)
 			throws Throwable{
@@ -130,7 +133,5 @@ public class LoginAspect {
 		//여기서 생성한 객체를 리턴해 준다. 
 		return mView;
 	}
-	
-	
 	
 }

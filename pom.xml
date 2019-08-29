@@ -214,12 +214,12 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>3.16</version>
+			<version>3.17</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>3.16</version>
+			<version>3.17</version>
 		</dependency>
 
 		<!-- 실시간 채팅 웹 소캣 -->

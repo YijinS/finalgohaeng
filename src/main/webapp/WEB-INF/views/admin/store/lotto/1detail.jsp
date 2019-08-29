@@ -98,9 +98,28 @@
 				</tr>
 				<tr>
 					<th scope="row">취급복권</th>
-					<td>이미지는 아직 설정안했<img
-						src="https://dhlottery.co.kr/images/store/ico_seller_645.png"
-						alt="lotto645"></td>
+					<c:choose>
+						<c:when test="${dto.storeAbleGames == 1}">
+							<td class="ta_left">
+							<img src='${pageContext.request.contextPath}/resources/images/store/ico_seller_645.png' alt='lotto645'></td>
+						</c:when>
+
+						<c:when test="${dto.storeAbleGames == 2}">
+							<td class="ta_left">
+							<img src="${pageContext.request.contextPath}/resources/images/store/ico_seller_520.png" alt="연금복권520"></td>
+						</c:when>
+
+						<c:when test="${dto.storeAbleGames == 3}">
+							<td class="ta_left">
+							<img src="${pageContext.request.contextPath}/resources/images/store/ico_seller_645.png" alt="lotto645"> 
+							<img src="${pageContext.request.contextPath}/resources/images/store/ico_seller_520.png" alt="연금복권520"></td>
+						</c:when>
+
+						<c:otherwise>
+							<td class="ta_left"></td>
+						</c:otherwise>
+
+					</c:choose>
 				</tr>
 			</tbody>
 		</table>

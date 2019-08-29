@@ -10,16 +10,23 @@
 				<div id="snb" class="lnb">
 					<h2 id="02" class="lnb_title">복권정보</h2>
 					<ul id="lnb" class="lnb_dep1">
-						<li id="02-01"><a href="#" class="menuLnb"><span>로또
-									6/45</span></a></li>
-						<li id="02-02" class="active"><a href="#" class="menuLnb"><span>연금복권520</span></a>
+						<li id="02-01">
+							<a href="${pageContext.request.contextPath }/gameinfo/lotto645/1" class="menuLnb">
+								<span>로또 6/45</span>
+							</a>
+						</li>
+						<li id="02-02" class="active"><a href="${pageContext.request.contextPath }/gameinfo/pension520/1" class="menuLnb"><span>연금복권520</span></a>
 							<ul class="lnb_dep2" style="display: block;">
-								<li id="02-02-01" class="active"><a href="#"><span>연금복권520
-											소개</span></a></li>
-								<li id="02-02-02"><a href="#"><span>구매하기</span></a></li>
-								<li id="02-02-03"><a href="#"><span>구매방법</span></a></li>
-								<li id="02-02-04"><a href="#"><span>추첨안내</span></a></li>
-							</ul></li>
+								<li id="02-02-01" class="active">
+									<a href="${pageContext.request.contextPath }/gameinfo/pension520/1">
+										<span>연금복권520 소개</span>
+									</a>
+								</li>
+								<li id="02-02-02"><a href="${pageContext.request.contextPath }/gameinfo/pension520/2"><span>구매하기</span></a></li>
+								<li id="02-02-03"><a href="${pageContext.request.contextPath }/gameinfo/pension520/3"><span>구매방법</span></a></li>
+								<li id="02-02-04"><a href="${pageContext.request.contextPath }/gameinfo/pension520/4"><span>추첨안내</span></a></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 			</nav>

@@ -3,186 +3,242 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<div class="article" class="contentsArticle">
-
-	<div>
-		<div class="content_wrap content_event_detail">
-			<!-- -------------------------------------------------------------------------------------- -->
-
-
-			<div class="container">
-				<a href="list">글 목록보기</a>
-
-				<c:if test="${not empty keyword }">
-					<p>
-						<strong>${keyword }</strong> 검색어로 검색된 결과 자세히 보기 입니다.
-					</p>
-				</c:if>
-
-				<h3>카페 글 상세 보기</h3>
-				<table class="table table-bordered table-condensed">
-					<fmt:formatDate value="${eventDto.startDate }" var="start"
-						pattern="yyyy-MM-dd" />
-					<fmt:formatDate value="${eventDto.endDate }" var="end"
-						pattern="yyyy-MM-dd" />
-					<fmt:formatDate value="${eventDto.drawDate }" var="draw"
-						pattern="yyyy-MM-dd" />
-					<fmt:formatDate value="${eventDto.regDate }" var="reg"
-						pattern="yyyy-MM-dd HH:mm" />
-					<tr class="prev_next">
-						<th scope="row"><span class="prev">이전글</span></th>
-						<c:if test="${eventDto.prevNum ne 0 }">
-							<td colspan="3"><a href="detail?index=${eventDto.prevNum}">${eventDto.prevTitle}</a></td>
-						</c:if>
-						<c:if test="${eventDto.prevNum eq 0 }">
-							<td colspan="3">이전글이 없습니다.</td>
-						</c:if>
-					</tr>
-					<tr class="prev_next">
-						<th scope="row"><span class="next">다음글</span></th>
-						<c:if test="${eventDto.nextNum ne 0 }">
-							<td colspan="3"><a href="detail?index=${eventDto.nextNum}">${eventDto.nextTitle}</a></td>
-						</c:if>
-						<c:if test="${eventDto.nextNum eq 0 }">
-							<td colspan="3">다음글이 없습니다.</td>
-						</c:if>
-					</tr>
-					<tr>
-						<th style="width: 10%;">이벤트명</th>
-						<td colspan="3">${eventDto.title }</td>
-					</tr>
-					<tr>
-						<th style="width: 10%;">설명</th>
-						<td colspan="3">${eventDto.subTitle }</td>
-					</tr>
-					<tr>
-						<th style="width: 10%;">시작일</th>
-						<td>${start }</td>
-						<th style="width: 10%;">종료일</th>
-						<td>${end }</td>
-					</tr>
-					<tr>
-						<th style="width: 10%;">추첨일</th>
-						<td>${draw }</td>
-						<th style="width: 10%;">등록일</th>
-						<td>${reg }</td>
-					</tr>
-					<tr>
-						<th style="width: 10%;">내용</th>
-						<td colspan="3">${eventDto.content }</td>
-					</tr>
-				</table>
-				<%-- 로그인된 아이디와 글 작성자가 같은 경우 수정,삭제 --%>
-				<c:if test="${sessionScope.member eq 'ADMIN' }">
-					<a href="updateform?index=${eventDto.index }">수정</a>
-					<a href="javascript:deleteConfirm()">삭제</a>
-				</c:if>
-				<!-- 버튼 영역  리스트가기 / 이벤트 참가신청 -->
-				<div class="btnList">
-					<a class="btn_common form" href="list">목록</a>
-					<form name="aeForm" id="aeForm" action="applyevent" method="post">
-						<input type="hidden" name="eventIndex" id="nowPage" value="${eventDto.index }">
-						<input type="hidden" name="memberId" id="nowPage" value="${sessionScope.member.id }">
-					</form>
-					<%-- 로그인 되었을때만 버튼 출력 --%>
-					<c:if test="${not empty sessionScope.member }">
-						<a class="btn_common form" id="aeBtn" href="#">이벤트 신청하기</a>
+<div class="body">
+	<div class="containerWrap">
+		<section class="contentSection">
+			<!-- ----------왼쪽메뉴---------- 영역 -->
+			<nav class="lnbNav">
+				<div id="snb" class="lnb">
+					<h2 id="05" class="lnb_title">이벤트</h2>
+					<ul id="lnb" class="lnb_dep1">
+						<li id="05-01" class="active"><a
+							href="/event.do?method=Eventend" class="menuLnb text-white"><span>이벤트</span></a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<!-- -------------------------------------- -->
+			<!-- ----------메인컨텐츠---------- 영역 -->
+			<main id="article" class="contentsArticle">
+			<div class="header_article">
+				<h3 class="sub_title">이벤트</h3>
+				<p class="location">
+					<a class="home" href="/"> Home </a><span class="gt">&gt;</span><a
+						href="/event/list">이벤트</a><span class="gt">&gt;</span><a
+						href="/event/list">이벤트</a>
+				</p>
+			</div>
+			<div>
+				<div class="content_wrap">
+					<!-- -------------------------------------------------------------------------------------- -->
+					<c:if test="${not empty keyword }">
+						<p>
+							<strong>${keyword }</strong> 검색어로 검색된 결과 자세히 보기 입니다.
+						</p>
 					</c:if>
-					<script>
+
+					<table class="tbl_data tbl_board_view tbl_board_event">
+						<colgroup>
+							<col style="width:105px">
+							<col style="width:345px">
+							<col style="width:105px">
+							<col>	
+						</colgroup>
+						<fmt:formatDate value="${eventDto.startDate }" var="start"
+							pattern="yyyy-MM-dd" />
+						<fmt:formatDate value="${eventDto.endDate }" var="end"
+							pattern="yyyy-MM-dd" />
+						<fmt:formatDate value="${eventDto.drawDate }" var="draw"
+							pattern="yyyy-MM-dd" />
+						<fmt:formatDate value="${eventDto.regDate }" var="reg"
+							pattern="yyyy-MM-dd HH:mm" />
+						<tr class="prev_next">
+							<th scope="row"><span class="prev">이전글</span></th>
+							<c:if test="${eventDto.prevNum ne 0 }">
+								<td colspan="3"><a href="detail?index=${eventDto.prevNum}">${eventDto.prevTitle}</a></td>
+							</c:if>
+							<c:if test="${eventDto.prevNum eq 0 }">
+								<td colspan="3">이전글이 없습니다.</td>
+							</c:if>
+						</tr>
+						<tr class="prev_next">
+							<th scope="row"><span class="next">다음글</span></th>
+							<c:if test="${eventDto.nextNum ne 0 }">
+								<td colspan="3"><a href="detail?index=${eventDto.nextNum}">${eventDto.nextTitle}</a></td>
+							</c:if>
+							<c:if test="${eventDto.nextNum eq 0 }">
+								<td colspan="3">다음글이 없습니다.</td>
+							</c:if>
+						</tr>
+						<tr>
+							<th style="width: 10%;">이벤트명</th>
+							<td colspan="3">${eventDto.title }</td>
+						</tr>
+						<tr>
+							<th style="width: 10%;">설명</th>
+							<td colspan="3">${eventDto.subTitle }</td>
+						</tr>
+						<tr>
+							<th style="width: 10%;">시작일</th>
+							<td>${start }</td>
+							<th style="width: 10%;">종료일</th>
+							<td>${end }</td>
+						</tr>
+						<tr>
+							<th style="width: 10%;">추첨일</th>
+							<td>${draw }</td>
+							<th style="width: 10%;">등록일</th>
+							<td>${reg }</td>
+						</tr>
+						<tr>
+							<td colspan="4" class="content">${eventDto.content }</td>
+						</tr>
+					</table>
+					<%-- 로그인된 아이디와 글 작성자가 같은 경우 수정,삭제 --%>
+					<c:if test="${sessionScope.member eq 'ADMIN' }">
+						<a href="updateform?index=${eventDto.index }">수정</a>
+						<a href="javascript:deleteConfirm()">삭제</a>
+					</c:if>
+					<!-- 버튼 영역  리스트가기 / 이벤트 참가신청 -->
+					<div class="btn-list d-flex justify-content-center">
+						<a class="btn_common mid" href="list" style="margin-right: 10px;">목록</a>
+						<c:choose>
+							<c:when test="${isExist != 'null' and isExist == true }">
+								<a class="btn_common mid blu" id="aeBtn"
+									style="cursor: default; color: #fff;">이벤트 신청완료</a>
+							</c:when>
+							<c:otherwise>
+								<a class="btn_common mid blu" id="aeBtn" href="#"
+									style="color: #fff;">이벤트 신청하기</a>
+							</c:otherwise>
+						</c:choose>
+						<form name="aeForm" id="aeForm" action="applyevent" method="post">
+							<input type="hidden" name="eventIndex" id="nowPage"
+								value="${eventDto.index }"> <input type="hidden"
+								name="memberId" id="nowPage" value="${sessionScope.member.id }">
+						</form>
+						<script>
 						$(function(){
 							var aeBtn = $("#aeBtn");
 							var aeForm = $("#aeForm");
-							
+							var sessionId = "<%=session.getAttribute("member")%>";
+							var eventIndex = aeForm.find("input[name=eventIndex]");
+							var memberId = aeForm.find("input[name=memberId]");
 							aeBtn.click(function(){
-								aeForm.submit();
+								if(sessionId == 'null'){
+									var cururl = '/event/detail?index=${eventDto.index }';
+									alert("로그인이 필요합니다.");
+									$(location).attr('href','${pageContext.request.contextPath }/guest/login?url='+cururl);
+									return;
+								}
+								$.ajax({
+			                           url:'${pageContext.request.contextPath }/event/applyevent',
+			                           type:'post',
+			                           data:{
+			                              "eventIndex":eventIndex.val(),
+			                              "memberId":memberId.val()
+			                           },
+			                           success:function(data){
+			                              if(data.isSuccess == true)
+			                                 alert("이벤트 신청이 되셨습니다.");
+			                              $(location).attr('href','${pageContext.request.contextPath }/event/detail?index='+eventIndex.val());	
+			                           }
+			                        
+			                        });
+								
 							});
 						});
 					</script>
-				</div>
-				
-				<!-- 댓글 목록 -->
-				<div class="comments">
-					<ul>
-						<c:forEach items="${commentList }" var="tmp">
-							<fmt:formatDate var="regDate" value="${tmp.regDate }" pattern="yyyy-MM-dd HH:mm:ss"/>
-							<c:choose>
-								<c:when test="${tmp.deleted ne 'yes' }">
-									<li class="comment" id="comment${tmp.index }"
-										<c:if test="${tmp.index ne tmp.commentGroup }">style="padding-left:50px;"</c:if>>
-										<c:if test="${tmp.index ne tmp.commentGroup }">
-											<img class="reply_icon"
-												src="${pageContext.request.contextPath}/resources/images/re.gif" />
-										</c:if>
-										<dl>
-											<dt>
-												<span>${tmp.writerId }</span>
-												<c:if test="${tmp.index ne tmp.commentGroup }">
+					</div>
+
+					<!-- 댓글 목록 -->
+					<div class="comments mt-5">
+						<ul>
+							<c:forEach items="${commentList }" var="tmp">
+								<fmt:formatDate var="regDate" value="${tmp.regDate }"
+									pattern="yyyy-MM-dd HH:mm:ss" />
+								<c:choose>
+									<c:when test="${tmp.deleted ne 'yes' }">
+										<li class="comment" id="comment${tmp.index }"
+											<c:if test="${tmp.index ne tmp.commentGroup }">style="padding-left:50px;"</c:if>>
+											<c:if test="${tmp.index ne tmp.commentGroup }">
+												<img class="reply_icon"
+													src="${pageContext.request.contextPath}/resources/images/re.gif" />
+											</c:if>
+											<dl>
+												<dt>
+													<span>${tmp.writerId }</span>
+													<c:if test="${tmp.index ne tmp.commentGroup }">
 												to <strong>${tmp.targetId }</strong>
-												</c:if>
-												<span>${regDate}</span> <a href="javascript:"
-													class="reply_link">답글</a> |
-												<c:choose>
-													<%-- 로그인된 아이디와 댓글의 작성자가 같으면 --%>
-													<c:when test="${sessionScope.member.id eq tmp.writerId }">
-														<a href="javascript:" class="comment-update-link">수정</a>&nbsp;&nbsp;
+													</c:if>
+													<span>${regDate}</span> <a href="javascript:"
+														class="reply_link">답글</a> |
+													<c:choose>
+														<%-- 로그인된 아이디와 댓글의 작성자가 같으면 --%>
+														<c:when test="${sessionScope.member.id eq tmp.writerId }">
+															<a href="javascript:" class="comment-update-link">수정</a>&nbsp;&nbsp;
 													<a href="javascript:deleteComment(${tmp.index })">삭제</a>
-													</c:when>
-													<c:otherwise>
-														<a href="javascript:">신고</a>
-													</c:otherwise>
-												</c:choose>
-											</dt>
-											<dd>
-												<pre>${tmp.content }</pre>
-											</dd>
-										</dl>
-										<form class="comment-insert-form" action="commentinsert"
-											method="post">
-											<!-- 덧글 그룹 -->
-											<input type="hidden" name="eventIndex"
-												value="${eventDto.index }" />
-											<!-- 덧글 대상 -->
-											<input type="hidden" name="targetId" value="${tmp.writerId }" />
-											<input type="hidden" name="commentGroup"
-												value="${tmp.commentGroup }" />
-											<textarea name="commentContent"><c:if
-													test="${empty sessionScope.member }">로그인이 필요합니다.</c:if></textarea>
-											<button type="submit">등록</button>
-										</form> <!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 --> <c:if
-											test="${sessionScope.member.id eq tmp.writerId }">
-											<form class="comment-update-form" action="commentupdate">
-												<input type="hidden" name="index" value="${tmp.index }" />
-												<textarea name="content">${tmp.content }</textarea>
-												<button type="submit">수정</button>
-											</form>
-										</c:if>
-									</li>
-								</c:when>
-								<c:otherwise>
-									<li
-										<c:if test="${tmp.index ne tmp.commentGroup }">style="padding-left:50px;"</c:if>>삭제된
-										댓글 입니다.</li>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-					</ul>
-					<div class="clearfix"></div>
-					<!-- 원글에 댓글을 작성할수 있는 폼 -->
-					<div class="comment_form">
-						<form action="commentinsert" method="post">
-							<!-- 댓글의 그룹번호는 원글의 글번호 -->
-							<input type="hidden" name="eventIndex" value="${eventDto.index }" />
-							<!-- 댓글의 대상자는 원글의 작성자 -->
-							<%-- <input type="hidden" name="target_id" value="${dto.writer }"/> --%>
-							<input type="hidden" name="targetId" value="ADMIN" />
-							<textarea name="commentContent"><c:if
-									test="${empty sessionScope.member.id }">로그인이 필요합니다.</c:if></textarea>
-							<button type="submit">등록</button>
-						</form>
+														</c:when>
+														<c:otherwise>
+															<a href="javascript:">신고</a>
+														</c:otherwise>
+													</c:choose>
+												</dt>
+												<dd>
+													<pre>${tmp.content }</pre>
+												</dd>
+											</dl>
+											<form class="comment-insert-form" action="commentinsert"
+												method="post">
+												<!-- 덧글 그룹 -->
+												<input type="hidden" name="eventIndex"
+													value="${eventDto.index }" />
+												<!-- 덧글 대상 -->
+												<input type="hidden" name="targetId"
+													value="${tmp.writerId }" /> <input type="hidden"
+													name="commentGroup" value="${tmp.commentGroup }" />
+												<textarea name="commentContent"><c:if
+														test="${empty sessionScope.member }">로그인이 필요합니다.</c:if></textarea>
+												<button type="submit">등록</button>
+											</form> <!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 --> <c:if
+												test="${sessionScope.member.id eq tmp.writerId }">
+												<form class="comment-update-form" action="commentupdate">
+													<input type="hidden" name="index" value="${tmp.index }" />
+													<textarea name="content">${tmp.content }</textarea>
+													<button type="submit">수정</button>
+												</form>
+											</c:if>
+										</li>
+									</c:when>
+									<c:otherwise>
+										<li
+											<c:if test="${tmp.index ne tmp.commentGroup }">style="padding-left:50px;"</c:if>>삭제된
+											댓글 입니다.</li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</ul>
+						<div class="clearfix"></div>
+						<!-- 원글에 댓글을 작성할수 있는 폼 -->
+						<div class="comment_form">
+							<form action="commentinsert" method="post">
+								<!-- 댓글의 그룹번호는 원글의 글번호 -->
+								<input type="hidden" name="eventIndex"
+									value="${eventDto.index }" />
+								<!-- 댓글의 대상자는 원글의 작성자 -->
+								<%-- <input type="hidden" name="target_id" value="${dto.writer }"/> --%>
+								<input type="hidden" name="targetId" value="ADMIN" />
+								<textarea name="commentContent"><c:if
+										test="${empty sessionScope.member.id }">로그인이 필요합니다.</c:if></textarea>
+								<button type="submit">등록</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+			</main>
+			<!-- -------------------------------------- -->
+		</section>
 	</div>
 </div>
 <script
@@ -286,6 +342,7 @@ function deleteConfirm(){
 	}
 </script>
 <style>
+a {text-decoration: none !important; color: #444 !important;}
 /* 글 내용의 경계선 표시 */
 .content {
 	border: 1px dotted #cecece;

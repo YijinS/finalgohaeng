@@ -10,15 +10,20 @@
 			<nav class="lnbNav">
 
 				<div id="snb" class="lnb">
-					<h2 id="09" class="lnb_title">회원서비스</h2>
+					<h2 id="09" class="lnb_title">행복공감</h2>
 					<ul id="lnb" class="lnb_dep1">
-						<li id="06-01" class="active"><a href="#" class="menuLnb"><span>건전한
+						<li id="06-01"><a href="${pageContext.request.contextPath }/happy/healthy/1" class="menuLnb"><span>건전한
 									복권문화</span></a></li>
-						<li id="06-02"><a href="#" class="menuLnb"><span>복권기금
-									찾기</span></a></li>
-						<li id="06-03"><a href="#" class="menuLnb"><span>행복공감
+						<li id="06-02"><a href="${pageContext.request.contextPath }/happy/fund/1" class="menuLnb"><span>복권기금</span></a></li>
+						<li id="06-03"><a href="${pageContext.request.contextPath }/happy/service" class="menuLnb"><span>행복공감
 									봉사단</span></a></li>
-						<li id="06-04"><a href="#" class="menuLnb"><span>홍보센터</span></a></li>
+						<li id="06-04" class="active"><a href="${pageContext.request.contextPath }/happy/promotion/1" class="menuLnb"><span>홍보센터</span></a>
+							<ul class="lnb_dep2">
+								<li id="06-04-01" class="active"><a href="${pageContext.request.contextPath }/happy/promotion/1"><span>광고</span></a></li>
+								<li id="06-04-02"><a href="${pageContext.request.contextPath }/happy/promotion/2"><span>보도자료</span></a></li>
+								<li id="06-04-03"><a href="${pageContext.request.contextPath }/happy/promotion/3"><span>공지사항</span></a></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 

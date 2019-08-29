@@ -4,7 +4,9 @@
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>관리자 인덱스 페이지 </title>
+<title>관리자 인덱스 페이지</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/goheang_ico.ico" type="image/x-icon">
+<link rel="icon" href="${pageContext.request.contextPath }/resources/images/goheang_ico.ico" type="image/x-icon">
 <script src="<c:url value="/js/jquery-3.1.0.min.js"/>"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/common.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/contents.css" />
@@ -144,7 +146,7 @@ img{
 		
 		<a href="${pageContext.request.contextPath }/admin/event/list">
 		<div class="menu">
-		<img src="https://image.flaticon.com/icons/svg/1997/1997414.svg" alt=""/>
+		<img src="https://image.flaticon.com/icons/svg/839/839888.svg" alt=""/>
 		<strong>이벤트</strong>
 		</div>
 		</a>

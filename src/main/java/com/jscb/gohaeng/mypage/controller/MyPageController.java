@@ -1,31 +1,27 @@
 package com.jscb.gohaeng.mypage.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import com.jscb.gohaeng.dao.PurchaseLottoDao;
+
 import com.jscb.gohaeng.dto.MemberDto;
-import com.jscb.gohaeng.dto.StoreDto;
-import com.jscb.gohaeng.dto.WidthdrawDto;
 import com.jscb.gohaeng.mypage.service.MyPageService;
 
 @RequestMapping("/mypage/")
-@Controller
+@Controller 
 public class MyPageController {
-	
+	 
 	@Autowired
 	MyPageService myPageService;
-
 	
 	/*-------------------------home 매핑------------------------*/
 	@RequestMapping("home")
@@ -97,6 +93,7 @@ public class MyPageController {
 		return "redirect:/mypage/deposit/3";
 	}
 	/*-------------------------예치금 매핑------------------------*/
+
 
 	
 	/*-------------------개인정보 수정 -----------------------*/

@@ -4,6 +4,8 @@ import com.jscb.gohaeng.dto.ApplyEventDto;
 
 public interface ApplyEventDao {
 	
-	public void insert(ApplyEventDto applyEventDto);
+	public int insert(ApplyEventDto applyEventDto);
+	public boolean isExist(int eventIndex, String memberId);
+	public ApplyEventDto getDetail(ApplyEventDto applyEventDto);
 	
 }

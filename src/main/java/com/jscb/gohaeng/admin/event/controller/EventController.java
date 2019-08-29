@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,9 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.jscb.gohaeng.admin.event.service.EventService;
-import com.jscb.gohaeng.dto.ApplyEventDto;
 import com.jscb.gohaeng.dto.EventCommentDto;
 import com.jscb.gohaeng.dto.EventDto;
 //3.0버전
@@ -49,16 +46,7 @@ public class EventController {
 		return "admin.event.detail";
 	}
 	
-	//이벤트 신청 처리
-	@RequestMapping(value = "detail/applyevent", method = RequestMethod.POST)
-	public void applyevent(@ModelAttribute ApplyEventDto applyEventDto
-			, @RequestParam(name="eventIndex") int index
-			, @RequestParam(name="memberId") String id) {
-		applyEventDto.setId(id);
-		applyEventDto.setIndex(index);
-		eventService.applyEvent(applyEventDto);
-		
-	}
+	
 	
 	//댓글 추가 요청 처리
 	@RequestMapping(value = "commentinsert", method = RequestMethod.POST)
