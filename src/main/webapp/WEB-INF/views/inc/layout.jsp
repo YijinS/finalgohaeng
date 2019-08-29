@@ -11,6 +11,7 @@
     <meta name="format-detection" content="telephone=no">
     <title>동행복권</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/styles.css?ver=1">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/page.css" />
     <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-1.9.1.min.js"></script>
 
 </head>

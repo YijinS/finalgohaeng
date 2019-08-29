@@ -5,7 +5,7 @@ import java.util.Date;
 public class QnaDto {
 	private int index;
 	private String memberId;
-	private int category;
+	private String category;
 	private String title;
 	private String content;
 	private Date regdate;
@@ -21,7 +21,9 @@ public class QnaDto {
 
 	}
 
-	public QnaDto(int index, String memberId, int category, String title, String content, Date regdate, String reply,
+	
+
+	public QnaDto(int index, String memberId, String category, String title, String content, Date regdate, String reply,
 			Date replydate, int startRowNum, int endRowNum, String searchType) {
 		super();
 		this.index = index;
@@ -36,6 +38,8 @@ public class QnaDto {
 		this.endRowNum = endRowNum;
 		this.searchType = searchType;
 	}
+
+
 
 	public int getIndex() {
 		return index;
@@ -53,13 +57,17 @@ public class QnaDto {
 		this.memberId = memberId;
 	}
 
-	public int getCategory() {
+	
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(int category) {
+
+
+	public void setCategory(String category) {
 		this.category = category;
 	}
+
 
 	public String getTitle() {
 		return title;
