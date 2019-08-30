@@ -29,6 +29,14 @@
 	ORDER BY NOTICE_INDEX DESC) result1)
 	WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 </select>
+<select id="getListQty" parameterType="int" resultMap="NoticeDto">
+	SELECT *
+	FROM
+		(SELECT ROWNUM NUM, N.*
+		FROM
+			(SELECT * FROM NOTICE ORDER BY NOTICE_INDEX DESC)N)
+	WHERE NUM &lt;= #{qty}
+</select>
 <!-- 공지사항 한개 목록 -->
 <select id="getData" parameterType="int"
 resultMap="NoticeDto">

@@ -73,26 +73,18 @@
 						<div class="list_stat_index">
 							<ul>
 								<li class="li1"><strong class="tit">번호별 통계</strong>
-									<p>기간별로 당첨번호 출현횟수, 빈도수 확인</p> <a href="#"
-									class="btn_common mid">자세히보기</a></li>
+									<p>기간별로 당첨번호 출현횟수, 빈도수 확인</p> 
+									<a href="${pageContext.request.contextPath }/gameresult/lottostat/2" class="btn_common mid">자세히보기</a>
+								</li>
 								<li class="li2"><strong class="tit">색상 통계</strong>
-									<p>회차별로 당첨번호 색상 확인</p> <a href="#" class="btn_common mid">자세히보기</a>
+									<p>회차별로 당첨번호 색상 확인</p> 
+									<a href="${pageContext.request.contextPath }/gameresult/lottostat/3" class="btn_common mid">자세히보기</a>
 								</li>
 								<li class="li3"><strong class="tit">구간별 출현횟수</strong>
-									<p>구간대별 당첨번호 출현빈도 확인</p> <a href="#" class="btn_common mid">자세히보기</a>
+									<p>구간대별 당첨번호 출현빈도 확인</p>
+									<a href="${pageContext.request.contextPath }/gameresult/lottostat/4" class="btn_common mid">자세히보기</a>
 								</li>
-								<li class="li4"><strong class="tit">기간별 미출현 번호</strong>
-									<p>기간별로 한번도 출현하지 않은 번호 확인</p> <a href="#"
-									class="btn_common mid">자세히보기</a></li>
-								<li class="li5"><strong class="tit">홀짝 통계</strong>
-									<p>회차별로 홀짝 비율 및 번호합 확인</p> <a href="#" class="btn_common mid">자세히보기</a>
-								</li>
-								<li class="li6"><strong class="tit">연속번호 출현</strong>
-									<p>회차별 연속번호 출현횟수 확인</p> <a href="#" class="btn_common mid">자세히보기</a>
-								</li>
-								<li class="li7"><strong class="tit">패턴분석표</strong>
-									<p>회차별로 패턴에 따른 당첨번호 확인</p> <a href="#" class="btn_common mid">자세히보기</a>
-								</li>
+								
 							</ul>
 						</div>
 					</div>

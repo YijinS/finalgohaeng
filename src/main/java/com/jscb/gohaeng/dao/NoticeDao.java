@@ -9,6 +9,8 @@ public interface NoticeDao {
 	public int getCount(NoticeDto dto);
 	//글 목록을 리턴하는 메소드
 	public List<NoticeDto> getList(NoticeDto dto);
+	//원하는갯수만큼 꺼내오기
+	public List<NoticeDto> getList(int qty);
 	// 글 한개의 정보를 리턴하는 메소드
 	public NoticeDto getData(int index);
 	// 글 한개의 정보를 삭제하는 메소드
@@ -19,4 +21,5 @@ public interface NoticeDao {
 	public void insert(NoticeDto dto);
 	// 글 수정
 	public void update(NoticeDto dto);
+	
 }

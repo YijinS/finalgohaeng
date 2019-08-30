@@ -263,7 +263,7 @@
 								<div class="group_title">
 									<h4 class="title">최근 구입내역</h4>
 									<a class="link_common"
-										href="#">자세히 보기</a>
+										href="${pageContext.request.contextPath }/mypage/purchasewinning/1">자세히 보기</a>
 								</div>
 								<table convert="true" class="tbl_data tbl_data_col">
 									<caption>일자,복권명,회차,번호,구매매수,당첨결과,당첨금액 등 최근 구입내역</caption>

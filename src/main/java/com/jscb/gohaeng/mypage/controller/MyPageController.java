@@ -45,6 +45,40 @@ public class MyPageController {
 	
 	/*-------------------------home 매핑------------------------*/
 	
+	/*-------------------------purchasewinning 매핑------------------------*/
+	@RequestMapping("purchasewinning/1")
+	public ModelAndView purchasewinning1(ModelAndView mView) {
+		
+		mView.setViewName("mypage.purchasewinning.1");
+		return mView;
+	}
+	
+	@RequestMapping("purchasewinning/2")
+	public ModelAndView purchasewinning2(ModelAndView mView) {
+		
+		mView.setViewName("mypage.purchasewinning.2");
+		return mView;
+	}
+	
+	@RequestMapping("purchasewinning/3")
+	public ModelAndView purchasewinning3(ModelAndView mView) {
+		
+		mView.setViewName("mypage.purchasewinning.3");
+		return mView;
+	}
+	
+	
+	/*-------------------------purchasewinning 매핑------------------------*/
+	
+	/*-------------------------mystat 매핑------------------------*/
+	@RequestMapping("mystat")
+	public ModelAndView mystat(ModelAndView mView) {
+		
+		mView.setViewName("mypage.mystat.3");
+		return mView;
+	}
+	/*-------------------------mystat 매핑------------------------*/
+	
 	/*-------------------------예치금 매핑------------------------*/
 	@RequestMapping("deposit/1")
 	public ModelAndView history(ModelAndView mView,HttpSession session) {

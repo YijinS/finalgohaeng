@@ -38,6 +38,7 @@
                <c:otherwise>
                   <c:choose>
                         <c:when test="${sessionScope.member.id eq 'ADMIN' }">
+                         <li class="nav-item"><a class="nav-link"
                            href="${pageContext.request.contextPath }/admin/">관리자 페이지</a></li>
                         </c:when>
                         <c:otherwise>
@@ -397,20 +398,14 @@
          <div class="col-lg-6 col-md-6 col-sm-12 mb-3" id="main-notice">
             <h3 class="h5 mb-3">공지사항</h3>
             <ul class="text-secondary lead mb-3 mr-3">
-               <li><a class="text-secondary"
-                  href="/service.do?method=noticeView&amp;wiselog=C_C_1_3&amp;noticeSerial=27">
-                     <p class="text-truncate" title="가상계좌 입금수수료 보상 이벤트">가상계좌 입금수수료
-                        보상 이벤트</p>
-               </a><span class="date">2019.07.31</span></li>
-               <li><a class="text-secondary"
-                  href="/service.do?method=noticeView&amp;wiselog=C_C_1_3&amp;noticeSerial=26">
-                     <p title="2019년 온라인(로또)복권 신규판매인 모집 당첨자 안내">2019년 온라인(로또)복권
-                        신규판매인 모집 당첨자 안내</p>
-               </a><span class="date">2019.07.30</span></li>
-               <li><a class="text-secondary"
-                  href="/service.do?method=noticeView&amp;wiselog=C_C_1_3&amp;noticeSerial=25">
-                     <p title="예치금충전 서비스 변경 안내">예치금충전 서비스 변경 안내</p>
-               </a><span class="date">2019.07.22</span></li>
+            	<c:forEach var="notice" items="${noticeList }">
+            	<fmt:formatDate var="regDate" value="${notice.regDate }" pattern="yyyy.MM.dd"/>
+            	<li><a class="text-secondary" href="${pageContext.request.contextPath }/happy/promotion/3_detail?index=${notice.index}">
+            			<p class="text-truncate">${notice.title }</p>
+            		</a>
+            		<span class="date">${regDate }</span>	
+            	</li>
+            	</c:forEach>
             </ul>
          </div>
          <div class="col-lg-6 col-md-6 col-sm-12 mb-3" id="main-notice">
@@ -435,7 +430,7 @@
       </div>
       <div class="row">
          <div class="col text-center">
-            <a class="btn-link text-secondary p-4" href="${pageContext.request.contextPath }/notice/list"> <i
+            <a class="btn-link text-secondary p-4" href="${pageContext.request.contextPath }/happy/promotion/3"> <i
                class="material-icons align-middle">arrow_right</i> <span
                class="align-middle text-decoration-none">공지사항 더보러가기</span>
             </a>

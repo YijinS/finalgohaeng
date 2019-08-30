@@ -60,6 +60,14 @@ public class NoticeDaoImpl implements NoticeDao{
 		
 	}
 
+	@Override
+	public List<NoticeDto> getList(int qty) {
+		
+		List<NoticeDto> list = session.selectList("notice.getListQty",qty);
+		
+		return list;
+	}
+
 	
 
 }

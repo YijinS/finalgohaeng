@@ -30,7 +30,8 @@ public class HomeController {
 
 		indexService.crawlingFortune(mView); 
 		indexService.getLastLotto(mView);
-
+		mView.addObject("noticeList",indexService.getNoticeList());
+		
 		//indexService.totalgames();
 		mView.setViewName("common.index");
 

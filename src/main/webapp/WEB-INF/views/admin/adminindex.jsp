@@ -53,7 +53,7 @@ img{
 
 	<div class="header">
 		<h1 class="logo">
-			<a href="${pageContext.request.contextPath }/admin/index"> 
+			<a href="${pageContext.request.contextPath }/admin/"> 
 			<img src="${pageContext.request.contextPath }/resources/images/index/logo-footer-w.png" alt="고행복권"
 				style="width: 98px; margin-top: -19px; margin-left: 35px; border: 0px;">
 			</a>

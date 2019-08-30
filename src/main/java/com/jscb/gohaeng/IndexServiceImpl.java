@@ -17,15 +17,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.dao.LottoGamesDao;
+import com.jscb.gohaeng.dao.NoticeDao;
 import com.jscb.gohaeng.dto.FortuneDto;
 import com.jscb.gohaeng.dto.LottoGamesDto;
+import com.jscb.gohaeng.dto.NoticeDto;
 
 @Service
 public class IndexServiceImpl implements IndexService {
 	
 	@Autowired
 	private LottoGamesDao lottoGamesDao;
-
+	@Autowired
+	private NoticeDao noticeDao;
+	
 	@Override
 	public ModelAndView crawlingFortune(ModelAndView mView) throws IOException {
 		String[] czs = { "쥐", "소", "호랑이", "토끼", "용", "뱀", "말", "양", "원숭이", "닭", "개", "돼지" };
@@ -167,6 +171,17 @@ public class IndexServiceImpl implements IndexService {
 		dto.setDrawDate(drawdate);
 		lottoGamesDao.lottoDrawInsert(dto);
 		}
+	}
+
+	@Override
+	public List<NoticeDto> getNoticeList() {
+		
+		// 가져올 갯수
+		int qty = 3;
+
+		List<NoticeDto> list = noticeDao.getList(qty);
+		
+		return list;
 	}
 
 }
