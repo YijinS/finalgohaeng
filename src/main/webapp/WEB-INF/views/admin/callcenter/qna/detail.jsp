@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <main>
 <div id="article" class="contentsArticle">
@@ -10,7 +11,7 @@
 	<div>
 		<div class="content_wrap content_notice_view">
 			<!-- -------------------------------------------------------------------------------------- -->
-			<form id="searchList" method="post">
+			<form id="searchList">
 				<input type="hidden" id="noticeSerial" name="noticeSerial">
 				<table class="tbl_data tbl_board_view">
 					<caption>번호,분류,제목,등록일 및 처리현황 등 나의 1:1 상담 내역</caption>
@@ -25,35 +26,87 @@
 						</tr>
 						<tr>
 							<th scope="row">등록일</th>
-							<td>${dto.regdate }</td>
+							<fmt:formatDate var="date" value="${dto.regdate}"
+								pattern="yyyy-MM-dd" />
+							<td>${date}</td>
 							<th scope="row">분류</th>
+							<td>${dto.category}</td>
+						</tr>
+						<tr>
+							<th scope="row">처리현황</th>
 							<c:choose>
-								<c:when test="${dto.category eq 0}">
-									<td>로또</td>
+								<c:when test="${not empty dto.reply}">
+									<td colspan="3">답변완료</td>
 								</c:when>
-								<c:when test="${dto.category ne 0}">
-									<td>연금</td>
+								<c:when test="${empty dto.reply}">
+									<td colspan="3">미답변</td>
 								</c:when>
 							</c:choose>
 						</tr>
 						<tr>
-							<th scope="row">첨부파일</th>
-							<td>파일</td>
-							<th scope="row">처리현황</th>
-							<td>미정</td>
-						</tr>
-						<tr>
 							<td colspan="4" class="content">${dto.content}</td>
 						</tr>
+						<c:if test="${not empty dto.reply}">
+							<tr>
+								<th scope="row">답변내용</th>
+								<td class="subject" colspan="3">${dto.reply}</td>
+							</tr>
+						</c:if>
 					</tbody>
 				</table>
-				<a href="list.do" class="btn_common form list">목록</a> 
-				<a href="" class="btn_common form list">답변</a>
-				<a href="#" class="btn_common form edit">수정</a> 
-				<a href="delete.do?index=${dto.index}" class="btn_common form remove">삭제</a>
-
+				<a href="list" class="btn_common form list">목록</a>
+				<c:if test="${not empty dto.reply}">
+					<button onclick="Display();" class="btn_common form edit">답변수정</button>
+					<a href="delete?index=${dto.index}" class="btn_common form remove">답변삭제</a>
+				</c:if>
 			</form>
 		</div>
+		<%-- <c:if test="${empty dto.reply }"> --%>
+			<form id="fom" method="post" action="reply">
+				<div>
+					<textarea id="reply" name="reply" placeholder="답변을 적어주세요.">${dto.reply}</textarea>
+					<button type="submit" class="btn_common form edit">답변등록</button>
+				</div>
+				<input type="hidden" name="index" value="${dto.index}">
+			</form>
+		<%-- </c:if> --%>
+		
+		<script>
+		window.addEventListener("load", function (e) {
+			var fom = document.querySelector('#fom');
+			var reply =document.querySelector('#reply').value;
+			//alert(reply.value);
+			if(reply == null || reply == "" || reply == undefined){
+				fom.style.display = 'block';
+				e.preventDefault();
+				return;
+			}
+			else{
+				fom.style.display = 'none';
+			}
+		});
+		</script>
+		<script>
+			function Display() {
+				var fom = document.querySelector('#fom');
+				
+				fom.style.display = 'block';
+				event.preventDefault();
+				return;
+			}
+		</script>
 	</div>
 </div>
+<style>
+* {
+	box-sizing: border-box;
+}
+
+textarea {
+	width: 100%;
+	height: 100px;
+	padding: 10px 10px;
+	font-size: 20px;
+}
+</style>
 </main>
