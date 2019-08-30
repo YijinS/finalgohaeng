@@ -71,7 +71,7 @@
 								참관신청을 하여도 연락이 가지 않습니다.
 							</li>
 						</ul>
-						<a href="/gameResult.do?method=visitWrite&amp;tabGbn=1"
+						<a href="applyform"
 							class="btn_common mid blu">참관신청</a>
 					</div>
 					<div class="group_content">
