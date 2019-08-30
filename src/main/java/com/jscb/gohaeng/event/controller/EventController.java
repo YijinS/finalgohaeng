@@ -21,23 +21,17 @@ public class EventController {
 
 	@Autowired
 	private EventService eventService;
-	/*
+
 	@RequestMapping("list")
 	public String list(HttpServletRequest request) {
 		eventService.getEventList(request);
 		return  "event.list" ;
 	}
-	*/
-	@RequestMapping("list")
-	public String list2(HttpServletRequest request) {
-		eventService.getEventList(request);
-		return  "event.list2" ;
-	}
 
 	@RequestMapping("detail")
 	public String detail(HttpServletRequest request) {
 		eventService.getEventDetail(request);
-		return "event.detail2";
+		return "event.detail";
 	}
 	
 	//댓글 추가 요청 처리
