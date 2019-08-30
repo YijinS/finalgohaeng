@@ -81,21 +81,17 @@ public class CallcenterController {
 		return mView;
 	}
 
-	@RequestMapping("qna/insertform")
-	public ModelAndView authInsertform(HttpServletRequest request) {
-
-		return new ModelAndView("callcenter.qna.insertform");
+	@GetMapping("qna/insertform")
+	public ModelAndView insertform(ModelAndView mView) {
+		mView.setViewName("callcenter.qna.insertform");
+		return mView;
 	}
-
-	@RequestMapping("qna/insert")
-	public ModelAndView authInsert(HttpServletRequest request, @ModelAttribute QnaDto dto) {
-		// 세션에 있는 글작성자의 아이디
-		String writer = (String) request.getSession().getAttribute("id");
-		dto.setMemberId(writer);
-
-		// service.insert(dto);
-		return new ModelAndView("redirect:/qna/list.do");
-
+	@PostMapping("qna/insert")
+	public ModelAndView insert(ModelAndView mView, HttpServletRequest request
+			, HttpSession session) {
+		qnaservice.insert(request,session);
+		mView.setViewName("callcenter.qna.insert");
+		return mView;
 	}
 
 	@RequestMapping("qna/detail")

@@ -19,13 +19,13 @@
 			</c:when>
 		</c:choose>
 		<ul class="prog">
-			<li class="p1"><a href="#">복권<br>구매하기
+			<li class="p1"><a href="${pageContext.request.contextPath }/purchase/lotto645">복권<br>구매하기
 			</a></li>
-			<li class="p2"><a href="#">판매점<br>조회
+			<li class="p2"><a href="${pageContext.request.contextPath }/user/store/1">판매점<br>조회
 			</a></li>
-			<li class="p3"><a href="#">최근 당첨<br>번호보기
+			<li class="p3"><a href="${pageContext.request.contextPath }/gameresult/lotto645/1">최근 당첨<br>번호보기
 			</a></li>
-			<li class="p4"><a href="#">통계 보기
+			<li class="p4"><a href="${pageContext.request.contextPath }/gameresult/lottostat/1">통계 보기
 			</a></li>
 		</ul>
 	</div>

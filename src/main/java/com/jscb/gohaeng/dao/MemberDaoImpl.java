@@ -85,11 +85,11 @@ public class MemberDaoImpl implements MemberDao {
 		
 	}
 
-		@Override
-		public void update(MemberDto dto) {
-			sqlSession.update("member.update", dto);
-			
-		}
+	@Override
+	public void update(MemberDto dto) {
+		sqlSession.update("member.update", dto);
+		
+	}
 
 	public String getId(Map<String, String> map) {
 		return sqlSession.selectOne("member.getId", map);

@@ -29,8 +29,8 @@ alert(userEmail + '로 이메일이 발송되었습니다. 인증확인을 해�
 								희망은 나눔이 되고, 나눔은 행복이 됩니다.<br>건전한 복권 즐기기를 생활화 하세요.
 							</p>
 							<div class="btns_submit">
-								<a class="btn_common lrg" href="/payment.do?method=payment">충전하기</a>
-								<a class="btn_common lrg blu" href="/common.do?method=main">메인으로
+								<a class="btn_common lrg" href="${pageContext.request.contextPath }/mypage/deposit/2">충전하기</a>
+								<a class="btn_common lrg blu" href="${pageContext.request.contextPath }/">메인으로
 									이동</a>
 							</div>
 						</div>

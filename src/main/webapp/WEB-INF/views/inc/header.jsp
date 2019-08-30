@@ -30,7 +30,7 @@
                      <li><a href="#">${sessionScope.member.name }님</a></li>
                      <li><a href="${pageContext.request.contextPath }/guest/logout">로그아웃</a></li>
                      <li><a href="${pageContext.request.contextPath }/mypage/home">마이페이지</a></li>
-                     <li><a href="#">고객센터</a></li>
+                     <li><a href="${pageContext.request.contextPath }/callcenter/info">고객센터</a></li>
                   </ul>
                </c:otherwise>
                </c:choose>
@@ -91,7 +91,7 @@
                                         <li><a href="#">추첨방송 참관신청</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">로또6/45 당첨통계</a>
+                                <li><a href="${pageContext.request.contextPath }/gameresult/lottostat/1">로또6/45 당첨통계</a>
                                     <ul class="snb_dep3">
                                         <li><a href="${pageContext.request.contextPath }/gameresult/lottostat/1">당첨통계</a></li>
                                         <li><a href="${pageContext.request.contextPath }/gameresult/lottostat/2">번호별 통계</a></li>
@@ -117,7 +117,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="basic gnb4"><a href="${pageContext.request.contextPath }/store/1">판매점</a>
+                    <li class="basic gnb4"><a href="${pageContext.request.contextPath }/user/store/1">판매점</a>
                     </li>
                     <li class="basic gnb5"><a href="${pageContext.request.contextPath }/event/list">이벤트</a>
                     </li>
