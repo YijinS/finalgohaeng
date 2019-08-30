@@ -115,10 +115,8 @@ img{
 				<div class="divide">
 					<strong class="title">편의기능</strong>
 					<ul class="link">
-						<li><a href="#none" class="link" onclick="addFavorite();">즐겨찾기
-								추가</a></li>
-						<li><a href="#none" class="link" onclick="shop_admin_icon();">바탕화면
-								추가</a></li>
+						<li><a href="#none" class="link" onclick="addFavorite();">즐겨찾기 추가</a></li>
+						<li><a href="#none" class="link" onclick="shop_admin_icon();">바탕화면 추가</a></li>
 					</ul>
 				</div>
 			</div>
@@ -159,7 +157,7 @@ img{
 		</div>
 		</a>
 		
-		<a href="${pageContext.request.contextPath }/store/1">
+		<a href="${pageContext.request.contextPath }/admin/store/1">
 		<div class="menu">
 		<img src="https://image.flaticon.com/icons/svg/126/126122.svg" alt=""/>
 		<strong>판매점</strong>

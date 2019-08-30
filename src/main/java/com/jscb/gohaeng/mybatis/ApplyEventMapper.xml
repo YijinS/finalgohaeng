@@ -7,14 +7,67 @@
 		<result property="result" column="AE_RESULT" />	
 	</resultMap>
 	
-	<select id="getApplyList" resultMap="ApplyEventDto">
-		SELECT * FROM APPLY_EVENT ORDER BY EVENT_INDEX
+	<select id="getCount" parameterType="com.jscb.gohaeng.dto.ApplyEventDto" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM APPLY_EVENT
+		<choose>
+			<when test="index != null and id != null">
+				WHERE EVENT_INDEX LIKE '%${index}%' OR
+				MEMBER_ID LIKE '%${id}%'
+			</when>
+			<when test="index != null">
+				WHERE EVENT_INDEX LIKE '%${index}%'
+			</when>
+			<when test="result != null">
+				WHERE AE_RESULT LIKE '%${result}%'
+			</when>
+		</choose>
 	</select>
+	
+	<select id="getList" resultMap="ApplyEventDto" parameterType="com.jscb.gohaeng.dto.ApplyEventDto">
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT *
+				FROM APPLY_EVENT
+				<choose>
+					<when test="index != 0">
+						WHERE EVENT_INDEX LIKE '%${index}%'
+					</when>
+					<when test="id != null">
+						WHERE MEMBER_ID LIKE '%${id}%'
+					</when>
+					<when test="result != 0">
+						WHERE AE_RESULT LIKE '%${result}%'
+					</when>
+				</choose>
+				ORDER BY EVENT_INDEX DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	
+<!-- 	<select id="getApplyList" resultMap="ApplyEventDto">
+		SELECT * FROM APPLY_EVENT ORDER BY EVENT_INDEX
+	</select> -->
+	
 	<insert id="insert" parameterType="com.jscb.gohaeng.dto.ApplyEventDto">
 		INSERT INTO APPLY_EVENT(EVENT_INDEX, MEMBER_ID, AE_RESULT)
 		VALUES(#{index}, #{id}, 1)
 	</insert>
+	
 	<select id="getData" parameterType="map" resultMap="ApplyEventDto">
 		SELECT * FROM APPLY_EVENT WHERE EVENT_INDEX = #{eventIndex} AND MEMBER_ID = #{memberId}
 	</select>
+	
+	<update id="updateWin" parameterType="int">
+		UPDATE EVENT
+		SET AE_RESULT = 2
+		WHERE EVENT_INDEX = #{index}
+	</update>
+	
+	<update id="updateLose" parameterType="int">
+		UPDATE EVENT
+		SET AE_RESULT = 3
+		WHERE EVENT_INDEX = #{index}
+	</update>
 </mapper>

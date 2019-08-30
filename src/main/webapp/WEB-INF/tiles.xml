@@ -60,7 +60,12 @@
 		<!-- <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" 
 			/> -->
 	</definition>
+
+
+	<definition name="user.store.1detail"
+		template="/WEB-INF/views/inc/no-tiles.jsp">
+		<put-attribute name="main" value="/WEB-INF/views/store/sellerinfo/1detail.jsp"></put-attribute>
 		
-	<!-- 타일즈 미적용 부분 -->
+	</definition>
 
 </tiles-definitions>

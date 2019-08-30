@@ -16,7 +16,7 @@
 	href="${pageContext.request.contextPath}/resources/css/common.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/contents.css" />
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/page.css" />
 <!-- 판매점 api -->
 
 <!-- services 라이브러리 불러오기 -->

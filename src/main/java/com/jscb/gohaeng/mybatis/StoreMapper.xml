@@ -47,14 +47,7 @@
 
 		SELECT
 		NVL(MAX(ROWNUM), 0) FROM STORE
-		<choose>
-			<when test="radio_select != null and radio_select == 'close'">
-				WHERE STORE_ENABLE = 0
-			</when>
-			<when test="radio_select != null and radio_select == 'open'">
-				WHERE STORE_ENABLE = 1
-			</when>
-		</choose>
+		
 
 	</select>
 

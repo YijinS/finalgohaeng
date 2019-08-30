@@ -19,7 +19,7 @@ import com.jscb.gohaeng.dto.AddrDto;
 import com.jscb.gohaeng.dto.StoreDto;
 
 
-@RequestMapping("/user/")
+@RequestMapping("/user/store/")
 @Controller
 public class UserStoreController {
 
@@ -57,7 +57,7 @@ public class UserStoreController {
 
 	//select box 요청 처리 
 	@ResponseBody
-	@RequestMapping(value="store/ajax_select", produces ="application/json; charset=utf8") 
+	@RequestMapping(value="ajax_select", produces ="application/json; charset=utf8") 
 	public String ajax(int storeAbleGames) {
 		List<StoreDto> list = storeservice.getList(storeAbleGames);
 		Gson gson = new Gson(); 
@@ -67,7 +67,7 @@ public class UserStoreController {
 	}
 
 
-	@RequestMapping("store/1")
+	@RequestMapping("1")
 	public ModelAndView list(HttpServletRequest request, AddrDto dto, ModelAndView mView) {
 		storeservice.getList(request);
 		addrService.getSido(mView);
@@ -78,7 +78,7 @@ public class UserStoreController {
 	}
 
 
-	@RequestMapping(value="store/1detail", method = RequestMethod.GET)
+	@RequestMapping(value="1detail", method = RequestMethod.GET)
 	public ModelAndView getData(ModelAndView mView, int storeIndex) {
 
 		storeservice.getData(mView, storeIndex);

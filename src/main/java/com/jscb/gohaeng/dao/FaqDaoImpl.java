@@ -14,9 +14,17 @@ public class FaqDaoImpl implements FaqDao{
 	private SqlSession session;
 
 	@Override
-	public List<FaqDto> getList() {
-		List<FaqDto> list = session.selectList("faq.getList");
+	public List<FaqDto> getList(FaqDto dto) {
+		List<FaqDto> list = session.selectList("faq.getList", dto);
 		return list;
 	}
+
+
+	@Override
+	public int getCount(FaqDto dto) {
+		return session.selectOne("faq.getCount", dto);
+
+	}
+
 
 }

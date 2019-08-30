@@ -1,7 +1,10 @@
 package com.jscb.gohaeng.callcenter.service;
 
-import org.springframework.web.servlet.ModelAndView;
+import javax.servlet.http.HttpServletRequest;
 
 public interface FaqService {
-	public void getList(ModelAndView mView);
+	/*
+								 * public void getList(HttpServletRequest request);
+								 */
+	public void getList(HttpServletRequest request, int category);
 }
