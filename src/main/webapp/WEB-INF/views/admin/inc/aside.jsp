@@ -8,15 +8,19 @@
 <script>
 var li = document.querySelector('.depth1');
 
+
 $(function() {
-	  $("li").on("click",function() {
+	 $("li").on("click",function(evt) {
+		 
 	    $(this).addClass( 'collapsable' );
+	    evt.preventDefault();
 	  });
-	  
-	  var li2 = document.querySelector('.collapsable');
-	  $("li2").on("click",function() {
+	   
+/* 	  var li2 = document.querySelector('.collapsable');
+	  $("li2").on("click",function(evt) {
 		    $(this).removeClass( 'collapsable' );
-		  });
+		    evt.unbind();
+		  }); */
 });
 
 

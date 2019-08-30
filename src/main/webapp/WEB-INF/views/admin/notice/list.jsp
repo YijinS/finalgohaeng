@@ -76,7 +76,7 @@
 							<c:choose>
 								<c:when test="${startPageNum ne 1 }">
 									<li><a
-										href="list.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${Keyword }">
+										href="list?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${Keyword }">
 											&laquo; </a></li>
 								</c:when>
 								<c:otherwise>
@@ -88,11 +88,11 @@
 								<c:choose>
 									<c:when test="${i eq pageNum }">
 										<li class="active"><a
-											href="list.do?pageNum=${i }&condition=${condition }&keyword=${Keyword }">${i }</a></li>
+											href="list?pageNum=${i }&condition=${condition }&keyword=${Keyword }">${i }</a></li>
 									</c:when>
 									<c:otherwise>
 										<li><a
-											href="list.do?pageNum=${i }&condition=${condition }&keyword=${Keyword }">${i }</a></li>
+											href="list?pageNum=${i }&condition=${condition }&keyword=${Keyword }">${i }</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
@@ -100,7 +100,7 @@
 							<c:choose>
 								<c:when test="${endPageNum lt totalPageCount }">
 									<li><a
-										href="list.do?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${Keyword }">
+										href="list?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${Keyword }">
 											&raquo; </a></li>
 								</c:when>
 								<c:otherwise>

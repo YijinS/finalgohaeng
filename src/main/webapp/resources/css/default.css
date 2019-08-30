@@ -52,7 +52,7 @@ body {
   ul, ol {list-style:none}
   hr, caption, legend {position:absolute; top:0; left:0; width:0; height:0; overflow:hidden; /* visibility:hidden; */ font-size:0; line-height:0}
   table {/* border-collapse:collapse; */ border-spacing:0; width:100%}
-  a {text-decoration:none; font-family:'Roboto', 'Noto Sans KR', sans-serif; color:#333}
+  a {text-decoration:none; font-family:'Roboto', 'Noto Sans KR', sans-serif; color:#333;}
   a:hover, a:active, a:focus {}
   h1, h2, h3, h4, h5, h6, strong {/* font-weight:normal */}
   p, li, dd {font-weight:300; color:#767676; line-height:22px}

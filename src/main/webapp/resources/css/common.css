@@ -11,7 +11,7 @@
 /* text decoration, text highlight */
 .underline {text-decoration:underline}
 .break_all {display:inline-block; word-break:break-all; word-wrap:break-word}
-.article{margin: 100px;
+.article{margin: 100px 100px 200px 100px;
     padding-left: 150px;}
 /* .content_wrap.content_interview_winner{margin: 100px;
     padding-left: 150px;} */

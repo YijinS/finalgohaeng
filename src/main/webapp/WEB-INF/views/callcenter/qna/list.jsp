@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <div class="body">
 	<div class="containerWrap">
@@ -44,8 +45,7 @@
 					<!-- -------------------------------------------------------------------------------------- -->
 
 
-					<form id="Frm" name="Frm" method="post"
-						action="/counsel.do?method=myCounselList">
+					<form id="Frm" name="Frm" method="post">
 						<input type="hidden" id="inq_seq" name="inq_seq"> <input
 							type="hidden" id="nowPage" name="nowPage">
 						<table class="tbl_data tbl_data_col">
@@ -67,21 +67,73 @@
 								</tr>
 							</thead>
 							<tbody>
-
-								<tr>
-									<td colspan="5" class="nodata">등록된 1:1상담내용이 없습니다.</td>
-								</tr>
-
-
-
+								<c:choose>
+									<c:when test="${empty list }">
+										<tr>
+											<td colspan="5" class="nodata">등록된 1:1상담내용이 없습니다.</td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:forEach var="list" items="${list}">
+											<tr>
+												<td>${list.index}</td>
+												<td>${list.category}</td>
+												<td><a href="detail?index=${list.index}">${list.title}</a></td>
+												<fmt:formatDate var="date" value="${list.regdate}"
+													pattern="yyyy-MM-dd" />
+												<td>${date}</td>
+												<c:choose>
+													<c:when test="${not empty list.reply}">
+														<td>답변완료</td>
+													</c:when>
+													<c:when test="${empty list.reply}">
+														<td>답변대기</td>
+													</c:when>
+												</c:choose>
+											</tr>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 							</tbody>
 						</table>
 						<div class="wrap_paginate">
-							<!-- Paging BEGIN -->
+							<div class="page-display">
+								<div class="paginate_common" id="page_box">
+									<ul class="pagination">
+										<c:choose>
+											<c:when test="${startPageNum ne 1 }">
+												<li><a href="list?pageNum=${startPageNum-1 }">&laquo; </a></li>
+											</c:when>
+											<c:otherwise>
+												<li class="disabled"><a href="javascript:">&laquo;</a></li>
+											</c:otherwise>
+										</c:choose>
+										<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }" step="1">
+											<c:choose>
+												<c:when test="${i eq pageNum }">
+													<li class="active"><a
+														href="list?pageNum=${i }">${i }</a></li>
+												</c:when>
+												<c:otherwise>
+													<li><a href="list?pageNum=${i }">${i }</a></li>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
 
-							<!-- Paging END -->
+										<c:choose>
+											<c:when test="${endPageNum lt totalPageCount }">
+												<li><a href="list?pageNum=${endPageNum+1 }">&raquo; </a></li>
+											</c:when>
+											<c:otherwise>
+												<li class="disabled"><a href="javascript:">&raquo;</a></li>
+											</c:otherwise>
+										</c:choose>
+									</ul>
+								</div>
+							</div>
 							<div class="action right">
-								<a class="btn_common mid blu" href="insertform.do" style="cursor: pointer;">상담등록</a>
+								<a class="btn_common mid blu" href="insertform"
+									style="cursor: pointer;">상담등록</a>
 							</div>
 						</div>
 					</form>

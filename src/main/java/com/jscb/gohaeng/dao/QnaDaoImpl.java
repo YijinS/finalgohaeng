@@ -43,4 +43,16 @@ public class QnaDaoImpl implements QnaDao{
 		
 	}
 
+	@Override
+	public List<QnaDto> getMyList(QnaDto dto) {
+		List<QnaDto> list = session.selectList("qna.getMyList", dto);
+		return list;
+	}
+
+	@Override
+	public void update(QnaDto dto) {
+		session.update("qna.update", dto);
+		
+	}
+
 }

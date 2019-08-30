@@ -80,11 +80,18 @@ public class GameResultController {
 		mView.setViewName("gameresult.lotto645.5");
 		return mView;
 	}
-	
-	@RequestMapping("lotto645/6")
+	/*-------------------------참관신청------------------------------*/
+	@RequestMapping("lotto645/drawshowlist")
 	public ModelAndView drawShow(ModelAndView mView) {
 		
-		mView.setViewName("gameresult.lotto645.6");
+		mView.setViewName("gameresult.lotto645.drawshowlist");
+		return mView;
+	}
+	
+	@RequestMapping("lotto645/applyform")
+	public ModelAndView authapplyform(ModelAndView mView) {
+		
+		mView.setViewName("gameresult.lotto645.applyform");
 		return mView;
 	}
 	

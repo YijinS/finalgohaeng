@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,11 +33,18 @@ public class QnaController {
 		mView.setViewName("admin.callcenter.qna.detail");
 		return mView;
 	}
+	@PostMapping("qna/reply")
+	public String reply(@RequestParam(name="reply") String reply,
+			@RequestParam(name="index") int index) {
+		qnaservice.replyinsert(reply,index);
+		return "redirect:/admin/callcenter/qna/detail?index="+index;
+	}
 	
 	@RequestMapping("qna/delete")
 	public String delete(@RequestParam int index) {
-		qnaservice.delete(index);
-		return "admin.callcenter.qna.delete";
+		qnaservice.replydelete(index);
+		return "redirect:/admin/callcenter/qna/detail?index="+index;
 	}
+	
 
 }

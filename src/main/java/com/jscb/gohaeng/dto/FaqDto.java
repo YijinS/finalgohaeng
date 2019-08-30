@@ -6,17 +6,26 @@ public class FaqDto {
 	private String answer;
 	private int category;
 	
+	// 페이징 처리를 위한 필드
+	private int startRowNum;
+	private int endRowNum;
+	
 	public FaqDto() {
 		
 	}
+	
+	
 
-	public FaqDto(int index, String question, String answer, int category) {
+	public FaqDto(int index, String question, String answer, int category, int startRowNum, int endRowNum) {
 		super();
 		this.index = index;
 		this.question = question;
 		this.answer = answer;
 		this.category = category;
+		this.startRowNum = startRowNum;
+		this.endRowNum = endRowNum;
 	}
+
 
 	public int getIndex() {
 		return index;
@@ -49,6 +58,23 @@ public class FaqDto {
 	public void setCategory(int category) {
 		this.category = category;
 	}
+
+	public int getStartRowNum() {
+		return startRowNum;
+	}
+
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
+	}
+
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
+	}
+
 	
 	
 

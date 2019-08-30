@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.dto.NoticeDto;
+import com.jscb.gohaeng.dto.LottoGamesDto;
 
 public interface IndexService {
 	
@@ -14,6 +15,8 @@ public interface IndexService {
 	public void lottonum() throws IOException, ParseException;
 	public void getLastLotto(ModelAndView mView);
 	//로또 전체회차
-	public void totalgames() throws IOException, ParseException;
 	public List<NoticeDto> getNoticeList();
+	public void totalgames() throws IOException, ParseException;
+	public LottoGamesDto getLottoGames(int games);
+	
 }
