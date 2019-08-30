@@ -32,7 +32,9 @@
 
 <select id="getData" parameterType="int"
 resultMap="QnaDto">
-	SELECT CONSULTING_INDEX,CONSULTING_TITLE,CONSULTING_REGDATE,CONSULTING_CATEGORY,CONSULTING_CONTENT FROM CONSULTING WHERE CONSULTING_INDEX=#{index}
+	SELECT * 
+	FROM CONSULTING 
+	WHERE CONSULTING_INDEX=#{index}
 </select>
 <delete id="delete" parameterType="int">
 	DELETE FROM CONSULTING WHERE CONSULTING_INDEX=#{index}
@@ -52,6 +54,35 @@ resultType="int">
 <insert id="insert" parameterType="com.jscb.gohaeng.dto.QnaDto">
 	INSERT INTO CONSULTING
 	(CONSULTING_INDEX,MEMBER_ID,CONSULTING_CATEGORY,CONSULTING_TITLE,CONSULTING_CONTENT) 
-	VALUES(CONSULTING_SEQ.NEXTVAL,'312a',#{category},#{title},#{content})
+	VALUES(CONSULTING_SEQ.NEXTVAL,#{memberId},#{category},#{title},#{content})
 </insert>
+<select id="getMyList" resultMap="QnaDto" parameterType="com.jscb.gohaeng.dto.QnaDto">
+	SELECT * FROM
+	(SELECT result1.*, ROWNUM AS rnum
+	FROM
+	(SELECT *
+	FROM CONSULTING WHERE MEMBER_ID = #{memberId} ORDER BY CONSULTING_REGDATE) result1)
+	WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	
+</select>
+
+<update id="update" parameterType="com.jscb.gohaeng.dto.QnaDto">
+	UPDATE CONSULTING
+	<choose>
+	<when test="reply != null">
+		SET
+		CONSULTING_REPLY = #{reply}, CONSULTING_REPLY_DATE = SYSDATE
+	</when>
+	<when test="content != null">
+		SET
+		CONSULTING_CATEGORY = #{category}, CONSULTING_TITLE = #{title}, CONSULTING_CONTENT = #{content}
+	</when>
+	<when test="reply == null">
+		SET
+		CONSULTING_REPLY = #{reply,jdbcType=VARCHAR}, CONSULTING_REPLY_DATE = #{replydate,jdbcType=DATE}
+	</when>
+</choose>
+	WHERE CONSULTING_INDEX = #{index}
+	
+</update>
 </mapper>

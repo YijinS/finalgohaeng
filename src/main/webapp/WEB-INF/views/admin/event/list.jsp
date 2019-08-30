@@ -8,7 +8,29 @@
 		<!-- --------------------------------------- 컨텐트 시작 ----------------------------------------------- -->
 
 		<h4 class="mb-5">게시물 관리</h4>
-		<div>
+		<%-- 글 검색 기능 폼 --%>
+		<div class="d-flex justify-content-end">
+			<c:if test="${not empty keyword }">
+				<p class="mr-3 align-middle">
+					<strong>${keyword }</strong> 라는 검색어로 <strong>${totalRow }</strong>
+					개의 글이 검색 되었습니다.
+				</p>
+			</c:if>
+			<form action="list" method="get">
+				<select name="condition"
+					id="condition">
+					<option value="titlecontent"
+						<c:if test="${condition eq 'titlecontent' }">selected</c:if>>제목+내용</option>
+					<option value="title"
+						<c:if test="${condition eq 'title' }">selected</c:if>>제목</option>
+					<option value="subTitle"
+						<c:if test="${condition eq 'subTitle' }">selected</c:if>>설명</option>
+				</select> <input type="text" name="keyword" placeholder="검색어 입력..."
+					value="${keyword }" />
+				<button type="submit" class="btn btn-primary btn-sm">검색</button>
+			</form>
+		</div>
+		<div class="mt-3">
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -82,28 +104,6 @@
 				</c:choose>
 			</ul>
 		</div>
-		<%-- 글 검색 기능 폼 --%>
-
-		<form action="list" method="get">
-			<label for="condition">검색조건</label> <select name="condition"
-				id="condition">
-				<option value="titlecontent"
-					<c:if test="${condition eq 'titlecontent' }">selected</c:if>>제목+내용</option>
-				<option value="title"
-					<c:if test="${condition eq 'title' }">selected</c:if>>제목</option>
-				<option value="subTitle"
-					<c:if test="${condition eq 'subTitle' }">selected</c:if>>소제목</option>
-			</select> <input type="text" name="keyword" placeholder="검색어 입력..."
-				value="${keyword }" />
-			<button type="submit">검색</button>
-		</form>
-
-		<c:if test="${not empty keyword }">
-			<p>
-				<strong>${keyword }</strong> 라는 검색어로 <strong>${totalRow }</strong>
-				개의 글이 검색 되었습니다.
-			</p>
-		</c:if>
 		<!-- --------------------------------------------컨텐트 끝 ------------------------------------------ -->
 	</div>
 </div>
@@ -161,8 +161,6 @@
 
 </script>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
 

@@ -43,7 +43,7 @@
                <!-- -------------------------------------------------------------------------------------- -->
 
 
-               <form id="Frm" name="Frm" method="post" action="/counsel.do?method=myCounselInsert">
+               <form id="Frm" name="Frm" method="post" action="insert">
                      <input type="text" id="inq_seq" name="inq_seq" style="display:none;" title="inq_seq">
                      <table class="tbl_data tbl_form">  
                      <caption>분류, 제목, 내용 등 1대1 상담 내용을 입력합니다.</caption>
@@ -52,28 +52,21 @@
                         <col>
                      </colgroup>
                      <thead>
-                         <tr>
-                           <th scope="row"><span>남은시간</span></th>
-                           <td>
-                                 <span id="pSessionTime">9분 3초</span>
-                                 <a id="dvInfoLayer" class="btn_common sml" href="javascript:refreshSessionTimer();" style="margin-left: 10px;">로그인 연장</a>
-                              </td>
-                        </tr>
                         <tr>
                            <th scope="row"><span>분류</span><span class="req">*<span>필수입력</span></span></th>
                            <td>
-                                 <select id="cat" name="cat" title="상담 분류 선택">
+                                 <select id="cat" name="category" title="상담 분류 선택">
                                        <option value="">선택</option>
                                        
-                                          <option value="MQ01">복권문의</option>
+                                          <option value="복권문의">복권문의</option>
                                        
-                                          <option value="MQ02">예치금</option>
+                                          <option value="예치금">예치금</option>
                                        
-                                          <option value="MQ03">결제</option>
+                                          <option value="결제">결제</option>
                                        
-                                          <option value="MQ04">기타</option>
+                                          <option value="기타">기타</option>
                                        
-                                          <option value="MQ05">로또판매점</option>
+                                          <option value="로또판매점">로또판매점</option>
                                        
                                     </select>
                               </td>
@@ -81,13 +74,13 @@
                          <tr>
                            <th scope="row"><span>제목</span><span class="req">*<span>필수입력</span></span></th>
                            <td>
-                                 <input type="text" id="subject" name="subject" maxlength="100" value="" style="width:100%" title="제목 입력">
+                                 <input type="text" id="title" name="title" maxlength="100" value="" style="width:100%" title="제목 입력">
                               </td>
                         </tr>
                           <tr>
                            <th scope="row"><span>내용</span><span class="req">*<span>필수입력</span></span></th>
                            <td>
-                                 <textarea title="내용 입력" id="contents" name="contents" maxlength="2000" onkeyup="javascript:checkMaxSize(2000,&quot;contents&quot;);" style="height:200px"></textarea>
+                                 <textarea title="내용 입력" id="content" name="content" maxlength="2000" onkeyup="checkMaxSize(2000,'content');" style="height:200px"></textarea>
                                  <p class="comt_valid color_key1">* 내용은 2000자까지 입력이 가능합니다.</p>
                                  <p class="comt_valid">* 1:1상담 게시판 및 고객센터 이용 시 욕설 및 비방, 혐오표현 등이 포함되어 있는 경우 “이용약관 제7조(서비스의 이용 및 제한) 7조 3항 6”에 따라 사전통지 없이 탈퇴 또는 일정기간 동안 서비스 이용에 제한을 받을 수 있습니다. 
                                  <br> 또한 “정보통신망 이용촉진 및 정보보호 등에 관한 법률 제44조의7(불법정보의 유통금지 등)” 등에 의해  처벌받을 수 있사오니, 이 점 양지하시어 이용 부탁드립니다.</p>
@@ -99,9 +92,9 @@
                   <p class="note_result_search bottom"><span class="color_key1">*</span>는 필수 입력사항입니다.</p>
                   <div class="btns_submit search">
                      
-                      <a class="btn_common mid blu" href="javascript:SendGO();">등록하기</a>
+                      <a id="submit" class="btn_common mid blu">등록하기</a>
                    
-                    <a class="btn_common mid" href="/counsel.do?method=myCounselList">내 상담목록</a>
+                    <a class="btn_common mid" href="list">내 상담목록</a>
                   </div>
                   <div class="group_content">
                        <div class="group_inner">
@@ -112,7 +105,34 @@
                           </ul>
                        </div>
                    </div>
-
+				
+				<script>
+					$(function(){		 			
+						$('#submit').click(function(){
+							var ans = confirm("해당 내용으로 등록하시겠습니까?");
+							if(!ans){
+								return;
+							}else{
+								$('#Frm').submit();
+							}						
+						});
+					});
+				</script>
+				
+				<script>
+				function checkMaxSize(sz,id) {
+					var form = $('#Frm');
+					var obj = document.getElementById(id);
+					console.log(obj.value);
+					console.log(sz);
+					if(obj.value.length >= sz){
+						if(event.keyCode != '8'){
+							alert('2000자까지 입력가능합니다.');
+						}
+						obj.value = obj.value.substring(0,sz);
+					}
+				}
+				</script>
                <!-- -------------------------------------------------------------------------------------- -->
             </div>
          </div>

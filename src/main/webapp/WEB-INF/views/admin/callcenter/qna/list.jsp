@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <main>
 <div id="article" class="contentsArticle">
@@ -62,23 +63,17 @@
 					<c:forEach var="list" items="${list}">
 						<tr>
 							<td>${list.index}</td>
-							<c:choose>
-								<c:when test="${list.category eq 0}">
-									<td>로또</td>
-								</c:when>
-								<c:when test="${list.category ne 0}">
-									<td>연금</td>
-								</c:when>
-							</c:choose>
-							<td><a href="detail.do?index=${list.index}">${list.title}</a></td>
+							<td>${list.category}</td>
+							<td><a href="detail?index=${list.index}">${list.title}</a></td>
 							<td>${list.memberId}</td>
-							<td>${list.regdate}</td>
+							<fmt:formatDate var="date" value="${list.regdate}" pattern="yyyy-MM-dd" />
+							<td>${date}</td>
 							<c:choose>
 								<c:when test="${not empty list.reply}">
-									<td>처리완료</td>
+									<td>답변완료</td>
 								</c:when>
 								<c:when test="${empty list.reply}">
-									<td>미처리</td>
+									<td>미답변</td>
 								</c:when>
 							</c:choose>
 						</tr>
@@ -91,7 +86,7 @@
 						<c:choose>
 							<c:when test="${startPageNum ne 1 }">
 								<li><a
-									href="list.do?pageNum=${startPageNum-1 }&searchType=${searchType }&searchRadioOptions=${searchRadioOptions}">
+									href="list?pageNum=${startPageNum-1 }&searchType=${searchType }&searchRadioOptions=${searchRadioOptions}">
 										&laquo; </a></li>
 							</c:when>
 							<c:otherwise>
@@ -103,11 +98,11 @@
 							<c:choose>
 								<c:when test="${i eq pageNum }">
 									<li class="active"><a
-										href="list.do?pageNum=${i }&searchType=${searchType }&searchRadioOptions=${searchRadioOptions}">${i }</a></li>
+										href="list?pageNum=${i }&searchType=${searchType }&searchRadioOptions=${searchRadioOptions}">${i }</a></li>
 								</c:when>
 								<c:otherwise>
 									<li><a
-										href="list.do?pageNum=${i }&searchType=${searchType }&searchRadioOptions=${searchRadioOptions}">${i }</a></li>
+										href="list?pageNum=${i }&searchType=${searchType }&searchRadioOptions=${searchRadioOptions}">${i }</a></li>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -115,7 +110,7 @@
 						<c:choose>
 							<c:when test="${endPageNum lt totalPageCount }">
 								<li><a
-									href="list.do?pageNum=${endPageNum+1 }&searchType=${searchType }&searchRadioOptions=${searchRadioOptions}">
+									href="list?pageNum=${endPageNum+1 }&searchType=${searchType }&searchRadioOptions=${searchRadioOptions}">
 										&raquo; </a></li>
 							</c:when>
 							<c:otherwise>

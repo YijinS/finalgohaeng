@@ -1,15 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="header">
 
 	<div class="header">
 		<h1 class="logo">
-			<a href="${pageContext.request.contextPath }/admin/index"> <img
+			<a href="${pageContext.request.contextPath }/admin/"> <img
 				src="${pageContext.request.contextPath }/resources/images/index/logo-footer-w.png"
 				alt="고행복권"
-				style="width: 98px; margin-top: -39px; margin-left: 35px; border: 0px;">
+				style="vertical-align: middle; width: 98px; margin-top: -39px; margin-left: 35px; border: 0px;">
 			</a>
 		</h1>
 		<ul class="util" id="gnb">

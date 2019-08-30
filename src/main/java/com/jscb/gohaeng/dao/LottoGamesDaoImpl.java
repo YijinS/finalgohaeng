@@ -77,6 +77,36 @@ public class LottoGamesDaoImpl implements LottoGamesDao {
 		return games;
 	}
 
+
+	public int getTotalCount(int start, int end) {
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start",start);
+		map.put("end",end);
+		int total = sqlSession.selectOne("LottoGames.getTotalCount",map);
+		
+		return total;
+	}
+
+	@Override
+	public List<LottoGamesDto> getList(int page,int rowCount, int start, int end) {
+		
+		int startNum=1 + ((page-1)*rowCount);
+		int endNum= page * rowCount;
+		
+		
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start",start);
+		map.put("end",end);
+		map.put("startNum",startNum);
+		map.put("endNum",endNum);
+		
+		List<LottoGamesDto> list = sqlSession.selectList("LottoGames.getList123",map);
+		
+		return list;
+	}
+
 	
 
 	

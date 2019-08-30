@@ -11,4 +11,7 @@ public interface QnaDao {
 	// 글의 갯수
 	public int getCount(QnaDto dto);
 	public void insert(QnaDto dto);
+	//1:1상담목록(유저)
+	public List<QnaDto> getMyList(QnaDto dto);
+	public void update(QnaDto dto);
 }

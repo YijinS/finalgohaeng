@@ -22,7 +22,7 @@ public class GameInfoController {
 		return "gameinfo.lotto645.2";
 	}
 	@RequestMapping("lotto645/3")
-	public ModelAndView authMethod(HttpServletRequest request,ModelAndView mView) {
+	public ModelAndView method(HttpServletRequest request,ModelAndView mView) {
 		
 		mView.setViewName("gameinfo.lotto645.3");
 		return mView;

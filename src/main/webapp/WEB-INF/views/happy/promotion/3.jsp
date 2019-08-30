@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="body">
 	<div class="containerWrap">
@@ -10,15 +10,19 @@
 			<nav class="lnbNav">
 
 				<div id="snb" class="lnb">
-					<h2 id="09" class="lnb_title">회원서비스</h2>
+					<h2 id="09" class="lnb_title">행복공감</h2>
 					<ul id="lnb" class="lnb_dep1">
-						<li id="06-01" class="active"><a href="#" class="menuLnb"><span>건전한
+						<li id="06-01"><a href="${pageContext.request.contextPath }/happy/healthy/1" class="menuLnb"><span>건전한
 									복권문화</span></a></li>
-						<li id="06-02"><a href="#" class="menuLnb"><span>복권기금
-									찾기</span></a></li>
-						<li id="06-03"><a href="#" class="menuLnb"><span>행복공감
+						<li id="06-02"><a href="${pageContext.request.contextPath }/happy/fund/1" class="menuLnb"><span>복권기금</span></a></li>
+						<li id="06-03"><a href="${pageContext.request.contextPath }/happy/service" class="menuLnb"><span>행복공감
 									봉사단</span></a></li>
-						<li id="06-04"><a href="#" class="menuLnb"><span>홍보센터</span></a></li>
+						<li id="06-04" class="active"><a href="${pageContext.request.contextPath }/happy/promotion/1" class="menuLnb"><span>홍보센터</span></a>							<ul class="lnb_dep2">
+								<li id="06-04-01"><a href="${pageContext.request.contextPath }/happy/promotion/1"><span>광고</span></a></li>
+								<li id="06-04-02"><a href="${pageContext.request.contextPath }/happy/promotion/2"><span>보도자료</span></a></li>
+								<li id="06-04-03" class="active"><a href="${pageContext.request.contextPath }/happy/promotion/3"><span>공지사항</span></a></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 
@@ -42,29 +46,35 @@
 								<!-- 검색 부분 -->
 								<div class="action">
 									<div class="search">
-										<!-- 뭐하는 부분이지? -->
-										<form name="letGoBoardDetail" method="post" action>
-											<input type="hidden" name="currentPage" value="1"> <input
-												type="hidden" name="startPage" value="0"> <input
-												type="hidden" name="endPage" value="0"> <input
-												type="hidden" name="kind" value> <input
-												type="hidden" name="keyword" value>
+										<form name="searchList" id="searchList">
+											<select id="kind" name="condition" title="조회옵션 선택">
+												<option value="total"
+													<c:if test="${save.condition eq 'total' }">selected</c:if>>전체</option>
+												<option value="title"
+													<c:if test="${save.condition eq 'title' }">selected</c:if>>제목</option>
+												<option value="content"
+													<c:if test="${save.condition eq 'content' }">selected</c:if>>내용</option>
+											</select> <input type="text" name="keyword" value="${save.keyword}"
+												title="검색어 입력">
+											<button id="goSearch" class="btn_common form blu" type="submit">조회</button>
 										</form>
-										<form name="searchfrm" id="searchfrm" method="post">
-											<select id="kind" name="kind" title="조회옵션 선택">
-												<option value="total">전체</option>
-												<option value="title">제목</option>
-												<option value="content">내용</option>
-											</select> <input type="text" id="keyword" name="keyword" value
-												title="검색어 입력"> <a href="#" id="gosearch"
-												class="btn_common form blu">조회</a>
-										</form>
+										<script>
+											$(function(){
+												var btn = $("#goSearch");
+												btn.click(function(){
+													history.replaceState({},null,location.pathname);
+												});
+											});
+										</script>
 									</div>
-									<!-- search 부분 끝-->
 								</div>
-								<!-- action 부분 끝-->
 							</div>
-							<!-- group_title 부분 끝-->
+							<c:if test="${not empty save.keyword and save.keyword == '' }">
+								<p>
+									<strong>${save.keyword }</strong> 라는 검색어로 <strong>${data.totalRow }</strong>
+									개의 글이 검색 되었습니다.
+								</p>
+							</c:if>
 
 							<table class="tbl_data tbl_data_col">
 								<caption>번호, 제목, 첨부파일, 등록일등 공지사항 목록</caption>
@@ -83,117 +93,45 @@
 									</tr>
 								</thead>
 								<tbody>
-
-									<tr>
-										<td>24</td>
-										<td class="ta_left"><a href="#">국제표준 품질경영시스템 ISO
-												9001:20105 인증 취득</a></td>
-										<td><a class="btn_attach" href="#none"
-											onclick="fileDownload(24)">첨부파일</a></td>
-										<td>2019-07-18</td>
-									</tr>
-
-									<tr>
-										<td>23</td>
-										<td class="ta_left"><a href="#">(07/18,목)사이트 점검 안내</a></td>
-										<td></td>
-										<td>2019-07-17</td>
-									</tr>
-
-									<tr>
-										<td>22</td>
-										<td class="ta_left"><a href="#">예치금 최소 충전금액 변경 안내</a></td>
-										<td></td>
-										<td>2019-07-01</td>
-									</tr>
-
-									<tr>
-										<td>21</td>
-										<td class="ta_left"><a href="#">(주)동행복권 온라인(로또)복권 판매인
-												모집 접수 사이트 안내</a></td>
-										<td></td>
-										<td>2019-06-28</td>
-									</tr>
-
-									<tr>
-										<td>20</td>
-										<td class="ta_left"><a href="#">로또6/45 인터넷판매약관 변경 안내</a></td>
-										<td></td>
-										<td>2019-06-21</td>
-									</tr>
-
-									<tr>
-										<td>19</td>
-										<td class="ta_left"><a href="#">(06/21,금)사이트 점검 안내</a></td>
-										<td></td>
-										<td>2019-06-17</td>
-									</tr>
-
-									<tr>
-										<td>18</td>
-										<td class="ta_left"><a href="#">2019년 온라인(로또)복권 판매인
-												모집 공고문 게시</a></td>
-										<td><a class="btn_attach" href="#none"
-											onclick="fileDownload(18)">첨부파일</a></td>
-										<td>2019-06-17</td>
-									</tr>
-
-									<tr>
-										<td>17</td>
-										<td class="ta_left"><a href="#">로또6/45 제863회차 인터넷판매분
-												당첨확인 안내</a></td>
-										<td></td>
-										<td>2019-06-14</td>
-									</tr>
-
-									<tr>
-										<td>16</td>
-										<td class="ta_left"><a href="#">개인정보 처리방침 개정 안내</a></td>
-										<td><a class="btn_attach" href="#none"
-											onclick="fileDownload(16)">첨부파일</a></td>
-										<td>2019-05-16</td>
-									</tr>
-
-									<tr>
-										<td>15</td>
-										<td class="ta_left"><a href="#">(0517,금)사이트 점검 안내</a></td>
-										<td></td>
-										<td>2019-05-14</td>
-									</tr>
+									<c:forEach var="notice" items="${data.list }">
+										<fmt:formatDate var="regDate" value="${notice.regDate }" pattern="yyyy-MM-dd"/>
+										<tr>
+											<td>${notice.index }</td>
+											<td class="ta_left"><a href="3_detail?index=${notice.index }&condition=${save.condition}&keyword=${save.keyword}">${notice.title }</a></td>
+											<td><a class="btn_attach" href="#none" onclick="fileDownload(24)"></a></td>
+											<td>${regDate }</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 							<!-- 페이징 구현 -->
 							<div class="wrap_paginate">
 								<div class="paginate_common" id="page_box">
-									<a href="#none" class="current" title="현재위치"> <strong>1</strong>
-									</a> <a href="#">2</a> <a href="#">3</a>
-									<form name="sendComSearchForm" method="post">
-										<input type="hidden" name="kind" value=""> <input
-											type="hidden" name="keyword" value=""> <input
-											type="hidden" name="startDate" value=""> <input
-											type="hidden" name="endDate" value=""> <input
-											type="hidden" name="searchDate" value=""> <input
-											type="hidden" name="search" value=""> <input
-											type="hidden" name="contentsCode" value=""> <input
-											type="hidden" name="olddate" value="0"> <input
-											type="hidden" name="lottoId" value="null"> <input
-											type="hidden" name="pop" value=""> <input
-											type="hidden" name="userId2" value="null"> <input
-											type="hidden" name="cooperationId" value="null"> <input
-											type="hidden" name="statusCode" value=""> <input
-											type="hidden" name="lottoRound" value=""> <input
-											type="hidden" name="sttDrwNo" value=""> <input
-											type="hidden" name="edDrwNo" value=""> <input
-											type="hidden" name="addr1" value=""> <input
-											type="hidden" name="addr2" value=""> <input
-											type="hidden" name="keyword1" value=""> <input
-											type="hidden" name="keyword2" value=""> <input
-											type="hidden" name="keyword3" value=""> <input
-											type="hidden" name="keyword4" value=""> <input
-											type="hidden" name="keyword5" value=""> <input
-											type="hidden" name="appType" value=""> <input
-											type="hidden" name="etcTxt1" value="">
-									</form>
+									<a class="go first" href="3?condition=${save.condition}&keyword=${save.keyword}">처음 페이지</a>
+									<c:if test="${data.startPageNum ne 1 }">
+										<a class="go prev" href="3?page=${data.startPageNum-1 }&start=${save.condition}&keyword=${save.keyword}">
+											이전 페이지
+										</a>
+									</c:if>
+									<c:forEach var="i" begin="${data.startPageNum }" end="${data.endPageNum }" step="1">
+										<c:choose>
+											<c:when test="${i eq data.pageNum }">
+												<a class="current" title="현재 위치" href="3?page=${i }&start=${save.condition}&keyword=${save.keyword}"><strong>${i }</strong></a>
+											</c:when>
+											<c:otherwise>
+												<a href="3?page=${i }&start=${save.condition}&keyword=${save.keyword }">${i }</a>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+		
+									<c:if test="${data.endPageNum lt data.totalPageCount }">
+										<a class="go next" href="3?page=${data.endPageNum+1 }&start=${save.condition }&keyword=${save.keyword }">
+											다음 페이지
+										</a>
+									</c:if>
+									<a class="go end" href="3?page=${data.totalPageCount }&start=${save.condition }&keyword=${save.keyword }">
+										끝 페이지
+									</a>
 								</div>
 								<!-- paginate_common 끝 -->
 							</div>
