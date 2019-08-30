@@ -37,16 +37,13 @@
 			<div>
 				<div class="content_wrap">
 					<!-- -------------------------------------------------------------------------------------- -->
-					<!-- <form name="searchfrm" id="searchfrm" action="all">
-						<input type="hidden" name="category" value="1"/>
-						
-					</form> -->
-					
+
+
 					<div class="tab_article tab_size6">
 						<ul>
-							<li class="active"><strong>전체</strong><span class="accessibility">현재 선택됨</span></li>
+							<li><a href="all">전체</a></li>
 							<li><a href="lotto">로또6/45</a></li>
-							<li><a href="pension">연금복권520</a></li>
+							<li class="active"><strong>연금520</strong><span class="accessibility">현재 선택됨</span></li>
 							<li><a href="etc">기타</a></li>
 						</ul>
 					</div>
@@ -59,8 +56,7 @@
 									<option value="2" selected="SELECTED">전체</option>
 									<option value="1">제목</option>
 									<option value="3">내용</option>
-								</select> 
-								<input type="text" id="keyword" name="keyword" value=""
+								</select> <input type="text" id="keyword" name="keyword" value=""
 									maxlength="300"
 									onkeydown="return $.enterCheck(window.event.keyCode);"
 									title="검색어 입력"> <a class="btn_common form blu"
@@ -69,21 +65,25 @@
 						</div>
 					</div>
 					<ul class="list_faq">
-						<c:forEach var="list" items="${list }" >
-							<li id="seqQa_11" tabindex="" class="">
-								<div class="question">
-									<div class="inner">
-										<span class="q"><span>질문</span></span>
-										<p>	
-											<a href="#divQuestion11" class="a_11" >${list.question }</a>
-										</p>
-									</div>
-								</div>
-								<div id="divQuestion11" class="answer" style="display: none;">
-									<span class="a">답변</span>
-									<div class="answer_content">${list.answer }</div>
-								</div>
-							</li>
+						<c:forEach var="list" items="${list }">
+							<%-- <c:choose>
+								<c:when test="${list.category == 2}">  <!-- 카테고리 3 = 기타  --> --%>
+									<li id="seqQa_11" tabindex="" class="">
+										<div class="question">
+											<div class="inner">
+												<span class="q"><span>질문</span></span>
+												<p>
+													<a href="#divQuestion11" id="a_11">${list.question }</a>
+												</p>
+											</div>
+										</div>
+										<div id="divQuestion11" class="answer" style="display: none;">
+											<span class="a">답변</span>
+											<div class="answer_content">${list.answer }</div>
+										</div>
+									</li>
+								<%-- </c:when>
+							</c:choose> --%>
 						</c:forEach>
 					</ul>
 					<script>
@@ -110,14 +110,12 @@
 				
 					</script>
 					
-					
-					<!-- 페이징 시작 -->
-					<div class="page-display">
+						<div class="page-display">
                         <div class="paginate_common" id="page_box">
                            <ul class="pagination">
                               <c:choose>
                                  <c:when test="${startPageNum ne 1 }">
-                                    <li><a href="all?pageNum=${startPageNum-1 }">&laquo; </a></li>
+                                    <li><a href="pension?pageNum=${startPageNum-1 }">&laquo; </a></li>
                                  </c:when>
                                  <c:otherwise>
                                     <li class="disabled"><a href="javascript:">&laquo;</a></li>
@@ -127,17 +125,17 @@
                                  <c:choose>
                                     <c:when test="${i eq pageNum }">
                                        <li class="active"><a
-                                          href="all?pageNum=${i }">${i }</a></li>
+                                          href="pension?pageNum=${i }">${i }</a></li>
                                     </c:when>
                                     <c:otherwise>
-                                       <li><a href="all?pageNum=${i }">${i }</a></li>
+                                       <li><a href="pension?pageNum=${i }">${i }</a></li>
                                     </c:otherwise>
                                  </c:choose>
                               </c:forEach>
 
                               <c:choose>
                                  <c:when test="${endPageNum lt totalPageCount }">
-                                    <li><a href="all?pageNum=${endPageNum+1 }">&raquo; </a></li>
+                                    <li><a href="pension?pageNum=${endPageNum+1 }">&raquo; </a></li>
                                  </c:when>
                                  <c:otherwise>
                                     <li class="disabled"><a href="javascript:">&raquo;</a></li>
@@ -146,9 +144,6 @@
                            </ul>
                         </div>
                      </div>
-
-				<!-- 페이징 종료 -->
-				
 				
 					<form name="cntFrm" id="cntFrm" method="post">
 						<input type="hidden" id="txtNo" name="txtNo" value="">

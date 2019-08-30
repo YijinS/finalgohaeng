@@ -38,7 +38,7 @@
                <c:otherwise>
                   <c:choose>
                         <c:when test="${sessionScope.member.id eq 'ADMIN' }">
-                           href="${pageContext.request.contextPath }/admin/">관리자 페이지</a></li>
+                         <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath }/admin/">관리자 페이지</a></li>
                         </c:when>
                         <c:otherwise>
                            <li class="nav-item"><a class="nav-link"
@@ -63,7 +63,7 @@
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/purchase/lotto645">복권구매</a></li>
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/gameinfo/lotto645/1">복권정보</a></li>
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/gameresult/lotto645/1">당첨결과</a></li>
-            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/store/1">판매점</a></li>
+            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/user/store/1">판매점</a></li>
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/event/list">이벤트</a></li>
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/happy/healthy/1">행복공감</a></li>
          </ul>

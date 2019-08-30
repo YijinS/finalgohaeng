@@ -62,20 +62,19 @@
 	</definition>
 		
 	<!-- 타일즈 미적용 부분 -->
-
-<<<<<<< HEAD
+<!-- 
 	<definition name="admin.store.lotto.1detail"
 		template="/WEB-INF/views/admin/inc/no-tiles.jsp">
 		<put-attribute name="main" value="/WEB-INF/views/admin/store/lotto/1detail.jsp"></put-attribute>
 		
-	</definition>
+	</definition> -->
 	
-	<definition name="store.sellerinfo.1detail"
+	<definition name="user.store.1detail"
 		template="/WEB-INF/views/inc/no-tiles.jsp">
 		<put-attribute name="main" value="/WEB-INF/views/store/sellerinfo/1detail.jsp"></put-attribute>
 		
 	</definition>
-
+<!-- 
 	<definition name="admin.store.lotto.1insertform"
 		template="/WEB-INF/views/admin/inc/no-tiles.jsp">
 		<put-attribute name="main"
@@ -86,11 +85,8 @@
 		template="/WEB-INF/views/admin/inc/no-tiles.jsp">
 		<put-attribute name="main"
 			value="/WEB-INF/views/admin/store/lotto/1editform.jsp"></put-attribute>
-	</definition>
+	</definition> -->
 
-=======
-	
->>>>>>> refs/remotes/origin/master
 
 
 </tiles-definitions>

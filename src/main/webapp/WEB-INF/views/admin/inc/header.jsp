@@ -53,16 +53,12 @@
 						<li><a
 							href="/admin/php/shop1/AutoLogin/request.php?uri=https%3A%2F%2Fechosting.cafe24.com%2FCs%2F%3Furl%3DCsboard%26userid%3Dneomart%26loginid%3Dneomart"
 							target="_blank">1:1 문의</a></li>
-						<li><a href="https://ecsupport.cafe24.com/" target="_blank">자주
-								묻는 질문</a></li>
-						<li><a
-							href="https://store.cafe24.com/common/auth?mall_id=neomart&amp;menu_id=1&amp;language=ko"
+						<li><a href="https://ecsupport.cafe24.com/" target="_blank">자주 묻는 질문</a></li>
+						<li><a href="https://store.cafe24.com/common/auth?mall_id=neomart&amp;menu_id=1&amp;language=ko"
 							target="_blank">앱스토어</a></li>
-						<li><a
-							href="/admin/php/shop1/AutoLogin/request.php?uri=https%3A%2F%2Fechosting.cafe24.com%2F"
+						<li><a href="/admin/php/shop1/AutoLogin/request.php?uri=https%3A%2F%2Fechosting.cafe24.com%2F"
 							target="_blank">쇼핑몰센터</a></li>
-						<li><a
-							href="/admin/php/shop1/AutoLogin/request.php?menu_code=9&amp;uri=http://cmc.cafe24.com"
+						<li><a shref="/admin/php/shop1/AutoLogin/request.php?menu_code=9&amp;uri=http://cmc.cafe24.com"
 							target="_blank">마케팅센터</a></li>
 						<li><a href="http://edu.cafe24.com" target="_blank">교육센터</a></li>
 						<li><a href="https://d.cafe24.com/home/home_main.php"

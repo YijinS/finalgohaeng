@@ -95,7 +95,7 @@
 									
 									tbody.html("");
 									
-									$.getJSON("${pageContext.request.contextPath}/ajax/selectStoreName?storeName="+srchVal, function(data) {
+									$.getJSON("${pageContext.request.contextPath}/user/store/ajax/selectStoreName?storeName="+srchVal, function(data) {
 										jQuery.each(data, function(index, q) {
 											var c = '';
 											var open = '"1detail?storeIndex='+ q.storeIndex + '","a","resizable=no width=700 height=800"';
@@ -196,7 +196,7 @@
 									sido.on("click", function() {
 										var sido2 = $(this).text();
 										
-										$.getJSON("${pageContext.request.contextPath}/ajax_addr_gu?sido="+ sido2, function(data) {
+										$.getJSON("${pageContext.request.contextPath}/user/store/ajax_addr_gu?sido="+ sido2, function(data) {
 													jQuery.each(data, function(index, q) {
 														var a = "<a href='#' id='select_gu' onclick='clickGu(this);' >"+q.gu+"</a>";
 														subMenu.append(a);
@@ -217,27 +217,6 @@
 
 				<div class="group_content group_data_search">
 
-					<%-- <form action="" id="radio">
-						<input type="hidden" id="radio_select" name="radio_select" value="${radio_select}" /> 
-						<input type="radio" name="open&close" value="all" ${radio_select eq 'all' ? "checked" : " "} /> 전체 
-						<input type="radio" name="open&close" value="open" ${radio_select eq 'open' ? "checked" : " "} /> 안폐점 
-						<input type="radio" name="open&close" value="close" ${radio_select eq 'close' ? "checked" : " "} /> 폐점
-					</form>
-
-					<script>
-						$(document).ready(
-								function() {
-									$("input[name='open&close']:radio").change(
-											function() {
-												var radio_select = $(this).val();
-												console.log(radio_select);
-												$('#radio_select').val(radio_select);
-												$('#radio').attr('action','1.do');
-												$('#radio').submit();
-											});
-								});
-					</script>
- --%>
 					<!-- selectBox 데이터 값 가져오는 애 -->
 					<input type="hidden" id="storeEnable" value="${storeEnable}" /> 
 					<input type="hidden" id="storeAbleGames" value="${storeAbleGames}" /> 
@@ -263,7 +242,7 @@
 
 												tbody.html("");
 
-												$.getJSON("${pageContext.request.contextPath}/store/ajax_select?storeAbleGames="+ storeAbleGames,function(data) {
+												$.getJSON("${pageContext.request.contextPath}/user/store/ajax_select?storeAbleGames="+ storeAbleGames,function(data) {
 													jQuery.each(data, function(index, q) {
 																						// each(): 매개 변수로 받은 것을 사용해 for in 반복문과 같이 배열이나 객체의 요소를 검사할 수 있는 메서드
 																						//index는 배열의 인덱스 또는 객체의 키
@@ -526,7 +505,7 @@ function clickGu(e){
 	
 	$.ajax(
 	{
-	  url : "${pageContext.request.contextPath}" + "/ajax/selectGulist",
+	  url : "${pageContext.request.contextPath}" + "/user/store/ajax/selectGulist",
 	  dataType: 'json',
 	  data: {storeAddr:e.text},
 	  contentType: 'application/json; charset=UTF-8',
@@ -563,7 +542,7 @@ function clickGu(e){
 		tbody.html("");
 		title.html("");
 	 	
-	 $.getJSON("${pageContext.request.contextPath}/ajax/selectGulist?storeAddr="+list, function(data) {
+	 $.getJSON("${pageContext.request.contextPath}/user/store/ajax/selectGulist?storeAddr="+list, function(data) {
 		 
 				var b = '';
 				b += '<span class="color_key3" id="searchResult">'+e.text+'</span>';
