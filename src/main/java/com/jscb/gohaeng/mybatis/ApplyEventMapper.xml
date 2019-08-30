@@ -60,14 +60,14 @@
 	</select>
 	
 	<update id="updateWin" parameterType="int">
-		UPDATE EVENT
-		SET AE_RESULT = 2
-		WHERE EVENT_INDEX = #{index}
+		UPDATE APPLY_EVENT
+		SET AE_RESULT = 2 
+		WHERE EVENT_INDEX = #{index} AND MEMBER_ID = ${id}
 	</update>
 	
 	<update id="updateLose" parameterType="int">
-		UPDATE EVENT
-		SET AE_RESULT = 3
-		WHERE EVENT_INDEX = #{index}
+		UPDATE APPLY_EVENT
+		SET AE_RESULT = 3 
+		WHERE EVENT_INDEX = #{index} AND MEMBER_ID = ${id}
 	</update>
 </mapper>
