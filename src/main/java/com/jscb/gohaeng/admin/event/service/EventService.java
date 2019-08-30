@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.jscb.gohaeng.dto.ApplyEventDto;
 import com.jscb.gohaeng.dto.EventCommentDto;
 import com.jscb.gohaeng.dto.EventDto;
 

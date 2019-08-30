@@ -1,6 +1,7 @@
 package com.jscb.gohaeng.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -35,9 +36,29 @@ public class ApplyEventDaoImpl implements ApplyEventDao {
 	}
 
 	@Override
-	public ApplyEventDto getDetail(ApplyEventDto applyEventDto) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ApplyEventDto> getList(ApplyEventDto applyEventDto) {
+		
+		return sqlSession.selectList("applyEvent.getList", applyEventDto);
 	}
+
+	@Override
+	public int getCount(ApplyEventDto applyEventDto) {
+		
+		return sqlSession.selectOne("applyEvent.getCount", applyEventDto);
+	}
+
+	@Override
+	public void updateWin(int index) {
+		sqlSession.update("applyEvent.updateWin", index);
+		
+	}
+
+	@Override
+	public void updateLose(int index) {
+		sqlSession.update("applyEvent.updateLose", index);
+		
+	}
+
+
 
 }
