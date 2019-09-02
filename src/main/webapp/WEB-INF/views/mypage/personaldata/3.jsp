@@ -11,37 +11,26 @@
 				<div id="snb" class="lnb">
 					<h2 id="07" class="lnb_title">마이페이지</h2>
 					<ul id="lnb" class="lnb_dep1">
-						<li id="07-01"><a href="#" class="menuLnb"><span>마이페이지
-									홈</span></a></li>
+						<li id="07-01"><a
+							href="${pageContext.request.contextPath }/mypage/home"
+							class="menuLnb"><span>마이페이지 홈</span></a></li>
 						<li id="07-02"><a href="#" class="menuLnb"><span>구매/당첨</span></a>
-							<ul class="lnb_dep2" style="display: none;">
-								<li id="07-02-01"><a href="#"><span> 구매당첨내역</span></a></li>
-								<li id="07-02-02"><a href="#"><span> 미확인복권내역</span></a></li>
-								<li id="07-02-03"><a href="#"><span> 고액당첨내역</span></a></li>
-							</ul></li>
 						<li id="07-03"><a href="#" class="menuLnb"><span>구매현황분석</span></a></li>
-						<li id="07-04" class="active"><a href="#" class="menuLnb"><span>건전구매
-									프로그램</span></a>
-							<ul class="lnb_dep2" style="">
-								<li id="07-04-01"><a href="#" class="menuLnb"><span>건전구매
-											프로그램 홈</span></a></li>
-								<li id="07-04-02" class="active"><a href="#"><span>
-											셀프진단평가 </span></a></li>
-								<li id="07-04-03"><a href="#"><span> 셀프구매계획 </span></a></li>
-								<li id="07-04-04"><a href="#"><span> 셀프휴식계획 </span></a></li>
-							</ul></li>
-						<li id="07-05"><a href="#" class="menuLnb"><span>예치금</span></a>
-							<ul class="lnb_dep2" style="display: none;">
-								<li id="07-05-01"><a href="#"><span> 예치금 충전 내역</span></a></li>
-								<li id="07-05-02"><a href="#"><span> 충전하기</span></a></li>
-								<li id="07-05-03"><a href="#"><span> 출금 신청</span></a></li>
-							</ul></li>
+						<li id="07-04"><a href="#" class="menuLnb"><span>건전구매
+									프로그램</span></a></li>
+						<li id="07-05"><a href="#" class="menuLnb"><span>예치금</span></a></li>
 						<li id="07-06"><a href="#" class="menuLnb"><span>행복더하기
 									신청</span></a></li>
-						<li id="07-07"><a href="#" class="menuLnb collabable"><span>개인정보</span></a>
-							<ul class="lnb_dep2" style="display: none;">
-								<li id="07-07-01"><a href="#"><span> 개인정보변경</span></a></li>
-								<li id="07-07-02"><a href="#"><span> 비밀번호변경</span></a></li>
+						<li id="07-07" class="active"><a
+							href="${pageContext.request.contextPath }/mypage/personaldata/editData"
+							class="menuLnb"><span>개인정보</span></a>
+							<ul class="lnb_dep2" style="display: block;">
+								<li id="07-07-01" class="active"><a
+									href="${pageContext.request.contextPath }/mypage/personaldata/editData"><span>
+											개인정보변경</span></a></li>
+								<li id="07-07-02"><a
+									href="${pageContext.request.contextPath }/mypage/personaldata/changepwd"><span>
+											비밀번호변경</span></a></li>
 								<li id="07-07-03"><a href="#"><span> 회원탈퇴 </span></a></li>
 							</ul></li>
 					</ul>
@@ -111,8 +100,10 @@
 										<td>${sessionScope.member.name }</td>
 									</tr>
 									<tr>
-										<th scope="row">탈퇴사유<span class="req">*<span class="accessibility">별표</span></span></th>
-										<td><select onclick="selectReason()" id="withdrawCode" name="reason" title="탈퇴 사유 선택">
+										<th scope="row">탈퇴사유<span class="req">*<span
+												class="accessibility">별표</span></span></th>
+										<td><select onclick="selectReason()" id="withdrawCode"
+											name="reason" title="탈퇴 사유 선택">
 												<option value="">선택해주세요.</option>
 												<option value="WD55">ID변경</option>
 												<option value="WD11">장기간 부재</option>
@@ -126,47 +117,52 @@
 									</tr>
 									<tr>
 										<th scope="row">기타의견</th>
-										<td><textarea id="withdrawContent" name="opinion" title="기타의견"></textarea></td>
+										<td><textarea id="withdrawContent" name="opinion"
+												title="기타의견"></textarea></td>
 									</tr>
 								</tbody>
 							</table>
 							<div class="btns_submit">
-								<a class="btn_common lrg" href="${pageContext.request.contextPath }/">취소하기</a>
-								<div class="btn_common lrg blu"><a onclick="deleteUser()">탈퇴하기</a></div> 
+								<a class="btn_common lrg"
+									href="${pageContext.request.contextPath }/">취소하기</a>
+								<div class="btn_common lrg blu">
+									<a onclick="deleteUser()">탈퇴하기</a>
+								</div>
 							</div>
 						</div>
 					</form>
 					<form name="outFrm">
-						<input type="hidden" value="out" name="type" id="type"> 
-						<input type="hidden" value="save" name="status" id="status"> 
-						<input type="hidden" value="" name="popwithdrawCode" id="popwithdrawCode"> 
-						<input type="hidden" value="" name="popwithdrawContent" id="popwithdrawContent">
+						<input type="hidden" value="out" name="type" id="type"> <input
+							type="hidden" value="save" name="status" id="status"> <input
+							type="hidden" value="" name="popwithdrawCode"
+							id="popwithdrawCode"> <input type="hidden" value=""
+							name="popwithdrawContent" id="popwithdrawContent">
 					</form>
-					
+
 
 				</div>
 			</div>
 			</main>
 			<!-- -------------------------------------- -->
+
 		</section>
 	</div>
-<script type="text/javascript">
+	<script type="text/javascript">
+	function selectReason() {
+		var reason = $("#withdrawCode > option:selected").val();
+		console.log(reason);
+	}
 
-function selectReason(){
-    var reason = $("#withdrawCode > option:selected").val();
-    console.log(reason);
-}
-
-// 비밀번호 미입력시 경고창
-function deleteUser(){
-	 alert("정말로 탈퇴?");
-	 var test = "${member.id }";
-	 document.getElementById("userId").value=test;
-	   //javascript 를 이용해서 redirect 이동 시키기 
-	 //location.href="widthdraw2?id=${member.id }"; 
-	document.getElementById("userOut").action = "widthdraw2";
-	document.getElementById("userOut").submit();
-}
+	// 비밀번호 미입력시 경고창
+	function deleteUser() {
+		alert("정말로 탈퇴?");
+		var test = "${member.id }";
+		document.getElementById("userId").value = test;
+		//javascript 를 이용해서 redirect 이동 시키기 
+		//location.href="widthdraw2?id=${member.id }"; 
+		document.getElementById("userOut").action = "widthdraw2";
+		document.getElementById("userOut").submit();
+	}
 </script>
 </div>
 <!-- ----------------------------------------------------- -->

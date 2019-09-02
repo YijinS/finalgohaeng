@@ -61,7 +61,7 @@ resultType="int">
 	(SELECT result1.*, ROWNUM AS rnum
 	FROM
 	(SELECT *
-	FROM CONSULTING WHERE MEMBER_ID = #{memberId} ORDER BY CONSULTING_REGDATE) result1)
+	FROM CONSULTING WHERE MEMBER_ID = #{memberId} ORDER BY CONSULTING_REGDATE DESC) result1)
 	WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	
 </select>

@@ -27,4 +27,21 @@ public class DrawShowDaoImpl implements DrawShowDao {
 		
 	}
 
+	@Override
+	public void insert(DrawShowDto dto) {
+		session.insert("drawshow.insert", dto);
+		
+	}
+
+	@Override
+	public int getCount(DrawShowDto dto) {
+		return session.selectOne("drawshow.getCount", dto);
+	}
+
+	@Override
+	public List<DrawShowDto> getMyList(DrawShowDto dto) {
+		List<DrawShowDto> list = session.selectList("drawshow.getMyList", dto);
+		return list;
+	}
+
 }

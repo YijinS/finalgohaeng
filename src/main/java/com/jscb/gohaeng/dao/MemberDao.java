@@ -38,5 +38,5 @@ public interface MemberDao {
 
 	//아이디찾기
 	public String getId(Map<String, String> map);
-
+	
 }

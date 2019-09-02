@@ -8,13 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 import com.jscb.gohaeng.admin.event.service.ApplyEventService;
+import com.jscb.gohaeng.dto.ApplyEventDto;
 
 @RequestMapping("/admin/event/management/")
 @Controller
@@ -34,8 +38,23 @@ public class ApplyEventController {
 	
 	@RequestMapping(value = "draw", method = RequestMethod.POST)
 	@ResponseBody
-	public Object draw(@RequestParam(value = "indexList[]") List<String> indexList) {
-		applyEventService.drawMemberList(indexList);
+	public Object draw(@RequestParam String jsonData) {
+		
+		Gson gson = new Gson();
+		List<Map<String,Object>> list = gson.fromJson(jsonData, new TypeToken<List<Map<String,Object>>>() {
+		}.getType());
+		
+		System.out.println();
+		System.out.println();
+		for (Map<String, Object> map: list) {
+			System.out.println(map.get("index"));
+			System.out.println(map.get("id"));
+		}
+		System.out.println();
+		System.out.println();
+		
+		applyEventService.drawMemberList(list);
+		
 		Map<String, Object> retVal = new HashMap<String, Object>();
         
         //성공했다고 처리
@@ -47,8 +66,23 @@ public class ApplyEventController {
 	
 	@RequestMapping(value = "drop", method = RequestMethod.POST)
 	@ResponseBody
-	public Object drop(@RequestParam(value = "indexList[]") List<String> indexList) {
-		applyEventService.dropMemberList(indexList);
+	public Object drop(@RequestParam String jsonData) {
+		
+		Gson gson = new Gson();
+		List<Map<String,Object>> list = gson.fromJson(jsonData, new TypeToken<List<Map<String,Object>>>() {
+		}.getType());
+		
+		System.out.println();
+		System.out.println();
+		for (Map<String, Object> map: list) {
+			System.out.println(map.get("index"));
+			System.out.println(map.get("id"));
+		}
+		System.out.println();
+		System.out.println();
+		
+		applyEventService.dropMemberList(list);
+		
 		Map<String, Object> retVal = new HashMap<String, Object>();
         
         //성공했다고 처리

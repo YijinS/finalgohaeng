@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -12,26 +11,26 @@
 					<h2 id="03" class="lnb_title">당첨결과</h2>
 					<ul id="lnb" class="lnb_dep1">
 						<li id="03-01" class="active"><a
-								href="${pageContext.request.contextPath }/gameresult/lotto645/1.do"
+								href="${pageContext.request.contextPath }/gameresult/lotto645/1"
 								class="menuLnb"><span>로또6/45</span></a>
 							<ul class="lnb_dep2">
 								<li id="03-01-01" class="active"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/1.do"><span>
+										href="${pageContext.request.contextPath }/gameresult/lotto645/1"><span>
 											회차별 당첨번호</span></a></li>
 								<li id="03-01-02"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/2.do"><span>
+										href="${pageContext.request.contextPath }/gameresult/lotto645/2"><span>
 											내번호 당첨확인</span></a></li>
 								<li id="03-01-03"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/3.do"><span>
+										href="${pageContext.request.contextPath }/gameresult/lotto645/3"><span>
 											당첨내역</span></a></li>
 								<li id="03-01-04"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/4.do"><span>
+										href="${pageContext.request.contextPath }/gameresult/lotto645/4"><span>
 											당첨금 지급안내</span></a></li>
 								<li id="03-01-05"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/5.do"><span>
+										href="${pageContext.request.contextPath }/gameresult/lotto645/5"><span>
 											추첨방송 다시보기</span></a></li>
 								<li id="03-01-06"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/6.do"><span>
+										href="${pageContext.request.contextPath }/gameresult/lotto645/drawshowlist"><span>
 											추첨방송 참관신청</span></a></li>
 							</ul>
 						</li>
@@ -355,8 +354,22 @@
 									</select> 
 									<span class="unit">까지</span>
 								</form>
-								<a class="btn_common form" id="printBtn" href="#" title="새창 열림">인쇄하기</a>
+								<a class="btn_common form" id="printBtn" href="#"  title="새창 열림">인쇄하기</a>
 								<a class="btn_common form" id="exelBtn" href="#">엑셀다운로드</a>
+								<script>
+					               $(function(){
+					                  
+					                  
+					                  var printBtn = $("#printBtn");
+					                  
+					                  printBtn.click(function(e){
+				                	  	 var start = $("#drwNoStart").val();
+						                 var end = $("#drwNoEnd").val();
+					                     e.preventDefault();
+					                     window.open("${pageContext.request.contextPath}/gameresult/lotto645/print?start="+start+"&end="+end, "네이버새창", "width=800, height=700");
+					                  });
+					               });
+					            </script>
 								<script>
 									$(function(){
 										var exelBtn = $("#exelBtn");

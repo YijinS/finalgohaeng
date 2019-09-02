@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <div class="body">
 	<div class="containerWrap">
 		<section class="contentSection">
@@ -10,43 +12,44 @@
 					<h2 id="03" class="lnb_title">당첨결과</h2>
 					<ul id="lnb" class="lnb_dep1">
 						<li id="03-01" class="active"><a
-								href="${pageContext.request.contextPath }/gameresult/lotto645/1.do"
-								class="menuLnb"><span>로또6/45</span></a>
+							href="${pageContext.request.contextPath }/gameresult/lotto645/1"
+							class="menuLnb"><span>로또6/45</span></a>
 							<ul class="lnb_dep2">
 								<li id="03-01-01"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/1.do"><span>
+									href="${pageContext.request.contextPath }/gameresult/lotto645/1"><span>
 											회차별 당첨번호</span></a></li>
 								<li id="03-01-02"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/2.do"><span>
+									href="${pageContext.request.contextPath }/gameresult/lotto645/2"><span>
 											내번호 당첨확인</span></a></li>
 								<li id="03-01-03"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/3.do"><span>
+									href="${pageContext.request.contextPath }/gameresult/lotto645/3"><span>
 											당첨내역</span></a></li>
 								<li id="03-01-04"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/4.do"><span>
+									href="${pageContext.request.contextPath }/gameresult/lotto645/4"><span>
 											당첨금 지급안내</span></a></li>
 								<li id="03-01-05"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/5.do"><span>
+									href="${pageContext.request.contextPath }/gameresult/lotto645/5"><span>
 											추첨방송 다시보기</span></a></li>
 								<li id="03-01-06" class="active"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/6.do"><span>
+									href="${pageContext.request.contextPath }/gameresult/lotto645/drawshowlist"><span>
 											추첨방송 참관신청</span></a></li>
-							</ul>
-						</li>
-						<li id="03-02"><a href="${pageContext.request.contextPath }/gameresult/pension520/1" class="menuLnb">
-							<span>연금복권520</span></a>
-						</li>
-						<li id="03-05"><a href="${pageContext.request.contextPath }/gameresult/lottostat/1" class="menuLnb">
-							<span>로또6/45 당첨통계</span></a>
-						</li>
-						<li id="03-06"><a href="${pageContext.request.contextPath }/gameresult/pensionstat/1" class="menuLnb">
-							<span style="letter-spacing: -1px;">연금복권520 당첨통계</span></a>
-						</li>
-						<li id="03-07"><a href="${pageContext.request.contextPath }/gameresult/winningnews/1" class="menuLnb">
-							<span>당첨소식</span></a></li>
-						<li id="03-08"><a href="${pageContext.request.contextPath }/gameresult/unreceived/1" class="menuLnb">
-							<span>미수령 당첨금</span></a>
-						</li>
+							</ul></li>
+						<li id="03-02"><a
+							href="${pageContext.request.contextPath }/gameresult/pension520/1"
+							class="menuLnb"> <span>연금복권520</span></a></li>
+						<li id="03-05"><a
+							href="${pageContext.request.contextPath }/gameresult/lottostat/1"
+							class="menuLnb"> <span>로또6/45 당첨통계</span></a></li>
+						<li id="03-06"><a
+							href="${pageContext.request.contextPath }/gameresult/pensionstat/1"
+							class="menuLnb"> <span style="letter-spacing: -1px;">연금복권520
+									당첨통계</span></a></li>
+						<li id="03-07"><a
+							href="${pageContext.request.contextPath }/gameresult/winningnews/1"
+							class="menuLnb"> <span>당첨소식</span></a></li>
+						<li id="03-08"><a
+							href="${pageContext.request.contextPath }/gameresult/unreceived/1"
+							class="menuLnb"> <span>미수령 당첨금</span></a></li>
 					</ul>
 				</div>
 			</nav>
@@ -71,8 +74,7 @@
 								참관신청을 하여도 연락이 가지 않습니다.
 							</li>
 						</ul>
-						<a href="applyform"
-							class="btn_common mid blu">참관신청</a>
+						<a href="applyform" class="btn_common mid blu">참관신청</a>
 					</div>
 					<div class="group_content">
 						<div class="group_title">
@@ -81,68 +83,94 @@
 						<table class="tbl_data tbl_data_col">
 							<caption>번호, 제목, 모집기간, 추첨일자 등 참관신청 당첨자 안내</caption>
 							<colgroup>
-
-
-
 								<col style="width: 60px">
+								<col style="width: 120px">
 								<col style="width: auto">
 								<col style="width: 195px">
 								<col style="width: 110px">
-
-
 							</colgroup>
 							<thead>
 								<tr>
 									<th scope="col">번호</th>
-									<th scope="col">제목</th>
+									<th scope="col">신청구분</th>
 									<th scope="col">모집기간</th>
 									<th scope="col">참관일자</th>
+									<th scope="col">당첨결과</th>
 								</tr>
 							</thead>
 							<tbody>
-
-
-								<tr>
-									<td colspan="4" class="nodata">조회된 결과가 없습니다.</td>
-								</tr>
-
+								<c:choose>
+									<c:when test="${empty list }">
+										<tr>
+											<td colspan="5" class="nodata">조회된 결과가 없습니다.</td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:forEach var="list" items="${list}">
+											<tr>
+												<td>${list.index}</td>
+												<c:choose>
+													<c:when test="${list.category eq 0}">
+														<td>로또</td>
+													</c:when>
+													<c:otherwise>
+														<td>연금</td>
+													</c:otherwise>
+												</c:choose>
+												<td>2019-09-21~2019-10-12</td>
+												<fmt:formatDate var="date" value="${list.drawDate}"
+													pattern="yyyy-MM-dd" />
+												<td>${date}</td>
+												<c:choose>
+													<c:when test="${list.enable eq 1 }">
+														<td>당첨</td>
+													</c:when>
+													<c:otherwise>
+														<td>-</td>
+													</c:otherwise>
+												</c:choose>
+											</tr>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 							</tbody>
 						</table>
 						<div class="wrap_paginate">
-							<div class="paginate_common" id="page_box">
-								<form name="sendComSearchForm" method="post">
-									<input type="hidden" name="kind" value=""> <input
-										type="hidden" name="keyword" value=""> <input
-										type="hidden" name="startDate" value=""> <input
-										type="hidden" name="endDate" value=""> <input
-										type="hidden" name="searchDate" value=""> <input
-										type="hidden" name="search" value=""> <input
-										type="hidden" name="contentsCode" value=""> <input
-										type="hidden" name="olddate" value="0"> <input
-										type="hidden" name="lottoId" value="null"> <input
-										type="hidden" name="pop" value=""> <input
-										type="hidden" name="userId2" value="null"> <input
-										type="hidden" name="cooperationId" value="null"> <input
-										type="hidden" name="statusCode" value=""> <input
-										type="hidden" name="lottoRound" value=""> <input
-										type="hidden" name="sttDrwNo" value=""> <input
-										type="hidden" name="edDrwNo" value=""> <input
-										type="hidden" name="addr1" value=""> <input
-										type="hidden" name="addr2" value=""> <input
-										type="hidden" name="keyword1" value=""> <input
-										type="hidden" name="keyword2" value=""> <input
-										type="hidden" name="keyword3" value=""> <input
-										type="hidden" name="keyword4" value=""> <input
-										type="hidden" name="keyword5" value=""> <input
-										type="hidden" name="appType" value=""> <input
-										type="hidden" name="etcTxt1" value="">
-								</form>
-								<script>
-									function goComSearchForm(boardUrl) {
-										document.sendComSearchForm.action = boardUrl;
-										document.sendComSearchForm.submit();
-									}
-								</script>
+							<div class="page-display">
+								<div class="paginate_common" id="page_box">
+									<ul class="pagination">
+										<c:choose>
+											<c:when test="${startPageNum ne 1 }">
+												<li><a href="list?pageNum=${startPageNum-1 }">&laquo;
+												</a></li>
+											</c:when>
+											<c:otherwise>
+												<li class="disabled"><a href="javascript:">&laquo;</a></li>
+											</c:otherwise>
+										</c:choose>
+										<c:forEach var="i" begin="${startPageNum }"
+											end="${endPageNum }" step="1">
+											<c:choose>
+												<c:when test="${i eq pageNum }">
+													<li class="active"><a href="list?pageNum=${i }">${i }</a></li>
+												</c:when>
+												<c:otherwise>
+													<li><a href="list?pageNum=${i }">${i }</a></li>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+
+										<c:choose>
+											<c:when test="${endPageNum lt totalPageCount }">
+												<li><a href="list?pageNum=${endPageNum+1 }">&raquo;
+												</a></li>
+											</c:when>
+											<c:otherwise>
+												<li class="disabled"><a href="javascript:">&raquo;</a></li>
+											</c:otherwise>
+										</c:choose>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -3,6 +3,7 @@ package com.jscb.gohaeng.admin.event.service;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -94,16 +95,22 @@ public class ApplyEventServiceImpl implements ApplyEventService {
 	}
 
 	@Override
-	public void drawMemberList(List<String> indexList) {
-		for(String index : indexList) {
-			applyEventDao.updateWin(Integer.parseInt(index));
+	public void drawMemberList(List<Map<String,Object>> list) {
+		for(Map<String,Object> map : list) {
+			int index = Integer.parseInt(map.get("index").toString());
+		
+			System.out.println(index);
+			System.out.println(map.get("id").toString());
+			applyEventDao.updateWin(index, map.get("id").toString());
 		}	
 	}
 
 	@Override
-	public void dropMemberList(List<String> indexList) {
-		for(String index : indexList) {
-			applyEventDao.updateLose(Integer.parseInt(index));
+	public void dropMemberList(List<Map<String,Object>> list) {
+		for(Map<String,Object> map : list) {
+			int index = Integer.parseInt(map.get("index").toString());
+			
+			applyEventDao.updateLose(index, map.get("id").toString());
 		}
 	}
 

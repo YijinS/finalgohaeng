@@ -11,5 +11,8 @@ public interface DrawShowDao {
    public List<DrawShowDto> getList(DrawShowDto dto);
    //enable
    public void updateEnable(HashMap map);
+   public void insert(DrawShowDto dto);
+   public int getCount(DrawShowDto dto);
+   public List<DrawShowDto> getMyList(DrawShowDto dto);
 
 }

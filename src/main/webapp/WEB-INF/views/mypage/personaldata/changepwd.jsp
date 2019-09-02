@@ -11,38 +11,27 @@
 				<div id="snb" class="lnb">
 					<h2 id="07" class="lnb_title">마이페이지</h2>
 					<ul id="lnb" class="lnb_dep1">
-						<li id="07-01"><a href="#" class="menuLnb"><span>마이페이지
-									홈</span></a></li>
+						<li id="07-01"><a
+							href="${pageContext.request.contextPath }/mypage/home"
+							class="menuLnb"><span>마이페이지 홈</span></a></li>
 						<li id="07-02"><a href="#" class="menuLnb"><span>구매/당첨</span></a>
-							<ul class="lnb_dep2" style="display: none;">
-								<li id="07-02-01"><a href="#"><span> 구매당첨내역</span></a></li>
-								<li id="07-02-02"><a href="#"><span> 미확인복권내역</span></a></li>
-								<li id="07-02-03"><a href="#"><span> 고액당첨내역</span></a></li>
-							</ul></li>
 						<li id="07-03"><a href="#" class="menuLnb"><span>구매현황분석</span></a></li>
 						<li id="07-04"><a href="#" class="menuLnb"><span>건전구매
-									프로그램</span></a>
-							<ul class="lnb_dep2" style="display: none;">
-								<li id="07-04-01"><a href="#" class="menuLnb"><span>건전구매
-											프로그램 홈</span></a></li>
-								<li id="07-04-02" ><a href="#"><span>
-											셀프진단평가 </span></a></li>
-								<li id="07-04-03"><a href="#"><span> 셀프구매계획 </span></a></li>
-								<li id="07-04-04"><a href="#"><span> 셀프휴식계획 </span></a></li>
-							</ul></li>
-						<li id="07-05"><a href="#" class="menuLnb"><span>예치금</span></a>
-							<ul class="lnb_dep2" style="display: none;">
-								<li id="07-05-01"><a href="#"><span> 예치금 충전 내역</span></a></li>
-								<li id="07-05-02"><a href="#"><span> 충전하기</span></a></li>
-								<li id="07-05-03"><a href="#"><span> 출금 신청</span></a></li>
-							</ul></li>
+									프로그램</span></a></li>
+						<li id="07-05"><a href="#" class="menuLnb"><span>예치금</span></a></li>
 						<li id="07-06"><a href="#" class="menuLnb"><span>행복더하기
 									신청</span></a></li>
-						<li id="07-07" class="active"><a href="${pageContext.request.contextPath }/mypage/personaldata/modifylogin" class="menuLnb"><span>개인정보</span></a>
-							<ul class="lnb_dep2" style="">
-								<li id="07-07-01"><a href="${pageContext.request.contextPath }/mypage/personaldata/1"><span> 개인정보변경</span></a></li>
-								<li id="07-07-02" class="active"><a href="${pageContext.request.contextPath }/mypage/personaldata/changepwd"><span> 비밀번호변경</span></a></li>
-								<li id="07-07-03"><a href="${pageContext.request.contextPath }/mypage/personaldata/3"><span> 회원탈퇴 </span></a></li>
+						<li id="07-07" class="active"><a
+							href="${pageContext.request.contextPath }/mypage/personaldata/editData"
+							class="menuLnb"><span>개인정보</span></a>
+							<ul class="lnb_dep2" style="display: block;">
+								<li id="07-07-01"><a
+									href="${pageContext.request.contextPath }/mypage/personaldata/editData"><span>
+											개인정보변경</span></a></li>
+								<li id="07-07-02" class="active"><a
+									href="${pageContext.request.contextPath }/mypage/personaldata/changepwd"><span>
+											비밀번호변경</span></a></li>
+								<li id="07-07-03"><a href="#"><span> 회원탈퇴 </span></a></li>
 							</ul></li>
 					</ul>
 				</div>

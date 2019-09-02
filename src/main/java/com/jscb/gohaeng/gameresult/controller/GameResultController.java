@@ -1,11 +1,12 @@
 package com.jscb.gohaeng.gameresult.controller;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.google.gson.Gson;
 import com.jscb.gohaeng.admin.winnerinterview.service.WinnerService;
+import com.jscb.gohaeng.admin.drawshow.service.DrawShowService;
 import com.jscb.gohaeng.dto.LottoGamesDto;
+import com.jscb.gohaeng.dto.MemberDto;
 import com.jscb.gohaeng.gameresult.service.GameResultService;
 
 @RequestMapping("/gameresult/")
@@ -26,6 +28,8 @@ public class GameResultController {
 	
 	@Autowired
 	GameResultService gameResultService;
+	@Autowired
+	DrawShowService drawShowService;
 	
 	@Autowired
 	private WinnerService winnerService;
@@ -85,16 +89,25 @@ public class GameResultController {
 	}
 	/*-------------------------참관신청------------------------------*/
 	@RequestMapping("lotto645/drawshowlist")
-	public ModelAndView drawShow(ModelAndView mView) {
+	public ModelAndView authdrawShow(ModelAndView mView, HttpSession session,HttpServletRequest request) {
 		
+		drawShowService.getMyList(mView,session,request);
 		mView.setViewName("gameresult.lotto645.drawshowlist");
 		return mView;
 	}
 	
-	@RequestMapping("lotto645/applyform")
-	public ModelAndView authapplyform(ModelAndView mView) {
-		
+	@GetMapping("lotto645/applyform")
+	public ModelAndView authapplyform(ModelAndView mView,HttpServletRequest request,HttpSession session) {
+		MemberDto member = (MemberDto)session.getAttribute("member");		
+		mView.addObject("name", member.getName());
 		mView.setViewName("gameresult.lotto645.applyform");
+		return mView;
+	}
+	@PostMapping("lotto645/apply")
+	public ModelAndView apply(ModelAndView mView, HttpServletRequest request,HttpSession session) throws ParseException {
+		
+		drawShowService.apply(request,session);
+		mView.setViewName("gameresult/lotto645/apply");
 		return mView;
 	}
 	
@@ -108,6 +121,23 @@ public class GameResultController {
 		
 	}
 	
+	@RequestMapping("lotto645/print")
+	public ModelAndView print(ModelAndView mView 
+			,@RequestParam(name="start",defaultValue = "0")Integer start
+			,@RequestParam(name="end",defaultValue = "0")Integer end) {
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start",start);
+		map.put("end",end);
+		
+		
+		mView.addObject("save",map);
+		mView.addObject("games",gameResultService.getGamesList(start, end));
+		mView.addObject("list",gameResultService.getColorByNumber(start, end));
+		
+		mView.setViewName("gameresult/lotto645/print");
+		return mView;
+	}
 	/*------------------------- lotto645 매핑------------------------------*/
 	
 	
@@ -139,10 +169,26 @@ public class GameResultController {
 		
 		return "gameresult.pension520.5";
 	}
-	@RequestMapping("pension520/6")
-	public String pensionDrawShow() {
+	/*-------------------------연금 참관신청------------------------------*/
+	@RequestMapping("pension520/drawshowlist")
+	public ModelAndView authpensionDrawShow(ModelAndView mView, HttpSession session,HttpServletRequest request) {
+		drawShowService.getMyList(mView,session,request);
+		mView.setViewName("gameresult.pension520.drawshowlist");
+		return mView;
+	}
+	@GetMapping("pension520/applyform")
+	public ModelAndView authpension520applyform(ModelAndView mView,HttpServletRequest request,HttpSession session) {
+		MemberDto member = (MemberDto)session.getAttribute("member");		
+		mView.addObject("name", member.getName());
+		mView.setViewName("gameresult.pension520.applyform");
+		return mView;
+	}
+	@PostMapping("pension520/apply")
+	public ModelAndView pension520apply(ModelAndView mView, HttpServletRequest request,HttpSession session) throws ParseException {
 		
-		return "gameresult.pension520.6";
+		drawShowService.apply(request,session);
+		mView.setViewName("gameresult/pension520/apply");
+		return mView;
 	}
 	/*------------------------- pension520 매핑------------------------------*/
 	

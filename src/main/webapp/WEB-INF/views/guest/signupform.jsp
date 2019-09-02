@@ -248,7 +248,7 @@
 												생년월일<span class="req">*<span class="accessibility">별표</span></span>
 											</th>
 											<td>
-												<input type="date" name="birthday" maxlength="">
+												<input type="date" name="birthday" id="birth" maxlength="">
 											</td>
 										</tr>
 
@@ -379,10 +379,27 @@
 							<!-- 정보수신여부 및 관심항목 설정 end -->
 							<div class="btns_submit">
 									<input type="button" class="btn_common lrg" onclick="mainForm.reset()" value="초기화"> 
-									<input type="submit" class="btn_common lrg blu" value="회원가입">
+									<input type="submit" id="submit_btn" class="btn_common lrg blu" value="회원가입">
 							</div>
 						</form>
-
+						<script>
+							$(function(){
+								var btn = $("#submit_btn");
+								
+								
+								btn.click(function(e){
+									var birth = new Date($("#birth").val());
+									var nowYear = new Date(Date.now());
+									var age = nowYear.getFullYear() - birth.getFullYear();
+									if(age < 19){
+										e.preventDefault();
+										alert("20살 미만은 가입이 불가능 합니다.");
+									}
+								});
+									
+								
+							});
+						</script>
 						<!-- mainForm END -->
 
 						<iframe name="proIframe" id="proIframe" width="0" height="0"

@@ -153,19 +153,11 @@ public class MyPageServiceImpl implements MyPageService {
 		
 		String email = request.getParameter("email");
 		String addr = request.getParameter("zipCode") + request.getParameter("addr1") + request.getParameter("addr2");
-		
-		
-		String pwd = member.getPwd();
-		int deposit = member.getDeposit();
-		String hp = member.getHp();
 
 		dto.setId(id);
 		dto.setEmail(email);
 		dto.setAddr(addr);
-		dto.setPwd(pwd);
-		dto.setDeposit(deposit);
-		dto.setHp(hp);
-		 
+
 		memberDao.update(dto);
 
 	}
