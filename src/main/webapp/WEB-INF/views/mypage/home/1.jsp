@@ -18,59 +18,19 @@
 							<li id="07-01" class="active"><a
 								href="${pageContext.request.contextPath }/mypage/home" class="menuLnb"><span>마이페이지
 										홈</span></a></li>
-							<li id="07-02"><a href="#"
-								class="menuLnb"><span>구매/당첨</span></a>
-								<ul class="lnb_dep2" style="display: none;">
-									<li id="07-02-01"><a
-										href="#"><span>
-												구매당첨내역</span></a></li>
-									<li id="07-02-02"><a
-										href="#"><span>
-												미확인복권내역</span></a></li>
-									<li id="07-02-03"><a
-										href="#"><span>
-												고액당첨내역</span></a></li>							
-								</ul></li>
-							<li id="07-03"><a href="#"
+							<li id="07-02"><a href="${pageContext.request.contextPath }/mypage/purchasewinning/1"
+								class="menuLnb"><span>구매/당첨</span></a></li>
+							<li id="07-03"><a href="${pageContext.request.contextPath }/mypage/mystat"
 								class="menuLnb"><span>구매현황분석</span></a></li>
 							<li id="07-04"><a href="#"
-								class="menuLnb"><span>건전구매 프로그램</span></a>
-								<ul class="lnb_dep2" style="display: none;">
-									<li id="07-04-01"><a href="#"
-										class="menuLnb"><span>건전구매 프로그램 홈</span></a></li>
-									<li id="07-04-02"><a href="#"><span>
-												셀프진단평가 </span></a></li>
-									<li id="07-04-03"><a
-										href="#"><span>
-												셀프구매계획 </span></a></li>
-									<li id="07-04-04"><a
-										href="#"><span>
-												셀프휴식계획 </span></a></li>
-								</ul></li>
-							<li id="07-05"><a href="${pageContext.request.contextPath }/mypage/deposit/1" class="menuLnb"><span>예치금</span></a>
-							<ul class="lnb_dep2" style="display: none;">
-								<li id="07-05-01"><a href="${pageContext.request.contextPath }/mypage/deposit/1"><span> 예치금 충전 내역</span></a></li>
-								<li id="07-05-02"><a href="${pageContext.request.contextPath }/mypage/deposit/2"><span> 충전하기</span></a></li>
-								<li id="07-05-03" class="active"><a href="${pageContext.request.contextPath }/mypage/deposit/3"><span> 출금 신청</span></a></li>
-							</ul></li>
+								class="menuLnb"><span>건전구매 프로그램</span></a></li>
+							<li id="07-05"><a href="${pageContext.request.contextPath }/mypage/deposit/1" class="menuLnb"><span>예치금</span></a></li>
 							<li id="07-06"><a
 								href="#" class="menuLnb"><span>행복더하기
 										신청</span></a></li>
-
 							<li id="07-07"><a
-								href="${pageContext.request.contextPath }/mypage/personaldata/modifylogin"
-								class="menuLnb"><span>개인정보</span></a>
-								<ul class="lnb_dep2" style="display: none;">
-									<li id="07-07-01"><a
-										href="#"><span>
-												개인정보변경</span></a></li>
-									<li id="07-07-02"><a
-										href="#"><span>
-												비밀번호변경</span></a></li>
-									<li id="07-07-03"><a
-										href="#"><span>
-												회원탈퇴 </span></a></li>
-								</ul></li>
+								href="${pageContext.request.contextPath }/mypage/personaldata/editData"
+								class="menuLnb"><span>개인정보</span></a></li>
 						</ul>
 					</div>
 					<!-- ----------------------------- -->
@@ -98,7 +58,7 @@
 											<strong>${sessionScope.member.name }</strong>님
 										</h4>
 										<a class="link_common"
-											href="#">개인정보수정</a>
+											href="${pageContext.request.contextPath }/mypage/personaldata/editData">개인정보수정</a>
 									</div>
 									<table class="tbl_form_write">
 										<caption>아이디,휴대폰번호,이메일 등 요약된 개인정보를 확인합니다.</caption>
@@ -177,9 +137,9 @@
 									</table>
 							
 									<div class="btn_bottom">
-										<a class="btn_common mid" href="/counsel.do?method=faq">자주
+										<a class="btn_common mid" href="${pageContext.request.contextPath }/callcenter/faq/all">자주
 											묻는 질문</a> <a class="btn_common mid"
-											href="#">1:1 상담</a> <a
+											href="${pageContext.request.contextPath }/callcenter/qna/list">1:1 상담</a> <a
 											class="btn_common mid"
 											href="#">불법신고센터</a>
 									</div>

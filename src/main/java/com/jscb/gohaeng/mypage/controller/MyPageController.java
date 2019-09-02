@@ -132,7 +132,7 @@ public class MyPageController {
 	
 	/*-------------------개인정보 수정 -----------------------*/
 	@GetMapping("personaldata/editData")
-	public ModelAndView editDataform(ModelAndView mView, HttpSession session) {
+	public ModelAndView sosoeditDataform(ModelAndView mView, HttpSession session,HttpServletRequest request) {
 		myPageService.getData(mView, session);
 	
 	

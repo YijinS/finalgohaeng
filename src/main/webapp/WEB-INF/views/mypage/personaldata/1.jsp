@@ -69,37 +69,26 @@
 				<div id="snb" class="lnb">
 					<h2 id="07" class="lnb_title">마이페이지</h2>
 					<ul id="lnb" class="lnb_dep1">
-						<li id="07-01"><a href="#" class="menuLnb"><span>마이페이지
-									홈</span></a></li>
+						<li id="07-01"><a
+							href="${pageContext.request.contextPath }/mypage/home"
+							class="menuLnb"><span>마이페이지 홈</span></a></li>
 						<li id="07-02"><a href="#" class="menuLnb"><span>구매/당첨</span></a>
-							<ul class="lnb_dep2" style="display: none;">
-								<li id="07-02-01"><a href="#"><span> 구매당첨내역</span></a></li>
-								<li id="07-02-02"><a href="#"><span> 미확인복권내역</span></a></li>
-								<li id="07-02-03"><a href="#"><span> 고액당첨내역</span></a></li>
-							</ul></li>
 						<li id="07-03"><a href="#" class="menuLnb"><span>구매현황분석</span></a></li>
-						<li id="07-04" class="active"><a href="#" class="menuLnb"><span>건전구매
-									프로그램</span></a>
-							<ul class="lnb_dep2" style="">
-								<li id="07-04-01"><a href="#" class="menuLnb"><span>건전구매
-											프로그램 홈</span></a></li>
-								<li id="07-04-02" class="active"><a href="#"><span>
-											셀프진단평가 </span></a></li>
-								<li id="07-04-03"><a href="#"><span> 셀프구매계획 </span></a></li>
-								<li id="07-04-04"><a href="#"><span> 셀프휴식계획 </span></a></li>
-							</ul></li>
-						<li id="07-05"><a href="#" class="menuLnb"><span>예치금</span></a>
-							<ul class="lnb_dep2" style="display: none;">
-								<li id="07-05-01"><a href="#"><span> 예치금 충전 내역</span></a></li>
-								<li id="07-05-02"><a href="#"><span> 충전하기</span></a></li>
-								<li id="07-05-03"><a href="#"><span> 출금 신청</span></a></li>
-							</ul></li>
+						<li id="07-04"><a href="#" class="menuLnb"><span>건전구매
+									프로그램</span></a></li>
+						<li id="07-05"><a href="#" class="menuLnb"><span>예치금</span></a></li>
 						<li id="07-06"><a href="#" class="menuLnb"><span>행복더하기
 									신청</span></a></li>
-						<li id="07-07"><a href="#" class="menuLnb"><span>개인정보</span></a>
-							<ul class="lnb_dep2" style="display: none;">
-								<li id="07-07-01"><a href="#"><span> 개인정보변경</span></a></li>
-								<li id="07-07-02"><a href="#"><span> 비밀번호변경</span></a></li>
+						<li id="07-07" class="active"><a
+							href="${pageContext.request.contextPath }/mypage/personaldata/editData"
+							class="menuLnb"><span>개인정보</span></a>
+							<ul class="lnb_dep2" style="display: block;">
+								<li id="07-07-01" class="active"><a
+									href="${pageContext.request.contextPath }/mypage/personaldata/editData"><span>
+											개인정보변경</span></a></li>
+								<li id="07-07-02"><a
+									href="${pageContext.request.contextPath }/mypage/personaldata/changepwd"><span>
+											비밀번호변경</span></a></li>
 								<li id="07-07-03"><a href="#"><span> 회원탈퇴 </span></a></li>
 							</ul></li>
 					</ul>
@@ -111,8 +100,10 @@
 				<div class="header_article">
 					<h3 class="sub_title">회원정보입력</h3>
 					<p class="location">
-						<a class="${pageContext.request.contextPath }/home" href="/"> Home </a><span class="gt">&gt;</span><a
-							href="${pageContext.request.contextPath }/guest/login">회원서비스</a><span class="gt">&gt;</span><a
+						<a class="${pageContext.request.contextPath }/home" href="/">
+							Home </a><span class="gt">&gt;</span><a
+							href="${pageContext.request.contextPath }/guest/login">회원서비스</a><span
+							class="gt">&gt;</span><a
 							href="${pageContext.request.contextPath }/guest/signup">회원가입</a>
 					</p>
 				</div>
@@ -133,7 +124,7 @@
 							<!-- 개인정보 입력 start -->
 							<div class="group_content">
 								<div class="group_title">
-									<h4 class="title">개인정보 수정 </h4>
+									<h4 class="title">개인정보 수정</h4>
 								</div>
 								<table class="tbl_form_write">
 									<caption>아이디, 비밀번호, 생년월일, 휴대폰번호, 이메일 주소, 주소 등 정보를
@@ -145,66 +136,63 @@
 									</colgroup>
 
 									<tbody>
-									
-									
+
+
 										<tr class="name">
-											<th scope="row">
-												이름<span class="req">*<span class="accessibility">별표</span></span>
+											<th scope="row">이름<span class="req">*<span
+													class="accessibility">별표</span></span>
 											</th>
-											<td>
-												${dto.name }
-											</td>
+											<td>${dto.name }</td>
 										</tr>
-										
-										
+
+
 										<tr class="id">
-											<th scope="row">
-												아이디<span class="req">*<span class="accessibility">별표</span></span>
+											<th scope="row">아이디<span class="req">*<span
+													class="accessibility">별표</span></span>
 											</th>
-											<td>
-												${dto.id }
-												
-											</td>
+											<td>${dto.id }</td>
 										</tr>
-										
+
 
 										<tr class="birth">
-											<th scope="row">
-												생년월일<span class="req">*<span class="accessibility">별표</span></span>
+											<th scope="row">생년월일<span class="req">*<span
+													class="accessibility">별표</span></span>
 											</th>
-											<fmt:formatDate var="date" value="${dto.birthday }" pattern="yyyy-MM-dd" /> <td>${date}</td>
+											<fmt:formatDate var="date" value="${dto.birthday }"
+												pattern="yyyy-MM-dd" />
+											<td>${date}</td>
 										</tr>
-										
-										
+
+
 										<tr class="hp">
-											<th scope="row">
-												휴대폰번호<span class="req">*<span class="accessibility">별표</span></span>
+											<th scope="row">휴대폰번호<span class="req">*<span
+													class="accessibility">별표</span></span>
 											</th>
-											<td>
-												<input id="mobile3" value="${dto.hp }"  type="text" > 
+											<td><input id="mobile3" value="${dto.hp }" type="text">
 											<td>
 										</tr>
 
 										<tr class="email">
-											<th scope="row">
-												이메일주소<span class="req">*<span class="accessibility">별표</span></span>
+											<th scope="row">이메일주소<span class="req">*<span
+													class="accessibility">별표</span></span>
 											</th>
-											<td>
-												<input type="email" id="email" name="email" value="${dto.email }"  >
-												
-											</td>
+											<td><input type="email" id="email" name="email"
+												value="${dto.email }"></td>
 										</tr>
 
 										<tr class="addr">
 											<th scope="row">주소</th>
 											<td>
 												<div class="brk">
-													<input type="text" name="zipCode" id="sample6_postcode" placeholder="우편번호">
-													<input class="btn_common form" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-												</div>
-												<input type="text" size="30" name="addr1" id="sample6_address" value="${dto.addr }"><br>
-												<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-												<input type="text" size="30" name="addr2" id="sample6_extraAddress" placeholder="참고항목">
+													<input type="text" name="zipCode" id="sample6_postcode"
+														placeholder="우편번호"> <input class="btn_common form"
+														type="button" onclick="sample6_execDaumPostcode()"
+														value="우편번호 찾기"><br>
+												</div> <input type="text" size="30" name="addr1"
+												id="sample6_address" value="${dto.addr }"><br>
+												<input type="text" id="sample6_detailAddress"
+												placeholder="상세주소"> <input type="text" size="30"
+												name="addr2" id="sample6_extraAddress" placeholder="참고항목">
 												<p class="comt_valid">이벤트 당첨 시 경품제공을 위한 주소정보입니다.</p>
 											</td>
 										</tr>
@@ -230,28 +218,25 @@
 									<tbody>
 										<tr>
 											<th scope="row">SMS수신여부</th>
-											<td>
-												<input type="radio" name="checkSms" id="smsFlagY" value="1" checked="">
-												<label for="smsFlagY">예</label>
+											<td><input type="radio" name="checkSms" id="smsFlagY"
+												value="1" checked=""> <label for="smsFlagY">예</label>
 												<input type="radio" name="checkSms" id="smsFlagN" value="0">
-												<label for="smsFlagN">아니오</label>
-											</td>
+												<label for="smsFlagN">아니오</label></td>
 
 											<th scope="row">이메일 수신여부</th>
-											<td>
-												<input type="radio" name="checkEmail" id="emailFlagY" value="1" checked="">
-												<label for="emailFlagY">예</label> 
-												<input type="radio" name="checkEmail" id="emailFlagN" value="0">
-												<label for="emailFlagN">아니오</label>
-											</td>
+											<td><input type="radio" name="checkEmail"
+												id="emailFlagY" value="1" checked=""> <label
+												for="emailFlagY">예</label> <input type="radio"
+												name="checkEmail" id="emailFlagN" value="0"> <label
+												for="emailFlagN">아니오</label></td>
 										</tr>
 										<tr>
-											<th scope="row">판매원모집 <br>SMS 수신여부</th>
-											<td colspan="3">
-												<input type="radio" name="checkSales" id="intJoinSmsY" value="1">
-												<label for="intJoinSmsY">예</label>
-												<input type="radio" name="checkSales" id="intJoinSmsN" value="0" checked="">
-												<label for="intJoinSmsN">아니오</label>
+											<th scope="row">판매원모집 <br>SMS 수신여부
+											</th>
+											<td colspan="3"><input type="radio" name="checkSales"
+												id="intJoinSmsY" value="1"> <label for="intJoinSmsY">예</label>
+												<input type="radio" name="checkSales" id="intJoinSmsN"
+												value="0" checked=""> <label for="intJoinSmsN">아니오</label>
 											</td>
 										</tr>
 									</tbody>
@@ -259,8 +244,9 @@
 							</div>
 							<!-- 정보수신여부 및 관심항목 설정 end -->
 							<div class="btns_submit">
-									<input type="button" class="btn_common lrg" onclick="mainForm.reset()" value="초기화"> 
-									<input type="submit" class="btn_common lrg blu" value="수정">
+								<input type="button" class="btn_common lrg"
+									onclick="mainForm.reset()" value="초기화"> <input
+									type="submit" class="btn_common lrg blu" value="수정">
 							</div>
 						</form>
 
@@ -277,4 +263,3 @@
 		</section>
 	</div>
 </div>
- 

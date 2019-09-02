@@ -2,23 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="drawshow">
 
-	<resultMap type="com.jscb.gohaeng.dto.DrawShowDto" id="DrawShowDto">
+	<resultMap type="com.jscb.gohaeng.dto.DrawShowDto"
+		id="DrawShowDto">
 		<result property="index" column="AD_INDEX" />
 		<result property="enable" column="AD_ENABLE" />
 		<result property="category" column="AD_CATEGORY" />
 		<result property="memberId" column="MEMBER_ID" />
 		<result property="drawDate" column="AD_DRAW_DATE" />
-		<result property="hp" column="AD_HP" />
+		<result property="email" column="AD_EMAIL" />
+		<result property="name" column="MEMBER_NAME" />
 	</resultMap>
 
 
 	<select id="getList"
 		parameterType="com.jscb.gohaeng.dto.DrawShowDto"
 		resultMap="DrawShowDto">
-		SELECT * FROM APPLY_DRAWSHOW
-		WHERE AD_ENABLE=0
-		ORDER BY AD_INDEX
 
+		SELECT * FROM
+		(SELECT result1.*, ROWNUM AS rnum
+		FROM
+		(SELECT *
+		FROM APPLY_DRAWSHOW
+		WHERE AD_CATEGORY = ${category} AND AD_ENABLE=0
+		ORDER BY AD_INDEX DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND
+		#{endRowNum}
+	</select>
+
+	<select id="getCount"
+		parameterType="com.jscb.gohaeng.dto.DrawShowDto" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0) FROM APPLY_DRAWSHOW
+		<choose>
+			<when test="category != null">
+				WHERE AD_CATEGORY = ${category} AND AD_ENABLE=0
+			</when>
+		</choose>
 	</select>
 
 
@@ -34,13 +52,22 @@
 	</update>
 
 
+	<insert id="insert"
+		parameterType="com.jscb.gohaeng.dto.DrawShowDto">
+		INSERT INTO APPLY_DRAWSHOW
+		(AD_INDEX,MEMBER_ID,AD_CATEGORY,AD_DRAW_DATE,MEMBER_NAME,AD_EMAIL)
+		VALUES
+		(APPLY_DRAWSHOW_SEQ.NEXTVAL,#{memberId},#{category},#{drawDate},#{name},#{email})
+	</insert>
 
-
-
-
-
-
-
+	<select id="getMyList" resultMap="DrawShowDto" parameterType="com.jscb.gohaeng.dto.DrawShowDto">
+	SELECT * FROM
+	(SELECT result1.*, ROWNUM AS rnum
+	FROM
+	(SELECT *
+	FROM APPLY_DRAWSHOW WHERE MEMBER_ID = #{memberId} ORDER BY AD_DRAW_DATE DESC) result1)
+	WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
 
 
 </mapper>

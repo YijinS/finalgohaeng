@@ -5,7 +5,7 @@
 
 <script>
 	alert("새글을 저장했습니다.");
-	location.href="${pageContext.request.contextPath }/admin/event/list.do";
+	location.href="${pageContext.request.contextPath }/admin/event/list";
 </script>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"

@@ -21,8 +21,8 @@
 		template="/WEB-INF/views/admin/inc/layout.jsp">
 		<put-attribute name="header"
 			value="/WEB-INF/views/admin/inc/header.jsp" />
-		<put-attribute name="aside"
-			value="/WEB-INF/views/admin/inc/aside.jsp" />
+		<!-- <put-attribute name="aside"
+			value="/WEB-INF/views/admin/inc/aside.jsp" /> -->
 		<put-attribute name="main"
 			value="/WEB-INF/views/admin/{1}/{2}/{3}.jsp" />
 	</definition>	
@@ -31,8 +31,8 @@
 		template="/WEB-INF/views/admin/inc/layout.jsp">
 		<put-attribute name="header"
 			value="/WEB-INF/views/admin/inc/header.jsp" />
-		<put-attribute name="aside"
-			value="/WEB-INF/views/admin/inc/aside.jsp" />
+		<!-- <put-attribute name="aside"
+			value="/WEB-INF/views/admin/inc/aside.jsp" /> -->
 		<put-attribute name="main" value="/WEB-INF/views/admin/{1}/{2}.jsp"/> 
 	</definition>
 	

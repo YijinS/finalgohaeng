@@ -75,8 +75,9 @@
 										"pwd":pwd.val()
 									},
 									success:function(data){
-										if(data.check == true)
-											$("#login_form").submit();
+										if(data.check == true){
+												$("#login_form").submit();
+										}
 										else
 											alert("아이디 또는 비밀번호가 틀렸습니다.");
 									}

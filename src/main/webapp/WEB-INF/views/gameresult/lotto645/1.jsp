@@ -12,26 +12,26 @@
 					<h2 id="03" class="lnb_title">당첨결과</h2>
 					<ul id="lnb" class="lnb_dep1">
 						<li id="03-01" class="active"><a
-								href="${pageContext.request.contextPath }/gameresult/lotto645/1.do"
+								href="${pageContext.request.contextPath }/gameresult/lotto645/1"
 								class="menuLnb"><span>로또6/45</span></a>
 							<ul class="lnb_dep2">
 								<li id="03-01-01" class="active"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/1.do"><span>
+										href="${pageContext.request.contextPath }/gameresult/lotto645/1"><span>
 											회차별 당첨번호</span></a></li>
 								<li id="03-01-02"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/2.do"><span>
+										href="${pageContext.request.contextPath }/gameresult/lotto645/2"><span>
 											내번호 당첨확인</span></a></li>
 								<li id="03-01-03"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/3.do"><span>
+										href="${pageContext.request.contextPath }/gameresult/lotto645/3"><span>
 											당첨내역</span></a></li>
 								<li id="03-01-04"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/4.do"><span>
+										href="${pageContext.request.contextPath }/gameresult/lotto645/4"><span>
 											당첨금 지급안내</span></a></li>
 								<li id="03-01-05"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/5.do"><span>
+										href="${pageContext.request.contextPath }/gameresult/lotto645/5"><span>
 											추첨방송 다시보기</span></a></li>
 								<li id="03-01-06"><a
-										href="${pageContext.request.contextPath }/gameresult/lotto645/6.do"><span>
+										href="${pageContext.request.contextPath }/gameresult/lotto645/drawshowlist"><span>
 											추첨방송 참관신청</span></a></li>
 							</ul>
 						</li>
