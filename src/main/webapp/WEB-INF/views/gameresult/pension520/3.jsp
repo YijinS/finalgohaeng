@@ -18,7 +18,7 @@
 									<li id="03-02-03" class="active"><a href="${pageContext.request.contextPath }/gameresult/pension520/3"><span> 당첨내역</span></a></li>
 									<li id="03-02-04"><a href="${pageContext.request.contextPath }/gameresult/pension520/4"><span> 당첨금 지급안내</span></a></li>
 									<li id="03-02-05"><a href="${pageContext.request.contextPath }/gameresult/pension520/5"><span> 추첨방송 다시보기</span></a></li>
-									<li id="03-02-06"><a href="${pageContext.request.contextPath }/gameresult/pension520/6"><span> 추첨방송 참관신청</span></a></li>
+									<li id="03-02-06"><a href="${pageContext.request.contextPath }/gameresult/pension520/drawshowlist"><span> 추첨방송 참관신청</span></a></li>
 								</ul></li>
 							<li id="03-05"><a href="${pageContext.request.contextPath }/gameresult/lottostat/1" class="menuLnb">
 							<span>로또6/45 당첨통계</span></a>

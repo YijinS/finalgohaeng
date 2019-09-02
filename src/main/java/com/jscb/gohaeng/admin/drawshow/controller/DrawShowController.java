@@ -16,8 +16,9 @@ public class DrawShowController {
    
    @RequestMapping("lotto/list")
    public ModelAndView lottolist(HttpServletRequest request) {
-      
-      drawshowservice.getList(request);
+	   
+	   int category = 0;
+      drawshowservice.getList(request,category);
       
       return new ModelAndView("admin.drawshow.lotto.list");
       
@@ -27,7 +28,8 @@ public class DrawShowController {
    @RequestMapping("pension/list")
    public ModelAndView pensionList(HttpServletRequest request) {
       
-      drawshowservice.getList(request);
+	   int category = 1;
+      drawshowservice.getList(request,category);
       
       return new ModelAndView("admin.drawshow.pension.list");
       

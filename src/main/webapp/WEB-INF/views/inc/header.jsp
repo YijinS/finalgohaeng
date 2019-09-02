@@ -27,7 +27,7 @@
                            <li><a href="${pageContext.request.contextPath }/mypage/deposit/1">예치금 : ${member.deposit }원 </a></li>
                         </c:otherwise>
                      </c:choose>
-                     <li><a href="#">${sessionScope.member.name }님</a></li>
+                     <li>${sessionScope.member.name }님</li>
                      <li><a href="${pageContext.request.contextPath }/guest/logout">로그아웃</a></li>
                      <li><a href="${pageContext.request.contextPath }/mypage/home">마이페이지</a></li>
                      <li><a href="${pageContext.request.contextPath }/callcenter/info">고객센터</a></li>
@@ -46,16 +46,16 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="basic gnb2"><a href="${pageContext.request.contextPath }/gameinfo/lotto645/1.do">복권정보</a>
+                    <li class="basic gnb2"><a href="${pageContext.request.contextPath }/gameinfo/lotto645/1">복권정보</a>
                         <div class="group">
                             <ul>
-                                <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/1.do">로또6/45</a>
+                                <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/1">로또6/45</a>
                                     <ul class="snb_dep3">
-                                        <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/1.do">로또 6/45 소개</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/2.do">구매하기</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/3.do">구매방법</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/4.do">추첨안내</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/5.do">로또 히스토리</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/1">로또 6/45 소개</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/2">구매하기</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/3">구매방법</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/4">추첨안내</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameinfo/lotto645/5">로또 히스토리</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">연금복권520</a>
@@ -68,27 +68,27 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="basic gnb3"><a href="${pageContext.request.contextPath }/gameresult/lotto645/1.do">당첨결과</a>
+                    <li class="basic gnb3"><a href="${pageContext.request.contextPath }/gameresult/lotto645/1">당첨결과</a>
                         <div class="group">
                             <ul>
-                                <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/1.do">로또6/45</a>
+                                <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/1">로또6/45</a>
                                     <ul class="snb_dep3">
-                                        <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/1.do">회차별 당첨번호</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/2.do">내번호 당첨확인</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/3.do">당첨내역</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/4.do">당첨금 지급안내</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/5.do">추첨방송 다시보기</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/6.do">추첨방송 참관신청</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/1">회차별 당첨번호</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/2">내번호 당첨확인</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/3">당첨내역</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/4">당첨금 지급안내</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/5">추첨방송 다시보기</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/lotto645/drawshowlist">추첨방송 참관신청</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">연금복권520</a>
                                     <ul class="snb_dep3">
-                                        <li><a href="#">회차별 당첨번호</a></li>
-                                        <li><a href="#">내번호 당첨확인</a></li>
-                                        <li><a href="#">당첨내역</a></li>
-                                        <li><a href="#">당첨금 지급안내</a></li>
-                                        <li><a href="#">추첨방송 다시보기</a></li>
-                                        <li><a href="#">추첨방송 참관신청</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/pension520/1">회차별 당첨번호</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/pension520/2">내번호 당첨확인</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/pension520/3">당첨내역</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/pension520/4">당첨금 지급안내</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/pension520/5">추첨방송 다시보기</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/pension520/drawshowlist">추첨방송 참관신청</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="${pageContext.request.contextPath }/gameresult/lottostat/1">로또6/45 당첨통계</a>
