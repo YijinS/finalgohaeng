@@ -42,7 +42,7 @@
 						WHERE AE_RESULT LIKE '%${result}%'
 					</when>
 				</choose>
-				ORDER BY EVENT_INDEX DESC) result1)
+				WHERE AE_RESULT = 1 ORDER BY EVENT_INDEX DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	
@@ -59,15 +59,15 @@
 		SELECT * FROM APPLY_EVENT WHERE EVENT_INDEX = #{eventIndex} AND MEMBER_ID = #{memberId}
 	</select>
 	
-	<update id="updateWin" parameterType="int">
+	<update id="updateWin" parameterType="map">
 		UPDATE APPLY_EVENT
 		SET AE_RESULT = 2 
-		WHERE EVENT_INDEX = #{index} AND MEMBER_ID = ${id}
+		WHERE EVENT_INDEX = #{index} AND MEMBER_ID = #{id}
 	</update>
 	
-	<update id="updateLose" parameterType="int">
+	<update id="updateLose" parameterType="map">
 		UPDATE APPLY_EVENT
 		SET AE_RESULT = 3 
-		WHERE EVENT_INDEX = #{index} AND MEMBER_ID = ${id}
+		WHERE EVENT_INDEX = #{index} AND MEMBER_ID = #{id}
 	</update>
 </mapper>

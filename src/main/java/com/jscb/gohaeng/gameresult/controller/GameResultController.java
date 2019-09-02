@@ -3,9 +3,7 @@ package com.jscb.gohaeng.gameresult.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -105,6 +103,23 @@ public class GameResultController {
 		
 	}
 	
+	@RequestMapping("lotto645/print")
+	public ModelAndView print(ModelAndView mView 
+			,@RequestParam(name="start",defaultValue = "0")Integer start
+			,@RequestParam(name="end",defaultValue = "0")Integer end) {
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start",start);
+		map.put("end",end);
+		
+		
+		mView.addObject("save",map);
+		mView.addObject("games",gameResultService.getGamesList(start, end));
+		mView.addObject("list",gameResultService.getColorByNumber(start, end));
+		
+		mView.setViewName("gameresult/lotto645/print");
+		return mView;
+	}
 	/*------------------------- lotto645 매핑------------------------------*/
 	
 	
