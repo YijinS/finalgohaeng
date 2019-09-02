@@ -48,14 +48,20 @@ public class ApplyEventDaoImpl implements ApplyEventDao {
 	}
 
 	@Override
-	public void updateWin(int index) {
-		sqlSession.update("applyEvent.updateWin", index);
+	public void updateWin(int index, String id) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("index", index);
+		map.put("id", id);
+		sqlSession.update("applyEvent.updateWin", map);
 		
 	}
 
 	@Override
-	public void updateLose(int index) {
-		sqlSession.update("applyEvent.updateLose", index);
+	public void updateLose(int index, String id) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("index", index);
+		map.put("id", id);
+		sqlSession.update("applyEvent.updateLose", map);
 		
 	}
 

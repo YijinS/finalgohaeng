@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -355,8 +354,22 @@
 									</select> 
 									<span class="unit">까지</span>
 								</form>
-								<a class="btn_common form" id="printBtn" href="#" title="새창 열림">인쇄하기</a>
+								<a class="btn_common form" id="printBtn" href="#"  title="새창 열림">인쇄하기</a>
 								<a class="btn_common form" id="exelBtn" href="#">엑셀다운로드</a>
+								<script>
+					               $(function(){
+					                  
+					                  
+					                  var printBtn = $("#printBtn");
+					                  
+					                  printBtn.click(function(e){
+				                	  	 var start = $("#drwNoStart").val();
+						                 var end = $("#drwNoEnd").val();
+					                     e.preventDefault();
+					                     window.open("${pageContext.request.contextPath}/gameresult/lotto645/print?start="+start+"&end="+end, "네이버새창", "width=800, height=700");
+					                  });
+					               });
+					            </script>
 								<script>
 									$(function(){
 										var exelBtn = $("#exelBtn");

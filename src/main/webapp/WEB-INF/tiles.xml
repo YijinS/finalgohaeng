@@ -4,11 +4,17 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
+	
+
+	<definition name="store.sellerinfo.1detail" template="/WEB-INF/views/inc/no-tiles.jsp">
+		<put-attribute name="main" value="/WEB-INF/views/store/sellerinfo/1detail.jsp"></put-attribute>
+		
+	</definition>
+
 	<definition name="common.*" template="/WEB-INF/views/inc/index-layout.jsp">
       <put-attribute name="quick"   value="/WEB-INF/views/inc/quick.jsp" />
       <put-attribute name="main" value="/WEB-INF/views/{1}.jsp" />
    </definition>
-   
    
 	
 	<definition name="form.*"
@@ -61,11 +67,5 @@
 			/> -->
 	</definition>
 
-
-	<definition name="user.store.1detail"
-		template="/WEB-INF/views/inc/no-tiles.jsp">
-		<put-attribute name="main" value="/WEB-INF/views/store/sellerinfo/1detail.jsp"></put-attribute>
-		
-	</definition>
 
 </tiles-definitions>

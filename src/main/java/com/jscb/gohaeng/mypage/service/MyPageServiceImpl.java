@@ -150,27 +150,14 @@ public class MyPageServiceImpl implements MyPageService {
 		MemberDto dto = new MemberDto();
 		// id에 해당하는 회원 정보가 있는지 확인하기!
 		String id = member.getId();
-		String email = request.getParameter("email");
-		String addr = request.getParameter("addr1") + request.getParameter("addr2");
-
-		int checkSms = Integer.parseInt(request.getParameter("checkSms"));
-		int checkEmail = Integer.parseInt(request.getParameter("checkEmail"));
-		int checkSales = Integer.parseInt(request.getParameter("checkSales"));
-		/*
-		 * int checkSms = (int) request.getAttribute("checkSms"); int checkEmail = (int)
-		 * request.getAttribute("checkEmail"); int checkSales = (int)
-		 * request.getAttribute("checkSales");
-		 */
 		
+		String email = request.getParameter("email");
+		String addr = request.getParameter("zipCode") + request.getParameter("addr1") + request.getParameter("addr2");
+
 		dto.setId(id);
 		dto.setEmail(email);
 		dto.setAddr(addr);
-		
-		dto.setCheckEmail(checkEmail); 
-		dto.setCheckSales(checkSales);
-		dto.setCheckSms(checkSms);
-		 
-		System.out.println("dto1111111111111111111111111" + email + addr);
+
 		memberDao.update(dto);
 
 	}

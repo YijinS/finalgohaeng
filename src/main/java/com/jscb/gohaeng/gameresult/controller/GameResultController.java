@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.google.gson.Gson;
+import com.jscb.gohaeng.admin.winnerinterview.service.WinnerService;
 import com.jscb.gohaeng.admin.drawshow.service.DrawShowService;
 import com.jscb.gohaeng.dto.LottoGamesDto;
 import com.jscb.gohaeng.dto.MemberDto;
@@ -32,6 +31,8 @@ public class GameResultController {
 	@Autowired
 	DrawShowService drawShowService;
 	
+	@Autowired
+	private WinnerService winnerService;
 	
 	/*------------------------- lotto645 매핑------------------------------*/
 	
@@ -120,6 +121,23 @@ public class GameResultController {
 		
 	}
 	
+	@RequestMapping("lotto645/print")
+	public ModelAndView print(ModelAndView mView 
+			,@RequestParam(name="start",defaultValue = "0")Integer start
+			,@RequestParam(name="end",defaultValue = "0")Integer end) {
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start",start);
+		map.put("end",end);
+		
+		
+		mView.addObject("save",map);
+		mView.addObject("games",gameResultService.getGamesList(start, end));
+		mView.addObject("list",gameResultService.getColorByNumber(start, end));
+		
+		mView.setViewName("gameresult/lotto645/print");
+		return mView;
+	}
 	/*------------------------- lotto645 매핑------------------------------*/
 	
 	
@@ -276,16 +294,38 @@ public class GameResultController {
 	
 	
 	/*------------------------- winnerinterview 매핑------------------------------*/
+	
 	@RequestMapping("winningnews/1")
-	public String winnerinterview() {
+	public ModelAndView winnerinterview(ModelAndView mView, HttpServletRequest request) {
 		
-		return "gameresult.winningnews.1";
+		winnerService.getList(request);
+		
+		mView.setViewName("gameresult.winningnews.1");
+		
+		return mView;
+		
 	}
+	
+	@RequestMapping("winningnews/1detail")
+	public ModelAndView getData(ModelAndView mView, int wiIndex) {
+		
+		winnerService.getData(mView, wiIndex);
+		
+		mView.setViewName("gameresult.winningnews.1detail");
+		
+		return mView;
+		
+	}
+	
+	
+	
 	@RequestMapping("winningnews/2")
 	public String winningnews2() {
 		
 		return "gameresult.winningnews.2";
 	}
+	
+	
 	/*------------------------- winnerinterview 매핑------------------------------*/
 	
 	

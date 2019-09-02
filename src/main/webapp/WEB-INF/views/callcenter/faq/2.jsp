@@ -35,127 +35,125 @@
 				</p>
 			</div>
 			<div>
-				<div class="content_wrap">
-					<!-- -------------------------------------------------------------------------------------- -->
-
-
-					<div class="tab_article tab_size6">
-						<ul>
-							<li><a href="all?">전체</a></li>
-							<li class="active"><strong>로또6/45</strong><span class="accessibility">현재 선택됨</span></li>
-							<li><a href="pension">연금복권520</a></li>
-							<li><a href="etc">기타</a></li>
-						</ul>
-					</div>
-					<div class="search_data">
-						<div class="inner">
-							<form name="searchfrm" id="searchfrm" method="post"
-								onsubmit="false">
-								<input type="hidden" id="tabGbn" name="tabGbn" value="">
-								
-								<select id="kind" name="kind" title="조회 옵션 선택">
-									<option value="2" selected="SELECTED">전체</option>
-									<option value="1">제목</option>
-									<option value="3">내용</option>
-								</select> <input type="text" id="keyword" name="keyword" value=""
-									maxlength="300"
-									onkeydown="return $.enterCheck(window.event.keyCode);"
-									title="검색어 입력"> <a class="btn_common form blu"
-									href="javascript:void(0);" id="gosearch">조회</a>
-							</form>
-						</div>
-					</div>
-					
-					<ul class="list_faq">
-						<c:forEach var="list" items="${list }">
-							<input type="hidden" id="category" name="category" value="${list.category }">
-					<%-- 		 <c:choose>
-								<c:when test="${list.category == 1}">  <!-- 카테고리 1 = 로또  -->  --%>
-									<li id="seqQa_11" tabindex="" class="">
-										<div class="question">
-											<div class="inner">
-												<span class="q"><span>질문</span></span>
-												<p>
-													<a href="#divQuestion11" id="a_11">${list.question }</a>
-												</p>
-											</div>
-										</div>
-										<div id="divQuestion11" class="answer" style="display: none;">
-											<span class="a">답변</span>
-											<div class="answer_content">${list.answer }</div>
-										</div>
-									</li>
-								<%-- </c:when>
-							</c:choose>  --%>
-						</c:forEach>
-					</ul>
-					<script>
-					var faqList= $(".list_faq");
-					faqList.find("> li .question .inner p a").click(function(event){
-						event.preventDefault();
-						faqList.find("> li").attr("tabindex","");  
-						/* 
-						tabindex: 속성 값이 0인 경우는 탭을 눌렀을 때 포커스가 가지 않는 엘리먼트에게 포커스를 줄 수 있다. -1은 포커스 ㄴㄴ
-						예를 들어, div영역에도 포커스를 줄 수 있다는 의미이다. */
-
-						var pli = $(this).parents("li");
-						if(pli.hasClass("open")){
-							pli.find(".answer").stop().slideUp(150);
-							pli.removeClass("open");
-						}else{
-							faqList.find("li.open .answer").stop().slideUp(150,function(){
-								$(this).parent("li").removeClass("open");
-							});
-							pli.find(".answer").stop().slideDown(150);
-							pli.addClass("open");
-						}
-					});
+				<!-- -------------------------------------------------------------------------------------- -->
 				
-					</script>
-						<!-- 페이징 시작 -->
-
-				<div class="page-display">
-                        <div class="paginate_common" id="page_box">
-                           <ul class="pagination">
-                              <c:choose>
-                                 <c:when test="${startPageNum ne 1 }">
-                                    <li><a href="lotto?pageNum=${startPageNum-1 }">&laquo; </a></li>
-                                 </c:when>
-                                 <c:otherwise>
-                                    <li class="disabled"><a href="javascript:">&laquo;</a></li>
-                                 </c:otherwise>
-                              </c:choose>
-                              <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }" step="1">
-                                 <c:choose>
-                                    <c:when test="${i eq pageNum }">
-                                       <li class="active"><a
-                                          href="lotto?pageNum=${i }">${i }</a></li>
-                                    </c:when>
-                                    <c:otherwise>
-                                       <li><a href="lotto?pageNum=${i }">${i }</a></li>
-                                    </c:otherwise>
-                                 </c:choose>
-                              </c:forEach>
-
-                              <c:choose>
-                                 <c:when test="${endPageNum lt totalPageCount }">
-                                    <li><a href="lotto?pageNum=${endPageNum+1 }">&raquo; </a></li>
-                                 </c:when>
-                                 <c:otherwise>
-                                    <li class="disabled"><a href="javascript:">&raquo;</a></li>
-                                 </c:otherwise>
-                              </c:choose>
-                           </ul>
-                        </div>
-                     </div>
-
-				<!-- 페이징 종료 -->
-					<form name="cntFrm" id="cntFrm" method="post">
-						<input type="hidden" id="txtNo" name="txtNo" value="">
-					</form>
-					<iframe name="faqList" id="faqList" width="0" height="0"
-						title="빈 프레임"></iframe>
+				
+				<div class="tab_article tab_size6">
+					<ul>
+						<li><a href="all?">전체</a></li>
+						<li class="active"><strong>로또6/45</strong><span class="accessibility">현재 선택됨</span></li>
+						<li><a href="pension">연금복권520</a></li>
+						<li><a href="etc">기타</a></li>
+					</ul>
 				</div>
+				<!-- <div class="search_data">
+					<div class="inner">
+						<form name="searchfrm" id="searchfrm" method="post"
+							onsubmit="false">
+							<input type="hidden" id="tabGbn" name="tabGbn" value="">
+							
+							<select id="kind" name="kind" title="조회 옵션 선택">
+								<option value="2" selected="SELECTED">전체</option>
+								<option value="1">제목</option>
+								<option value="3">내용</option>
+							</select> <input type="text" id="keyword" name="keyword" value=""
+								maxlength="300"
+								onkeydown="return $.enterCheck(window.event.keyCode);"
+								title="검색어 입력"> <a class="btn_common form blu"
+								href="javascript:void(0);" id="gosearch">조회</a>
+						</form>
+					</div>
+				</div> -->
+				
+				<ul class="list_faq">
+					<c:forEach var="list" items="${list }">
+						<input type="hidden" id="category" name="category" value="${list.category }">						    
+								<li id="seqQa_11" tabindex="" class="">
+									<div class="question">
+										<div class="inner">
+											<span class="q"><span>질문</span></span>
+											<p>
+												<a href="#divQuestion11" id="a_11">${list.question }</a>
+											</p>
+										</div>
+									</div>
+									<div id="divQuestion11" class="answer" style="display: none;">
+										<span class="a">답변</span>
+										<div class="answer_content">${list.answer }</div>
+									</div>
+								</li>							   
+					</c:forEach>
+				</ul>
+				<script>
+				var faqList= $(".list_faq");
+				faqList.find("> li .question .inner p a").click(function(event){
+					event.preventDefault();
+					faqList.find("> li").attr("tabindex","");  
+					/* 
+					tabindex: 속성 값이 0인 경우는 탭을 눌렀을 때 포커스가 가지 않는 엘리먼트에게 포커스를 줄 수 있다. -1은 포커스 ㄴㄴ
+					예를 들어, div영역에도 포커스를 줄 수 있다는 의미이다. */
+				
+					var pli = $(this).parents("li");
+					if(pli.hasClass("open")){
+						pli.find(".answer").stop().slideUp(150);
+						pli.removeClass("open");
+					}else{
+						faqList.find("li.open .answer").stop().slideUp(150,function(){
+							$(this).parent("li").removeClass("open");
+						});
+						pli.find(".answer").stop().slideDown(150);
+						pli.addClass("open");
+					}
+				});
+								
+				</script>
+					<!-- 페이징 시작 -->
+				<div class="page-display">
+				<div class="paginate_common" id="page_box">
+					<ul class="pagination">
+						<c:choose>
+							<c:when test="${startPageNum ne 1 }">
+								<li>
+								<a href="lotto?pageNum=${startPageNum-1 }"> &laquo; </a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="disabled"><a href="javascript:">&laquo;</a></li>
+							</c:otherwise>
+						</c:choose>
+						
+						<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }"
+							step="1">
+							<c:choose>
+								<c:when test="${i eq pageNum }">
+									<li class="active">
+									<a href="lotto?pageNum=${i }">${i }</a></li>
+								</c:when>
+								<c:otherwise>
+									<li>
+									<a href="lotto?pageNum=${i }">${i }</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+				
+						<c:choose>
+							<c:when test="${endPageNum lt totalPageCount }">
+								<li>
+								<a href="lotto?pageNum=${endPageNum+1 }"> &raquo; </a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="disabled"><a href="javascript:">&raquo;</a></li>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+				</div>
+								</div>
+				
+								<!-- 페이징 종료 -->
+				<form name="cntFrm" id="cntFrm" method="post">
+					<input type="hidden" id="txtNo" name="txtNo" value="">
+				</form>
+				<iframe name="faqList" id="faqList" width="0" height="0"
+					title="빈 프레임"></iframe>
 			</div>
 			</main>
 			<!-- -------------------------------------- -->

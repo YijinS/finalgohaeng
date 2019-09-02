@@ -14,8 +14,8 @@ public class WinnerDaoImpl implements WinnerDao {
 	private SqlSession session;
 	
 	@Override
-	public List<WinnerDto> getList() {
-		List<WinnerDto> list = session.selectList("winner.getList");
+	public List<WinnerDto> getList(WinnerDto dto) {
+		List<WinnerDto> list = session.selectList("winner.getList", dto);
 		
 		return list;
 	}
@@ -31,6 +31,23 @@ public class WinnerDaoImpl implements WinnerDao {
 	@Override
 	public void delete(int wiIndex) {
 		session.delete("winner.delete", wiIndex);
+	}
+
+	@Override
+	public void insert(WinnerDto dto) {
+		session.insert("winner.insert", dto);
+		
+	}
+
+	@Override
+	public void update(WinnerDto dto) {
+		session.update("winner.update", dto);
+		
+	}
+
+	@Override
+	public int getCount(WinnerDto dto) {
+		return session.selectOne("winner.getCount", dto);
 	}
 
 }

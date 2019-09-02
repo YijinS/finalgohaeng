@@ -31,7 +31,6 @@ public class websocket extends TextWebSocketHandler{
 		
 		//session값을 가지고db등의 작업을 하면 채팅 참여 사용자 정보 리스트 구현이 가능하다. 
 		System.out.println("채팅방 입장자: " + session.getId());
-		
 		//WebSocketSession을 매개변수로 받고 클라이언트 연결 후 해당 클라이언트의 정보를 가져와 연결확인 작업을 한다. 
 		//접속한 클라이언트의 세션을 세션 저장 리스트에 add()로 추가한다. 
 		
@@ -41,8 +40,6 @@ public class websocket extends TextWebSocketHandler{
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         //0번째에 session.getId() 1번째에 message.getPayload() 넣음
         logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
-        //logger.info("{}로부터 {}받음", new String[]{session.getId(),message.getPayload()});
-        
         //연결된 모든 클라이언트에게 메시지 전송 : 리스트 방법
         //getPrincipal()를 이용해서 세션에 물려있는 유저의 정보를 불러온다.세션의 정보는 User를 이용한것과 동일하다.//
         for(WebSocketSession sess : sessionList){
@@ -59,9 +56,6 @@ public class websocket extends TextWebSocketHandler{
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception{
 		//List 삭제
 		sessionList.remove(session);
-		
-		//Map 삭제
-		//session.remove(session.getId());
 		
 		logger.info("{} 연결 끊김", session.getId());
 		System.out.println("채팅방 퇴장자" + session.getId());

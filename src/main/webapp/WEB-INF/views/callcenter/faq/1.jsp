@@ -45,12 +45,12 @@
 					<div class="tab_article tab_size6">
 						<ul>
 							<li class="active"><strong>전체</strong><span class="accessibility">현재 선택됨</span></li>
-							<li><a href="lotto">로또6/45</a></li>
+							<li><a href="lotto?category=1">로또6/45</a></li>
 							<li><a href="pension">연금복권520</a></li>
 							<li><a href="etc">기타</a></li>
 						</ul>
 					</div>
-					<div class="search_data">
+					<!-- <div class="search_data">
 						<div class="inner">
 							<form name="searchfrm" id="searchfrm" method="post"
 								onsubmit="false">
@@ -67,7 +67,7 @@
 									href="javascript:void(0);" id="gosearch">조회</a>
 							</form>
 						</div>
-					</div>
+					</div> -->
 					<ul class="list_faq">
 						<c:forEach var="list" items="${list }" >
 							<li id="seqQa_11" tabindex="" class="">

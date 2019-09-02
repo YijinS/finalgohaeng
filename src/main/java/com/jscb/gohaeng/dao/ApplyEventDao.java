@@ -11,7 +11,7 @@ public interface ApplyEventDao {
 	public List<ApplyEventDto> getList(ApplyEventDto applyEventDto);
 	public int insert(ApplyEventDto applyEventDto);
 	public boolean isExist(int eventIndex, String memberId);
-	public void updateWin(int index);
-	public void updateLose(int index);
+	public void updateWin(int index, String id);
+	public void updateLose(int index, String id);
 	
 }

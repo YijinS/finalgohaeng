@@ -47,7 +47,7 @@
 							<li><a href="etc">기타</a></li>
 						</ul>
 					</div>
-					<div class="search_data">
+					<!-- <div class="search_data">
 						<div class="inner">
 							<form name="searchfrm" id="searchfrm" method="post"
 								onsubmit="false">
@@ -63,11 +63,9 @@
 									href="javascript:void(0);" id="gosearch">조회</a>
 							</form>
 						</div>
-					</div>
+					</div> -->
 					<ul class="list_faq">
-						<c:forEach var="list" items="${list }">
-							<%-- <c:choose>
-								<c:when test="${list.category == 2}">  <!-- 카테고리 3 = 기타  --> --%>
+						<c:forEach var="list" items="${list }">							
 									<li id="seqQa_11" tabindex="" class="">
 										<div class="question">
 											<div class="inner">
@@ -81,9 +79,7 @@
 											<span class="a">답변</span>
 											<div class="answer_content">${list.answer }</div>
 										</div>
-									</li>
-								<%-- </c:when>
-							</c:choose> --%>
+									</li>								 
 						</c:forEach>
 					</ul>
 					<script>

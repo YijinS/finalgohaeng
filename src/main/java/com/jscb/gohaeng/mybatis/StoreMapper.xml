@@ -12,30 +12,35 @@
 	</resultMap>
 	
 	<select id="getStoreName" resultMap="StoreDto" parameterType="com.jscb.gohaeng.dto.StoreDto">
-
-		SELECT * FROM STORE
-		<choose>
-			<when test="storeName != null and storeName != '' and radio_select != null and radio_select == 'close'">
-				WHERE UPPER(STORE_NAME) LIKE UPPER('%'||#{storeName}||'%') AND STORE_ENABLE = 0 
-			</when>
-			<when test="storeName != null and storeName != '' and radio_select != null and radio_select == 'open'">
-				WHERE UPPER(STORE_NAME) LIKE UPPER('%'||#{storeName}||'%') AND STORE_ENABLE = 1
-			</when>
-			<otherwise>
-				WHERE UPPER(STORE_NAME) LIKE UPPER('%'||#{storeName}||'%')
-			</otherwise>
-		</choose>
 		
-		ORDER BY STORE_NAME ASC
+		SELECT * FROM(
+			SELECT R.*, ROWNUM AS RNUM 
+			FROM (
+					SELECT * FROM STORE 
+					WHERE UPPER(STORE_NAME) LIKE UPPER('%'||#{storeName}||'%')
+				)R 
+		)		
+		<if test="startRowNum != null and endRowNum != null">
+		 WHERE RNUM BETWEEN #{startRowNum} AND #{endRowNum}
+		</if>
+		
 		
 	</select>
 	
 
-	<select id="getGulist"
-		parameterType="com.jscb.gohaeng.dto.StoreDto" resultMap="StoreDto">
-		SELECT * FROM
-		STORE WHERE STORE_ADDR LIKE '%'||#{storeAddr}||'%'
+	<select id="getGulist" parameterType="com.jscb.gohaeng.dto.StoreDto" resultMap="StoreDto">
+		SELECT * FROM(
+			SELECT R.*, ROWNUM AS RNUM 
+			FROM (
+					SELECT * FROM STORE 
+					WHERE STORE_ADDR LIKE '%'||#{storeAddr}||'%'
+				)R 
+		)		
+		<if test="startRowNum != null and endRowNum != null">
+		 WHERE RNUM BETWEEN #{startRowNum} AND #{endRowNum}
+		</if>
 	</select>
+	
 
 	<select id="list" parameterType="int" resultMap="StoreDto">
 		<!-- 로또 또는 연급 판매점 뽑는 곳 -->
@@ -47,7 +52,14 @@
 
 		SELECT
 		NVL(MAX(ROWNUM), 0) FROM STORE
-		
+		<choose>
+		<when test="storeAddr != null">
+			WHERE STORE_ADDR LIKE '%'||#{storeAddr}||'%'
+		</when>
+		<when test="storeName != null">
+			WHERE STORE_NAME LIKE '%${storeName}%'
+		</when>
+	</choose>
 
 	</select>
 
@@ -84,8 +96,7 @@
 		STORE_INDEX = #{storeIndex}
 	</delete>
 
-	<insert id="insert"
-		parameterType="com.jscb.gohaeng.dto.StoreDto">
+	<insert id="insert" parameterType="com.jscb.gohaeng.dto.StoreDto">
 		INSERT INTO STORE(STORE_INDEX, STORE_NAME, STORE_TEL, STORE_ADDR,
 		STORE_ABLE_GAMES, STORE_ENABLE)
 		VALUES(MAP_SEQ.NEXTVAL, #{storeName},
@@ -93,8 +104,7 @@
 		<!-- parameterType으로 FriendDto의 정보를 전달해주면 #안에 들어간다. 필드명을 그대로 적어주면된다 -->
 	</insert>
 
-	<update id="update"
-		parameterType="com.jscb.gohaeng.dto.StoreDto">
+	<update id="update" parameterType="com.jscb.gohaeng.dto.StoreDto">
 		UPDATE STORE
 		SET STORE_NAME=#{storeName},
 		STORE_TEL=#{storeTel},

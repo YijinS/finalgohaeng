@@ -38,8 +38,7 @@
 	WHERE NUM &lt;= #{qty}
 </select>
 <!-- 공지사항 한개 목록 -->
-<select id="getData" parameterType="int"
-resultMap="NoticeDto">
+<select id="getData" parameterType="int" resultMap="NoticeDto">
 	SELECT result1.*
 		FROM
 			(SELECT NOTICE_INDEX, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_HIT, NOTICE_REG_DATE,

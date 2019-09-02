@@ -5,26 +5,7 @@
    src="https://img.echosting.cafe24.com/js/ec/mode/influencer_ui.js"></script>
 <script type="text/javascript"
    src="https://img.echosting.cafe24.com/js/ec/mode/influencer_suio.min.js"></script>
-<script>
-var li = document.querySelector('.depth1');
-
-
-$(function() {
-	 $("li").on("click",function(evt) {
-		 
-	    $(this).addClass( 'collapsable' );
-	    evt.preventDefault();
-	  });
-	   
-/* 	  var li2 = document.querySelector('.collapsable');
-	  $("li2").on("click",function(evt) {
-		    $(this).removeClass( 'collapsable' );
-		    evt.unbind();
-		  }); */
-});
-
-
-</script>
+   
 <aside>
    <div id="sidebar">
 
@@ -35,7 +16,7 @@ $(function() {
            		 <a id="QA_Lnb_Menu2486" href="${pageContext.request.contextPath}/admin/notice/list" menuno="2486" treeno="2703" class="product"> 공지사항</a>
             </li>
             
-            <li class="depth1 expandable">
+            <li class="depth1 collapsable">
 	            <a id="QA_Lnb_Menu2487" href="${pageContext.request.contextPath}/admin/callcenter/qna/list" menuno="2487" treeno="2707" class="member"> 고객센터 </a>
 	               <ul>
 	                  <li class=""><a id="QA_Lnb_Menu74"  href="${pageContext.request.contextPath}/admin/callcenter/qna/list" menuno="74"  treeno="2708" class=""> 1:1상담 </a>
@@ -49,13 +30,13 @@ $(function() {
             </li>
                
             <li class="depth1">
-            	<a id="QA_Lnb_Menu2489" href="${pageContext.request.contextPath}/store/1" menuno="2489" treeno="2712" class="board"> 판매점 </a>
+            	<a id="QA_Lnb_Menu2489" href="${pageContext.request.contextPath}/admin/store/1" menuno="2489" treeno="2712" class="board"> 판매점 </a>
             </li>
-            <li class="depth1 expandable">
+            <li class="depth1 collapsable">
                 <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/event/list" menuno="2488" treeno="2711" class="member"> 이벤트 </a>
             </li>
                
-                <li class="depth1 expandable">
+                <li class="depth1 collapsable">
 	                <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/drawshow/lotto/list" menuno="2488" treeno="2711" class="member"> 참관신청 </a>
 	                <ul>
 		                <li class="">
