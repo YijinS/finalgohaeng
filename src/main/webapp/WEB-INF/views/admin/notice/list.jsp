@@ -90,27 +90,28 @@
 				<table class="tbl_data tbl_data_col">
 					<caption>번호, 제목, 첨부파일, 등록일등 공지사항 목록</caption>
 					<colgroup>
-						<col style="width: 85px">
-						<col>
-						<col style="width: 110px">
-						<col style="width: 130px">
+						<col style="width: 100px">
+						<col style="width: 600px">
+						<col style="width: 100px">
+						<col style="width: 180px">
+						<col style="width: 100px">
 					</colgroup>
 					<thead>
 						<tr>
-							<th scope="col">번호</th>
-							<th scope="col">제목</th>
-							<th scope="col">첨부파일</th>
-							<th scope="col">등록일</th>
-							<th scope="col">조회수</th>
+							<th scope="col" style="text-align: center;">번호</th>
+							<th scope="col" style="text-align: center;">제목</th>
+							<th scope="col" style="text-align: center;">첨부파일</th>
+							<th scope="col" style="text-align: center;">등록일</th>
+							<th scope="col" style="text-align: center;">조회수</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="list" items="${list}">
-						<fmt:formatDate value="${list.regDate }" var="regDate" pattern="yyyy-MM-dd HH:mm:ss"/>
+						<fmt:formatDate value="${list.regDate }" var="regDate" pattern="yyyy-MM-dd"/>
 							<tr>
 								<td>${list.index}</td>
-								<td><a href="detail.do?index=${list.index}">${list.title}</a></td>
-								<td>파일</td>
+								<td style="text-align: left; padding-left: 30px;"><a href="detail.do?index=${list.index}">${list.title}</a></td>
+								<td><a class="btn_attach" href="#none" onclick="fileDownload(24)"></a></td>
 								<td>${regDate}</td>
 								<td>${list.hit}</td>
 							</tr>
@@ -166,3 +167,6 @@
 	</div>
 </div>
 </main>
+<style>
+	a {color:#222;}
+</style>

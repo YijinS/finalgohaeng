@@ -43,6 +43,9 @@ resultMap="QnaDto">
 resultType="int">
 	SELECT NVL(MAX(ROWNUM), 0) FROM CONSULTING
 	<choose>
+		<when test="memberId != null">
+			WHERE MEMBER_ID = #{memberId}
+		</when>
 		<when test="searchType != null and searchType == 'reply'">
 			WHERE CONSULTING_REPLY IS NOT NULL
 		</when>
