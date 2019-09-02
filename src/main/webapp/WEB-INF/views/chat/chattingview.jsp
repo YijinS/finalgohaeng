@@ -34,6 +34,7 @@
 		<div class="well" id="chatdata">
 			<!-- User Session Info Hidden -->
 			<input type="hidden" value='${userid}' id="sessionuserid">
+			<input type="hidden" value='${name}' id="sessionname">
 		</div><br>
 		<div class="fixed-bottom">
 			<input type="text" id="message" style="height:60px; width: 300px;" /> 
@@ -41,6 +42,7 @@
 		</div>
 	</div>
 </body>
+
 <script type="text/javascript">
 $(function(){
 	$("#chattinglistbtn").click(function(){
@@ -63,10 +65,12 @@ $(function(){
 <script type="text/javascript">
 //websocket을 지정한 URL로 연결
 var sock= new SockJS("<c:url value="/echo"/>");
+
 //websocket 서버에서 메시지를 보내면 자동으로 실행된다.
 sock.onmessage = onMessage;
 //websocket 과 연결을 끊고 싶을때 실행하는 메소드
 sock.onclose = onClose;
+
 $(function(){
 	$("#sendBtn").click(function(){
 		console.log('send message...');

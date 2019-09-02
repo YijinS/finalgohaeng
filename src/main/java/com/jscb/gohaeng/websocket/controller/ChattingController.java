@@ -16,23 +16,15 @@ public class ChattingController {
 		
 		MemberDto member = (MemberDto)session.getAttribute("member");
 		
-		mv.setViewName("chat/chattingview");
+		mv.setViewName("chat/chattingview2");
 		mv.addObject("member",member);
-		
-		//사용자 정보 출력(세션)
-		//시큐리티가 적용되 세션 값을 user를 이용해 불러온다
-		//웹 소켓에서 사용하는 세션 값은 user의 값과 동일하다
-		//스프링에선 시큐리티 통한 세션관리 권장 
-		/* User user =
-		 * (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		 */
-//		오류!!! getAuthentication() returned null. It means that for Spring security, there is no currently authenticated user.
 		
 		System.out.println("user name : " + member.getName());
 		
 		System.out.println("normal chat page");
 		
 		mv.addObject("userid", member.getId());
+		mv.addObject("name", member.getName());
 		
 		return mv;
 		

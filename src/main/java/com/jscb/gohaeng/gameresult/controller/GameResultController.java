@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.jscb.gohaeng.admin.winnerinterview.service.WinnerService;
 import com.jscb.gohaeng.dto.LottoGamesDto;
 import com.jscb.gohaeng.gameresult.service.GameResultService;
 
@@ -26,6 +27,8 @@ public class GameResultController {
 	@Autowired
 	GameResultService gameResultService;
 	
+	@Autowired
+	private WinnerService winnerService;
 	
 	/*------------------------- lotto645 매핑------------------------------*/
 	
@@ -245,16 +248,38 @@ public class GameResultController {
 	
 	
 	/*------------------------- winnerinterview 매핑------------------------------*/
+	
 	@RequestMapping("winningnews/1")
-	public String winnerinterview() {
+	public ModelAndView winnerinterview(ModelAndView mView, HttpServletRequest request) {
 		
-		return "gameresult.winningnews.1";
+		winnerService.getList(request);
+		
+		mView.setViewName("gameresult.winningnews.1");
+		
+		return mView;
+		
 	}
+	
+	@RequestMapping("winningnews/1detail")
+	public ModelAndView getData(ModelAndView mView, int wiIndex) {
+		
+		winnerService.getData(mView, wiIndex);
+		
+		mView.setViewName("gameresult.winningnews.1detail");
+		
+		return mView;
+		
+	}
+	
+	
+	
 	@RequestMapping("winningnews/2")
 	public String winningnews2() {
 		
 		return "gameresult.winningnews.2";
 	}
+	
+	
 	/*------------------------- winnerinterview 매핑------------------------------*/
 	
 	

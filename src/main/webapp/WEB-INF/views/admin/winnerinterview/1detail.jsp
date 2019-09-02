@@ -13,35 +13,47 @@
 	</colgroup>
 	<thead>
 		<tr>
-			<th scope="row">제목:</th>
-			<td colspan="3" class="subject">소제목은 아직: ${dto.wiTitle}</td>
+			<th scope="row">제목</th>
+			<td colspan="3" class="subject">${dto.wiTitle}</td>
 		</tr>
 		<tr>
-			<th scope="row">당첨일:</th>
+			<th scope="row">당첨일</th>
 			<td>${dto.wiDrawDate}</td>
-			<th scope="row">조회수:</th>
+			<th scope="row">조회수</th>
 			<td>${dto.wiHit}</td>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td colspan="4" class="content">
-				${dto.wiContent}
-			</td>
+			<td colspan="4" class="content">${dto.wiContent}</td>
 		</tr>
 		<tr class="prev_next">
 			<th scope="row"><span class="prev">이전글</span></th>
-			<td colspan="3">다음글이 없습니다.</td>
+			<c:if test="${dto.prevNum ne 0 }">
+				<td><a href="1detail?wiIndex=${dto.prevNum}">${dto.prevTitle}</a></td>
+			</c:if>
+			<c:if test="${dto.prevNum eq 0 }">
+				<td>이전글이 없습니다.</td>
+			</c:if>
 		</tr>
 		<tr class="prev_next">
 			<th scope="row"><span class="next">다음글</span></th>
-			<td colspan="3"><a
-				href="javascript:showBoardDetail('/gameResult.do?method=highWinView&amp;txtNo=13833');">연금복권
-					소액구매가 가져다 준 1등 당첨과 삶의 활력!</a></td>
+			<c:if test="${dto.nextNum ne 0 }">
+				<td><a href="1detail?wiIndex=${dto.nextNum}">${dto.nextTitle}</a></td>
+			</c:if>
+			<c:if test="${dto.nextNum eq 0 }">
+				<td>다음글이 없습니다.</td>
+			</c:if>
 		</tr>
 	</tbody>
 </table>
-<div class="btn_common form write"><a href="1edit.do?wiIndex=${dto.wiIndex}">수정</a></div>
-<div class="btn_common form delete"><a href="1delete.do?wiIndex=${dto.wiIndex}">삭제</a></div>
-<div class="btn_common form list"><a href="1.do">목록</a></div>
+<div class="btn_common form write">
+	<a href="1editform?wiIndex=${dto.wiIndex}">수정</a>
+</div>
+<div class="btn_common form delete">
+	<a href="1delete?wiIndex=${dto.wiIndex}">삭제</a>
+</div>
+<div class="btn_common form list">
+	<a href="1">목록</a>
+</div>
 </main>

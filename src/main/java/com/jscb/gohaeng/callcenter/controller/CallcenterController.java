@@ -38,7 +38,7 @@ public class CallcenterController {
 
 	@RequestMapping("faq/all")
 	public ModelAndView faqAll(HttpServletRequest request, ModelAndView mView) {
-		int category = 5;
+		int category = 0; 
 		faqservice.getList(request, category);
 		// System.out.println("category"+category);
 		mView.setViewName("callcenter.faq.1");
@@ -48,7 +48,7 @@ public class CallcenterController {
 
 	 @RequestMapping("faq/lotto") 
 	 public ModelAndView faqLotto(HttpServletRequest request, ModelAndView mView) { 
-		int category = 1;
+		int category = 1; 
 		faqservice.getList(request, category);
 		mView.setViewName("callcenter.faq.2"); 
 		return mView; 
@@ -57,15 +57,15 @@ public class CallcenterController {
 	 
 	 @RequestMapping("faq/pension") 
 	 public ModelAndView faqPension(HttpServletRequest request, ModelAndView mView) {
-		 int category = 2;
-		 faqservice.getList(request, category);
+			int category = 2; 
+		 faqservice.getList(request, category );
 		 mView.setViewName("callcenter.faq.3"); 
 		 return mView; 
 	 }
 	 
 	 @RequestMapping("faq/etc") 
 	 public ModelAndView faqEtc(HttpServletRequest request, ModelAndView mView) { 
-		 int category = 3;
+			int category = 3; 
 		 faqservice.getList(request, category);
 		 mView.setViewName("callcenter.faq.4"); 
 		 return mView; 

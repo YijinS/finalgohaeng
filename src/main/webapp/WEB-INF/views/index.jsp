@@ -373,7 +373,7 @@
             <!-- <a class="btn-link text-secondary" href="#">+ 인터뷰 더보러가기</a> -->
             <div class="row">
                <div class="col text-center">
-                  <a class="btn-link text-secondary p-4" href="${pageContext.request.contextPath }/winnerinterview"> <i
+                  <a class="btn-link text-secondary p-4" href="${pageContext.request.contextPath }/gameresult/winningnews/1"> <i
                      class="material-icons align-middle">arrow_right</i> <span
                      class="align-middle text-decoration-none">인터뷰 더보러가기</span>
                   </a>

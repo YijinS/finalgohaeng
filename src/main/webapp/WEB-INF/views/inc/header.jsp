@@ -103,7 +103,7 @@
                                 <li><a href="#">연금복권520 당첨통계</a></li>
                                 <li><a href="#">당첨소식</a>
                                     <ul class="snb_dep3">
-                                        <li><a href="${pageContext.request.contextPath }/gameresult/winnerinterview">당첨자 인터뷰</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/gameresult/winningnews/1">당첨자 인터뷰</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">미수령 당첨금</a>

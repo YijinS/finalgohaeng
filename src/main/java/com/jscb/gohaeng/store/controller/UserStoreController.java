@@ -6,9 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -83,37 +85,40 @@ public class UserStoreController {
 
 		storeservice.getData(mView, storeIndex);
 
-		mView.setViewName("store.sellerinfo.1detail");
+		mView.setViewName("form.1detail");
 		return mView;
 
 	}
 
 	
-
-	//구와 관련된 리스트 뽑기 
-	@ResponseBody
-	@RequestMapping(value="ajax/selectGulist", produces ="application/json; charset=utf8") 
-	public String selectGulist(@ModelAttribute StoreDto dto ) {
-
-		List<StoreDto> list = storeservice.selectGulist(dto);
-
-		Gson gson = new Gson();
-		String json = gson.toJson(list);
-
-		return json;
-	}
 	
-	//검색란과 관련된 리스트 뽑기 
-		@ResponseBody
+	
+		@RequestMapping(value="ajax/selectGulist") 
+		public String selectGulist(@ModelAttribute StoreDto dto, HttpServletRequest request, Model model) {
+			String storeAddr = request.getParameter("storeAddr");
+			dto.setStoreAddr(storeAddr);
+			
+			List<StoreDto> list = storeservice.selectGulist(dto, request);					
+			
+			model.addAttribute("list", list);
+						
+
+			return "store/sellerinfo/1GuList";
+		}
+	
+
+	
 		@RequestMapping(value="ajax/selectStoreName", produces ="application/json; charset=utf8") 
-		public String selectStoreName(@ModelAttribute StoreDto dto ) {
+		public String selectStoreName(@ModelAttribute StoreDto dto, Model model, HttpServletRequest request ) {
 
-			List<StoreDto> list = storeservice.selectStoreName(dto);
-			System.out.println("list"+ list);
-			Gson gson = new Gson();
-			String json = gson.toJson(list);
+			String storeName = request.getParameter("storeName");
+			dto.setStoreName(storeName);
+			List<StoreDto> list = storeservice.selectStoreName(dto, request);
+			
+			model.addAttribute("list", list);
+			
 
-			return json;
+			return "store/sellerinfo/1sangho";
 		}
 
 

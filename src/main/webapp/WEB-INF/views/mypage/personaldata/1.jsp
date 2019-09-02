@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!-- 다음 주소  -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -175,13 +175,12 @@
 											<fmt:formatDate var="date" value="${dto.birthday }" pattern="yyyy-MM-dd" /> <td>${date}</td>
 										</tr>
 										
-										
 										<tr class="hp">
 											<th scope="row">
 												휴대폰번호<span class="req">*<span class="accessibility">별표</span></span>
 											</th>
 											<td>
-												<input id="mobile3" value="${dto.hp }"  type="text" > 
+												<input id="mobile3" value="${dto.hp }"  type="text" readonly="readonly" > 
 											<td>
 										</tr>
 
@@ -199,64 +198,22 @@
 											<th scope="row">주소</th>
 											<td>
 												<div class="brk">
-													<input type="text" name="zipCode" id="sample6_postcode" placeholder="우편번호">
+													<input type="text" name="zipCode" id="sample6_postcode" value="${fn:substring(dto.addr,0,5) }"/>
 													<input class="btn_common form" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 												</div>
-												<input type="text" size="30" name="addr1" id="sample6_address" value="${dto.addr }"><br>
+												<input type="text" size="30" name="addr1" id="sample6_address" value="${fn:substringAfter(dto.addr,' ')}"/><br>
+												<input type="text" size="30" name="addr2" id="sample6_extraAddress" value="(${fn:substringAfter(dto.addr,'(')}">
 												<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-												<input type="text" size="30" name="addr2" id="sample6_extraAddress" placeholder="참고항목">
 												<p class="comt_valid">이벤트 당첨 시 경품제공을 위한 주소정보입니다.</p>
 											</td>
 										</tr>
+										
+										
 									</tbody>
 								</table>
 							</div>
 							<!-- 개인정보 입력 end -->
-							<!-- 정보수신여부 및 관심항목 설정 start -->
-							<div class="group_content">
-								<div class="group_title">
-									<h4 class="title">정보수신여부 및 관심항목 설정</h4>
-								</div>
-								<table class="tbl_form_write">
-									<caption>SMS, 이메일, 판매원 모집 등 정보수신여부 설정</caption>
 
-									<colgroup>
-										<col style="width: 125px">
-										<col style="width: 325px">
-										<col style="width: 125px">
-										<col>
-									</colgroup>
-
-									<tbody>
-										<tr>
-											<th scope="row">SMS수신여부</th>
-											<td>
-												<input type="radio" name="checkSms" id="smsFlagY" value="1" checked="">
-												<label for="smsFlagY">예</label>
-												<input type="radio" name="checkSms" id="smsFlagN" value="0">
-												<label for="smsFlagN">아니오</label>
-											</td>
-
-											<th scope="row">이메일 수신여부</th>
-											<td>
-												<input type="radio" name="checkEmail" id="emailFlagY" value="1" checked="">
-												<label for="emailFlagY">예</label> 
-												<input type="radio" name="checkEmail" id="emailFlagN" value="0">
-												<label for="emailFlagN">아니오</label>
-											</td>
-										</tr>
-										<tr>
-											<th scope="row">판매원모집 <br>SMS 수신여부</th>
-											<td colspan="3">
-												<input type="radio" name="checkSales" id="intJoinSmsY" value="1">
-												<label for="intJoinSmsY">예</label>
-												<input type="radio" name="checkSales" id="intJoinSmsN" value="0" checked="">
-												<label for="intJoinSmsN">아니오</label>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
 							<!-- 정보수신여부 및 관심항목 설정 end -->
 							<div class="btns_submit">
 									<input type="button" class="btn_common lrg" onclick="mainForm.reset()" value="초기화"> 

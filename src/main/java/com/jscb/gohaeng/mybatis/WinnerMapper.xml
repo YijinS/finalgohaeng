@@ -12,24 +12,54 @@
 		<result property="wiRegDate" column="WI_REG_DATE" />
 	</resultMap>
 
-	<select id="getList" resultMap="WinnerDto">
-		SELECT WI_INDEX,WI_TITLE,
-		WI_REG_DATE, WI_CONTENT,
-		MEMBER_ID FROM WINNER_INTERVIEW ORDER BY
-		WI_INDEX ASC
+	<select id="getList" resultMap="WinnerDto" parameterType="com.jscb.gohaeng.dto.WinnerDto">
+		
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT WI_INDEX,WI_TITLE,
+					WI_REG_DATE, WI_CONTENT, MEMBER_ID 
+				FROM WINNER_INTERVIEW
+				ORDER BY WI_INDEX) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
+	
+	<!-- getcount -->
+<select id="getCount" parameterType="com.jscb.gohaeng.dto.WinnerDto" resultType="int">
+	SELECT NVL(MAX(ROWNUM), 0) FROM WINNER_INTERVIEW 
+	
+</select>
 
-	<select id="getData" parameterType="int"
-		resultMap="WinnerDto">
-		SELECT MEMBER_ID,WI_INDEX, WI_DRAW_DATE, WI_HIT, WI_TITLE,
-		WI_REG_DATE, WI_CONTENT
-		FROM WINNER_INTERVIEW WHERE WI_INDEX =
-		#{wiIndex}
+	<select id="getData" parameterType="int" resultMap="WinnerDto">
+		SELECT result1.*
+		FROM
+			(SELECT MEMBER_ID, WI_CATEGORY, WI_CONTENT, WI_DRAW_DATE, WI_HIT, WI_INDEX,WI_REG_DATE,WI_TITLE,  
+			LAG(WI_TITLE,1,'이전글') OVER(ORDER BY WI_INDEX DESC) AS prevTitle,
+			LAG(WI_INDEX, 1, 0) OVER(ORDER BY WI_INDEX DESC) AS prevNum,
+			LEAD(WI_INDEX, 1, 0) OVER(ORDER BY WI_INDEX DESC) AS nextNum,
+			LEAD(WI_TITLE,1,'다음글') OVER(ORDER BY WI_INDEX DESC) AS nextTitle
+			FROM WINNER_INTERVIEW
+			ORDER BY WI_INDEX DESC) result1
+		WHERE WI_INDEX=#{wiIndex}
+	
 	</select>
 
 	<delete id="delete" parameterType="int">
 		DELETE FROM WINNER_INTERVIEW WHERE WI_INDEX = #{wiIndex}
 		<!-- INT, STINRG으로 전달된 것이 하나면 #{NUM}말고 #{BABO}처럼다른 이름을 사용해도 된다. -->
 	</delete>
+	
+	<insert id="insert" parameterType="com.jscb.gohaeng.dto.WinnerDto">
+		INSERT INTO WINNER_INTERVIEW(WI_INDEX, MEMBER_ID, WI_CATEGORY, WI_CONTENT, WI_TITLE, WI_DRAW_DATE, WI_HIT)
+		                      VALUES(WINNER_SEQ.NEXTVAL, 'ADMIN', #{wiCategory}, #{wiContent}, #{wiTitle}, #{wiDrawDate}, 1)
+		                      
+	</insert>
+	
+	<update id="update" parameterType="com.jscb.gohaeng.dto.WinnerDto">
+		UPDATE WINNER_INTERVIEW
+		SET WI_CATEGORY = #{wiCategory}, WI_CONTENT = #{wiContent}, WI_TITLE = #{wiTitle}
+		WHERE WI_INDEX = #{wiIndex}
+	</update>
 
 </mapper>
