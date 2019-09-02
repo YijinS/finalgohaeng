@@ -76,7 +76,10 @@
 									},
 									success:function(data){
 										if(data.check == true){
+											if(data.enable == 1)
 												$("#login_form").submit();
+											else
+												alert("이메일 인증이 필요합니다.");
 										}
 										else
 											alert("아이디 또는 비밀번호가 틀렸습니다.");

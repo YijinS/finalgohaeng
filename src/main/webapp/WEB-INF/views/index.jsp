@@ -78,9 +78,10 @@
 <div class="img-portrait">
    <div class="container py-5">
       <div>
-         <h5 class="mb-2 text-white text-left">로또 6/45</h5>
+         <h5 class="mb-2 ml-3  mt-4 text-white text-left">로또 6/45</h5>
          <div class="col-lg-7">
-
+			<div class="mt-4 mb-5 border-top border-secondary">
+			</div>
             <div class="win_result">
                <h4 class="text-white">
                   <strong id="games">${lottoGame.games }</strong><strong>회</strong>
@@ -117,7 +118,7 @@
                         </c:forEach>
                      </div>
                   </div>
-                  <span class="plus-num">보너스 번호</span>
+                  <span class="plus-num" style="height: 30px">보너스 번호</span>
                   <div class="num bonus">
 
                      <div id="bns">
@@ -142,11 +143,32 @@
                   </div>
                </div>
             </div>
-            <a href="javascript:void(0)" id="prev_btn"><img
+            <a class="mt-5" href="javascript:void(0)" id="prev_btn"><img
                src="${pageContext.request.contextPath }/resources/images/index/btn_roll_arrow.png"></a>
-            <a href="javascript:void(0)" id="next_btn"><img
+            <a class="mt-5" href="javascript:void(0)" id="next_btn"><img
                src="${pageContext.request.contextPath }/resources/images/index/btn_roll_arrow.png"></a>
-
+			<div class="mt-4 border-bottom border-secondary">
+				<p class="mb-5 text-white font-weight-bold">1등 10게임 총 당첨금액 약 187억원 <span class="font-weight-light">(1게임당 당첨금액 약 19억원)</span></p>
+			</div>
+			<div class="mt-4" style="width: 130%;">
+				<div class="d-flex justify-content-start align-items-center text-white"><h5>다음회차</h5><span class="date ml-3 font-weight-lighter">2019-08-30 23:00 현재</span></div>
+				<div id="prize-money" class="container mt-3">
+				  <div class="row" style="position: relative;">
+				    <div class="col-6 col-sm-3 border border-secondary text-white py-1 px-4">예상당첨금</div>
+				    <div class="col-6 col-sm-3 border border-secondary text-white py-1 px-4">누적판매금</div>
+				
+				    <!-- Force next columns to break to new line -->
+				    <div class="w-100"></div>
+				
+				    <div class="col-6 col-sm-3 border border-secondary py-3 text-white"><span>11,894,367,485<span class="accessibility">원</span></span></div>
+				    <div class="col-6 col-sm-3 border border-secondary py-3 text-white"><span>49,455,380,000<span class="accessibility">원</span></span></div>		  
+				  </div>
+				</div>
+				<!-- <div style="width:160px; height: 92px; background-color: #eee; position:absolute; right: 16px; top:323px;"><span style="top: 20px;">구매하기</span></div> -->
+				<a href="${pageContext.request.contextPath }/purchase/lotto645" style="color: #222;">
+					<span id="go-purchase" class="h4">구매하기</span>
+				</a>
+			</div>
          </div>
          <script>
             $(function(){
@@ -181,15 +203,15 @@
                      for(var i=0; i<6; i++){
                         var num = wnums.substring(i*2,(i+1)*2);
                                if(num < 11){
-                                    var tag = "<span class='ball_645 lrg ball1'>"+num+"</span>";
+                                    var tag = "<span style='margin: 0 2px;' class='ball_645 lrg ball1'>"+num+"</span>";
                         }else if(num < 21){
-                           var tag = "<span class='ball_645 lrg ball2'>"+num+"</span>";
+                           var tag = "<span style='margin: 0 2px;' class='ball_645 lrg ball2'>"+num+"</span>";
                         }else if(num < 31){
-                           var tag = "<span class='ball_645 lrg ball3'>"+num+"</span>";
+                           var tag = "<span style='margin: 0 2px;' class='ball_645 lrg ball3'>"+num+"</span>";
                         }else if(num < 41){
-                           var tag = "<span class='ball_645 lrg ball4'>"+num+"</span>";
+                           var tag = "<span style='margin: 0 2px;' class='ball_645 lrg ball4'>"+num+"</span>";
                         }else{
-                           var tag = "<span class='ball_645 lrg ball5'>"+num+"</span>";
+                           var tag = "<span style='margin: 0 2px;' class='ball_645 lrg ball5'>"+num+"</span>";
                         }
 
                         resultNums.append(tag);
@@ -236,15 +258,15 @@
                      for(var i=0; i<6; i++){
                         var num = wnums.substring(i*2,(i+1)*2);
                                if(num < 11){
-                                    var tag = "<span class='ball_645 lrg ball1'>"+num+"</span>";
+                                    var tag = "<span style='margin: 0 2px;' class='ball_645 lrg ball1'>"+num+"</span>";
                         }else if(num < 21){
-                           var tag = "<span class='ball_645 lrg ball2'>"+num+"</span>";
+                           var tag = "<span style='margin: 0 2px;' class='ball_645 lrg ball2'>"+num+"</span>";
                         }else if(num < 31){
-                           var tag = "<span class='ball_645 lrg ball3'>"+num+"</span>";
+                           var tag = "<span style='margin: 0 2px;' class='ball_645 lrg ball3'>"+num+"</span>";
                         }else if(num < 41){
-                           var tag = "<span class='ball_645 lrg ball4'>"+num+"</span>";
+                           var tag = "<span style='margin: 0 2px;' class='ball_645 lrg ball4'>"+num+"</span>";
                         }else{
-                           var tag = "<span class='ball_645 lrg ball5'>"+num+"</span>";
+                           var tag = "<span style='margin: 0 2px;' class='ball_645 lrg ball5'>"+num+"</span>";
                         }
 
                         resultNums.append(tag);
@@ -541,9 +563,9 @@
             src="${pageContext.request.contextPath }/resources/images/index/logo-footer-w.png"
             width="120px" alt="">
          </a>
-         <dl>
+         <dl class="mt-4 ml-5 pl-2">
             <dt class="text-white">Copyright (c)</dt>
-            <dd class="text-white ">2019 JSCB gohaenglotto. All rights
+            <dd class="text-white font-weight-lighter">2019 JSCB gohaenglotto. All rights
                reserved</dd>
          </dl>
       </div>

@@ -122,6 +122,7 @@ public class GuestServiceImpl implements GuestService {
 		if(dto != null)
 			if(BCrypt.checkpw(pwd, dto.getPwd())) {
 				map.put("check", true);
+				map.put("enable", dto.getAuthStatus());
 				return map;
 			}
 

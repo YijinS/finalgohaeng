@@ -382,9 +382,18 @@
 						</div>
 						<div class="footer">
 							<div class="set set1">
-								<span>보유예치금</span> <input type="button" class="button sml" id=""
-									name="" value="충전"> <strong> <span
-									id="myDeposit">${sessionScope.member.deposit }</span><span>원</span>
+								<span>보유예치금</span> 
+								<input type="button" class="button sml" id="depositlink" name="" value="충전">
+								<script>
+									$(function(){
+										var btn = $("#depositlink");
+										btn.click(function(){
+											location.href = "${pageContext.request.contextPath}/mypage/deposit/2";
+										});
+									});
+								</script> 
+								<strong>
+									<span id="myDeposit">${sessionScope.member.deposit }</span><span>원</span>
 								</strong>
 							</div>
 							<div class="set set2">
