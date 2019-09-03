@@ -79,7 +79,7 @@ img{
                     	   <li class="setting"><a href="${pageContext.request.contextPath }/guest/logout">로그아웃</a></li>
                         </c:when>
                         <c:when test="${sessionScope.member.id ne 'ADMIN' || empty sessionScope.member}">
-                        	<script>alert('ADMIN 계정이 아닙니다. 다시 로그인해주시길 바랍니다');</script>
+                        	<script>alert('ADMIN 계정이 아닙니다. 다시 로그인해주세요');</script>
                         	<% session.invalidate(); %> 
                         	  <script>location.href = "${pageContext.request.contextPath}/"; </script>
                         	 <li class="shop"><a href="${pageContext.request.contextPath }/guest/login">로그인</a></li>

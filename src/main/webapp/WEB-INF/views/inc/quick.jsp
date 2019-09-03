@@ -9,10 +9,12 @@
 			<c:when test="${not empty sessionScope.member.id}">
 				<ul>
 					<li id="chatting"><a id="chatting" 
-						onclick="window.open(this.href, '_blanck', 'width=600, height=700'); return false"
+						onclick="window.open(this.href, '_blanck', 'width=600px, height=697px'); return false"
 						href="${pageContext.request.contextPath}/chatting" title="새창">
 							<img src="https://image.flaticon.com/icons/svg/1256/1256649.svg"
 							alt="" style="width: 50px; heigth: 50px" />
+							
+	
 					</a></li>
 				</ul>
 			</c:when>
