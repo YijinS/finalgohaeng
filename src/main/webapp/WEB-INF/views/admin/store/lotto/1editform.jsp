@@ -12,14 +12,14 @@
 		<form method="post" action="1edit.do?storeIndex=${dto.storeIndex}">
 			<table>
 				<thead>
-					<!--  num이라는 파라미터를 가져가는 용도 -->
+					<%-- <!--  num이라는 파라미터를 가져가는 용도 -->
 					<input type="hidden" value="${dto.storeIndex}" name="storeIndex" />
 					<!-- display용 -->
 					<!-- disabled된 것은 form 전송도 안된다.  -->
 					<tr> 인덱스
 						<input type="text" value="${dto.storeIndex}" name="storeIndex"
 							disabled />
-					</tr>
+					</tr> --%>
 					<tr>
 						<th scope="row">판매점</th>
 					</tr>

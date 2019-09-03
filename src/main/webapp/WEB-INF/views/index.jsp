@@ -348,21 +348,23 @@
             <div class="card-group mb-4">
                <div class="card pt-5 mb-3 border-white mx-1">
                   <div class="card-body text-center">
+                  	  <a class="btn-link h4 text-secondary p-2" href="${pageContext.request.contextPath }/gameresult/winningnews/1detail?wiIndex=1">
                      <img class="rounded-circle mb-4" id="img-cover"
                         src="${pageContext.request.contextPath }/resources/images/index/winner_01.jpg">
+                        </a>
                      <h4 class="mb-3">서울 영등포구 양평동</h4>
                      <p class="mb-2 text-secondary lead mx-3">스피또 1등 당첨이라니! 너무 떨려서
                         소감 쓰기도 힘들어요!</p>
                   </div>
                   <div class="card-footer bg-transparent border-0 text-center py-4">
-                     <a class="btn-link h4 text-secondary p-2" href="${pageContext.request.contextPath }/admin/winner_interview/1detail?wiIndex=1"> <img
-                        src="${pageContext.request.contextPath }/resources/images/index/ico_seller_speetto.png" />
+                     <a class="btn-link h4 text-secondary p-2" href="${pageContext.request.contextPath }/gameresult/winningnews/1detail?wiIndex=1">
+                      <img src="${pageContext.request.contextPath }/resources/images/index/ico_seller_speetto.png" />
                      </a>
                   </div>
                </div>
                <div class="card pt-5 mb-3 border-white mx-1">
                   <div class="card-body text-center">
-                  	 <a class="btn-link h4 text-secondary p-2" href="${pageContext.request.contextPath }/admin/winner_interview/1detail?wiIndex=2">
+                  	 <a class="btn-link h4 text-secondary p-2" href="${pageContext.request.contextPath }/gameresult/winningnews/1detail?wiIndex=2">
                      <img class="rounded-circle mb-4" id="img-cover"
                         src="${pageContext.request.contextPath }/resources/images/index/winner_02.jpg"
                         height="100">
@@ -372,14 +374,14 @@
                         연금복권520 1, 2등 동시 당첨!</p>
                   </div>
                   <div class="card-footer bg-transparent border-0 text-center py-4">
-                     <a class="btn-link h4 text-secondary p-2" href="#"> <img
+                     <a class="btn-link h4 text-secondary p-2" href="${pageContext.request.contextPath }/gameresult/winningnews/1detail?wiIndex=2"> <img
                         src="${pageContext.request.contextPath }/resources/images/index/ico_seller_520.png" />
                      </a>
                   </div>
                </div>
                <div class="card pt-5 mb-3 border-white mx-1">
                   <div class="card-body text-center">
-                    <a class="btn-link h4 text-secondary p-2" href="${pageContext.request.contextPath }/admin/winner_interview/1detail?wiIndex=8">
+                    <a class="btn-link h4 text-secondary p-2" href="${pageContext.request.contextPath }/gameresult/winningnews/1detail?wiIndex=8">
                      <img class="rounded-circle mb-4" id="img-cover"
                         src="${pageContext.request.contextPath }/resources/images/index/default_profile.jpg"
                         height="100">
@@ -389,7 +391,7 @@
                         연금복권 1등 당첨!</p>
                   </div>
                   <div class="card-footer bg-transparent border-0 text-center py-4">
-                     <a class="btn-link h4 text-secondary p-2" href="#"> <img
+                     <a class="btn-link h4 text-secondary p-2" href="${pageContext.request.contextPath }/gameresult/winningnews/1detail?wiIndex=8"> <img
                         src="${pageContext.request.contextPath }/resources/images/index/ico_seller_520.png" />
                      </a>
                   </div>

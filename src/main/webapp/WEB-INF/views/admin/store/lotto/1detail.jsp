@@ -74,7 +74,7 @@
 
 <section class="popup_win_common popup_find_location">
 	<header class="popup_win_header">
-		<h1>만물</h1>
+		<h1>판매점</h1>
 	</header>
 	<div class="popup_win_content">
 

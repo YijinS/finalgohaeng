@@ -78,6 +78,7 @@ body{
 }
 
 .fixed-bottom{
+<<<<<<< HEAD
    position: absolute;
     right: 0px;
     bottom: -2px;
@@ -88,6 +89,18 @@ body{
 
 #sendBtn{
    background-color: #faf400;
+=======
+	position: absolute;
+    right: 0px;
+    bottom: -2px;
+    width: 100%;
+    margin-bottom: 2px;
+    
+}
+
+#sendBtn{
+	background-color: #faf400;
+>>>>>>> refs/remotes/origin/master
     padding: 11px 21.2px;
     margin: -1px;
     margin-top: 0px;
@@ -114,22 +127,22 @@ body{
 
 <body style="overflow: hidden;">
    <div id="wrapper">
-      <div class="container-fluid1">
-         <h2>채팅방 (id: ${userid})</h2>
-      </div>
+	   <div class="container-fluid1">
+	      <h2>채팅방 (id: ${userid})</h2>
+	   </div>
       <br>
-         <div>
-            <div class="well" id="chatdata">
-               <!-- User Session Info Hidden -->
-                <input type="hidden" value='${userid}' id="sessionuserid">
-                <input type="hidden" value='${name}' id="sessionname">
-            </div><br>
-            <div class="fixed-bottom">
-               <textarea id="message" cols="50" ></textarea>
-               <input type="button" id="sendBtn" value="전송" />
-             </div>
-            </div>
-         </div>
+	      <div>
+	         <div class="well" id="chatdata">
+	            <!-- User Session Info Hidden -->
+	             <input type="hidden" value='${userid}' id="sessionuserid">
+	             <input type="hidden" value='${name}' id="sessionname">
+	         </div><br>
+	         <div class="fixed-bottom">
+	            <textarea id="message" cols="50" ></textarea>
+	            <input type="button" id="sendBtn" value="전송" />
+	          </div>
+	         </div>
+	      </div>
 </body>
 
 <script type="text/javascript">

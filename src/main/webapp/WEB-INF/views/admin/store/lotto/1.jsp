@@ -2,6 +2,47 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<style>
+.content_seller_info .wrap_option2 .box_option {
+    float: left;
+    width: 35.5%;
+    height: 220px;
+    padding-bottom: 0;
+    margin: 0 -1px 0 0;
+}
+
+.content_seller_info .wrap_option1 .box_option .forms input[type="text"] + .btn_common {
+    margin-left: 1px;
+    margin-top: 10px;
+}
+
+
+.content_seller_info .wrap_option1 .box_option .forms input[type="text"] + .btn_common {
+    margin-left: -1px;
+    margin-top: 10px;
+}
+
+.content_seller_info .note_result_search.bottom {
+    height: 3px;
+    margin-top: 5px;
+}
+
+.content_seller_info .wrap_option1 .box_option .forms select + input[type="text"], .content_seller_info .wrap_option1 .box_option .forms select + .btn_common, .content_seller_info .wrap_option1 .box_option .forms select + select {
+    margin-left: 5px;
+    height: 31px;
+    margin-top: 1px;
+}
+
+.content_seller_info .wrap_option2 .box_option ~ .box_option {
+        margin-left: 30px;
+}
+
+#rtlrSttus {
+    margin-top: 2px;
+}
+
+</style>
 <aside>
    <div id="sidebar">
 
@@ -312,9 +353,17 @@
 
 					<div class="group_title">
 						
-						<h4 class="searchResult">
+						<%-- <h4 class="searchResult">
 							검색결과 : <span class="color_key3" id="searchResult">${storeAddr}</span> 
-						</h4>
+						</h4> --%>
+						<p class="note_result_search bottom">
+							<img
+								src="${pageContext.request.contextPath}/resources/images/common/ico_closed_store.png"
+								alt="폐점"> 폐점된 판매점입니다.
+						</p>
+
+
+				
 						<div class="action">
 							<div class="search">
 
@@ -457,13 +506,6 @@
 						title="새창">글쓰기</a>
 
 				</div>
-				<p class="note_result_search bottom">
-					<img
-						src="${pageContext.request.contextPath}/resources/images/common/ico_closed_store.png"
-						alt="폐점"> 폐점된 판매점입니다.
-				</p>
-
-
 				
 
 			</div>
