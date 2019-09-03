@@ -5,41 +5,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style>
-
-.alert.alert-warning{
-    background-color: #fff363;
-    border-color: #eff255;
-}
-
-.alert.alert-info{
-   background-color: #5aabffad;
-    border-color: #3b68b9;
-}
-
-.alert.sessionid{
-
-	 border-color: black;
-}
-
-.container-fluid1{
-text-align: center;
-
-
-}
-
-
-.well{
-	background: #5aabffad;
-
-}
-
-.well1{
-
-	background: yellow;
-}
-</style>
-
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/goheang_ico.ico" type="image/x-icon">
+ <link rel="icon" href="${pageContext.request.contextPath }/resources/images/goheang_ico.ico" type="image/x-icon">
 <link rel="icon" type="image/png" href="resources/images/svnicon.png" />
 <!-- favicon fix -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,60 +14,125 @@ text-align: center;
 <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script> 
 <!-- msie 문제 해결 -->
-<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> <!-- 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">  -->
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <!-- Zebra-Dialog CDN -->
 <script src="resources/js/zebra_dialog.src.js"></script>
 <link rel="stylesheet" href="resources/css/zebra_dialog.css" type="text/css" />
 <!-- SocketJS CDN -->
 <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
-
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+   Date nowTime = new Date();
+   SimpleDateFormat sf = new SimpleDateFormat("MM.dd - a hh:mm:ss");
+%>
 <title>Chatting page</title>
+
+<style>
+div,h2, html, body {
+   font-family: 'Apple SD Gothic Neo',arial,sans-serif;
+    padding: 0px;
+    margin: 0px;
+    color: #031853;
+}
+
+h2{    padding: 7px;}
+
+body{
+   background: url("${pageContext.request.contextPath }/resources/images/chat1.png" ) no-repeat ;
+}
+
+
+
+.alert.alert-warning{
+    /* background-color: #fff363;
+    border-color: #eff255; */
+     opacity: 0.67;
+}
+
+.alert.alert-info{
+   /* background-color: #5aabffad;
+    border-color: #3b68b9; */
+     opacity: 0.67;
+}
+
+.alert.sessionid{
+    border-color: black;
+}
+
+.container-fluid1{
+   text-align: center;
+   height: 50px;
+   margin-top: 10px;
+   background: #fe632d6e;
+}
+
+
+.well{
+   background: #bad8f8ad;
+}
+
+.well1{
+   background: #f7ffb9ad;
+}
+
+.fixed-bottom{
+   position: absolute;
+    right: 0px;
+    bottom: -2px;
+    width: 100%;
+    margin-bottom: 2px;
+    
+}
+
+#sendBtn{
+   background-color: #faf400;
+    padding: 11px 21.2px;
+    margin: -1px;
+    margin-top: 0px;
+    float: right;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+#message{
+    height: 36px;
+    width: 521px;
+    opacity: 0.67;
+    resize: none;
+}
+
+</style>
 </head>
 
-<body>
-   <div class="container-fluid1">
-      <h2>채팅방 (id: ${userid})</h2>
-   </div>
-<!--       <div>
-         <input type="button" id="chattinglistbtn" value="채팅 참여자 리스트">
-      </div> -->
-      <br>
-      <div>
-         <div class="well" id="chatdata">
-            <!-- User Session Info Hidden -->
-             <input type="hidden" value='${userid}' id="sessionuserid">
-             <input type="hidden" value='${name}' id="sessionname">
-         </div><br>
-         <div class="fixed-bottom">
-            <input type="text" id="message" style="height:60px; width: 300px;" /> 
-            <input type="button" id="sendBtn" value="전송" />
-         </div>
+<body style="overflow: hidden;">
+   <div id="wrapper">
+      <div class="container-fluid1">
+         <h2>채팅방 (id: ${userid})</h2>
       </div>
+      <br>
+         <div>
+            <div class="well" id="chatdata">
+               <!-- User Session Info Hidden -->
+                <input type="hidden" value='${userid}' id="sessionuserid">
+                <input type="hidden" value='${name}' id="sessionname">
+            </div><br>
+            <div class="fixed-bottom">
+               <textarea id="message" cols="50" ></textarea>
+               <input type="button" id="sendBtn" value="전송" />
+             </div>
+            </div>
+         </div>
 </body>
-<!-- <script type="text/javascript">
-$(function(){
-   $("#chattinglistbtn").click(function(){
-      var infodialog = new $.Zebra_Dialog('<strong>Message:</strong><br><br><p>채팅방 참여자 리스트</p>',{
-         title: 'Chatting List',
-         type: 'confirmation',
-         print: false,
-         width: 260,
-         buttons: ['닫기'],
-         onClose: function(caption){
-            if(caption == '닫기'){
-               //alert('yes click');
-            }
-         }
-      });
-    });
-});
-</script> -->
 
 <script type="text/javascript">
-
 //websocket을 지정한 URL로 연결
 var sock= new SockJS("<c:url value="/echo"/>");
 sock.onopen = onOpen;
@@ -152,6 +184,9 @@ function onMessage(evt){  //변수 안에 function자체를 넣음.
    var sessionId = null;
    $(".container-fluid1").html("");
    
+   var today = new Date();
+   var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+   
    console.log("data : " + data);
    //문자열을 splite//
    var strArray = data.split('|');
@@ -177,35 +212,34 @@ function onMessage(evt){  //변수 안에 function자체를 넣음.
    //나와 상대방이 보낸 메세지를 구분하여 영역을 나눈다.//
    if(sessionId == currentuser_session){
       var printHTML = "<div class='well1'>";
-		      printHTML += "<div class='alert alert-info'>";
-		      printHTML += "<strong>["+sessionName+"] : "+message+"</strong>";
-		      printHTML += "</div>";
-		      printHTML += "</div>";
-	    
-      
-		      $("#chatdata").append(printHTML);
-		      $("#chatdata").scrollTop($("#chatdata")[0].scrollHeight);
+            printHTML += "<div class='alert alert-info'>";
+            printHTML += "<strong>"+sessionName+"("+time+") : "+message+"</strong>";
+            printHTML += "</div>";
+            printHTML += "</div>";
+            
+            $("#chatdata").append(printHTML);
+            $("#chatdata").scrollTop($("#chatdata")[0].scrollHeight);
       
    }else if(currentuser_session == 'ADMIN'){
-	 		 var printHTML = "<div class='well'>";
-	         printHTML += "<div class='alert sessionid'>";
-			 printHTML += "<strong>["+sessionName+"] : "+message+"</strong>";
-			 printHTML += "</div>";
-			 printHTML += "</div>";
-			 
-			 $("#chatdata").append(printHTML);
-			 $("#chatdata").scrollTop($("#chatdata")[0].scrollHeight);
-			  
+           var printHTML = "<div class='well'>";
+            printHTML += "<div class='alert sessionid'>";
+            printHTML += "<strong>"+sessionName+"("+time+") : "+message+"</strong>";
+          printHTML += "</div>";
+          printHTML += "</div>";
+          
+          $("#chatdata").append(printHTML);
+          $("#chatdata").scrollTop($("#chatdata")[0].scrollHeight);
+           
    }else if(sessionId != currentuser_session){
-		      var printHTML = "<div class='well1'>";
-		      printHTML += "<div class='alert alert-warning'>";
-		      printHTML += "<strong>["+sessionName+"] -> "+message+"</strong>";
-		      printHTML += "</div>";
-		      printHTML += "</div>";
-		      
-		      $("#chatdata").append(printHTML);
-		      $("#chatdata").scrollTop($("#chatdata")[0].scrollHeight);
-	   } 
+            var printHTML = "<div class='well1'>";
+            printHTML += "<div class='alert alert-warning'>";
+            printHTML += "<strong>"+sessionName+"("+time+") : "+message+"</strong>";
+            printHTML += "</div>";
+            printHTML += "</div>";
+            
+            $("#chatdata").append(printHTML);
+            $("#chatdata").scrollTop($("#chatdata")[0].scrollHeight);
+      } 
    
    
    $(".container-fluid1").append('<h2>채팅방 (id: '+ currentuser_session + '/'+sessionName+')</h2>'); 
@@ -214,7 +248,8 @@ function onMessage(evt){  //변수 안에 function자체를 넣음.
 }
     
 function onClose(evt){
-    alert("(관리자/사용자)와의 채팅이 연결이 끊겼습니다");
+    alert("(관리자/사용자)와의 채팅 연결이 끊겼습니다");
 }    
+
 </script>
 </html>

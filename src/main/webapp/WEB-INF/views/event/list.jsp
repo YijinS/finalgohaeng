@@ -85,7 +85,7 @@
 							</c:forEach>
 						</ul>
 					</div>
-					<div class="">
+					<div style="justify-content: center; text-align: center;">
 						<ul class="pagination">
 							<c:choose>
 								<c:when test="${startPageNum ne 1 }">
