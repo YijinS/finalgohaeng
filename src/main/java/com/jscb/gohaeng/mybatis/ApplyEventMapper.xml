@@ -4,22 +4,24 @@
 	<resultMap type="com.jscb.gohaeng.dto.ApplyEventDto" id="ApplyEventDto">
 		<result property="index" column="EVENT_INDEX" />
 		<result property="id" column="MEMBER_ID" />
-		<result property="result" column="AE_RESULT" />	
+		<result property="result" column="AE_RESULT" />
+		<result property="title" column="EVENT_TITLE"/>
+		<result property="drawDate" column="EVENT_DRAW_DATE"/>	
 	</resultMap>
 	
 	<select id="getCount" parameterType="com.jscb.gohaeng.dto.ApplyEventDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
-		FROM APPLY_EVENT
+		FROM APPLY_EVENT A
+		INNER JOIN EVENT E ON E.EVENT_INDEX = A.EVENT_INDEX
 		<choose>
-			<when test="index != null and id != null">
-				WHERE EVENT_INDEX LIKE '%${index}%' OR
-				MEMBER_ID LIKE '%${id}%'
+			<when test="title != null">
+				WHERE EVENT_TITLE LIKE '%${title}%' OR
 			</when>
-			<when test="index != null">
-				WHERE EVENT_INDEX LIKE '%${index}%'
+			<when test="id != null">
+				WHERE MEMBER_ID LIKE '%${id}%'
 			</when>
-			<when test="result != null">
-				WHERE AE_RESULT LIKE '%${result}%'
+			<when test="drawDate != 0">
+				WHERE EVENT_DRAW_DATE LIKE '%${drawDate}%'
 			</when>
 		</choose>
 	</select>
@@ -29,26 +31,24 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT *
-				FROM APPLY_EVENT
+				(SELECT A.*, E.EVENT_TITLE, E.EVENT_DRAW_DATE 
+				FROM APPLY_EVENT A
+				INNER JOIN EVENT E ON E.EVENT_INDEX = A.EVENT_INDEX
+				WHERE A.AE_RESULT = 1 
 				<choose>
-					<when test="index != 0">
-						WHERE EVENT_INDEX LIKE '%${index}%'
+					<when test="title != null">
+						AND A.EVENT_INDEX LIKE '%${index}%'
 					</when>
 					<when test="id != null">
-						WHERE MEMBER_ID LIKE '%${id}%'
+						AND A.MEMBER_ID LIKE '%${id}%'
 					</when>
-					<when test="result != 0">
-						WHERE AE_RESULT LIKE '%${result}%'
+					<when test="drawDate != null">
+						AND E.EVENT_DRAW_DATE LIKE '%${drawDate}%'
 					</when>
 				</choose>
-				WHERE AE_RESULT = 1 ORDER BY EVENT_INDEX DESC) result1)
+				ORDER BY A.EVENT_INDEX DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
-	
-<!-- 	<select id="getApplyList" resultMap="ApplyEventDto">
-		SELECT * FROM APPLY_EVENT ORDER BY EVENT_INDEX
-	</select> -->
 	
 	<insert id="insert" parameterType="com.jscb.gohaeng.dto.ApplyEventDto">
 		INSERT INTO APPLY_EVENT(EVENT_INDEX, MEMBER_ID, AE_RESULT)

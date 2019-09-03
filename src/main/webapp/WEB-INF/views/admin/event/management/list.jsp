@@ -78,11 +78,11 @@
 				<select name="condition"
 					id="condition">
 					<option value="index"
-						<c:if test="${condition eq 'index' }">selected</c:if>>번호</option>
+						<c:if test="${condition eq 'title' }">selected</c:if>>이벤트명</option>
 					<option value="id"
 						<c:if test="${condition eq 'id' }">selected</c:if>>아이디</option>
 					<option value="result"
-						<c:if test="${condition eq 'result' }">selected</c:if>>결과</option>
+						<c:if test="${condition eq 'regDate' }">selected</c:if>>추첨일</option>
 				</select> <input type="text" name="keyword" placeholder="검색어 입력..."
 					value="${keyword }" />
 				<button type="submit" class="btn btn-primary btn-sm">검색</button>
@@ -92,55 +92,58 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th style="width: 10%;"><input class="form-check-input mt-0 ml-0" type="checkbox" name="selected_all"></th>
-					<th style="width: 20%;">번호</th>
-					<th style="width: 50%;">아이디</th>
-					<th style="width: 20%;">결과</th>
+					<th style="width: 10%; text-align: center;"><input class="form-check-input mt-0 ml-0" type="checkbox" name="selected_all"></th>
+					<th style="width: 15%; text-align: center;">추첨일</th>
+					<th style="width: 15%; text-align: center;">아이디</th>
+					<th style="width: ; text-align: center;">이벤트명</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="applyEvent" items="${applyEventList}">
+				<c:forEach var="applyEvent" items="${data.list}">
+					<fmt:formatDate value="${applyEvent.drawDate }" var="drawDate" pattern="yyyy-MM-dd" />
 					<tr>
-						<td><input class="form-check-input mt-0 ml-0" name="ckBox" type="checkbox" value="${applyEvent.index}" id="inlineCheckbox1"></td>
-						<td>${applyEvent.index}</td>
-						<td>${applyEvent.id}</td>
-						<td>${applyEvent.result}</td>
+						<td style="text-align: center;"><input class="form-check-input mt-0 ml-0" name="ckBox" type="checkbox" value="${applyEvent.index}" id="inlineCheckbox1"></td>
+						<td style="text-align: center;">${drawDate}</td>
+						<td style="text-align: center;">${applyEvent.id}</td>
+						<td>${applyEvent.title}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<a class="btn btn-primary" id="draw" href="#" role="button">추첨</a>
-		<a class="btn btn-secondary" id="drop" href="#" role="button">낙첨</a>
-		<div class="page-display">
+		<div class="mt-5">
+			<a class="btn btn-primary" id="draw" href="#" role="button">추첨</a>
+			<a class="btn btn-secondary" id="drop" href="#" role="button">낙첨</a>
+		</div>
+		<div class="page-display row justify-content-md-center mt-4">
 			<ul class="pagination">
 				<c:choose>
-					<c:when test="${startPageNum ne 1 }">
+					<c:when test="${data.startPageNum ne 1 }">
 						<li><a
-							href="list?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedKeyword }">
+							href="list?pageNum=${data.startPageNum-1 }&condition=${data.condition }&keyword=${encodedKeyword }">
 								&laquo; </a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="disabled"><a href="javascript:">&laquo;</a></li>
 					</c:otherwise>
 				</c:choose>
-				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }"
+				<c:forEach var="i" begin="${data.startPageNum }" end="${data.endPageNum }"
 					step="1">
 					<c:choose>
-						<c:when test="${i eq pageNum }">
+						<c:when test="${i eq data.pageNum }">
 							<li class="active"><a
-								href="list?pageNum=${i }&condition=${condition }&keyword=${encodedKeyword }">${i }</a></li>
+								href="list?pageNum=${i }&condition=${data.condition }&keyword=${data.encodedKeyword }">${i }</a></li>
 						</c:when>
 						<c:otherwise>
 							<li><a
-								href="list?pageNum=${i }&condition=${condition }&keyword=${encodedKeyword }">${i }</a></li>
+								href="list?pageNum=${i }&condition=${data.condition }&keyword=${data.encodedKeyword }">${i }</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 
 				<c:choose>
-					<c:when test="${endPageNum lt totalPageCount }">
+					<c:when test="${data.endPageNum lt data.totalPageCount }">
 						<li><a
-							href="list?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedKeyword }">
+							href="list?pageNum=${data.endPageNum+1 }&condition=${data.condition }&keyword=${data.encodedKeyword }">
 								&raquo; </a></li>
 					</c:when>
 					<c:otherwise>
