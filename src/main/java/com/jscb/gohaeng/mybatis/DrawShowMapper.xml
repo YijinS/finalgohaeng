@@ -33,9 +33,12 @@
 		parameterType="com.jscb.gohaeng.dto.DrawShowDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0) FROM APPLY_DRAWSHOW
 		<choose>
+			<when test="name != null and name !=''">
+				WHERE MEMBER_NAME = #{name}
+			</when>
 			<when test="category != null">
 				WHERE AD_CATEGORY = ${category} AND AD_ENABLE=0
-			</when>
+			</when>		
 		</choose>
 	</select>
 

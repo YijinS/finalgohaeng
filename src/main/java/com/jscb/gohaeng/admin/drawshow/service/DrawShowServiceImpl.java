@@ -120,16 +120,23 @@ public void getMyList(ModelAndView mView, HttpSession session,HttpServletRequest
 		}
 		int startRowNum = 1 + (pageNum - 1) * PAGE_ROW_COUNT;
 		int endRowNum = pageNum * PAGE_ROW_COUNT;
+		System.out.println("********name"+member.getName());
+		dto.setName(member.getName());
 		int totalRow = drawshowdao.getCount(dto);
 		int totalPageCount = (int) Math.ceil(totalRow / (double) PAGE_ROW_COUNT);
+		System.out.println("*******totalRow"+totalRow);
+		System.out.println("*******pagenum"+pageNum);
+		System.out.println("*******totalPageCount"+totalPageCount);
 		int startPageNum = 1 + ((pageNum - 1) / PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
 		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
+		System.out.println("*******startPageNum"+startPageNum);
+		System.out.println("*******endPageNum"+endPageNum);
 		if (totalPageCount < endPageNum) {
 			endPageNum = totalPageCount; 
 		}
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
-		
+		System.out.println("************"+totalPageCount);
 		if (memberId != null) {
 			dto.setMemberId(memberId);
 			List<DrawShowDto> list = drawshowdao.getMyList(dto);

@@ -6,7 +6,6 @@
 
 	System.out.print("상호 화면 이동 완료 ");
 %>
-
 <table class="tbl_data tbl_data_col" id="resultTable">
 					<caption>상호명 조회 결과</caption>
 					<colgroup>

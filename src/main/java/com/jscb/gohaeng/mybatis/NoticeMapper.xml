@@ -26,7 +26,7 @@
 			WHERE NOTICE_CONTENT LIKE '%${content}%'
 		</when>
 	</choose>
-	ORDER BY NOTICE_INDEX DESC) result1)
+	ORDER BY NOTICE_REG_DATE DESC) result1)
 	WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 </select>
 <select id="getListQty" parameterType="int" resultMap="NoticeDto">

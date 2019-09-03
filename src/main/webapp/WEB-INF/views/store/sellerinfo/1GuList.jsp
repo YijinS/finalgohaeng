@@ -6,6 +6,7 @@
 
 	System.out.print("화면 이동 완료 ");
 %>
+
 <table class="tbl_data tbl_data_col" id="resultTable">
 					<caption>상호명, 전화번호, 소재지, 위치 등 로또6/45 판매점 조회 결과</caption>
 					<colgroup>
@@ -70,12 +71,10 @@
 									</c:otherwise>
 					
 								</c:choose> 
-					
 								<!-- 로또, 연금 판매 알림 -->
 						</tr>
 						</c:forEach>
 				</tbody>
-
 </table>
 <div class="page-display">
 	<div class="paginate_common" id="page_box">

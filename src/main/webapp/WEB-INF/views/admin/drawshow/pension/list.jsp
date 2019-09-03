@@ -13,7 +13,7 @@
                   <a id="QA_Lnb_Menu2486" href="${pageContext.request.contextPath}/admin/notice/list" menuno="2486" treeno="2703" class="product"> 공지사항</a>
             </li>
             
-            <li class="depth1 collapsable">
+            <li class="depth1">
                <a id="QA_Lnb_Menu2487" href="${pageContext.request.contextPath}/admin/callcenter/qna/list" menuno="2487" treeno="2707" class="member"> 고객센터 </a>
             </li>
             <li class="depth1">
@@ -23,7 +23,7 @@
             <li class="depth1">
                <a id="QA_Lnb_Menu2489" href="${pageContext.request.contextPath}/admin/store/1" menuno="2489" treeno="2712" class="board"> 판매점 </a>
             </li>
-            <li class="depth1 collapsable">
+            <li class="depth1">
                 <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/event/list" menuno="2488" treeno="2711" class="member"> 이벤트 </a>
             </li>
                
@@ -44,18 +44,6 @@
             <a href="#">
                <img src="${pageContext.request.contextPath }/resources/images/index/logo-header.png" alt="고행복권" style="margin-left: -6px;" >
             </a>
-           <!-- 
-            <strong class="title">파일 업로드 사용 용량</strong> &nbsp;<a href="#none"
-               class="btnUploader" id="ec-smartmode-lnb-file-uploader">업로더</a>
-            <div class="info">
-               <div class="gauge">
-                  <span class="value" style="width: 8%"></span>
-               </div>
-               <div class="data">
-                  <strong class="value">8%</strong> <span class="capacity"><strong
-                     class="value">15MB</strong> / 200MB</span>
-               </div>
-            </div> -->
          </div>
       </div>
       <!-- LNB End -->
@@ -70,11 +58,6 @@
 			<main id="article" class="contentsArticle">
 			<div class="header_article">
 				<h3 class="sub_title">연금 520 참관신청</h3>
-				<p class="location">
-					<a class="home" href="/"> Home </a><span class="gt">&gt;</span><a
-						href="#">당첨결과</a><span class="gt">&gt;</span><a href="#"><span>로또6/45</span></a><span
-						class="gt">&gt;</span><a href="#"> 추첨방송 참관신청</a>
-				</p>
 			</div>
 			<div>
 				<div class="content_wrap content_result_visitlist">
@@ -85,23 +68,19 @@
 						<table class="tbl_data tbl_data_col">
 							<caption>번호, 제목, 모집기간, 추첨일자 등 참관신청 당첨자 안내</caption>
 							<colgroup>
-
 								<col style="width: 40px">
 								<col style="width: 40px">
-								<col style="width: 100px">
-								<col style="width: 195px">
-								<col style="width: 195px">
 								<col style="width: 110px">
-
-
+								<col style="width: 170px">
+								<col style="width: 110px">
 							</colgroup>
 							<thead>
 								<tr>
-									<th scope="col"><input type="checkbox" name="selected_all"></th>
-									<th scope="col">번호</th>
-									<th scope="col">작성자</th>
-									<th scope="col">모집기간</th>
-									<th scope="col">참관일자</th>
+									<th scope="col" style="text-align: center;"><input type="checkbox" name="selected_all"></th>
+									<th scope="col" style="text-align: center;">번호</th>
+									<th scope="col" style="text-align: center;">작성자</th>
+									<th scope="col" style="text-align: center;">모집기간</th>
+									<th scope="col" style="text-align: center;">참관일자</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -114,7 +93,7 @@
 									<c:otherwise>
 										<c:forEach var="list" items="${list}">
 											<tr>
-												<th><input type="checkbox" name="ckBox"
+												<th style="text-align: center;"><input type="checkbox" name="ckBox"
 													id="cBox${list.index}" value="${list.index}"></th>
 												<td>${list.index}</td>
 												<td>${list.name}</td>

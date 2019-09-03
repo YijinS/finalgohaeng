@@ -10,7 +10,7 @@
                   <a id="QA_Lnb_Menu2486" href="${pageContext.request.contextPath}/admin/notice/list" menuno="2486" treeno="2703" class="product" style="color: black;font-weight: bold;"> 공지사항</a>
             </li>
             
-            <li class="depth1 collapsable">
+            <li class="depth1">
                <a id="QA_Lnb_Menu2487" href="${pageContext.request.contextPath}/admin/callcenter/qna/list" menuno="2487" treeno="2707" class="member"> 고객센터 </a>
             </li>
             <li class="depth1">
@@ -20,11 +20,11 @@
             <li class="depth1">
                <a id="QA_Lnb_Menu2489" href="${pageContext.request.contextPath}/admin/store/1" menuno="2489" treeno="2712" class="board"> 판매점 </a>
             </li>
-            <li class="depth1 collapsable">
+            <li class="depth1">
                 <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/event/list" menuno="2488" treeno="2711" class="member"> 이벤트 </a>
             </li>
                
-                <li class="depth1 collapsable">
+                <li class="depth1">
                    <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/drawshow/lotto/list" menuno="2488" treeno="2711" class="member"> 참관신청 </a>
                </li>
          </ul>
@@ -33,18 +33,6 @@
             <a href="#">
                <img src="${pageContext.request.contextPath }/resources/images/index/logo-header.png" alt="고행복권" style="margin-left: -6px;" >
             </a>
-           <!-- 
-            <strong class="title">파일 업로드 사용 용량</strong> &nbsp;<a href="#none"
-               class="btnUploader" id="ec-smartmode-lnb-file-uploader">업로더</a>
-            <div class="info">
-               <div class="gauge">
-                  <span class="value" style="width: 8%"></span>
-               </div>
-               <div class="data">
-                  <strong class="value">8%</strong> <span class="capacity"><strong
-                     class="value">15MB</strong> / 200MB</span>
-               </div>
-            </div> -->
          </div>
       </div>
       <!-- LNB End -->
@@ -90,27 +78,28 @@
 				<table class="tbl_data tbl_data_col">
 					<caption>번호, 제목, 첨부파일, 등록일등 공지사항 목록</caption>
 					<colgroup>
-						<col style="width: 85px">
-						<col>
-						<col style="width: 110px">
-						<col style="width: 130px">
+						<col style="width: 100px">
+						<col style="width: 600px">
+						<col style="width: 100px">
+						<col style="width: 180px">
+						<col style="width: 100px">
 					</colgroup>
 					<thead>
 						<tr>
-							<th scope="col">번호</th>
-							<th scope="col">제목</th>
-							<th scope="col">첨부파일</th>
-							<th scope="col">등록일</th>
-							<th scope="col">조회수</th>
+							<th scope="col" style="text-align: center;">번호</th>
+							<th scope="col" style="text-align: center;">제목</th>
+							<th scope="col" style="text-align: center;">첨부파일</th>
+							<th scope="col" style="text-align: center;">등록일</th>
+							<th scope="col" style="text-align: center;">조회수</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="list" items="${list}">
-						<fmt:formatDate value="${list.regDate }" var="regDate" pattern="yyyy-MM-dd HH:mm:ss"/>
+						<fmt:formatDate value="${list.regDate }" var="regDate" pattern="yyyy-MM-dd"/>
 							<tr>
 								<td>${list.index}</td>
-								<td><a href="detail.do?index=${list.index}">${list.title}</a></td>
-								<td>파일</td>
+								<td style="text-align: left; padding-left: 30px;"><a href="detail.do?index=${list.index}">${list.title}</a></td>
+								<td><a class="btn_attach" href="#none" onclick="fileDownload(24)"></a></td>
 								<td>${regDate}</td>
 								<td>${list.hit}</td>
 							</tr>
@@ -166,3 +155,6 @@
 	</div>
 </div>
 </main>
+<style>
+	a {color:#222;}
+</style>

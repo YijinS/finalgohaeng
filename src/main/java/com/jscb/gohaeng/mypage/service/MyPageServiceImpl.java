@@ -147,14 +147,14 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public void update(HttpServletRequest request, HttpSession session) {
 		MemberDto member = (MemberDto) session.getAttribute("member");
-		MemberDto dto = new MemberDto();
 		// id에 해당하는 회원 정보가 있는지 확인하기!
 		String id = member.getId();
+		MemberDto dto = memberDao.getData(id);
 		
 		String email = request.getParameter("email");
 		String addr = request.getParameter("zipCode") + request.getParameter("addr1") + request.getParameter("addr2");
 
-		dto.setId(id);
+		/* dto.setId(id); */
 		dto.setEmail(email);
 		dto.setAddr(addr);
 

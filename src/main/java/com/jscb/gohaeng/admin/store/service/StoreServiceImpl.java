@@ -141,7 +141,6 @@ public class StoreServiceImpl implements StoreService {
 	public List<StoreDto> selectStoreName(StoreDto dto, HttpServletRequest request) {
 		
 		dto = makePagenation(request, dto);
-		
 		List<StoreDto> list = storedao.getStoreName(dto);
 		
 		request.setAttribute("list", list);
@@ -177,7 +176,7 @@ public class StoreServiceImpl implements StoreService {
 		if (totalPageCount < endPageNum) {
 			endPageNum = totalPageCount; // 보정해준다.
 		}
-
+		
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
 		
