@@ -1,13 +1,15 @@
 package com.jscb.gohaeng.dto;
 
-import java.util.List;
+import java.util.Date;
 
 public class ApplyEventDto {
 
 	private int index;
 	private String id;
 	private int result;
-	private List<ApplyEventDto> list;
+	
+	private String title;
+	private Date drawDate;
 	
 	private int startRowNum;
 	private int endRowNum;
@@ -19,13 +21,14 @@ public class ApplyEventDto {
 	private int nextNum;
 	
 	public ApplyEventDto() {}
-	public ApplyEventDto(int index, String id, int result, List<ApplyEventDto> list, int startRowNum, int endRowNum,
+	public ApplyEventDto(int index, String id, int result, String title, Date drawDate, int startRowNum, int endRowNum,
 			String prevTitle, String nextTitle, int prevNum, int nextNum) {
 		super();
 		this.index = index;
 		this.id = id;
 		this.result = result;
-		this.list = list;
+		this.title = title;
+		this.drawDate = drawDate;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 		this.prevTitle = prevTitle;
@@ -33,7 +36,6 @@ public class ApplyEventDto {
 		this.prevNum = prevNum;
 		this.nextNum = nextNum;
 	}
-
 
 	public int getIndex() {
 		return index;
@@ -59,13 +61,18 @@ public class ApplyEventDto {
 		this.result = result;
 	}
 	
-	public List<ApplyEventDto> getList() {
-		return list;
+	public String getTitle() {
+		return title;
 	}
-	public void setList(List<ApplyEventDto> list) {
-		this.list = list;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	
+	public Date getDrawDate() {
+		return drawDate;
+	}
+	public void setDrawDate(Date drawDate) {
+		this.drawDate = drawDate;
+	}
 	public int getStartRowNum() {
 		return startRowNum;
 	}

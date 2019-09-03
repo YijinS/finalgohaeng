@@ -31,7 +31,7 @@
 								<li id="07-07-02"><a
 									href="${pageContext.request.contextPath }/mypage/personaldata/changepwd"><span>
 											비밀번호변경</span></a></li>
-								<li id="07-07-03"><a href="#"><span> 회원탈퇴 </span></a></li>
+								<li id="07-07-03"><a href="${pageContext.request.contextPath }/guest/withdrawform"><span> 회원탈퇴 </span></a></li>
 							</ul></li>
 					</ul>
 				</div>

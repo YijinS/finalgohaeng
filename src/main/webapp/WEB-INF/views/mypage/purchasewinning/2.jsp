@@ -23,7 +23,7 @@
 											구매당첨내역</span></a></li>
 								<li id="07-02-02" class="active"><a
 									href="${pageContext.request.contextPath }/mypage/purchasewinning/2"><span>
-											미확인복권내역</span></a></li>
+											이벤트당첨내역</span></a></li>
 								<li id="07-02-03"><a
 									href="${pageContext.request.contextPath }/mypage/purchasewinning/3"><span>
 											고액당첨내역</span></a></li>
@@ -48,106 +48,75 @@
 			<!-- ----------메인컨텐츠---------- 영역 -->
 			<div id="article" class="contentsArticle">
 				<div class="header_article">
-					<h3 class="sub_title">미확인복권내역</h3>
+					<h3 class="sub_title">이벤트당첨내역</h3>
 					<p class="location">
 						<a class="home" href="/"> Home </a><span class="gt">&gt;</span><a
 							href="#">마이페이지</a><span class="gt">&gt;</span><a href="#"><span>구매/당첨</span></a><span
-							class="gt">&gt;</span><a href="#"> 미확인복권내역</a>
+							class="gt">&gt;</span><a href="#"> 이벤트당첨내역</a>
 					</p>
 				</div>
 				<div>
-					<!-- -------------------------------------------------------------------------------------- -->
-					<div class="content_wrap content_history_noscratch">
+					<div class="content_wrap content_history_buy">
+						<!-- -------------------------------------------------------------------------------------- -->
+						<!-- 테이블 left start-->
 						<form name="frm" id="frm" method="post">
 							<input type="hidden" name="nowPage" id="nowPage" value="">
-							<div class="search_note">
-								<ul>
-									<li>구매 후 당첨여부를 확인하지 않은 복권내역을 조회할 수 있습니다.</li>
-									<li>최근 <strong>1년간의 내역</strong>을 확인할 수 있습니다.
-									</li>
-								</ul>
-							</div>
-							<!-- pc -->
+							<input type="hidden" name="searchStartDate" id="searchStartDate"
+								value=""> <input type="hidden" name="searchEndDate"
+								id="searchEndDate" value="">
+
 							<table class="tbl_data tbl_form tbl_search_opt">
-								<caption>복권별, 조회결과 정렬 순서 등의 미확인복권 조회 조건을 입력합니다.</caption>
+								<caption>복권별, 당/낙첨여부, 조회기간, 조회결과순서 등의 구매당첨내역 조회 조건을
+									입력합니다.</caption>
 								<colgroup>
 									<col style="width: 130px">
 									<col>
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row">복권유형</th>
-										<td><select name="lottoId" id="lottoId" class="cb_ty01"
-											title="복권유형 선택">
+										<th scope="row">이벤트 유형</th>
+										<td><select name="lottoId" id="lottoId" title="복권유형 선택">
 												<option value="" selected="">전체보기</option>
-
-
-
-
-												<option value="LI23">캐치미</option>
-
-
-
-
-
-
-												<option value="LP32">연금복권520</option>
-
-
-
-
-
-
-												<option value="LD10">스피드키노</option>
-
-
-
-
-
-
-												<option value="LD11">메가빙고</option>
-
-
-
-
-
-
 												<option value="LO40">로또6/45</option>
-
-
-
-
-
-
-												<option value="LI21">트리플럭</option>
-
-
-
-
-
-
-												<option value="LI22">트레져헌터</option>
-
-
-
-
-
-
-												<option value="LD14">파워볼</option>
-
-
-
-
-
-
-												<option value="LD20">더블잭마이더스</option>
-
-
-
+												<option value="LP32">연금복권520</option>
+												<option value="LD10">스피드키노</option>
 										</select></td>
 									</tr>
+									<!-- 20170316 당·낙첨여부 시작 -->
 									<tr>
-										<th scope="row">조회결과순서</th>
+										<th scope="row">당/낙첨여부</th>
+										<td><select name="winGrade" id="winGrade"
+											title="당/낙첨여부 선택">
+												<option value="2" selected="">전체보기</option>
+												<option value="1">당첨내역</option>
+												<option value="0">낙첨내역</option>
+										</select></td>
+									</tr>
+									<!-- 20170316당·낙첨여부 끝 -->
+									<tr>
+										<th scope="row">조회기간</th>
+										<td><input type="text" id="calendarStartDt"
+											name="calendarStartDt" maxlength="8" value=""
+											autocomplete="off" title="조회 시작날짜" class="hasDatepicker"><img
+											class="ui-datepicker-trigger"
+											src="${pageContext.request.contextPath }/resources/images/common/ico-calendar.png"
+											alt="조회 시작날짜 선택" title="조회 시작날짜 선택"> <span class="dash">~</span>
+											<input type="text" id="calendarEndDt" name="calendarEndDt"
+											maxlength="8" value="" autocomplete="off" title="조회 종료날짜"
+											class="hasDatepicker"><img
+											class="ui-datepicker-trigger"
+											src="${pageContext.request.contextPath }/resources/images/common/ico-calendar.png"
+											alt="조회 종료날짜 선택" title="조회 종료날짜 선택"> <script
+												src="/js/jquery-ui.js"></script>
+											<link rel="stylesheet" type="text/css" href="/css/ui-lightness/jquery-ui-1.8.17.custom.css" media="all" />
+
+										<span class="period"> <a class="btn_common form"
+												href="#">당일</a> <a class="btn_common form" href="#">1주일</a>
+												<a class="btn_common form" href="#">1개월</a>
+										</span></td>
+									</tr>
+									<tr>
+										<th scope="row">조회결과 순서</th>
 										<td><input type="radio" id="sortOrder1" name="sortOrder"
 											value="DESC" checked="checked"><label
 											for="sortOrder1">최근내역이 위로</label> <input type="radio"
@@ -162,44 +131,42 @@
 						</div>
 						<div class="group_content">
 							<div class="group_title">
-								<h4 class="title">미확인내역</h4>
+								<h4 class="title">당첨내역</h4>
 							</div>
 							<div>
-								<table class="tbl_data tbl_data_col" id="commonList">
-									<caption>구입일자, 복권명, 회차, 수량, 주문번호 등 미확인복권 조회 결과</caption>
-
+								<table class="tbl_data tbl_data_col">
+									<caption>구입일자, 복권명, 회차, 번호, 매수, 당첨결과, 당첨금, 추첨일 정보 등
+										구매당첨내역 조회 결과</caption>
 									<colgroup>
-										<col style="width: 150px;">
-										<col style="width: 150px;">
 										<col style="width: 100px;">
-										<col style="width: 100px;">
+										<col style="width: 130px;">
+										<col style="width: 90px;">
 										<col>
+										<col style="width: 80px;">
+										<col style="width: 80px">
+										<col style="width: 140px;">
+										<col style="width: 100px;">
 									</colgroup>
-
-
 									<thead>
 										<tr>
 											<th scope="col">구입일자</th>
 											<th scope="col">복권명</th>
 											<th scope="col">회차</th>
-
-											<th scope="col">수량</th>
-											<th scope="col">주문번호</th>
-
+											<th scope="col">선택번호/복권번호</th>
+											<th scope="col">구입매수</th>
+											<th scope="col">당첨결과</th>
+											<th scope="col">당첨금</th>
+											<th scope="col">추첨일</th>
 										</tr>
 									</thead>
 									<tbody>
-
-
 										<tr>
-											<td class="nodata" colspan="5">조회 결과가 없습니다.</td>
+											<td colspan="8" class="nodata">조회 결과가 없습니다.</td>
 										</tr>
-
 									</tbody>
 								</table>
 							</div>
 						</div>
-						<!-- -------------------------------------------------------------------------------------- -->
 					</div>
 				</div>
 			</div>

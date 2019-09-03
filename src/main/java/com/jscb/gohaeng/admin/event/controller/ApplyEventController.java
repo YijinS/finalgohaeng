@@ -4,29 +4,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.jscb.gohaeng.admin.event.service.ApplyEventService;
-import com.jscb.gohaeng.dto.ApplyEventDto;
 
 @RequestMapping("/admin/event/management/")
 @Controller
 public class ApplyEventController {
-
+	
 	@Autowired
 	private ApplyEventService applyEventService;
-	
+	/*
 	@RequestMapping("list")
 	public ModelAndView appliedMemberList(ModelAndView mView
 			, HttpServletRequest request) {
@@ -35,6 +30,24 @@ public class ApplyEventController {
 		mView.setViewName("admin.event.management.list");
 		return mView;
 	}
+	*/
+	@RequestMapping("list")
+	public ModelAndView appliedMemberList(ModelAndView mView
+			,@RequestParam(name = "page",defaultValue = "1") Integer page
+			,@RequestParam(name = "condition",defaultValue = "") String condition
+			,@RequestParam(name = "keyword",defaultValue = "") String keyword) {
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("page", page);
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		
+		mView.addObject("save", map);
+		mView.addObject("data", applyEventService.getApplyEventList(map));
+		mView.setViewName("admin.event.management.list");
+		return mView;
+	}
+	
 	
 	@RequestMapping(value = "draw", method = RequestMethod.POST)
 	@ResponseBody

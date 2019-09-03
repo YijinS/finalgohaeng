@@ -16,6 +16,19 @@ public class ApplyEventDaoImpl implements ApplyEventDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	
+	@Override
+	public List<ApplyEventDto> getList(ApplyEventDto applyEventDto) {
+		
+		return sqlSession.selectList("applyEvent.getList", applyEventDto);
+	}
+	
+	@Override
+	public int getCount(ApplyEventDto applyEventDto) {
+		
+		return sqlSession.selectOne("applyEvent.getCount", applyEventDto);
+	}
+
 	@Override
 	public int insert(ApplyEventDto applyEventDto) {
 		
@@ -36,18 +49,6 @@ public class ApplyEventDaoImpl implements ApplyEventDao {
 	}
 
 	@Override
-	public List<ApplyEventDto> getList(ApplyEventDto applyEventDto) {
-		
-		return sqlSession.selectList("applyEvent.getList", applyEventDto);
-	}
-
-	@Override
-	public int getCount(ApplyEventDto applyEventDto) {
-		
-		return sqlSession.selectOne("applyEvent.getCount", applyEventDto);
-	}
-
-	@Override
 	public void updateWin(int index, String id) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("index", index);
@@ -64,6 +65,7 @@ public class ApplyEventDaoImpl implements ApplyEventDao {
 		sqlSession.update("applyEvent.updateLose", map);
 		
 	}
+
 
 
 

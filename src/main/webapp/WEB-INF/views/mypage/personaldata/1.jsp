@@ -89,7 +89,7 @@
                         <li id="07-07-02"><a
                            href="${pageContext.request.contextPath }/mypage/personaldata/changepwd"><span>
                                  비밀번호변경</span></a></li>
-                        <li id="07-07-03"><a href="#"><span> 회원탈퇴 </span></a></li>
+                        <li id="07-07-03"><a href="${pageContext.request.contextPath }/guest/withdrawform"><span> 회원탈퇴 </span></a></li>
                      </ul></li>
                </ul>
             </div>
@@ -104,7 +104,7 @@
                      Home </a><span class="gt">&gt;</span><a
                      href="${pageContext.request.contextPath }/guest/login">회원서비스</a><span
                      class="gt">&gt;</span><a
-                     href="${pageContext.request.contextPath }/guest/signup">회원가입</a>
+                     href="${pageContext.request.contextPath }/mypage/personaldata.editForm">개인정보수정</a>
                </p>
             </div>
 
@@ -198,7 +198,7 @@
                      </div>
                      <!-- 개인정보 입력 end -->
                      <!-- 정보수신여부 및 관심항목 설정 start -->
-                     <div class="group_content">
+                    <%--  <div class="group_content">
                         <div class="group_title">
                            <h4 class="title">정보수신여부 및 관심항목 설정</h4>
                         </div>
@@ -238,7 +238,7 @@
                               </tr>
                            </tbody>
                         </table>
-                     </div>
+                     </div> --%>
                      <!-- 정보수신여부 및 관심항목 설정 end -->
                      <div class="btns_submit">
                         <input type="button" class="btn_common lrg"

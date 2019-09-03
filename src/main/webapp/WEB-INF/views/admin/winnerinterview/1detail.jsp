@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <aside>
    <div id="sidebar">
 
@@ -12,7 +12,7 @@
                   <a id="QA_Lnb_Menu2486" href="${pageContext.request.contextPath}/admin/notice/list" menuno="2486" treeno="2703" class="product"> 공지사항</a>
             </li>
             
-            <li class="depth1 collapsable">
+            <li class="depth1">
                <a id="QA_Lnb_Menu2487" href="${pageContext.request.contextPath}/admin/callcenter/qna/list" menuno="2487" treeno="2707" class="member"> 고객센터 </a>
             </li>
             <li class="depth1">
@@ -22,11 +22,11 @@
             <li class="depth1">
                <a id="QA_Lnb_Menu2489" href="${pageContext.request.contextPath}/admin/store/1" menuno="2489" treeno="2712" class="board"> 판매점 </a>
             </li>
-            <li class="depth1 collapsable">
+            <li class="depth1">
                 <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/event/list" menuno="2488" treeno="2711" class="member"> 이벤트 </a>
             </li>
                
-                <li class="depth1 collapsable">
+                <li class="depth1">
                    <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/drawshow/lotto/list" menuno="2488" treeno="2711" class="member"> 참관신청 </a>
                </li>
          </ul>
@@ -35,18 +35,6 @@
             <a href="#">
                <img src="${pageContext.request.contextPath }/resources/images/index/logo-header.png" alt="고행복권" style="margin-left: -6px;" >
             </a>
-           <!-- 
-            <strong class="title">파일 업로드 사용 용량</strong> &nbsp;<a href="#none"
-               class="btnUploader" id="ec-smartmode-lnb-file-uploader">업로더</a>
-            <div class="info">
-               <div class="gauge">
-                  <span class="value" style="width: 8%"></span>
-               </div>
-               <div class="data">
-                  <strong class="value">8%</strong> <span class="capacity"><strong
-                     class="value">15MB</strong> / 200MB</span>
-               </div>
-            </div> -->
          </div>
       </div>
       <!-- LNB End -->
@@ -69,7 +57,8 @@
 		</tr>
 		<tr>
 			<th scope="row">당첨일</th>
-			<td>${dto.wiDrawDate}</td>
+			<fmt:formatDate var="date" value="${dto.wiDrawDate}" pattern="yyyy-MM-dd" />
+			<td>${date}</td>
 			<th scope="row">조회수</th>
 			<td>${dto.wiHit}</td>
 		</tr>

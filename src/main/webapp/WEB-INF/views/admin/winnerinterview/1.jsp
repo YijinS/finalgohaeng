@@ -13,7 +13,7 @@
                   <a id="QA_Lnb_Menu2486" href="${pageContext.request.contextPath}/admin/notice/list" menuno="2486" treeno="2703" class="product"> 공지사항</a>
             </li>
             
-            <li class="depth1 collapsable">
+            <li class="depth1">
                <a id="QA_Lnb_Menu2487" href="${pageContext.request.contextPath}/admin/callcenter/qna/list" menuno="2487" treeno="2707" class="member"> 고객센터 </a>
             </li>
             <li class="depth1">
@@ -23,11 +23,11 @@
             <li class="depth1">
                <a id="QA_Lnb_Menu2489" href="${pageContext.request.contextPath}/admin/store/1" menuno="2489" treeno="2712" class="board"> 판매점 </a>
             </li>
-            <li class="depth1 collapsable">
+            <li class="depth1">
                 <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/event/list" menuno="2488" treeno="2711" class="member"> 이벤트 </a>
             </li>
                
-                <li class="depth1 collapsable">
+                <li class="depth1">
                    <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/drawshow/lotto/list" menuno="2488" treeno="2711" class="member"> 참관신청 </a>
                </li>
          </ul>
@@ -36,18 +36,6 @@
             <a href="#">
                <img src="${pageContext.request.contextPath }/resources/images/index/logo-header.png" alt="고행복권" style="margin-left: -6px;" >
             </a>
-           <!-- 
-            <strong class="title">파일 업로드 사용 용량</strong> &nbsp;<a href="#none"
-               class="btnUploader" id="ec-smartmode-lnb-file-uploader">업로더</a>
-            <div class="info">
-               <div class="gauge">
-                  <span class="value" style="width: 8%"></span>
-               </div>
-               <div class="data">
-                  <strong class="value">8%</strong> <span class="capacity"><strong
-                     class="value">15MB</strong> / 200MB</span>
-               </div>
-            </div> -->
          </div>
       </div>
       <!-- LNB End -->
@@ -76,11 +64,11 @@
 								<img src="${pageContext.request.contextPath}/resources/images/store/ico_seller_520.png" alt="연금복권520">
 							</span>
 						</c:when>
-						<c:otherwise>
+						<c:when test="${list.wiCategory eq 3}">
 							<span class="pic"> 
-							<img src="${pageContext.request.contextPath}/resources/images/store/ico_seller_645.png" alt="스피또1000">
-						</span>
-						</c:otherwise>
+								<img src="${pageContext.request.contextPath}/resources/images/store/ico_seller_speetto.png" alt="연금복권520">
+							</span>
+						</c:when>
 					</c:choose>
 					 <!-- 카테고리 1이면 로또 2면 연금  -->
 						<div class="summary">
@@ -89,12 +77,12 @@
 							<span class="date"><strong>작성일: </strong>
 							<fmt:formatDate value="${list.wiRegDate}" pattern="yyyy-MM-dd" /></span>
 							<br>
-							<p class="comment">
+							<!-- <p class="comment">
 								<strong>소감한마디 : </strong><span></span>
-							</p>
+							</p> -->
 						</div>
 						<div class="action">
-							<a class="btn_common mid" href="1detail?wiIndex=${list.wiIndex}">${list.memberId}
+							<a class="btn_common mid" href="1detail?wiIndex=${list.wiIndex}">1등 당첨자
 								인터뷰 보기</a>
 						</div>
 						</li>

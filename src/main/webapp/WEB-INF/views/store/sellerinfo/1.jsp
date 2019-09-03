@@ -20,7 +20,7 @@
 								<ul class="lnb_dep2" style="display: block;">
 									<li id="04-01-01" class="active"><a
 										href="#"><span>
-												로또6/45판매점 조회</span></a></li>
+												로또6/45, 연금520 판매점 조회</span></a></li>
 								</ul></li>
 							<li id="04-02"><a
 								href="#"
@@ -44,7 +44,7 @@
 				<!-- ----------메인컨텐츠---------- 영역 -->
 				<div id="article" class="contentsArticle">
 					<div class="header_article">
-						<h3 class="sub_title">로또6/45판매점 조회</h3>
+						<h3 class="sub_title">로또6/45, 연금520 판매점 조회</h3>
 						<p class="location">
 							<a class="home" href="/"> Home </a><span class="gt">&gt;</span><a
 								href="#">판매점</a><span class="gt">&gt;</span><a

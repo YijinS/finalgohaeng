@@ -4,12 +4,14 @@ package com.jscb.gohaeng.admin.winnerinterview.service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jscb.gohaeng.dao.WinnerDao;
+import com.jscb.gohaeng.dto.MemberDto;
 import com.jscb.gohaeng.dto.WinnerDto;
 
 @Service
@@ -26,8 +28,11 @@ public class WinnerServiceImpl implements WinnerService {
 	
 	@Override
 	public void getList(HttpServletRequest request) {
-		WinnerDto dto = new WinnerDto();
-		
+		WinnerDto dto = new WinnerDto();/*
+										 * WinnerDto winner = (WinnerDto)session.getAttribute("wiCategory"); int
+										 * wiCategory = winner.getWiCategory(); dto = winnerDao.getData(wiCategory);
+										 * System.out.println("wiCategory");
+										 */
 		//보여줄 페이지의 번호
 				int pageNum=1;
 				//보여줄 페이지의 번호가 파라미터로 전달되는지 읽어와 본다.	
@@ -77,7 +82,7 @@ public class WinnerServiceImpl implements WinnerService {
 
 	@Override
 	public void getData(ModelAndView mView, int wiIndex) {
-		WinnerDto dto = winnerDao.getDate(wiIndex);
+		WinnerDto dto = winnerDao.getData(wiIndex);
 		mView.addObject("dto", dto);
 		
 	}

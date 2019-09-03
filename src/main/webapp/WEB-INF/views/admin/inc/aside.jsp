@@ -16,7 +16,7 @@
            		 <a id="QA_Lnb_Menu2486" href="${pageContext.request.contextPath}/admin/notice/list" menuno="2486" treeno="2703" class="product"> 공지사항</a>
             </li>
             
-            <li class="depth1 collapsable">
+            <li class="depth1">
 	            <a id="QA_Lnb_Menu2487" href="${pageContext.request.contextPath}/admin/callcenter/qna/list" menuno="2487" treeno="2707" class="member"> 고객센터 </a>
 	               <ul>
 	                  <li class=""><a id="QA_Lnb_Menu74"  href="${pageContext.request.contextPath}/admin/callcenter/qna/list" menuno="74"  treeno="2708" class=""> 1:1상담 </a>
@@ -32,11 +32,11 @@
             <li class="depth1">
             	<a id="QA_Lnb_Menu2489" href="${pageContext.request.contextPath}/admin/store/1" menuno="2489" treeno="2712" class="board"> 판매점 </a>
             </li>
-            <li class="depth1 collapsable">
+            <li class="depth1">
                 <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/event/list" menuno="2488" treeno="2711" class="member"> 이벤트 </a>
             </li>
                
-                <li class="depth1 collapsable">
+                <li class="depth1">
 	                <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/drawshow/lotto/list" menuno="2488" treeno="2711" class="member"> 참관신청 </a>
 	                <ul>
 		                <li class="">

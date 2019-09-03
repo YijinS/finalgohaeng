@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,7 @@ public class WinnerInterviewController{
 	private WinnerService winnerService;
 
 	@RequestMapping("1")
-	public ModelAndView alist(ModelAndView mView, HttpServletRequest request) {
+	public ModelAndView list(ModelAndView mView, HttpServletRequest request) {
 		winnerService.getList(request);
 		
 		mView.setViewName("admin.winnerinterview.1");
