@@ -356,16 +356,18 @@
                         소감 쓰기도 힘들어요!</p>
                   </div>
                   <div class="card-footer bg-transparent border-0 text-center py-4">
-                     <a class="btn-link h4 text-secondary p-2" href="#"> <img
+                     <a class="btn-link h4 text-secondary p-2" href="${pageContext.request.contextPath }/admin/winner_interview/1detail?wiIndex=1"> <img
                         src="${pageContext.request.contextPath }/resources/images/index/ico_seller_speetto.png" />
                      </a>
                   </div>
                </div>
                <div class="card pt-5 mb-3 border-white mx-1">
                   <div class="card-body text-center">
+                  	 <a class="btn-link h4 text-secondary p-2" href="${pageContext.request.contextPath }/admin/winner_interview/1detail?wiIndex=2">
                      <img class="rounded-circle mb-4" id="img-cover"
                         src="${pageContext.request.contextPath }/resources/images/index/winner_02.jpg"
                         height="100">
+                      </a>
                      <h4 class="mb-3">경기 하남시 하남대로</h4>
                      <p class="mb-2 text-secondary lead mx-3">아버지가 주신 큰 선물,
                         연금복권520 1, 2등 동시 당첨!</p>
@@ -378,9 +380,11 @@
                </div>
                <div class="card pt-5 mb-3 border-white mx-1">
                   <div class="card-body text-center">
+                    <a class="btn-link h4 text-secondary p-2" href="${pageContext.request.contextPath }/admin/winner_interview/1detail?wiIndex=8">
                      <img class="rounded-circle mb-4" id="img-cover"
                         src="${pageContext.request.contextPath }/resources/images/index/default_profile.jpg"
                         height="100">
+                     </a>
                      <h4 class="mb-3">인터넷(동행복권 홈페이지)</h4>
                      <p class="mb-2 text-secondary lead mx-3">행복한 부부가 더 행복해지는 길,
                         연금복권 1등 당첨!</p>

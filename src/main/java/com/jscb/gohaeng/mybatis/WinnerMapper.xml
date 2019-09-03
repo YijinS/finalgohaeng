@@ -18,8 +18,7 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT WI_INDEX,WI_TITLE,
-					WI_REG_DATE, WI_CONTENT, MEMBER_ID 
+				(SELECT *
 				FROM WINNER_INTERVIEW
 				ORDER BY WI_INDEX) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}

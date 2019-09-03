@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <main>
 <table class="tbl_data tbl_board_view">
@@ -18,7 +19,8 @@
 		</tr>
 		<tr>
 			<th scope="row">당첨일</th>
-			<td>${dto.wiDrawDate}</td>
+			<fmt:formatDate var="date" value="${dto.wiDrawDate}" pattern="yyyy-MM-dd" />
+			<td>${date}</td>
 			<th scope="row">조회수</th>
 			<td>${dto.wiHit}</td>
 		</tr>

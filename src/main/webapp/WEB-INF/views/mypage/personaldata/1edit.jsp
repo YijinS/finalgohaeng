@@ -4,5 +4,5 @@
 
 <script>
 	alert("수정되었습니다");
-	location.href = "${pageContext.request.contextPath}/mypage/editData";
+	location.href = "${pageContext.request.contextPath}/mypage/personaldata/editData";
 </script>

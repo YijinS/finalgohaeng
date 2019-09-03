@@ -21,7 +21,7 @@ public class WinnerDaoImpl implements WinnerDao {
 	}
 
 	@Override
-	public WinnerDto getDate(int wiIndex) {
+	public WinnerDto getData(int wiIndex) {
 		WinnerDto dto = session.selectOne("winner.getData", wiIndex);
 		
 		

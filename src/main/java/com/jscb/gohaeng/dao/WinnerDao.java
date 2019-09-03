@@ -12,7 +12,7 @@ public interface WinnerDao {
 	public int getCount(WinnerDto dto);
 	
 	public List<WinnerDto> getList(WinnerDto dto); // 목록을 리턴하는 메소드
-	public WinnerDto getDate(int wiIndex);
+	public WinnerDto getData(int wiIndex);
 	public void delete(int wiIndex);
 	public void insert(WinnerDto dto);
 	public void update(WinnerDto dto); 

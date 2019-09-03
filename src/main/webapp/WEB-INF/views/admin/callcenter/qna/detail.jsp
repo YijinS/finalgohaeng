@@ -13,12 +13,12 @@
                   <a id="QA_Lnb_Menu2486" href="${pageContext.request.contextPath}/admin/notice/list" menuno="2486" treeno="2703" class="product"> 공지사항</a>
             </li>
            
-            <li class="depth1 collapsable">
+            <li class="depth1">
                <a id="QA_Lnb_Menu2487" href="${pageContext.request.contextPath}/admin/callcenter/qna/list" menuno="2487" treeno="2707" class="member" style="color: black;font-weight: bold;"> 고객센터 </a>
                   <ul>
                      <li class=""><a id="QA_Lnb_Menu74"  href="${pageContext.request.contextPath}/admin/callcenter/qna/list" menuno="74"  treeno="2708" class=""> 1:1상담 </a>
                      </li>
-                     <li class=""><a id="QA_Lnb_Menu71"  href="#" menuno="71" treeno="2709" class=""> 자주묻는질문 </a>
+                     <li class=""><a id="QA_Lnb_Menu71"  href="${pageContext.request.contextPath}/callcenter/faq/all" menuno="71" treeno="2709" class=""> 자주묻는질문 </a>
                      </li>
                   </ul>
             </li>
@@ -29,11 +29,11 @@
             <li class="depth1">
                <a id="QA_Lnb_Menu2489" href="${pageContext.request.contextPath}/admin/store/1" menuno="2489" treeno="2712" class="board"> 판매점 </a>
             </li>
-            <li class="depth1 collapsable">
+            <li class="depth1">
                 <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/event/list" menuno="2488" treeno="2711" class="member"> 이벤트 </a>
             </li>
                
-                <li class="depth1 collapsable">
+                <li class="depth1">
                    <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/drawshow/lotto/list" menuno="2488" treeno="2711" class="member"> 참관신청 </a>
                </li>
          </ul>
@@ -42,18 +42,6 @@
             <a href="#">
                <img src="${pageContext.request.contextPath }/resources/images/index/logo-header.png" alt="고행복권" style="margin-left: -6px;" >
             </a>
-           <!-- 
-            <strong class="title">파일 업로드 사용 용량</strong> &nbsp;<a href="#none"
-               class="btnUploader" id="ec-smartmode-lnb-file-uploader">업로더</a>
-            <div class="info">
-               <div class="gauge">
-                  <span class="value" style="width: 8%"></span>
-               </div>
-               <div class="data">
-                  <strong class="value">8%</strong> <span class="capacity"><strong
-                     class="value">15MB</strong> / 200MB</span>
-               </div>
-            </div> -->
          </div>
       </div>
       <!-- LNB End -->

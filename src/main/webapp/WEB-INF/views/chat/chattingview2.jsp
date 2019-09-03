@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,12 +13,30 @@
 }
 
 .alert.alert-info{
-	background-color: #5aabffad;
+   background-color: #5aabffad;
     border-color: #3b68b9;
+}
+
+.alert.sessionid{
+
+	 border-color: black;
 }
 
 .container-fluid1{
 text-align: center;
+
+
+}
+
+
+.well{
+	background: #5aabffad;
+
+}
+
+.well1{
+
+	background: yellow;
 }
 </style>
 
@@ -43,40 +61,40 @@ text-align: center;
 </head>
 
 <body>
-	<div class="container-fluid1">
-		<h2>채팅방 (id: ${userid})</h2>
-	</div>
-<!-- 		<div>
-			<input type="button" id="chattinglistbtn" value="채팅 참여자 리스트">
-		</div> -->
-		<br>
-		<div>
-			<div class="well" id="chatdata">
-				<!-- User Session Info Hidden -->
-				 <input type="hidden" value='${userid}' id="sessionuserid">
-	             <input type="hidden" value='${name}' id="sessionname">
-			</div><br>
-			<div class="fixed-bottom">
-				<input type="text" id="message" style="height:60px; width: 300px;" /> 
-				<input type="button" id="sendBtn" value="전송" />
-			</div>
-		</div>
+   <div class="container-fluid1">
+      <h2>채팅방 (id: ${userid})</h2>
+   </div>
+<!--       <div>
+         <input type="button" id="chattinglistbtn" value="채팅 참여자 리스트">
+      </div> -->
+      <br>
+      <div>
+         <div class="well" id="chatdata">
+            <!-- User Session Info Hidden -->
+             <input type="hidden" value='${userid}' id="sessionuserid">
+             <input type="hidden" value='${name}' id="sessionname">
+         </div><br>
+         <div class="fixed-bottom">
+            <input type="text" id="message" style="height:60px; width: 300px;" /> 
+            <input type="button" id="sendBtn" value="전송" />
+         </div>
+      </div>
 </body>
 <!-- <script type="text/javascript">
 $(function(){
-	$("#chattinglistbtn").click(function(){
-		var infodialog = new $.Zebra_Dialog('<strong>Message:</strong><br><br><p>채팅방 참여자 리스트</p>',{
-			title: 'Chatting List',
-			type: 'confirmation',
-			print: false,
-			width: 260,
-			buttons: ['닫기'],
-			onClose: function(caption){
-				if(caption == '닫기'){
-					//alert('yes click');
-				}
-			}
-		});
+   $("#chattinglistbtn").click(function(){
+      var infodialog = new $.Zebra_Dialog('<strong>Message:</strong><br><br><p>채팅방 참여자 리스트</p>',{
+         title: 'Chatting List',
+         type: 'confirmation',
+         print: false,
+         width: 260,
+         buttons: ['닫기'],
+         onClose: function(caption){
+            if(caption == '닫기'){
+               //alert('yes click');
+            }
+         }
+      });
     });
 });
 </script> -->
@@ -122,7 +140,8 @@ function onOpen(evt) {
 function sendMessage(){      
    //websocket으로 메시지를 보내겠다.
    console.log("sendMessage() 실행");
-   sock.send($("#message").val());  
+   sock.send($("#message").val());/* 
+   sock.send($("#sessionuserid").val()); */
 }
             
 //evt 파라미터는 websocket이 보내준 데이터다.
@@ -157,31 +176,45 @@ function onMessage(evt){  //변수 안에 function자체를 넣음.
    
    //나와 상대방이 보낸 메세지를 구분하여 영역을 나눈다.//
    if(sessionId == currentuser_session){
-      var printHTML = "<div class='well'>";
-      printHTML += "<div class='alert alert-info'>";
-      printHTML += "<strong>["+sessionName+"] : "+message+"</strong>";
-      printHTML += "</div>";
-      printHTML += "</div>";
+      var printHTML = "<div class='well1'>";
+		      printHTML += "<div class='alert alert-info'>";
+		      printHTML += "<strong>["+sessionName+"] : "+message+"</strong>";
+		      printHTML += "</div>";
+		      printHTML += "</div>";
+	    
       
-      $("#chatdata").append(printHTML);
-   } else{
-      var printHTML = "<div class='well'>";
-      printHTML += "<div class='alert alert-warning'>";
-      printHTML += "<strong>["+sessionName+"] -> "+message+"</strong>";
-      printHTML += "</div>";
-      printHTML += "</div>";
+		      $("#chatdata").append(printHTML);
+		      $("#chatdata").scrollTop($("#chatdata")[0].scrollHeight);
       
-      $("#chatdata").append(printHTML);
-      $("#chatdata").scrollTop($("#chatdata")[0].scrollHeight);
-   }
-
-   $(".container-fluid1").append('<h2>채팅방 (id: '+ currentuser_session + '/'+sessionName+')'+')</h2>'); 
+   }else if(currentuser_session == 'ADMIN'){
+	 		 var printHTML = "<div class='well'>";
+	         printHTML += "<div class='alert sessionid'>";
+			 printHTML += "<strong>["+sessionName+"] : "+message+"</strong>";
+			 printHTML += "</div>";
+			 printHTML += "</div>";
+			 
+			 $("#chatdata").append(printHTML);
+			 $("#chatdata").scrollTop($("#chatdata")[0].scrollHeight);
+			  
+   }else if(sessionId != currentuser_session){
+		      var printHTML = "<div class='well1'>";
+		      printHTML += "<div class='alert alert-warning'>";
+		      printHTML += "<strong>["+sessionName+"] -> "+message+"</strong>";
+		      printHTML += "</div>";
+		      printHTML += "</div>";
+		      
+		      $("#chatdata").append(printHTML);
+		      $("#chatdata").scrollTop($("#chatdata")[0].scrollHeight);
+	   } 
+   
+   
+   $(".container-fluid1").append('<h2>채팅방 (id: '+ currentuser_session + '/'+sessionName+')</h2>'); 
  
    console.log('chatting data: ' + data);
 }
     
 function onClose(evt){
-	 alert("(관리자/사용자)와의 채팅이 연결이 끊겼습니다");
+    alert("(관리자/사용자)와의 채팅이 연결이 끊겼습니다");
 }    
 </script>
 </html>

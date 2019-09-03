@@ -3,6 +3,7 @@ package com.jscb.gohaeng.store.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -95,9 +96,7 @@ public class UserStoreController {
 	
 		@RequestMapping(value="ajax/selectGulist") 
 		public String selectGulist(@ModelAttribute StoreDto dto, HttpServletRequest request, Model model) {
-			String storeAddr = request.getParameter("storeAddr");
-			dto.setStoreAddr(storeAddr);
-			
+		
 			List<StoreDto> list = storeservice.selectGulist(dto, request);					
 			
 			model.addAttribute("list", list);
@@ -109,10 +108,11 @@ public class UserStoreController {
 
 	
 		@RequestMapping(value="ajax/selectStoreName", produces ="application/json; charset=utf8") 
-		public String selectStoreName(@ModelAttribute StoreDto dto, Model model, HttpServletRequest request ) {
+		public String selectStoreName(HttpSession session, @ModelAttribute StoreDto dto, Model model, HttpServletRequest request ) {
 
 			String storeName = request.getParameter("storeName");
 			dto.setStoreName(storeName);
+			
 			List<StoreDto> list = storeservice.selectStoreName(dto, request);
 			
 			model.addAttribute("list", list);

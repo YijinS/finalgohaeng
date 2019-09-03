@@ -128,7 +128,6 @@
 							<ul>
 								<c:forEach var="list" items="${list}">
 
-
 									<li><c:choose>
 											<c:when test="${list.wiCategory eq 1}">
 												<span class="pic"> <img
@@ -142,25 +141,25 @@
 													alt="연금복권520">
 												</span>
 											</c:when>
-											<c:otherwise>
+											<c:when test="${list.wiCategory eq 3}">
 												<span class="pic"> <img
-													src="${pageContext.request.contextPath}/resources/images/store/ico_seller_645.png"
-													alt="스피또1000">
+													src="${pageContext.request.contextPath}/resources/images/store/ico_seller_speetto.png"
+													alt="연금복권520">
 												</span>
-											</c:otherwise>
+											</c:when>
 										</c:choose> <!-- 카테고리 1이면 로또 2면 연금  -->
 										<div class="summary">
 											<strong class="game">${list.wiIndex}</strong> <a
 												href="1detail?wiIndex=${list.wiIndex}">${list.wiTitle}</a> <br>
 											<span class="date"><strong>작성일: </strong> <fmt:formatDate
 													value="${list.wiRegDate}" pattern="yyyy-MM-dd" /></span> <br>
-											<p class="comment">
-												<strong>소감한마디 : </strong><span></span>
-											</p>
+											<!-- <p class="comment">
+								<strong>소감한마디 : </strong><span></span>
+							</p> -->
 										</div>
 										<div class="action">
 											<a class="btn_common mid"
-												href="1detail?wiIndex=${list.wiIndex}">${list.memberId}
+												href="1detail?wiIndex=${list.wiIndex}">1등 당첨자
 												인터뷰 보기</a>
 										</div></li>
 

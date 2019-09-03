@@ -30,7 +30,7 @@
                     	   <li class="setting"><a href="${pageContext.request.contextPath }/guest/logout">로그아웃</a></li>
                         </c:when>
                         <c:when test="${sessionScope.member.id ne 'ADMIN'}">
-                        	<script>alert('관리자 아니면 꺼져');</script>
+                        	<script>alert('ADMIN 계정이 아닙니다. 다시 로그인해주시길 바랍니다');</script>
                         	<% session.invalidate(); %> 
                         	<script>location.href = "${pageContext.request.contextPath}/"; </script>
                         </c:when>
