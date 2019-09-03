@@ -67,24 +67,20 @@
 						</div>
 						<table class="tbl_data tbl_data_col">
 							<caption>번호, 제목, 모집기간, 추첨일자 등 참관신청 당첨자 안내</caption>
-							<colgroup>
-
+							<colgroup>						
 								<col style="width: 40px">
 								<col style="width: 40px">
-								<col style="width: 100px">
-								<col style="width: 195px">
-								<col style="width: 195px">
 								<col style="width: 110px">
-
-
+								<col style="width: 170px">
+								<col style="width: 110px">
 							</colgroup>
 							<thead>
 								<tr>
-									<th scope="col"><input type="checkbox" name="selected_all"></th>
-									<th scope="col">번호</th>
-									<th scope="col">작성자</th>
-									<th scope="col">모집기간</th>
-									<th scope="col">참관일자</th>
+									<th scope="col" style="text-align: center;"><input type="checkbox" name="selected_all"></th>
+									<th scope="col" style="text-align: center;">번호</th>
+									<th scope="col" style="text-align: center;">작성자</th>
+									<th scope="col" style="text-align: center;">모집기간</th>
+									<th scope="col" style="text-align: center;">참관일자</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -97,7 +93,7 @@
 									<c:otherwise>
 										<c:forEach var="list" items="${list}">
 											<tr>
-												<th><input type="checkbox" name="ckBox"
+												<th style="text-align: center;"><input type="checkbox" name="ckBox"
 													id="cBox${list.index}" value="${list.index}"></th>
 												<td>${list.index}</td>
 												<td>${list.name}</td>

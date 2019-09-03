@@ -88,20 +88,21 @@
 			<table class="tbl_data tbl_data_col">
 				<caption>번호,분류,제목,등록일 및 처리현황 등 나의 1:1 상담 내역</caption>
 				<colgroup>
+					<col style="width: 60px">
 					<col style="width: 80px">
-					<col style="width: 120px">
-					<col>
+					<col style="width: 400px">
+					<col style="width: 60px">
 					<col style="width: 120px">
 					<col style="width: 120px">
 				</colgroup>
 				<thead>
 					<tr>
-						<th scope="col">번호</th>
-						<th scope="col">분류</th>
-						<th scope="col">제목</th>
-						<th scope="col">작성자</th>
-						<th scope="col">등록일</th>
-						<th scope="col">처리현황</th>
+						<th scope="col" style="text-align: center;">번호</th>
+						<th scope="col" style="text-align: center;">분류</th>
+						<th scope="col" style="text-align: center;">제목</th>
+						<th scope="col" style="text-align: center;">작성자</th>
+						<th scope="col" style="text-align: center;">등록일</th>
+						<th scope="col" style="text-align: center;">처리현황</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -171,3 +172,6 @@
 	</div>
 </div>
 </main>
+<style>
+	a {color:#222;}
+</style>

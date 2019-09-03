@@ -58,11 +58,6 @@
 			<main id="article" class="contentsArticle">
 			<div class="header_article">
 				<h3 class="sub_title">연금 520 참관신청</h3>
-				<p class="location">
-					<a class="home" href="/"> Home </a><span class="gt">&gt;</span><a
-						href="#">당첨결과</a><span class="gt">&gt;</span><a href="#"><span>로또6/45</span></a><span
-						class="gt">&gt;</span><a href="#"> 추첨방송 참관신청</a>
-				</p>
 			</div>
 			<div>
 				<div class="content_wrap content_result_visitlist">
@@ -73,23 +68,19 @@
 						<table class="tbl_data tbl_data_col">
 							<caption>번호, 제목, 모집기간, 추첨일자 등 참관신청 당첨자 안내</caption>
 							<colgroup>
-
 								<col style="width: 40px">
 								<col style="width: 40px">
-								<col style="width: 100px">
-								<col style="width: 195px">
-								<col style="width: 195px">
 								<col style="width: 110px">
-
-
+								<col style="width: 170px">
+								<col style="width: 110px">
 							</colgroup>
 							<thead>
 								<tr>
-									<th scope="col"><input type="checkbox" name="selected_all"></th>
-									<th scope="col">번호</th>
-									<th scope="col">작성자</th>
-									<th scope="col">모집기간</th>
-									<th scope="col">참관일자</th>
+									<th scope="col" style="text-align: center;"><input type="checkbox" name="selected_all"></th>
+									<th scope="col" style="text-align: center;">번호</th>
+									<th scope="col" style="text-align: center;">작성자</th>
+									<th scope="col" style="text-align: center;">모집기간</th>
+									<th scope="col" style="text-align: center;">참관일자</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -102,7 +93,7 @@
 									<c:otherwise>
 										<c:forEach var="list" items="${list}">
 											<tr>
-												<th><input type="checkbox" name="ckBox"
+												<th style="text-align: center;"><input type="checkbox" name="ckBox"
 													id="cBox${list.index}" value="${list.index}"></th>
 												<td>${list.index}</td>
 												<td>${list.name}</td>
