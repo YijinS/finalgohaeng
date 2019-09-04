@@ -13,37 +13,16 @@
 		<section class="contentSection">
 			<!--왼쪽-->
 			<nav class="lnbNav">
-				<!-- left menu include -------------->
 				<div id="snb" class="lnb">
 					<h2 id="08" class="lnb_title">고객센터</h2>
 					<ul id="lnb" class="lnb_dep1">
-						<li id="08-01"><a href="/counsel.do?method=callCenter"
-							class="menuLnb"><span>고객센터 안내</span></a></li>
-						<li id="08-02"><a href="/counsel.do?method=faq"
-							class="menuLnb"><span>자주 묻는 질문</span></a></li>
-						<li id="08-03" class="active"><a
-							href="/counsel.do?method=myCounselList" class="menuLnb"><span>1:1상담</span></a>
-						</li>
-						<li id="08-06"><a href="/counsel.do?method=mobileLotto"
-							class="menuLnb"><span>모바일 동행복권 </span></a></li>
-						<li id="08-04"><a href="/counsel.do?method=winnerGuide"
-							class="menuLnb"><span>사용자 가이드</span></a>
-							<ul class="lnb_dep2" style="display: none;">
-								<li id="08-04-01"><a href="/counsel.do?method=winnerGuide"><span>당첨자
-											가이드 </span></a></li>
-								<li id="08-04-02"><a href="/counsel.do?method=playerGuide"><span>이용자
-											가이드 </span></a></li>
-								<!-- <li id="08-04-03"><a href="/counsel.do?method=movieGuide"><span>이용안내 동영상 </span></a></li> -->
-							</ul></li>
-						<!-- 		<li id="08-05"><a href="/counsel.do?method=knowledge" class="menuLnb"><span>자료실</span></a> -->
-						<!-- 			<ul class="lnb_dep2"> -->
-						<!-- 				<li id="08-05-01"><a href="/counsel.do?method=knowledge"><span>복권바로알기 </span></a></li> -->
-						<!-- 			</ul> -->
-						<!-- 		</li> -->
+						<li id="08-01"><a href="${pageContext.request.contextPath }/callcenter/info" class="menuLnb"><span>고객센터 안내</span></a></li>
+						<li id="08-02"><a href="${pageContext.request.contextPath }/callcenter/faq/all" class="menuLnb"><span>자주 묻는 질문</span></a></li>
+						<li id="08-03" class="active"><a href="${pageContext.request.contextPath }/callcenter/qna/list" class="menuLnb"><span>1:1상담</span></a></li>
+						<li id="08-06"><a href="${pageContext.request.contextPath }/callcenter/mobilelotto" class="menuLnb"><span>모바일 동행복권 </span></a></li>
+						<li id="08-04"><a href="${pageContext.request.contextPath }/callcenter/userguide/winner" class="menuLnb"><span>사용자 가이드</span></a></li>
 					</ul>
 				</div>
-
-				<!-- ----------------------------- -->
 			</nav>
 			<!-- 컨텐츠 영역 -->
 			<div id="article" class="contentsArticle">

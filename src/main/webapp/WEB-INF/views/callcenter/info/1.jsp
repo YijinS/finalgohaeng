@@ -7,7 +7,6 @@
 		<section class="contentSection">
 			<!-- ----------왼쪽메뉴---------- 영역 -->
 			<nav class="lnbNav">
-
 				<div id="snb" class="lnb">
 					<h2 id="08" class="lnb_title">고객센터</h2>
 					<ul id="lnb" class="lnb_dep1">
@@ -22,7 +21,6 @@
 							</ul></li>
 					</ul>
 				</div>
-
 			</nav>
 			<!-- -------------------------------------- -->
 			<!-- ----------메인컨텐츠---------- 영역 -->

@@ -161,3 +161,6 @@
 		</section>
 	</div>
 </div>
+<style>
+	a {color:#222;}
+</style>

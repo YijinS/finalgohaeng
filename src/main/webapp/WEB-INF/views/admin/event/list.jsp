@@ -11,7 +11,7 @@
             <li class="depth1 ">
                   <a id="QA_Lnb_Menu2486" href="${pageContext.request.contextPath}/admin/notice/list" menuno="2486" treeno="2703" class="product"> 공지사항</a>
             </li>
-            
+           
             <li class="depth1">
                <a id="QA_Lnb_Menu2487" href="${pageContext.request.contextPath}/admin/callcenter/qna/list" menuno="2487" treeno="2707" class="member"> 고객센터 </a>
             </li>
@@ -22,15 +22,13 @@
             <li class="depth1">
                <a id="QA_Lnb_Menu2489" href="${pageContext.request.contextPath}/admin/store/1" menuno="2489" treeno="2712" class="board"> 판매점 </a>
             </li>
-            <li class="depth1">
-                <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/event/list" menuno="2488" treeno="2711" class="member" style="color: black;font-weight: bold;"> 이벤트 </a>
-            	 <ul>
-                      <li class="">
-                        <a id="QA_Lnb_Menu74" href="${pageContext.request.contextPath}/admin/event/list" menuno="74" treeno="2708" class=""> 이벤트관리 </a>
-                      </li>
-                      <li class="">
-                        <a id="QA_Lnb_Menu71" href="#" menuno="71"treeno="2709" class=""> 이벤트 신청관리 </a>
-                      </li>
+            <li class="depth1 collapsable">
+                <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/event/list" menuno="2488" treeno="2711" class="member"  style="color: black;font-weight: bold;"> 이벤트 </a>
+            	<ul> 
+                     <li><a id="QA_Lnb_Menu74"  href="${pageContext.request.contextPath}/admin/event/list" menuno="77"  treeno="2708" class="">이벤트 게시</a>
+                     </li>
+                     <li><a id="QA_Lnb_Menu71"  href="${pageContext.request.contextPath}/admin/event/management/list" menuno="78" treeno="2709" class="">이벤트 추첨 </a>
+                     </li>
                   </ul>
             </li>
                
@@ -49,7 +47,7 @@
 
    </div>
 </aside>
-<div class="article">
+<div class="article container">
 	<div class="content_wrap content_interview_winner">
 		<!-- --------------------------------------- 컨텐트 시작 ----------------------------------------------- -->
 
@@ -109,10 +107,12 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<a class="btn btn-primary" href="${pageContext.request.contextPath }/admin/event/insertform" role="button">등록</a>
-		<a class="btn btn-secondary" id="delete" href="javasjavascript:" role="button">삭제</a>
-		<a class="btn btn-secondary" href="${pageContext.request.contextPath }/admin/event/drop" role="button">마감</a>
-		<div class="page-display">
+		<div class="mt-5">
+			<a class="btn btn-primary" href="${pageContext.request.contextPath }/admin/event/insertform" role="button">등록</a>
+			<a class="btn btn-secondary" id="delete" href="javasjavascript:" role="button">삭제</a>
+			<a class="btn btn-secondary" href="${pageContext.request.contextPath }/admin/event/drop" role="button">마감</a>
+		</div>
+		<div class="page-display mt-5 row justify-content-md-center"">
 			<ul class="pagination">
 				<c:choose>
 					<c:when test="${startPageNum ne 1 }">
@@ -206,7 +206,9 @@
     });
 
 </script>
-
+<style>
+	a {color:#222;}
+</style>
 
 
 

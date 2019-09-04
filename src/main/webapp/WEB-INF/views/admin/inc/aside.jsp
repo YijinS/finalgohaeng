@@ -34,6 +34,14 @@
             </li>
             <li class="depth1">
                 <a id="QA_Lnb_Menu2488" href="${pageContext.request.contextPath}/admin/event/list" menuno="2488" treeno="2711" class="member"> 이벤트 </a>
+                <ul>
+                      <li class="">
+                        <a id="QA_Lnb_Menu74" href="${pageContext.request.contextPath}/admin/event/list" menuno="77" treeno="2708" class="">이벤트 게시 </a>
+                      </li>
+                      <li class="">
+                        <a id="QA_Lnb_Menu71" href="${pageContext.request.contextPath}/admin/event/management/list" menuno="78"treeno="2709" class="">이벤트 추첨 </a>
+                      </li>
+                  </ul>
             </li>
                
                 <li class="depth1">
