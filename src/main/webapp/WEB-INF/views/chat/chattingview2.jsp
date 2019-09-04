@@ -78,18 +78,6 @@ body{
 }
 
 .fixed-bottom{
-<<<<<<< HEAD
-   position: absolute;
-    right: 0px;
-    bottom: -2px;
-    width: 100%;
-    margin-bottom: 2px;
-    
-}
-
-#sendBtn{
-   background-color: #faf400;
-=======
 	position: absolute;
     right: 0px;
     bottom: -2px;
@@ -100,7 +88,6 @@ body{
 
 #sendBtn{
 	background-color: #faf400;
->>>>>>> refs/remotes/origin/master
     padding: 11px 21.2px;
     margin: -1px;
     margin-top: 0px;
