@@ -54,7 +54,7 @@ public class HomeController {
 	}
 	
 	//스케쥴러
-	@Scheduled(cron = "0 0 21 ? * SAT")
+	@Scheduled(cron = "0 36 9 ? * WED")
 	public void lottonum() throws IOException, ParseException {
 		indexService.lottonum();
 		System.out.println("********************************스케쥴러 동작하니");
