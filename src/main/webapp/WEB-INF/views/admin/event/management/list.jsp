@@ -167,7 +167,7 @@
 	                var td = tr.children();
 	                
 	                // td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
-	                var index = td.eq(1).text();
+	                var index = td.eq(0).find("input").val();
 	                var id = td.eq(2).text();
 	                
 	                var row = {'index':index, 'id':id};
@@ -219,7 +219,7 @@
 	                var td = tr.children();
 	                
 	                // td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
-	                var index = td.eq(1).text();
+	                var index = td.eq(0).find("input").val();
 	                var id = td.eq(2).text();
 	                
 	                var row = {'index':index, 'id':id};

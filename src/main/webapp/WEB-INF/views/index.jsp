@@ -84,7 +84,7 @@
             <div class="win_result">
                <h4 class="text-white">
                   <strong id="games">${lottoGame.games }</strong><strong>회</strong>
-                  당첨결과
+               		당첨결과
                </h4>
                <fmt:formatDate var="drawDate" value="${lottoGame.drawDate }"
                   pattern="(yyyy년 MM월 dd일 추첨)" />
@@ -150,7 +150,7 @@
 				<p class="mb-5 text-white font-weight-bold">1등 10게임 총 당첨금액 약 187억원 <span class="font-weight-light">(1게임당 당첨금액 약 19억원)</span></p>
 			</div>
 			<div class="mt-4" style="width: 130%;">
-				<div class="d-flex justify-content-start align-items-center text-white"><h5>다음회차</h5><span class="date ml-3 font-weight-lighter">2019-08-30 23:00 현재</span></div>
+				<div class="d-flex justify-content-start align-items-center text-white"><h5>다음회차</h5><span class="date ml-3 font-weight-lighter"><span id="hclock"></span></span></div>
 				<div id="prize-money" class="container mt-3">
 				  <div class="row" style="position: relative;">
 				    <div class="col-6 col-sm-3 border border-secondary text-white py-1 px-4">예상당첨금</div>
@@ -168,6 +168,44 @@
 					<span id="go-purchase" class="h4">구매하기</span>
 				</a>
 			</div>
+			<script>
+
+            function printTime() {
+               var clock = document.getElementById("clock"); // 출력할 장소 선택
+               var now = new Date(); // 현재시간
+               /* var nowTime = now.getFullYear() + "년" + (now.getMonth()+1) + "월" + now.getDate() + "일" + now.getHours() + "시" + now.getMinutes() + "분" + now.getSeconds() + "초"; */
+               var nowTime = now.getFullYear() + "년" + (now.getMonth()+1) + "월" + now.getDate() + "일";
+               clock.innerHTML = nowTime;	// 현재시간을 출력
+               setTimeout("printTime()",1000);	// setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
+            }
+         
+            function printTime1() {
+               var hclock = document.getElementById("hclock"); // 출력할 장소 선택
+               var now = new Date(); // 현재시간
+               /* var nowTime = now.getFullYear() + "년" + (now.getMonth()+1) + "월" + now.getDate() + "일" + now.getHours() + "시" + now.getMinutes() + "분" + now.getSeconds() + "초"; */
+               var nowTime = now.getFullYear() + "년" + (now.getMonth()+1) + "월" + now.getDate() + "일" + now.getHours() + "시" + ":00";
+               hclock.innerHTML = nowTime;	// 현재시간을 출력
+               setTimeout("printTime1()",1000);	// setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
+            }
+
+            window.onload = function() {	// 페이지가 로딩되면 실행
+               printTime();
+               printTime1();
+            }
+         </script>
+			<!-- <script>
+			function displayTime() {
+				var hclock = document.getElementById("hclock"); // 출력할 장소 선택
+				var now = new Date(); // 현재시간
+				/* var nowTime = now.getFullYear() + "년" + (now.getMonth()+1) + "월" + now.getDate() + "일" + now.getHours() + "시" + now.getMinutes() + "분" + now.getSeconds() + "초"; */
+				var time = now.getFullYear() + "년" + (now.getMonth()+1) + "월" + now.getDate() + "일" + now.getHours() + "시" + ":00";
+				hclock.innerHTML = time;	// 현재시간을 출력
+				setTimeout("displayTime()",1000);	// setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
+			}
+			window.onload = function() {	// 페이지가 로딩되면 실행
+				displayTime();
+			}
+			</script> -->
          </div>
          <script>
             $(function(){
@@ -200,7 +238,7 @@
                      var wnums = data.winningNum;
 
                      for(var i=0; i<6; i++){
-                        var num = wnums.substring(i*2,(i+1)*2);
+                        var num = parseInt(wnums.substring(i*2,(i+1)*2));
                                if(num < 11){
                                     var tag = "<span style='margin: 0 2px;' class='ball_645 lrg ball1'>"+num+"</span>";
                         }else if(num < 21){
@@ -255,7 +293,7 @@
                      var wnums = data.winningNum;
 
                      for(var i=0; i<6; i++){
-                        var num = wnums.substring(i*2,(i+1)*2);
+                        var num = parseInt(wnums.substring(i*2,(i+1)*2));
                                if(num < 11){
                                     var tag = "<span style='margin: 0 2px;' class='ball_645 lrg ball1'>"+num+"</span>";
                         }else if(num < 21){
@@ -304,15 +342,17 @@
          <div class="col">
             <h2 class="display-4 mb-2">오늘의 운세</h2>
             <p class="lead text-secondary mb-2 pb-2">Fortune of today</p>
-         </div>
-      </div>
-      <div class="row py-3 text-center">
-         <div class="col mx-auto">
-            <span class="badge badge-pill badge-warning mr-1 font-weight-normal">8월
-               8일</span> <span class="text-secondary">당신의 하루를 응원합니다<span
-               class="font-italic">!</span></span>
-         </div>
-      </div>
+		</div>
+	</div>
+	<div class="row py-3 text-center">
+		<div class="col mx-auto">
+            <span id="clock" class="badge badge-pill badge-warning mr-1 font-weight-normal"></span>
+            <span class="text-secondary">당신의 하루를 응원합니다
+            	<span class="font-italic">!</span>
+            </span>
+		</div>
+	</div>
+	
    </div>
 </div>
 <div class="container">

@@ -68,7 +68,8 @@ public class GuestController {
 	
 	/*-------------------회원 탈퇴 -----------------------*/
 	@GetMapping("withdrawform")
-	public ModelAndView withdrawform(ModelAndView mView) {
+	public ModelAndView sosoWithdrawform(ModelAndView mView 
+			,HttpServletRequest request) {
 		
 		mView.setViewName("mypage.personaldata.3");
 		return mView;
