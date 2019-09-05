@@ -107,3 +107,7 @@
 	</div>
 </div>
 </main>
+
+<style>
+.tbl_board_view tr.prev_next th span {padding-right: 0px;}
+</style>

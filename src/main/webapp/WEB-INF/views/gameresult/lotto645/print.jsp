@@ -30,7 +30,7 @@ var pageName = "당첨내역";
 <body>
 <div class="popup_wrap_common popup_print_winnum_645">
 	<h1>로또 회차별 당첨번호</h1>
-	<p class="range">874회~874회차</p>
+	<p class="range">${save.start }회 ~ ${save.end }회차</p>
 	<table class="tbl_data tbl_data_col">
 		<caption>회차별 당첨번호, 보너스번호, 1위 당첨자수 및 1위 당첨자 1인당 당첨금액 안내</caption>
 		<colgroup>
