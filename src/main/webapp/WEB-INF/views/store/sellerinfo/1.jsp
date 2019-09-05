@@ -36,6 +36,10 @@
     margin-top: 5px;
 }
 
+.content_seller_info .wrap_option2 .box_option ~ .box_option {
+    margin-left: 29px;
+}
+
 </style>
 
 

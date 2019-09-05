@@ -155,7 +155,7 @@
 
 	// 비밀번호 미입력시 경고창
 	function deleteUser() {
-		alert("정말로 탈퇴?");
+		alert("탈퇴 하시겠습니까?");
 		var test = "${member.id }";
 		document.getElementById("userId").value = test;
 		//javascript 를 이용해서 redirect 이동 시키기 

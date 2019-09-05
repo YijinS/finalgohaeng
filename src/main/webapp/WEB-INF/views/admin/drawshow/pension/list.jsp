@@ -125,8 +125,8 @@
 								$('#hiddenValue').val(chkArray);
 								$('#questionlistfrm').attr('action', 'list');
 								$('#questionlistfrm').submit();
-								alert($('#hiddenValue').val()); // 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
-
+								/* alert($('#hiddenValue').val());  */// 아래 체크박스가 모두 체크되어 있다면 1,2,3,4 가 출력 된다.
+								alert("선택하신 회원이 당첨되었습니다.");
 							}
 						</script>
 
